@@ -6,12 +6,12 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup",
+    "generate-index": "python scripts/generator.py",
+    "build": "npm run generate-index && tsup",
     "lint": "eslint --ext .ts,.tsx src",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "jest",
-    "prepare": "husky install"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -32,10 +32,14 @@
     "@types/jest": "^29.5.0",
     "@typescript-eslint/eslint-plugin": "^8.18.2",
     "@typescript-eslint/parser": "^8.18.2",
+    "esbuild-sass-plugin": "^3.3.1",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.7.0",
     "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-unused-imports": "^4.1.4",
     "jest": "^29.7.0",
@@ -45,6 +49,7 @@
     "react-test-renderer": "^18.2.0",
     "sass": "^1.83.4",
     "storybook": "^8.5.2",
+    "ts-node": "^10.9.2",
     "tsup": "^8.3.6",
     "typescript": "^5.7.3"
   }
