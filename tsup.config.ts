@@ -15,7 +15,7 @@ export default defineConfig({
     options.metafile = true
   },
   dts: {
-    resolve: true
+    resolve: false
   },
   external: ['react', 'react-dom'],
   esbuildPlugins: [

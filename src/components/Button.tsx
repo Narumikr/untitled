@@ -1,6 +1,6 @@
 import styles from '@/styles/components/Button.module.scss'
 
-export interface ButtonProps {
+export type ButtonProps = {
   /** Is this the principal call to action on the page? */
   primary?: boolean
   /** What background color to use */

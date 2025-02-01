@@ -21,7 +21,7 @@ components = [
 
 # generate import components text
 exports_components = "\n".join(
-    [f"export {{ default as {name} }} from './components/{name}'" for name in components]
+    [f"export {{ default as {name} }} from './components/{name}.js'" for name in components]
 )
 
 index_content = f"import '{global_styles_path}'\n\n{exports_components}\n"
