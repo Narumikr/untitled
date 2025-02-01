@@ -9,5 +9,16 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   dts: true,
-  esbuildPlugins: [sassPlugin()] // ← SCSS ローダーを追加
+  external: ['react', 'react-dom'],
+  esbuildPlugins: [
+    sassPlugin({
+      type: 'css'
+    })
+  ],
+  loader: {
+    '.css': 'file',
+    '.module.css': 'css',
+    '.scss': 'file',
+    '.module.scss': 'css'
+  }
 })
