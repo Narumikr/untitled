@@ -63,6 +63,6 @@
   },
   "sideEffects": [
     "*.css",
-    "*.scss"
+    "*/.scss"
   ]
 }

@@ -18,8 +18,8 @@ export default defineConfig({
     })
   ],
   loader: {
-    '.scss': 'text',
-    '.module.scss': 'text'
+    '.scss': 'file',
+    '.module.scss': 'file'
   },
 
   outExtension({ format }) {
