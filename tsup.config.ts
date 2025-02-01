@@ -20,5 +20,8 @@ export default defineConfig({
     '.module.css': 'text',
     '.scss': 'text',
     '.module.scss': 'text'
+  },
+  outExtension({ format }) {
+    return format === 'esm' ? { js: '.esm.js' } : { js: '.cjs' }
   }
 })
