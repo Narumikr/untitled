@@ -16,10 +16,10 @@ export default defineConfig({
     })
   ],
   loader: {
-    '.css': 'text',
-    '.module.css': 'text',
-    '.scss': 'text',
-    '.module.scss': 'text'
+    '.css': 'css',
+    '.module.css': 'css',
+    '.scss': 'css',
+    '.module.scss': 'css'
   },
   outExtension({ format }) {
     return format === 'esm' ? { js: '.esm.js' } : { js: '.cjs' }
