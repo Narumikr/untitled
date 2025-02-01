@@ -1,8 +1,14 @@
-// src/styles/components/Button.module.scss
-var Button_module_default = "./Button.module-QFUQPLID.scss";
+import { jsx } from 'react/jsx-runtime';
 
-// src/components/Button.tsx
-import { jsx } from "react/jsx-runtime";
+// stylePlugin:F:\untitled\sekai\src\styles\components\Button.module.scss
+var Button_module_default = {
+  "storybook-button": "_storybook-button_1243a_1",
+  "storybook-button--primary": "_storybook-button--primary_1243a_11",
+  "storybook-button--secondary": "_storybook-button--secondary_1243a_16",
+  "storybook-button--small": "_storybook-button--small_1243a_22",
+  "storybook-button--medium": "_storybook-button--medium_1243a_27",
+  "storybook-button--large": "_storybook-button--large_1243a_32"
+};
 var Button = ({
   primary = false,
   size = "medium",
@@ -27,7 +33,7 @@ var Button = ({
   );
 };
 var Button_default = Button;
-export {
-  Button_default as Button
-};
+
+export { Button_default as Button };
+//# sourceMappingURL=index.esm.js.map
 //# sourceMappingURL=index.esm.js.map

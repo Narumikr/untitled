@@ -1,4 +1,14 @@
-import * as react_jsx_runtime from 'react/jsx-runtime';
+declare namespace JSX {
+    type ElementType = undefined.ElementType;
+    interface Element extends undefined.Element {}
+    interface ElementClass extends undefined.ElementClass {}
+    interface ElementAttributesProperty extends undefined.ElementAttributesProperty {}
+    interface ElementChildrenAttribute extends undefined.ElementChildrenAttribute {}
+    type LibraryManagedAttributes<C, P> = undefined.LibraryManagedAttributes<C, P>;
+    interface IntrinsicAttributes extends undefined.IntrinsicAttributes {}
+    interface IntrinsicClassAttributes<T> extends undefined.IntrinsicClassAttributes<T> {}
+    interface IntrinsicElements extends undefined.IntrinsicElements {}
+}
 
 interface ButtonProps {
     /** Is this the principal call to action on the page? */
@@ -13,6 +23,6 @@ interface ButtonProps {
     onClick?: () => void;
 }
 /** Primary UI component for user interaction */
-declare const Button: ({ primary, size, backgroundColor, label, ...props }: ButtonProps) => react_jsx_runtime.JSX.Element;
+declare const Button: ({ primary, size, backgroundColor, label, ...props }: ButtonProps) => JSX.Element;
 
 export { Button };

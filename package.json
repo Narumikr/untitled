@@ -7,9 +7,14 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
-    "import": "./dist/index.esm.js",
-    "require": "./dist/index.js"
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "generate-index": "python scripts/generator.py",
     "build": "rm -rf dist && npm run generate-index && tsup",
@@ -39,6 +44,7 @@
     "@typescript-eslint/parser": "^8.18.2",
     "esbuild-plugin-alias": "^0.2.1",
     "esbuild-plugin-css-modules": "^0.3.0",
+    "esbuild-plugin-style": "^0.0.1",
     "esbuild-sass-plugin": "^3.3.1",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
@@ -62,7 +68,6 @@
     "typescript-plugin-css-modules": "^5.1.0"
   },
   "sideEffects": [
-    "*.css",
-    "*/.scss"
+    "**/*.scss"
   ]
 }
