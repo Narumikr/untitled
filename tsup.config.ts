@@ -1,4 +1,5 @@
-import { sassPlugin } from 'esbuild-sass-plugin'
+import alias from 'esbuild-plugin-alias'
+import cssModulesPlugin from 'esbuild-plugin-css-modules'
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
@@ -11,16 +12,16 @@ export default defineConfig({
   dts: true,
   external: ['react', 'react-dom'],
   esbuildPlugins: [
-    sassPlugin({
-      type: 'css'
+    cssModulesPlugin(),
+    alias({
+      '@': './src'
     })
   ],
   loader: {
-    '.css': 'css',
-    '.module.css': 'css',
-    '.scss': 'css',
-    '.module.scss': 'css'
+    '.scss': 'text',
+    '.module.scss': 'text'
   },
+
   outExtension({ format }) {
     return format === 'esm' ? { js: '.esm.js' } : { js: '.cjs' }
   }

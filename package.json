@@ -2,17 +2,17 @@
   "name": "untitled-library",
   "version": "1.0.0",
   "description": "TypeScript components library for React and utility functions",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
-    "import": "./dist/index.esm.js", 
+    "import": "./dist/index.esm.js",
     "require": "./dist/index.js"
   },
   "scripts": {
     "generate-index": "python scripts/generator.py",
-    "build": "npm run generate-index && tsup",
+    "build": "rm -rf dist && npm run generate-index && tsup",
     "lint": "eslint --ext .ts,.tsx src",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -37,6 +37,8 @@
     "@types/jest": "^29.5.0",
     "@typescript-eslint/eslint-plugin": "^8.18.2",
     "@typescript-eslint/parser": "^8.18.2",
+    "esbuild-plugin-alias": "^0.2.1",
+    "esbuild-plugin-css-modules": "^0.3.0",
     "esbuild-sass-plugin": "^3.3.1",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
@@ -56,6 +58,11 @@
     "storybook": "^8.5.2",
     "ts-node": "^10.9.2",
     "tsup": "^8.3.6",
-    "typescript": "^5.7.3"
-  }
+    "typescript": "^5.7.3",
+    "typescript-plugin-css-modules": "^5.1.0"
+  },
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ]
 }
