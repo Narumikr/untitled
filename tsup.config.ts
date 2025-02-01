@@ -16,9 +16,9 @@ export default defineConfig({
     })
   ],
   loader: {
-    '.css': 'file',
-    '.module.css': 'css',
-    '.scss': 'file',
-    '.module.scss': 'css'
+    '.css': 'text',
+    '.module.css': 'text',
+    '.scss': 'text',
+    '.module.scss': 'text'
   }
 })
