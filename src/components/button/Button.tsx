@@ -1,4 +1,4 @@
-import styles from '@/styles/components/Button.module.scss'
+import styles from './Button.module.scss'
 
 export type ButtonProps = {
   /** Is this the principal call to action on the page? */

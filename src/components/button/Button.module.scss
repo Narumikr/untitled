@@ -1,3 +1,5 @@
+// @import '../../styles/globals.scss';
+
 .storybook-button {
   display: inline-block;
   cursor: pointer;
@@ -9,12 +11,12 @@
 }
 .storybook-button--primary {
   background-color: #555ab9;
-  color: white;
+  color: var(--mygo-color);
 }
 .storybook-button--secondary {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
   background-color: transparent;
-  color: #333;
+  color: var(--mygo-color);
 }
 .storybook-button--small {
   padding: 10px 16px;
