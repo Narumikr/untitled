@@ -1,0 +1,50 @@
+{
+  "name": "untitled-library",
+  "version": "1.0.0",
+  "description": "TypeScript components library for React and utility functions",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "generate-index": "python scripts/generator.py",
+    "build": "rm -rf dist && npm run generate-index && rollup -c --bundleConfigAsCjs && tsc --noEmit && cp package.json dist",
+    "lint": "eslint --ext .ts,.tsx src",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test": "jest"
+  },
+  "exports": {
+    "import": "./index.esm.js",
+    "types": "./index.d.ts",
+    "require": "./index.cjs.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-image": "^3.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@svgr/rollup": "^8.1.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "rollup": "^4.34.2",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-esbuild": "^6.1.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-tsconfig-paths": "^1.5.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "sass": "^1.83.4",
+    "typescript": "^5.7.3",
+    "typescript-plugin-css-modules": "^5.1.0"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.2.63",
+    "@types/react-dom": "^18.2.18",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
