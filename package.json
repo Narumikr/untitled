@@ -8,6 +8,7 @@
   "files": [
     "dist"
   ],
+  "type": "module",
   "scripts": {
     "generate-index": "python scripts/generator.py",
     "build": "rm -rf dist && npm run generate-index && rollup -c && tsc --noEmit && cp package.json dist",

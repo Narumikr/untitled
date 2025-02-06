@@ -8,10 +8,11 @@
   "files": [
     "dist"
   ],
+  "type": "module",
   "scripts": {
     "generate-index": "python scripts/generator.py",
     "build": "rm -rf dist && npm run generate-index && rollup -c && tsc --noEmit && cp package.json dist",
-    "lint": "npx eslint .",
+    "lint": "npx eslint .  --no-cache --ignore-pattern dist",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "jest"
