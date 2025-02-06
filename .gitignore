@@ -42,3 +42,4 @@ storybook-static/
 
 # Vite build file
 .vite/
+*storybook.log
