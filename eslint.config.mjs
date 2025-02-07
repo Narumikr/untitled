@@ -28,7 +28,9 @@ export default [
     'plugin:jsx-a11y/recommended'
   ),
   {
-    ignores: ['dist', 'node_modules'],
+    ignores: ['dist', 'node_modules', 'src']
+  },
+  {
     files: ['**/*.ts', '**/*.tsx'],
     plugins: {
       'import': fixupPluginRules(_import),
