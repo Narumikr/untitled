@@ -30,7 +30,7 @@ exports_components = "\n".join(
      for folder, file_name in components]
 )
 
-exports_styles = f"import {{ colorsSekai }} from './styles/sekai-colors'\nexport {{ colorsSekai }}\n\n{exports_components}\n"
+exports_styles = f"import {{ colorsSekai }} from './styles/sekai-colors'\nexport {{ colorsSekai }}\n\n{exports_components}"
 
 # write to index.ts
 with open(index_file, "w", encoding="utf-8") as f:

@@ -57,7 +57,7 @@ export default [
         plugins: [(await import('autoprefixer')).default]
       }),
       copy({
-        targets: [{ src: 'src/styles/sekai-colors.module.scss', dest: 'dist' }]
+        targets: [{ src: 'src/styles/sekai-colors.css', dest: 'dist' }]
       }),
       esbuild({
         sourcemap: false,
