@@ -23,7 +23,7 @@ import { colorsSekai } from '@naru/untitled-library'
 
 export const TopPage = () => {
   ...
-  
+
   return (
     <div className={styles.container}>
       <p style={{ color: colorsSekai.Miku }}>Miku</p>
@@ -43,7 +43,7 @@ export const TopPage = () => {
 ```ts
 import type { AppProps } from 'next/app'
 import '@/styles/globals.scss'
-import '@naru/untitled-library/sekai-colors.css' 
+import '@naru/untitled-library/color/sekai-colors.css'
 ...
 ```
 
