@@ -36,7 +36,10 @@ export default [
         preserveModules: false
       }
     ],
-    external: [...Object.keys(pkg.peerDependencies || {})],
+    external: [
+      ...Object.keys(pkg.peerDependencies || {}),
+      ...Object.keys(pkg.devDependencies || {})
+    ],
     plugins: [
       resolve(),
       commonjs(),
