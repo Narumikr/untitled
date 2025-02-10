@@ -23,6 +23,7 @@ import { colorsSekai } from '@naru/untitled-library'
 
 export const TopPage = () => {
   ...
+  
   return (
     <div className={styles.container}>
       <p style={{ color: colorsSekai.Miku }}>Miku</p>

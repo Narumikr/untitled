@@ -2,17 +2,17 @@
   "name": "@naru/untitled-library",
   "version": "1.0.0",
   "description": "TypeScript components library for React and utility functions",
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js",
-  "types": "./index.d.ts",
-  "style": "./sekai-colors.css",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "style": "dist/sekai-colors.css",
   "files": [
     "dist"
   ],
   "type": "module",
   "scripts": {
     "generate-index": "python scripts/generator.py",
-    "build": "rm -rf dist && npm run generate-index && rollup -c && tsc --noEmit && cp package.json dist",
+    "build": "rm -rf dist && npm run generate-index && rollup -c && tsc --noEmit",
     "lint": "npx eslint .  --no-cache",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
