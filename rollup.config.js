@@ -60,7 +60,7 @@ export default [
         plugins: [(await import('autoprefixer')).default]
       }),
       copy({
-        targets: [{ src: 'src/styles/sekai-colors.css', dest: 'dist' }]
+        targets: [{ src: 'src/styles/sekai-colors.css', dest: 'dist/color' }]
       }),
       esbuild({
         sourcemap: false,
