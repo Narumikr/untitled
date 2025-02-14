@@ -1,11 +1,27 @@
+/* Styles for common color */
+$color-text-light: #212121;
+$color-text-dark: #e0e0e0;
+$color-bg-light: #ffffff;
+$color-bg-dark: #121212;
+
+.sekai-color-light {
+  color: $color-text-light;
+  background-color: $color-bg-light;
+}
+
+.sekai-color-dark {
+  color: $color-text-dark;
+  background-color: $color-bg-dark;
+}
+
 /* Styles for positioning */
-.flex-center {
+.sekai-flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.absolute-center {
+.sekai-absolute-center {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -13,7 +29,7 @@
 }
 
 /* Styles for scroll */
-.invisible-scroll {
+.sekai-invisible-scroll {
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -22,14 +38,14 @@
 }
 
 /* Styles for margin space */
-.mb-8 {
+.sekai-mb-8 {
   margin-bottom: 8px;
 }
 
-.mb-16 {
+.sekai-mb-16 {
   margin-bottom: 16px;
 }
 
-.mb-24 {
+.sekai-mb-24 {
   margin-bottom: 24px;
 }

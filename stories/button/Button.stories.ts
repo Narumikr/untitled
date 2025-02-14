@@ -1,6 +1,6 @@
 import { fn } from '@storybook/test'
 
-import Button from '@/components/button/Button'
+import { Button } from '@/components/button/Button'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
@@ -30,6 +30,9 @@ export const Primary: Story = {
   args: {
     primary: true,
     label: 'Button'
+  },
+  parameters: {
+    background: 'dark'
   }
 }
 

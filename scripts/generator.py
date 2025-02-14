@@ -3,37 +3,67 @@ import os
 # ✅ get the current directory path
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
+# components
 components_dir = os.path.join(script_dir, "../src/components")
-index_file = os.path.join(script_dir, "../src/index.ts")
-sekai_colors_path = os.path.join(script_dir, "../src/styles/sekai-colors.ts")
+components_index_file = os.path.join(script_dir, f"{components_dir}/index.ts")
 
+# hooks
+hooks_dir = os.path.join(script_dir, "../src/hooks")
+hooks_index_file = os.path.join(script_dir, f"{hooks_dir}/index.ts")
+
+# utils
+utils_dir = os.path.join(script_dir, "../src/utils")
+utils_index_file = os.path.join(script_dir, f"{utils_dir}/index.ts")
 
 # check components directory exists
-if not os.path.exists(components_dir):
-    print(f"❌ Error: Not found!! no such a components directory: {components_dir}")
-    exit(1)
+def checkDirectoryExist(directory_path):
+    if not os.path.exists(directory_path):
+        print(f"❌ Error: Not found!! no such a components directory: {directory_path}")
+        exit(1)
 
-components = []
+# read all "**/*.tsx" files in the components directory
+def getFolderAndTsxFileNameList(directory_path):
+    file_name_list = []
+    for folder in os.listdir(directory_path):
+        folder_path = os.path.join(directory_path, folder)
+        if os.path.isdir(folder_path):
+            for file in os.listdir(folder_path):
+                if file.endswith(".tsx"):
+                    file_name = os.path.splitext(file)[0]
+                    file_name_list.append((folder, file_name))
+    return file_name_list
 
-# read all .tsx files in the components directory
-for folder in os.listdir(components_dir):
-    folder_path = os.path.join(components_dir, folder)
-    if os.path.isdir(folder_path):
-        for file in os.listdir(folder_path):
-            if file.endswith(".tsx"):
-                file_name = os.path.splitext(file)[0]
-                components.append((folder, file_name))
+# read all ".ts" files in the directory
+def getTsFileNameList(directory_path):
+    file_name_list = []
+    for file in os.listdir(directory_path):
+        if file.endswith(".ts"):
+            file_name = os.path.splitext(file)[0]
+            file_name_list.append(file_name)
+    return file_name_list
 
-# generate import statements for each components
-exports_components = "\n".join(
-    [f"export {{ default as {file_name} }} from './components/{folder}/{file_name}'\nexport type {{ {file_name}Props }} from './components/{folder}/{file_name}'\n"
-     for folder, file_name in components]
-)
+def outputIndexFile(output_file_path, output_text):
+    # write to index.ts
+    with open(output_file_path, "w", encoding="utf-8") as f:
+        f.write(output_text)
 
-exports_styles = f"import {{ colorsSekai }} from './styles/sekai-colors'\nexport {{ colorsSekai }}\n\n{exports_components}"
+    print(f"✅ Completed!! generate `index.ts`\n📁 output file path: {output_file_path}")
 
-# write to index.ts
-with open(index_file, "w", encoding="utf-8") as f:
-    f.write(exports_styles)
+if __name__ == "__main__":
+    # generate components indexfile
+    checkDirectoryExist(components_dir)
+    components_list = getFolderAndTsxFileNameList(components_dir)
+    exports_components = "\n".join([f"export * from '@/components/{folder}/{file_name}'\n" for folder, file_name in components_list])
+    outputIndexFile(components_index_file, exports_components)
 
-print(f"✅ Completed!! generate `index.ts`\n📁 output file path: {index_file}")
+    # generate hooks indexfile
+    checkDirectoryExist(hooks_dir)
+    hooks_list = getTsFileNameList(hooks_dir)
+    exports_hooks = "\n".join([f"export * from '@/hooks/{file_name}'\n" for file_name in hooks_list])
+    outputIndexFile(hooks_index_file, exports_hooks)
+
+    # generate utils indexfile
+    checkDirectoryExist(utils_dir)
+    hooks_list = getTsFileNameList(utils_dir)
+    exports_utils = "\n".join([f"export * from '@/utils/{file_name}'\n" for file_name in hooks_list])
+    outputIndexFile(utils_index_file, exports_utils)

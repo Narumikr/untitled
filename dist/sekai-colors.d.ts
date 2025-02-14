@@ -1,3 +1,38 @@
+declare const COLORS_SEKAI_KEYS: {
+    readonly Miku: "Miku";
+    readonly Rin: "Rin";
+    readonly Len: "Len";
+    readonly Luka: "Luka";
+    readonly Meiko: "Meiko";
+    readonly Kaito: "Kaito";
+    readonly Ichika: "Ichika";
+    readonly Saki: "Saki";
+    readonly Honami: "Honami";
+    readonly Shiho: "Shiho";
+    readonly Minori: "Minori";
+    readonly Haruka: "Haruka";
+    readonly Airi: "Airi";
+    readonly Shizuku: "Shizuku";
+    readonly Kohane: "Kohane";
+    readonly An: "An";
+    readonly Akito: "Akito";
+    readonly Toya: "Toya";
+    readonly Tsukasa: "Tsukasa";
+    readonly Emu: "Emu";
+    readonly Nene: "Nene";
+    readonly Rui: "Rui";
+    readonly Kanade: "Kanade";
+    readonly Mafuyu: "Mafuyu";
+    readonly Ena: "Ena";
+    readonly Mizuki: "Mizuki";
+    readonly Virtualsinger: "Virtualsinger";
+    readonly Leoneed: "Leoneed";
+    readonly Moremorejump: "Moremorejump";
+    readonly Vividbadsquad: "Vividbadsquad";
+    readonly Wonderlandsshowtime: "Wonderlandsshowtime";
+    readonly Nightcode: "Nightcode";
+};
+type ColorsSekaiKey = keyof typeof COLORS_SEKAI_KEYS;
 declare const colorsSekai: {
     /** Character */
     readonly Miku: "#33ccba";
@@ -27,12 +62,13 @@ declare const colorsSekai: {
     readonly Ena: "#ccaa88";
     readonly Mizuki: "#ddaacc";
     /** Unit */
-    readonly Virtualsinger: "#ffffff";
+    readonly Virtualsinger: "#f5f5f7";
     readonly Leoneed: "#4455dd";
     readonly Moremorejump: "#88dd44";
     readonly Vividbadsquad: "#ee1166";
     readonly Wonderlandsshowtime: "#ff9900";
     readonly Nightcode: "#884499";
 };
+type ColorsSekai = typeof colorsSekai;
 
-export { colorsSekai };
+export { COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, colorsSekai };

@@ -1,7 +1,23 @@
-export const converterHexToRgb = (hex: string) => {
-  // hex: '#ffffff' -> rgb: 'rgb(255, 255, 255)'
+export const convertHexToRgb = (hex: string) => {
+  if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
+    throw new Error('Invalid hex color format. Use #RRGGBB')
+  }
+
   const r = parseInt(hex.slice(1, 3), 16)
   const g = parseInt(hex.slice(3, 5), 16)
   const b = parseInt(hex.slice(5, 7), 16)
   return `rgb(${r}, ${g}, ${b})`
+}
+
+export const convertHexToRgba = (hex: string, alpha: number) => {
+  if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
+    throw new Error('Invalid hex color format. Use #RRGGBB')
+  }
+  if (alpha < 0 || alpha > 1) {
+    throw new Error('Alpha must be between 0 and 1')
+  }
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgb(${r}, ${g}, ${b}, ${alpha})`
 }
