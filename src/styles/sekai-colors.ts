@@ -1,3 +1,40 @@
+export const COLORS_SEKAI_KEYS = {
+  Miku: 'Miku',
+  Rin: 'Rin',
+  Len: 'Len',
+  Luka: 'Luka',
+  Meiko: 'Meiko',
+  Kaito: 'Kaito',
+  Ichika: 'Ichika',
+  Saki: 'Saki',
+  Honami: 'Honami',
+  Shiho: 'Shiho',
+  Minori: 'Minori',
+  Haruka: 'Haruka',
+  Airi: 'Airi',
+  Shizuku: 'Shizuku',
+  Kohane: 'Kohane',
+  An: 'An',
+  Akito: 'Akito',
+  Toya: 'Toya',
+  Tsukasa: 'Tsukasa',
+  Emu: 'Emu',
+  Nene: 'Nene',
+  Rui: 'Rui',
+  Kanade: 'Kanade',
+  Mafuyu: 'Mafuyu',
+  Ena: 'Ena',
+  Mizuki: 'Mizuki',
+  Virtualsinger: 'Virtualsinger',
+  Leoneed: 'Leoneed',
+  Moremorejump: 'Moremorejump',
+  Vividbadsquad: 'Vividbadsquad',
+  Wonderlandsshowtime: 'Wonderlandsshowtime',
+  Nightcode: 'Nightcode'
+} as const
+
+export type ColorsSekaiKey = keyof typeof COLORS_SEKAI_KEYS
+
 export const colorsSekai = {
   /** Character */
   Miku: '#33ccba',
@@ -27,10 +64,12 @@ export const colorsSekai = {
   Ena: '#ccaa88',
   Mizuki: '#ddaacc',
   /** Unit */
-  Virtualsinger: '#ffffff',
+  Virtualsinger: '#f5f5f7',
   Leoneed: '#4455dd',
   Moremorejump: '#88dd44',
   Vividbadsquad: '#ee1166',
   Wonderlandsshowtime: '#ff9900',
   Nightcode: '#884499'
 } as const
+
+export type ColorsSekai = typeof colorsSekai

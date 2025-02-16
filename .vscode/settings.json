@@ -4,6 +4,7 @@
       "source.fixAll.eslint": "always"
     },
     "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+    "eslint.useFlatConfig": true,
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "[typescript]": {

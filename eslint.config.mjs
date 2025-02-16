@@ -28,7 +28,7 @@ export default [
     'plugin:jsx-a11y/recommended'
   ),
   {
-    ignores: ['dist', 'node_modules', 'src']
+    ignores: ['dist', 'node_modules', 'src/**/index.ts']
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
@@ -133,7 +133,7 @@ export default [
               position: 'before'
             },
             {
-              pattern: '@/**',
+              pattern: '@/styles/**',
               group: 'internal',
               position: 'before'
             },
