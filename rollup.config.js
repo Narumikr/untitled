@@ -52,7 +52,10 @@ export default [
       postcss({
         modules: true,
         use: {
-          sass: { implementation: (await import('sass')).default }
+          sass: {
+            implementation: (await import('sass')).default,
+            silenceDeprecations: ['legacy-js-api']
+          }
         },
         plugins: [(await import('autoprefixer')).default]
       }),
