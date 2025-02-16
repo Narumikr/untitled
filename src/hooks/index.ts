@@ -1,3 +1,3 @@
-export * from './useSekaiTheme'
+export * from './useCreateSekai'
 
 export * from './useThemeMode'

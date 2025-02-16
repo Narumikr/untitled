@@ -3,7 +3,7 @@ import React from 'react'
 import globalStyles from '@/styles/global.module.scss'
 import { colorsSekai, type ColorsSekaiKey } from '@/styles/sekai-colors'
 
-import { useSekaiTheme } from '@/hooks/useSekaiTheme'
+import { useCreateSekai } from '@/hooks/useCreateSekai'
 import { LIGHT_MODE, type PaletteMode } from '@/hooks/useThemeMode'
 import { convertHexToRgba } from '@/utils/converter'
 
@@ -27,7 +27,7 @@ export const BasicButton = ({
   onClick,
   ...buttonProps
 }: BasicButtonProps) => {
-  const theme = useSekaiTheme()
+  const theme = useCreateSekai()
   const sekaiColor = colorsSekai[sekai || theme.sekaiTheme.palette.sekai]
   const isLight = LIGHT_MODE === themeMode
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)

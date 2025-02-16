@@ -274,10 +274,10 @@ var CreationSekaiProvider = function CreationSekaiProvider(_ref) {
   }, /*#__PURE__*/React.createElement("style", null, globalStyle), children);
 };
 
-var useSekaiTheme = function useSekaiTheme() {
+var useCreateSekai = function useCreateSekai() {
   var context = useContext(CreationSekaiContext);
   if (!context) {
-    throw new Error('useSekaiTheme must be used within a CreationSekaiProvider');
+    throw new Error('useCreateSekai must be used within a CreationSekaiProvider');
   }
   return context;
 };
@@ -320,7 +320,7 @@ var BasicButton = function BasicButton(_ref) {
     disabled = _ref$disabled === undefined ? false : _ref$disabled,
     onClick = _ref.onClick,
     buttonProps = _objectWithoutProperties(_ref, _excluded$1);
-  var theme = useSekaiTheme();
+  var theme = useCreateSekai();
   var sekaiColor = colorsSekai[sekai || theme.sekaiTheme.palette.sekai];
   var isLight = LIGHT_MODE === themeMode;
   var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
@@ -384,4 +384,4 @@ var createSekai = function createSekai(option) {
   return sekaiTheme;
 };
 
-export { BasicButton, Button, COLORS_SEKAI_KEYS, CreationSekaiContext, CreationSekaiProvider, DARK_MODE, LIGHT_MODE, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, useSekaiTheme, useThemeMode };
+export { BasicButton, Button, COLORS_SEKAI_KEYS, CreationSekaiContext, CreationSekaiProvider, DARK_MODE, LIGHT_MODE, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, useCreateSekai, useThemeMode };
