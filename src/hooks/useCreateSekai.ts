@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 
-import { CreationSekaiContext } from '@/components/provider/CreationSekaiProvider'
+import { YourSekaiContext } from '@/components/provider/YourSekaiProvider'
 
 export const useCreateSekai = () => {
-  const context = useContext(CreationSekaiContext)
+  const context = useContext(YourSekaiContext)
   if (!context) {
-    throw new Error('useCreateSekai must be used within a CreationSekaiProvider')
+    throw new Error('useCreateSekai must be used within a YourSekaiProvider')
   }
   return context
 }

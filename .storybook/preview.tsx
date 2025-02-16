@@ -2,7 +2,7 @@ import React from 'react'
 
 import { DocsContainer } from '@storybook/addon-docs'
 
-import { CreationSekaiProvider } from '@/components/provider/CreationSekaiProvider'
+import { YourSekaiProvider } from '@/components/provider/YourSekaiProvider'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
@@ -73,9 +73,9 @@ const preview: Preview = {
       })
 
       return (
-        <CreationSekaiProvider sekaiTheme={theme}>
+        <YourSekaiProvider sekaiTheme={theme}>
           <Story />
-        </CreationSekaiProvider>
+        </YourSekaiProvider>
       )
     }
   ]

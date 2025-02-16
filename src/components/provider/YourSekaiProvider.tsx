@@ -5,18 +5,18 @@ import { type ColorsSekaiKey } from '@/styles/sekai-colors'
 import { DARK_MODE } from '@/hooks/useThemeMode'
 import { type SekaiTheme } from '@/utils/createSekai'
 
-export interface CreationSekaiContextProps {
+export interface YourSekaiContextProps {
   sekaiTheme: SekaiTheme
   onSwitchSekaiColor: (sekai: ColorsSekaiKey) => void
 }
 
-export const CreationSekaiContext = createContext<CreationSekaiContextProps | null>(null)
+export const YourSekaiContext = createContext<YourSekaiContextProps | null>(null)
 
-export interface CreationSekaiProviderProps {
+export interface YourSekaiProviderProps {
   children: React.ReactNode
   sekaiTheme: SekaiTheme
 }
-export const CreationSekaiProvider = ({ children, sekaiTheme }: CreationSekaiProviderProps) => {
+export const YourSekaiProvider = ({ children, sekaiTheme }: YourSekaiProviderProps) => {
   const [currentSekaiTheme, setCurrentSekaiTheme] = useState<SekaiTheme>(sekaiTheme)
 
   const onSwitchSekaiColor = (sekai: ColorsSekaiKey) => {
@@ -48,9 +48,9 @@ export const CreationSekaiProvider = ({ children, sekaiTheme }: CreationSekaiPro
   )
 
   return (
-    <CreationSekaiContext.Provider value={provideValue}>
+    <YourSekaiContext.Provider value={provideValue}>
       <style>{globalStyle}</style>
       {children}
-    </CreationSekaiContext.Provider>
+    </YourSekaiContext.Provider>
   )
 }

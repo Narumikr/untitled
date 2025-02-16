@@ -10,6 +10,41 @@ function _extends() {
   }, _extends.apply(null, arguments);
 }
 
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
+}
+
+function toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (undefined !== e) {
+    var i = e.call(t, r);
+    if ("object" != _typeof(i)) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === r ? String : Number)(t);
+}
+
+function toPropertyKey(t) {
+  var i = toPrimitive(t, "string");
+  return "symbol" == _typeof(i) ? i : i + "";
+}
+
+function _defineProperty(e, r, t) {
+  return (r = toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+    value: t,
+    enumerable: true,
+    configurable: true,
+    writable: true
+  }) : e[r] = t, e;
+}
+
 function _objectWithoutPropertiesLoose(r, e) {
   if (null == r) return {};
   var t = {};
@@ -62,112 +97,6 @@ function styleInject(css, ref) {
 var css_248z$2 = "/* Styles for common color */\n.global-module_sekai-color-light__HfMHF {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.global-module_sekai-color-dark__6YhnV {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n/* Styles for positioning */\n.global-module_sekai-flex-center__g0QI6 {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.global-module_sekai-absolute-center__VTxH3 {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.global-module_sekai-invisible-scroll__hmrCH {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.global-module_sekai-invisible-scroll__hmrCH::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.global-module_sekai-mb-8__ktEHx {\n  margin-bottom: 8px;\n}\n\n.global-module_sekai-mb-16__6mRfr {\n  margin-bottom: 16px;\n}\n\n.global-module_sekai-mb-24__tgmAP {\n  margin-bottom: 24px;\n}";
 var globalStyles = {"sekai-color-light":"global-module_sekai-color-light__HfMHF","sekai-color-dark":"global-module_sekai-color-dark__6YhnV","sekai-flex-center":"global-module_sekai-flex-center__g0QI6","sekai-absolute-center":"global-module_sekai-absolute-center__VTxH3","sekai-invisible-scroll":"global-module_sekai-invisible-scroll__hmrCH","sekai-mb-8":"global-module_sekai-mb-8__ktEHx","sekai-mb-16":"global-module_sekai-mb-16__6mRfr","sekai-mb-24":"global-module_sekai-mb-24__tgmAP"};
 styleInject(css_248z$2);
-
-var COLORS_SEKAI_KEYS = {
-  Miku: 'Miku',
-  Rin: 'Rin',
-  Len: 'Len',
-  Luka: 'Luka',
-  Meiko: 'Meiko',
-  Kaito: 'Kaito',
-  Ichika: 'Ichika',
-  Saki: 'Saki',
-  Honami: 'Honami',
-  Shiho: 'Shiho',
-  Minori: 'Minori',
-  Haruka: 'Haruka',
-  Airi: 'Airi',
-  Shizuku: 'Shizuku',
-  Kohane: 'Kohane',
-  An: 'An',
-  Akito: 'Akito',
-  Toya: 'Toya',
-  Tsukasa: 'Tsukasa',
-  Emu: 'Emu',
-  Nene: 'Nene',
-  Rui: 'Rui',
-  Kanade: 'Kanade',
-  Mafuyu: 'Mafuyu',
-  Ena: 'Ena',
-  Mizuki: 'Mizuki',
-  Virtualsinger: 'Virtualsinger',
-  Leoneed: 'Leoneed',
-  Moremorejump: 'Moremorejump',
-  Vividbadsquad: 'Vividbadsquad',
-  Wonderlandsshowtime: 'Wonderlandsshowtime',
-  Nightcode: 'Nightcode'
-};
-var colorsSekai = {
-  /** Character */
-  Miku: '#33ccba',
-  Rin: '#ffcc10',
-  Len: '#feee10',
-  Luka: '#ffbbcc',
-  Meiko: '#dd4544',
-  Kaito: '#3367cc',
-  Ichika: '#33aaee',
-  Saki: '#ffc800',
-  Honami: '#ee6666',
-  Shiho: '#bbdd22',
-  Minori: '#ffc096',
-  Haruka: '#99ccff',
-  Airi: '#ffaacc',
-  Shizuku: '#6be6cd',
-  Kohane: '#ff6699',
-  An: '#00bbdd',
-  Akito: '#ff7722',
-  Toya: '#0077dd',
-  Tsukasa: '#ffbb00',
-  Emu: '#ff66bb',
-  Nene: '#33dd99',
-  Rui: '#bb88ee',
-  Kanade: '#bb6688',
-  Mafuyu: '#8888cc',
-  Ena: '#ccaa88',
-  Mizuki: '#ddaacc',
-  /** Unit */
-  Virtualsinger: '#f5f5f7',
-  Leoneed: '#4455dd',
-  Moremorejump: '#88dd44',
-  Vividbadsquad: '#ee1166',
-  Wonderlandsshowtime: '#ff9900',
-  Nightcode: '#884499'
-};
-
-function _typeof(o) {
-  "@babel/helpers - typeof";
-
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
-    return typeof o;
-  } : function (o) {
-    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-  }, _typeof(o);
-}
-
-function toPrimitive(t, r) {
-  if ("object" != _typeof(t) || !t) return t;
-  var e = t[Symbol.toPrimitive];
-  if (undefined !== e) {
-    var i = e.call(t, r);
-    if ("object" != _typeof(i)) return i;
-    throw new TypeError("@@toPrimitive must return a primitive value.");
-  }
-  return ("string" === r ? String : Number)(t);
-}
-
-function toPropertyKey(t) {
-  var i = toPrimitive(t, "string");
-  return "symbol" == _typeof(i) ? i : i + "";
-}
-
-function _defineProperty(e, r, t) {
-  return (r = toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
-    value: t,
-    enumerable: true,
-    configurable: true,
-    writable: true
-  }) : e[r] = t, e;
-}
 
 function _arrayWithHoles(r) {
   if (Array.isArray(r)) return r;
@@ -242,10 +171,10 @@ var useThemeMode = function useThemeMode() {
   return isDarkMode === null ? LIGHT_MODE : isDarkMode ? DARK_MODE : LIGHT_MODE;
 };
 
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-var CreationSekaiContext = /*#__PURE__*/createContext(null);
-var CreationSekaiProvider = function CreationSekaiProvider(_ref) {
+function ownKeys$1(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$1(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$1(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$1(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var YourSekaiContext = /*#__PURE__*/createContext(null);
+var YourSekaiProvider = function YourSekaiProvider(_ref) {
   var children = _ref.children,
     sekaiTheme = _ref.sekaiTheme;
   var _useState = useState(sekaiTheme),
@@ -254,8 +183,8 @@ var CreationSekaiProvider = function CreationSekaiProvider(_ref) {
     setCurrentSekaiTheme = _useState2[1];
   var onSwitchSekaiColor = function onSwitchSekaiColor(sekai) {
     setCurrentSekaiTheme(function (pre) {
-      return _objectSpread(_objectSpread({}, pre), {}, {
-        palette: _objectSpread(_objectSpread({}, pre.palette), {}, {
+      return _objectSpread$1(_objectSpread$1({}, pre), {}, {
+        palette: _objectSpread$1(_objectSpread$1({}, pre.palette), {}, {
           sekai: sekai
         })
       });
@@ -269,17 +198,105 @@ var CreationSekaiProvider = function CreationSekaiProvider(_ref) {
     var _sekaiTheme$typograph, _sekaiTheme$palette, _sekaiTheme$palette2;
     return "\n    * {\n      font-family: ".concat((_sekaiTheme$typograph = sekaiTheme.typography) === null || _sekaiTheme$typograph === undefined ? undefined : _sekaiTheme$typograph.fontFamily, ";\n    }\n    body {\n      color: ").concat(((_sekaiTheme$palette = sekaiTheme.palette) === null || _sekaiTheme$palette === undefined ? undefined : _sekaiTheme$palette.mode) === DARK_MODE ? '#e0e0e0' : '#212121', ";\n      background: ").concat(((_sekaiTheme$palette2 = sekaiTheme.palette) === null || _sekaiTheme$palette2 === undefined ? undefined : _sekaiTheme$palette2.mode) === DARK_MODE ? '#121212' : '#ffffff', ";\n    }\n  ");
   }, [sekaiTheme]);
-  return /*#__PURE__*/React.createElement(CreationSekaiContext.Provider, {
+  return /*#__PURE__*/React.createElement(YourSekaiContext.Provider, {
     value: provideValue
   }, /*#__PURE__*/React.createElement("style", null, globalStyle), children);
 };
 
+var COLORS_SEKAI_KEYS = {
+  Miku: 'Miku',
+  Rin: 'Rin',
+  Len: 'Len',
+  Luka: 'Luka',
+  Meiko: 'Meiko',
+  Kaito: 'Kaito',
+  Ichika: 'Ichika',
+  Saki: 'Saki',
+  Honami: 'Honami',
+  Shiho: 'Shiho',
+  Minori: 'Minori',
+  Haruka: 'Haruka',
+  Airi: 'Airi',
+  Shizuku: 'Shizuku',
+  Kohane: 'Kohane',
+  An: 'An',
+  Akito: 'Akito',
+  Toya: 'Toya',
+  Tsukasa: 'Tsukasa',
+  Emu: 'Emu',
+  Nene: 'Nene',
+  Rui: 'Rui',
+  Kanade: 'Kanade',
+  Mafuyu: 'Mafuyu',
+  Ena: 'Ena',
+  Mizuki: 'Mizuki',
+  Virtualsinger: 'Virtualsinger',
+  Leoneed: 'Leoneed',
+  Moremorejump: 'Moremorejump',
+  Vividbadsquad: 'Vividbadsquad',
+  Wonderlandsshowtime: 'Wonderlandsshowtime',
+  Nightcode: 'Nightcode'
+};
+var colorsSekai = {
+  /** Character */
+  Miku: '#33ccba',
+  Rin: '#ffcc10',
+  Len: '#feee10',
+  Luka: '#ffbbcc',
+  Meiko: '#dd4544',
+  Kaito: '#3367cc',
+  Ichika: '#33aaee',
+  Saki: '#ffc800',
+  Honami: '#ee6666',
+  Shiho: '#bbdd22',
+  Minori: '#ffc096',
+  Haruka: '#99ccff',
+  Airi: '#ffaacc',
+  Shizuku: '#6be6cd',
+  Kohane: '#ff6699',
+  An: '#00bbdd',
+  Akito: '#ff7722',
+  Toya: '#0077dd',
+  Tsukasa: '#ffbb00',
+  Emu: '#ff66bb',
+  Nene: '#33dd99',
+  Rui: '#bb88ee',
+  Kanade: '#bb6688',
+  Mafuyu: '#8888cc',
+  Ena: '#ccaa88',
+  Mizuki: '#ddaacc',
+  /** Unit */
+  Virtualsinger: '#f5f5f7',
+  Leoneed: '#4455dd',
+  Moremorejump: '#88dd44',
+  Vividbadsquad: '#ee1166',
+  Wonderlandsshowtime: '#ff9900',
+  Nightcode: '#884499'
+};
+
 var useCreateSekai = function useCreateSekai() {
-  var context = useContext(CreationSekaiContext);
+  var context = useContext(YourSekaiContext);
   if (!context) {
-    throw new Error('useCreateSekai must be used within a CreationSekaiProvider');
+    throw new Error('useCreateSekai must be used within a YourSekaiProvider');
   }
   return context;
+};
+
+var defaultTheme$1 = {
+  palette: {
+    sekai: COLORS_SEKAI_KEYS.Miku,
+    mode: LIGHT_MODE
+  }};
+var useOptionalSekai = function useOptionalSekai(option) {
+  var context = useContext(YourSekaiContext);
+  var sekaiColor = context ? colorsSekai[option.sekai || useCreateSekai().sekaiTheme.palette.sekai] : colorsSekai[defaultTheme$1.palette.sekai];
+  var modeTheme = context ? option.mode || useCreateSekai().sekaiTheme.palette.mode : defaultTheme$1.palette.mode;
+  var isLight = LIGHT_MODE === modeTheme;
+  return {
+    sekaiColor: sekaiColor,
+    modeTheme: modeTheme,
+    isLight: isLight
+  };
 };
 
 var convertHexToRgb = function convertHexToRgb(hex) {
@@ -308,28 +325,38 @@ var css_248z$1 = ".BasicButton-module_sekai-basic-button__VyCUN, .BasicButton-mo
 var styles$1 = {"sekai-basic-button":"BasicButton-module_sekai-basic-button__VyCUN","sekai-basic-button--dark":"BasicButton-module_sekai-basic-button--dark__XLpuB","sekai-basic-button--light":"BasicButton-module_sekai-basic-button--light__BCQ1L"};
 styleInject(css_248z$1);
 
-var _excluded$1 = ["className", "sekai", "themeMode", "children", "disabled", "onClick"];
+var _excluded$1 = ["className", "sekai", "withText", "themeMode", "children", "disabled", "onClick"];
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var BasicButton = function BasicButton(_ref) {
   var _ref$className = _ref.className,
     className = _ref$className === undefined ? '' : _ref$className,
     sekai = _ref.sekai,
-    _ref$themeMode = _ref.themeMode,
-    themeMode = _ref$themeMode === undefined ? LIGHT_MODE : _ref$themeMode,
+    _ref$withText = _ref.withText,
+    withText = _ref$withText === undefined ? false : _ref$withText,
+    themeMode = _ref.themeMode,
     children = _ref.children,
     _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === undefined ? false : _ref$disabled,
     onClick = _ref.onClick,
     buttonProps = _objectWithoutProperties(_ref, _excluded$1);
-  var theme = useCreateSekai();
-  var sekaiColor = colorsSekai[sekai || theme.sekaiTheme.palette.sekai];
-  var isLight = LIGHT_MODE === themeMode;
+  var _useOptionalSekai = useOptionalSekai({
+      sekai: sekai,
+      mode: themeMode
+    }),
+    sekaiColor = _useOptionalSekai.sekaiColor,
+    modeTheme = _useOptionalSekai.modeTheme,
+    isLight = _useOptionalSekai.isLight;
   var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
+  var optionStyle = _objectSpread({
+    '--sekai-color': sekaiColor,
+    '--sekai-color-hover': sekaiColorHover
+  }, withText && {
+    color: sekaiColor
+  });
   return /*#__PURE__*/React.createElement("button", _extends({
-    className: "".concat(styles$1["sekai-basic-button--".concat(themeMode)], " ").concat(globalStyles["sekai-color-".concat(themeMode)], " ").concat(className),
-    style: {
-      '--sekai-color': sekaiColor,
-      '--sekai-color-hover': sekaiColorHover
-    },
+    className: "".concat(styles$1["sekai-basic-button--".concat(modeTheme)], " ").concat(globalStyles["sekai-color-".concat(modeTheme)], " ").concat(className),
+    style: optionStyle,
     disabled: disabled,
     onClick: onClick
   }, buttonProps), children);
@@ -384,4 +411,4 @@ var createSekai = function createSekai(option) {
   return sekaiTheme;
 };
 
-export { BasicButton, Button, COLORS_SEKAI_KEYS, CreationSekaiContext, CreationSekaiProvider, DARK_MODE, LIGHT_MODE, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, useCreateSekai, useThemeMode };
+export { BasicButton, Button, COLORS_SEKAI_KEYS, DARK_MODE, LIGHT_MODE, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, useCreateSekai, useThemeMode };

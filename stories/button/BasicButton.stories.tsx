@@ -21,6 +21,7 @@ type Story = StoryObj<typeof meta>
 export const DefaultLight: Story = {
   args: {
     sekai: 'Miku',
+    withText: false,
     themeMode: 'light',
     children: 'Hatsune Miku',
     disabled: false
@@ -34,6 +35,35 @@ export const DefaultLight: Story = {
 export const DefaultDark: Story = {
   args: {
     sekai: 'Miku',
+    withText: false,
+    themeMode: 'dark',
+    children: 'Hatsune Miku',
+    disabled: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark'
+  }
+}
+
+export const WithTextLight: Story = {
+  args: {
+    sekai: 'Miku',
+    withText: true,
+    themeMode: 'light',
+    children: 'Hatsune Miku',
+    disabled: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light'
+  }
+}
+
+export const WithTextDark: Story = {
+  args: {
+    sekai: 'Miku',
+    withText: true,
     themeMode: 'dark',
     children: 'Hatsune Miku',
     disabled: false
@@ -47,6 +77,7 @@ export const DefaultDark: Story = {
 export const DisabledLight: Story = {
   args: {
     sekai: 'Miku',
+    withText: false,
     themeMode: 'light',
     children: 'Hatsune Miku',
     disabled: true
@@ -60,6 +91,7 @@ export const DisabledLight: Story = {
 export const DisabledtDark: Story = {
   args: {
     sekai: 'Miku',
+    withText: false,
     themeMode: 'dark',
     children: 'Hatsune Miku',
     disabled: true

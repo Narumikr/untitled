@@ -1,10 +1,10 @@
 import React from 'react'
 
 import globalStyles from '@/styles/global.module.scss'
-import { colorsSekai, type ColorsSekaiKey } from '@/styles/sekai-colors'
+import { type ColorsSekaiKey } from '@/styles/sekai-colors'
 
-import { useCreateSekai } from '@/hooks/useCreateSekai'
-import { LIGHT_MODE, type PaletteMode } from '@/hooks/useThemeMode'
+import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
+import { type PaletteMode } from '@/hooks/useThemeMode'
 import { convertHexToRgba } from '@/utils/converter'
 
 import styles from './BasicButton.module.scss'
@@ -12,6 +12,7 @@ import styles from './BasicButton.module.scss'
 export type BasicButtonProps = {
   className?: string
   sekai?: ColorsSekaiKey
+  withText?: boolean
   themeMode?: PaletteMode
   children?: React.ReactNode
   disabled?: boolean
@@ -21,26 +22,26 @@ export type BasicButtonProps = {
 export const BasicButton = ({
   className = '',
   sekai,
-  themeMode = LIGHT_MODE,
+  withText = false,
+  themeMode,
   children,
   disabled = false,
   onClick,
   ...buttonProps
 }: BasicButtonProps) => {
-  const theme = useCreateSekai()
-  const sekaiColor = colorsSekai[sekai || theme.sekaiTheme.palette.sekai]
-  const isLight = LIGHT_MODE === themeMode
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
+
+  const optionStyle = {
+    '--sekai-color': sekaiColor,
+    '--sekai-color-hover': sekaiColorHover,
+    ...(withText && { color: sekaiColor })
+  }
 
   return (
     <button
-      className={`${styles[`sekai-basic-button--${themeMode}`]} ${globalStyles[`sekai-color-${themeMode}`]} ${className}`}
-      style={
-        {
-          '--sekai-color': sekaiColor,
-          '--sekai-color-hover': sekaiColorHover
-        } as React.CSSProperties
-      }
+      className={`${styles[`sekai-basic-button--${modeTheme}`]} ${globalStyles[`sekai-color-${modeTheme}`]} ${className}`}
+      style={optionStyle}
       disabled={disabled}
       onClick={onClick}
       {...buttonProps}>
