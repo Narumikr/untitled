@@ -12,13 +12,11 @@ export interface CreationSekaiContextProps {
 
 export const CreationSekaiContext = createContext<CreationSekaiContextProps | null>(null)
 
-export const CreationSekaiProvider = ({
-  children,
-  sekaiTheme
-}: {
+export interface CreationSekaiProviderProps {
   children: React.ReactNode
   sekaiTheme: SekaiTheme
-}) => {
+}
+export const CreationSekaiProvider = ({ children, sekaiTheme }: CreationSekaiProviderProps) => {
   const [currentSekaiTheme, setCurrentSekaiTheme] = useState<SekaiTheme>(sekaiTheme)
 
   const onSwitchSekaiColor = (sekai: ColorsSekaiKey) => {

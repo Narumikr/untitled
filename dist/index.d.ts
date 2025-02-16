@@ -119,14 +119,15 @@ interface CreationSekaiContextProps {
     onSwitchSekaiColor: (sekai: ColorsSekaiKey) => void;
 }
 declare const CreationSekaiContext: React.Context<CreationSekaiContextProps | null>;
-declare const CreationSekaiProvider: ({ children, sekaiTheme }: {
+interface CreationSekaiProviderProps {
     children: React.ReactNode;
     sekaiTheme: SekaiTheme;
-}) => React.JSX.Element;
+}
+declare const CreationSekaiProvider: ({ children, sekaiTheme }: CreationSekaiProviderProps) => React.JSX.Element;
 
 declare const useSekaiTheme: () => CreationSekaiContextProps;
 
 declare const convertHexToRgb: (hex: string) => string;
 declare const convertHexToRgba: (hex: string, alpha: number) => string;
 
-export { BasicButton, type BasicButtonProps, Button, type ButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, CreationSekaiContext, type CreationSekaiContextProps, CreationSekaiProvider, DARK_MODE, LIGHT_MODE, type PaletteMode, type SekaiTheme, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, useSekaiTheme, useThemeMode };
+export { BasicButton, type BasicButtonProps, Button, type ButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, CreationSekaiContext, type CreationSekaiContextProps, CreationSekaiProvider, type CreationSekaiProviderProps, DARK_MODE, LIGHT_MODE, type PaletteMode, type SekaiTheme, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, useSekaiTheme, useThemeMode };
