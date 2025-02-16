@@ -65,6 +65,77 @@ var css_248z$2 = "/* Styles for common color */\n.global-module_sekai-color-ligh
 var globalStyles = {"sekai-color-light":"global-module_sekai-color-light__HfMHF","sekai-color-dark":"global-module_sekai-color-dark__6YhnV","sekai-flex-center":"global-module_sekai-flex-center__g0QI6","sekai-absolute-center":"global-module_sekai-absolute-center__VTxH3","sekai-invisible-scroll":"global-module_sekai-invisible-scroll__hmrCH","sekai-mb-8":"global-module_sekai-mb-8__ktEHx","sekai-mb-16":"global-module_sekai-mb-16__6mRfr","sekai-mb-24":"global-module_sekai-mb-24__tgmAP"};
 styleInject(css_248z$2);
 
+var COLORS_SEKAI_KEYS = {
+  Miku: 'Miku',
+  Rin: 'Rin',
+  Len: 'Len',
+  Luka: 'Luka',
+  Meiko: 'Meiko',
+  Kaito: 'Kaito',
+  Ichika: 'Ichika',
+  Saki: 'Saki',
+  Honami: 'Honami',
+  Shiho: 'Shiho',
+  Minori: 'Minori',
+  Haruka: 'Haruka',
+  Airi: 'Airi',
+  Shizuku: 'Shizuku',
+  Kohane: 'Kohane',
+  An: 'An',
+  Akito: 'Akito',
+  Toya: 'Toya',
+  Tsukasa: 'Tsukasa',
+  Emu: 'Emu',
+  Nene: 'Nene',
+  Rui: 'Rui',
+  Kanade: 'Kanade',
+  Mafuyu: 'Mafuyu',
+  Ena: 'Ena',
+  Mizuki: 'Mizuki',
+  Virtualsinger: 'Virtualsinger',
+  Leoneed: 'Leoneed',
+  Moremorejump: 'Moremorejump',
+  Vividbadsquad: 'Vividbadsquad',
+  Wonderlandsshowtime: 'Wonderlandsshowtime',
+  Nightcode: 'Nightcode'
+};
+var colorsSekai = {
+  /** Character */
+  Miku: '#33ccba',
+  Rin: '#ffcc10',
+  Len: '#feee10',
+  Luka: '#ffbbcc',
+  Meiko: '#dd4544',
+  Kaito: '#3367cc',
+  Ichika: '#33aaee',
+  Saki: '#ffc800',
+  Honami: '#ee6666',
+  Shiho: '#bbdd22',
+  Minori: '#ffc096',
+  Haruka: '#99ccff',
+  Airi: '#ffaacc',
+  Shizuku: '#6be6cd',
+  Kohane: '#ff6699',
+  An: '#00bbdd',
+  Akito: '#ff7722',
+  Toya: '#0077dd',
+  Tsukasa: '#ffbb00',
+  Emu: '#ff66bb',
+  Nene: '#33dd99',
+  Rui: '#bb88ee',
+  Kanade: '#bb6688',
+  Mafuyu: '#8888cc',
+  Ena: '#ccaa88',
+  Mizuki: '#ddaacc',
+  /** Unit */
+  Virtualsinger: '#f5f5f7',
+  Leoneed: '#4455dd',
+  Moremorejump: '#88dd44',
+  Vividbadsquad: '#ee1166',
+  Wonderlandsshowtime: '#ff9900',
+  Nightcode: '#884499'
+};
+
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -233,77 +304,6 @@ var convertHexToRgba = function convertHexToRgba(hex, alpha) {
   var g = parseInt(hex.slice(3, 5), 16);
   var b = parseInt(hex.slice(5, 7), 16);
   return "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ", ").concat(alpha, ")");
-};
-
-var COLORS_SEKAI_KEYS = {
-  Miku: 'Miku',
-  Rin: 'Rin',
-  Len: 'Len',
-  Luka: 'Luka',
-  Meiko: 'Meiko',
-  Kaito: 'Kaito',
-  Ichika: 'Ichika',
-  Saki: 'Saki',
-  Honami: 'Honami',
-  Shiho: 'Shiho',
-  Minori: 'Minori',
-  Haruka: 'Haruka',
-  Airi: 'Airi',
-  Shizuku: 'Shizuku',
-  Kohane: 'Kohane',
-  An: 'An',
-  Akito: 'Akito',
-  Toya: 'Toya',
-  Tsukasa: 'Tsukasa',
-  Emu: 'Emu',
-  Nene: 'Nene',
-  Rui: 'Rui',
-  Kanade: 'Kanade',
-  Mafuyu: 'Mafuyu',
-  Ena: 'Ena',
-  Mizuki: 'Mizuki',
-  Virtualsinger: 'Virtualsinger',
-  Leoneed: 'Leoneed',
-  Moremorejump: 'Moremorejump',
-  Vividbadsquad: 'Vividbadsquad',
-  Wonderlandsshowtime: 'Wonderlandsshowtime',
-  Nightcode: 'Nightcode'
-};
-var colorsSekai = {
-  /** Character */
-  Miku: '#33ccba',
-  Rin: '#ffcc10',
-  Len: '#feee10',
-  Luka: '#ffbbcc',
-  Meiko: '#dd4544',
-  Kaito: '#3367cc',
-  Ichika: '#33aaee',
-  Saki: '#ffc800',
-  Honami: '#ee6666',
-  Shiho: '#bbdd22',
-  Minori: '#ffc096',
-  Haruka: '#99ccff',
-  Airi: '#ffaacc',
-  Shizuku: '#6be6cd',
-  Kohane: '#ff6699',
-  An: '#00bbdd',
-  Akito: '#ff7722',
-  Toya: '#0077dd',
-  Tsukasa: '#ffbb00',
-  Emu: '#ff66bb',
-  Nene: '#33dd99',
-  Rui: '#bb88ee',
-  Kanade: '#bb6688',
-  Mafuyu: '#8888cc',
-  Ena: '#ccaa88',
-  Mizuki: '#ddaacc',
-  /** Unit */
-  Virtualsinger: '#f5f5f7',
-  Leoneed: '#4455dd',
-  Moremorejump: '#88dd44',
-  Vividbadsquad: '#ee1166',
-  Wonderlandsshowtime: '#ff9900',
-  Nightcode: '#884499'
 };
 
 var css_248z$1 = ".BasicButton-module_sekai-basic-button__VyCUN, .BasicButton-module_sekai-basic-button--dark__XLpuB, .BasicButton-module_sekai-basic-button--light__BCQ1L {\n  padding: 5px 10px;\n  border-radius: 10px;\n  min-height: 40px;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled {\n  opacity: 0.5;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled:hover, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled:hover, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled:hover {\n  background-color: transparent;\n}\n\n.BasicButton-module_sekai-basic-button--light__BCQ1L {\n  border: 2px solid var(--sekai-color, #000);\n}\n.BasicButton-module_sekai-basic-button--light__BCQ1L:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));\n}\n\n.BasicButton-module_sekai-basic-button--dark__XLpuB {\n  border: 2px solid var(--sekai-color, #fff);\n}\n.BasicButton-module_sekai-basic-button--dark__XLpuB:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));\n}";

@@ -1,5 +1,6 @@
+import { COLORS_SEKAI_KEYS, type ColorsSekaiKey } from '@/styles/sekai-colors'
+
 import { LIGHT_MODE, type PaletteMode } from '@/hooks/useThemeMode'
-import { COLORS_SEKAI_KEYS, type ColorsSekaiKey } from '@/utils/sekai-colors'
 
 export type SekaiTheme = {
   palette: {

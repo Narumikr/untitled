@@ -4,9 +4,10 @@ import { DocsContainer } from '@storybook/addon-docs'
 
 import { CreationSekaiProvider } from '@/components/provider/CreationSekaiProvider'
 
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+
 import { DARK_MODE, LIGHT_MODE } from '@/hooks/useThemeMode'
 import { createSekai } from '@/utils/createSekai'
-import { COLORS_SEKAI_KEYS } from '@/utils/sekai-colors'
 
 import type { SekaiTheme } from '@/utils/createSekai'
 import type { DocsContextProps } from '@storybook/addon-docs'

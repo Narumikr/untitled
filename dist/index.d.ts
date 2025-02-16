@@ -1,10 +1,5 @@
 import React from 'react';
 
-declare const LIGHT_MODE = "light";
-declare const DARK_MODE = "dark";
-type PaletteMode = typeof LIGHT_MODE | typeof DARK_MODE;
-declare const useThemeMode: () => PaletteMode;
-
 declare const COLORS_SEKAI_KEYS: {
     readonly Miku: "Miku";
     readonly Rin: "Rin";
@@ -77,6 +72,11 @@ declare const colorsSekai: {
     readonly Nightcode: "#884499";
 };
 type ColorsSekai = typeof colorsSekai;
+
+declare const LIGHT_MODE = "light";
+declare const DARK_MODE = "dark";
+type PaletteMode = typeof LIGHT_MODE | typeof DARK_MODE;
+declare const useThemeMode: () => PaletteMode;
 
 type BasicButtonProps = {
     className?: string;
