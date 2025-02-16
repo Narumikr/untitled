@@ -9,7 +9,6 @@ import postcss from 'rollup-plugin-postcss'
 import image from '@rollup/plugin-image'
 import svgr from '@svgr/rollup'
 import copy from 'rollup-plugin-copy'
-import esbuild from 'rollup-plugin-esbuild'
 import tsconfigPaths from 'rollup-plugin-tsconfig-paths'
 import babel from '@rollup/plugin-babel'
 import dts from 'rollup-plugin-dts'
@@ -41,6 +40,7 @@ export default [
       ...Object.keys(pkg.devDependencies || {})
     ],
     plugins: [
+      tsconfigPaths(),
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json', declaration: false }),
@@ -49,9 +49,6 @@ export default [
         presets: ['@babel/preset-react'],
         extensions: ['.ts', '.tsx']
       }),
-      image(),
-      svgr(),
-      tsconfigPaths(),
       postcss({
         modules: true,
         use: {
@@ -59,24 +56,16 @@ export default [
         },
         plugins: [(await import('autoprefixer')).default]
       }),
+      image(),
+      svgr(),
       copy({
         targets: [{ src: 'src/styles/sekai-colors.css', dest: 'dist/color' }]
-      }),
-      esbuild({
-        sourcemap: false,
-        minify: false,
-        tsconfig: './tsconfig.json'
       })
     ]
   },
   {
     input: 'src/index.ts',
     output: [{ file: 'dist/index.d.ts', format: 'es' }],
-    plugins: [dts()]
-  },
-  {
-    input: 'src/styles/sekai-colors.ts',
-    output: [{ file: 'dist/sekai-colors.d.ts', format: 'es' }],
-    plugins: [dts()]
+    plugins: [tsconfigPaths(), resolve(), dts()]
   }
 ]

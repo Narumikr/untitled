@@ -1,5 +1,3 @@
-export * from '@/hooks/index'
+export * from './useSekaiTheme'
 
-export * from '@/hooks/useSekaiTheme'
-
-export * from '@/hooks/useThemeMode'
+export * from './useThemeMode'

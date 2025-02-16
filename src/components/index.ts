@@ -1,5 +1,5 @@
-export * from '@/components/button/BasicButton'
+export * from './button/BasicButton'
 
-export * from '@/components/button/Button'
+export * from './button/Button'
 
-export * from '@/components/provider/CreationSekaiProvider'
+export * from './provider/CreationSekaiProvider'

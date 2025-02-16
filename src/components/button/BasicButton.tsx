@@ -1,11 +1,11 @@
 import React from 'react'
 
 import globalStyles from '@/styles/global.module.scss'
-import { colorsSekai, type ColorsSekaiKey } from '@/styles/sekai-colors'
 
 import { useSekaiTheme } from '@/hooks/useSekaiTheme'
 import { LIGHT_MODE, type PaletteMode } from '@/hooks/useThemeMode'
 import { convertHexToRgba } from '@/utils/converter'
+import { colorsSekai, type ColorsSekaiKey } from '@/utils/sekai-colors'
 
 import styles from './BasicButton.module.scss'
 
