@@ -79,30 +79,22 @@ type PaletteMode = typeof LIGHT_MODE | typeof DARK_MODE;
 declare const useThemeMode: () => PaletteMode;
 
 type BasicButtonProps = {
+    /** Button styles */
     className?: string;
+    /** What SEKAI color to use */
     sekai?: ColorsSekaiKey;
+    /** Apply SEKAI color to text */
     withText?: boolean;
+    /** Light or Dark mode */
     themeMode?: PaletteMode;
-    children?: React.ReactNode;
-    disabled?: boolean;
-    onClick: () => void;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
-declare const BasicButton: ({ className, sekai, withText, themeMode, children, disabled, onClick, ...buttonProps }: BasicButtonProps) => React.JSX.Element;
-
-interface ButtonProps {
-    /** Is this the principal call to action on the page? */
-    primary?: boolean;
-    /** What background color to use */
-    backgroundColor?: string;
-    /** How large should the button be? */
-    size?: 'small' | 'medium' | 'large';
     /** Button contents */
-    label: string;
-    /** Optional click handler */
+    children?: React.ReactNode;
+    /** Button disabled */
+    disabled?: boolean;
+    /** Click handler */
     onClick?: () => void;
-}
-/** Primary UI component for user interaction */
-declare const Button: ({ primary, size, backgroundColor, label, ...props }: ButtonProps) => React.JSX.Element;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+declare const BasicButton: ({ className, sekai, withText, themeMode, children, disabled, ...buttonProps }: BasicButtonProps) => React.JSX.Element;
 
 type SekaiTheme = {
     palette: {
@@ -131,4 +123,4 @@ declare const useCreateSekai: () => YourSekaiContextProps;
 declare const convertHexToRgb: (hex: string) => string;
 declare const convertHexToRgba: (hex: string, alpha: number) => string;
 
-export { BasicButton, type BasicButtonProps, Button, type ButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, LIGHT_MODE, type PaletteMode, type SekaiTheme, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, useCreateSekai, useThemeMode };
+export { BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, LIGHT_MODE, type PaletteMode, type SekaiTheme, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, useCreateSekai, useThemeMode };

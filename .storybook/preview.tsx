@@ -61,13 +61,12 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      const isAutoDocs = context.viewMode === 'docs'
-      const isDark = DARK_MODE === context.parameters.background
       const sekai = context.parameters.sekai || COLORS_SEKAI_KEYS.Miku
+      const isDark = DARK_MODE === context.parameters.background
 
       const theme: SekaiTheme = createSekai({
         palette: {
-          sekai: isAutoDocs ? COLORS_SEKAI_KEYS.Miku : sekai,
+          sekai: sekai,
           mode: isDark ? DARK_MODE : LIGHT_MODE
         }
       })

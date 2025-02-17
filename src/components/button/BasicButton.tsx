@@ -10,13 +10,20 @@ import { convertHexToRgba } from '@/utils/converter'
 import styles from './BasicButton.module.scss'
 
 export type BasicButtonProps = {
+  /** Button styles */
   className?: string
+  /** What SEKAI color to use */
   sekai?: ColorsSekaiKey
+  /** Apply SEKAI color to text */
   withText?: boolean
+  /** Light or Dark mode */
   themeMode?: PaletteMode
+  /** Button contents */
   children?: React.ReactNode
+  /** Button disabled */
   disabled?: boolean
-  onClick: () => void
+  /** Click handler */
+  onClick?: () => void
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const BasicButton = ({
@@ -26,7 +33,6 @@ export const BasicButton = ({
   themeMode,
   children,
   disabled = false,
-  onClick,
   ...buttonProps
 }: BasicButtonProps) => {
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
@@ -40,10 +46,14 @@ export const BasicButton = ({
 
   return (
     <button
-      className={`${styles[`sekai-basic-button--${modeTheme}`]} ${globalStyles[`sekai-color-${modeTheme}`]} ${className}`}
+      type="button"
+      className={[
+        `${styles[`sekai-basic-button--${modeTheme}`]}`,
+        `${globalStyles[`sekai-color-${modeTheme}`]}`,
+        `${className}`
+      ].join(' ')}
       style={optionStyle}
       disabled={disabled}
-      onClick={onClick}
       {...buttonProps}>
       {children}
     </button>
