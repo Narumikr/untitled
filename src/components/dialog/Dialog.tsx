@@ -80,10 +80,10 @@ export const Dialog = ({
           role="dialog"
           style={optionStyle as React.CSSProperties}
           className={[
-            globalStyles[`sekai-color-${themeMode}`],
+            globalStyles[`sekai-color-${modeTheme}`],
             globalStyles['sekai-absolute-center'],
             styles[`sekai-container-${size}`],
-            styles[`sekai-${themeMode}`]
+            styles[`sekai-${modeTheme}`]
           ].join(' ')}>
           <DialogTitleHeader {...headerProps} />
           {children}

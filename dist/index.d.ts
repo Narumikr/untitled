@@ -147,6 +147,6 @@ declare const convertHexToRgb: (hex: string) => string;
 declare const convertHexToRgba: (hex: string, alpha: number) => string;
 
 declare const fireOnEnterKey: (eventHandler: (e: React.KeyboardEvent) => void) => (e: React.KeyboardEvent) => void;
-declare const fireOnEscapeKey: (eventHandler: (e: React.KeyboardEvent) => void) => (e: React.KeyboardEvent) => void;
+declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 
 export { BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogProps, type DialogSize, LIGHT_MODE, type PaletteMode, type SekaiTheme, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };

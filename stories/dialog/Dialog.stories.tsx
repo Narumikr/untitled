@@ -94,7 +94,7 @@ export const LightWide: Story = {
     open: true,
     themeMode: 'light',
     children: 'Hatsune Miku',
-    size: 'narrow',
+    size: 'wide',
     title: '開かれた窓のセカイ',
     showCloseIcon: false
   },
@@ -111,7 +111,7 @@ export const DarkWide: Story = {
     open: true,
     themeMode: 'dark',
     children: 'Hatsune Miku',
-    size: 'narrow',
+    size: 'wide',
     title: '閉ざされた窓のセカイ',
     showCloseIcon: false
   },

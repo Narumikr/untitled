@@ -7,8 +7,8 @@ export const fireOnEnterKey = (eventHandler: (e: React.KeyboardEvent) => void) =
   }
 }
 
-export const fireOnEscapeKey = (eventHandler: (e: React.KeyboardEvent) => void) => {
-  return (e: React.KeyboardEvent) => {
+export const fireOnEscapeKey = (eventHandler: (e: KeyboardEvent) => void) => {
+  return (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       eventHandler(e)
       e.preventDefault()

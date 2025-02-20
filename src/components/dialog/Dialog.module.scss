@@ -9,6 +9,7 @@ $border-radius-px: 4px;
 
 .sekai-container {
   box-sizing: border-box;
+  max-width: 90vw;
   padding: 16px;
   border: 2px solid var(--sekai-color);
   border-radius: $border-radius-px;
