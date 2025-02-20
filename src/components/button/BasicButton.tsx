@@ -48,9 +48,9 @@ export const BasicButton = ({
     <button
       type="button"
       className={[
-        `${styles[`sekai-basic-button--${modeTheme}`]}`,
-        `${globalStyles[`sekai-color-${modeTheme}`]}`,
-        `${className}`
+        styles[`sekai-basic-button-${modeTheme}`],
+        globalStyles[`sekai-color-${modeTheme}`],
+        className
       ].join(' ')}
       style={optionStyle}
       disabled={disabled}

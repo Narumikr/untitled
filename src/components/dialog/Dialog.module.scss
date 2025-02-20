@@ -1,0 +1,69 @@
+$border-radius-px: 4px;
+
+.sekai-dialog-visible {
+  display: block;
+}
+.sekai-dialog-hidden {
+  display: none;
+}
+
+.sekai-container {
+  box-sizing: border-box;
+  max-width: 90vw;
+  padding: 16px;
+  border: 2px solid var(--sekai-color);
+  border-radius: $border-radius-px;
+}
+.sekai-container-narrow {
+  @extend .sekai-container;
+  width: 250px;
+}
+.sekai-container-medium {
+  @extend .sekai-container;
+  width: 390px;
+}
+.sekai-container-wide {
+  @extend .sekai-container;
+  width: 600px;
+}
+
+/** Dialog Title Header */
+.sekai-title-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 16px;
+  span {
+    font-weight: bold;
+  }
+  .sekai-close-icon {
+    border: none;
+    padding: 0;
+    background-color: inherit;
+    aspect-ratio: 1/1;
+  }
+}
+.sekai-title-header-narrow {
+  @extend .sekai-title-header;
+  min-height: 32px;
+  .sekai-close-icon {
+    height: 16px;
+  }
+}
+.sekai-title-header-medium {
+  @extend .sekai-title-header;
+  height: 40px;
+  font-size: 16px;
+  .sekai-close-icon {
+    height: 20px;
+  }
+}
+.sekai-title-header-wide {
+  @extend .sekai-title-header;
+  height: 48px;
+  font-size: 18px;
+  .sekai-close-icon {
+    height: 24px;
+  }
+}

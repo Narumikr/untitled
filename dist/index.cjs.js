@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var reactDom = require('react-dom');
 
 function _extends() {
   return _extends = Object.assign ? Object.assign.bind() : function (n) {
@@ -96,9 +97,9 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$1 = "/* Styles for common color */\n.global-module_sekai-color-light__HfMHF {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.global-module_sekai-color-dark__6YhnV {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n/* Styles for positioning */\n.global-module_sekai-flex-center__g0QI6 {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.global-module_sekai-absolute-center__VTxH3 {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.global-module_sekai-invisible-scroll__hmrCH {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.global-module_sekai-invisible-scroll__hmrCH::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.global-module_sekai-mb-8__ktEHx {\n  margin-bottom: 8px;\n}\n\n.global-module_sekai-mb-16__6mRfr {\n  margin-bottom: 16px;\n}\n\n.global-module_sekai-mb-24__tgmAP {\n  margin-bottom: 24px;\n}";
-var globalStyles = {"sekai-color-light":"global-module_sekai-color-light__HfMHF","sekai-color-dark":"global-module_sekai-color-dark__6YhnV","sekai-flex-center":"global-module_sekai-flex-center__g0QI6","sekai-absolute-center":"global-module_sekai-absolute-center__VTxH3","sekai-invisible-scroll":"global-module_sekai-invisible-scroll__hmrCH","sekai-mb-8":"global-module_sekai-mb-8__ktEHx","sekai-mb-16":"global-module_sekai-mb-16__6mRfr","sekai-mb-24":"global-module_sekai-mb-24__tgmAP"};
-styleInject(css_248z$1);
+var css_248z$2 = "/* Styles for common color */\n.global-module_sekai-color-light__HfMHF {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.global-module_sekai-color-dark__6YhnV {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n.global-module_sekai-overlay__mmwzM, .global-module_sekai-overlay-dark__6yGpR, .global-module_sekai-overlay-light__HL9EZ {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n\n.global-module_sekai-overlay-light__HL9EZ {\n  background-color: rgba(0, 0, 0, 0.5019607843);\n}\n\n.global-module_sekai-overlay-dark__6yGpR {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n\n/* Styles for positioning */\n.global-module_sekai-flex-center__g0QI6 {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.global-module_sekai-absolute-center__VTxH3 {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.global-module_sekai-invisible-scroll__hmrCH {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.global-module_sekai-invisible-scroll__hmrCH::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.global-module_sekai-mb-8__ktEHx {\n  margin-bottom: 8px;\n}\n\n.global-module_sekai-mb-16__6mRfr {\n  margin-bottom: 16px;\n}\n\n.global-module_sekai-mb-24__tgmAP {\n  margin-bottom: 24px;\n}";
+var globalStyles = {"sekai-color-light":"global-module_sekai-color-light__HfMHF","sekai-color-dark":"global-module_sekai-color-dark__6YhnV","sekai-overlay":"global-module_sekai-overlay__mmwzM","sekai-overlay-dark":"global-module_sekai-overlay-dark__6yGpR","sekai-overlay-light":"global-module_sekai-overlay-light__HL9EZ","sekai-flex-center":"global-module_sekai-flex-center__g0QI6","sekai-absolute-center":"global-module_sekai-absolute-center__VTxH3","sekai-invisible-scroll":"global-module_sekai-invisible-scroll__hmrCH","sekai-mb-8":"global-module_sekai-mb-8__ktEHx","sekai-mb-16":"global-module_sekai-mb-16__6mRfr","sekai-mb-24":"global-module_sekai-mb-24__tgmAP"};
+styleInject(css_248z$2);
 
 function _arrayWithHoles(r) {
   if (Array.isArray(r)) return r;
@@ -323,9 +324,9 @@ var convertHexToRgba = function convertHexToRgba(hex, alpha) {
   return "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ", ").concat(alpha, ")");
 };
 
-var css_248z = ".BasicButton-module_sekai-basic-button__VyCUN, .BasicButton-module_sekai-basic-button--dark__XLpuB, .BasicButton-module_sekai-basic-button--light__BCQ1L {\n  padding: 5px 10px;\n  border-radius: 10px;\n  min-height: 40px;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled {\n  opacity: 0.5;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled:hover, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled:hover, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled:hover {\n  background-color: transparent;\n}\n\n.BasicButton-module_sekai-basic-button--light__BCQ1L {\n  border: 2px solid var(--sekai-color, #000);\n}\n.BasicButton-module_sekai-basic-button--light__BCQ1L:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));\n}\n\n.BasicButton-module_sekai-basic-button--dark__XLpuB {\n  border: 2px solid var(--sekai-color, #fff);\n}\n.BasicButton-module_sekai-basic-button--dark__XLpuB:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));\n}";
-var styles = {"sekai-basic-button":"BasicButton-module_sekai-basic-button__VyCUN","sekai-basic-button--dark":"BasicButton-module_sekai-basic-button--dark__XLpuB","sekai-basic-button--light":"BasicButton-module_sekai-basic-button--light__BCQ1L"};
-styleInject(css_248z);
+var css_248z$1 = ".BasicButton-module_sekai-basic-button__VyCUN, .BasicButton-module_sekai-basic-button-dark__6gtPa, .BasicButton-module_sekai-basic-button-light__4e-cr {\n  padding: 5px 10px;\n  border-radius: 10px;\n  min-height: 40px;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled, .BasicButton-module_sekai-basic-button-dark__6gtPa:disabled, .BasicButton-module_sekai-basic-button-light__4e-cr:disabled {\n  opacity: 0.5;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled:hover, .BasicButton-module_sekai-basic-button-dark__6gtPa:disabled:hover, .BasicButton-module_sekai-basic-button-light__4e-cr:disabled:hover {\n  background-color: transparent;\n}\n\n.BasicButton-module_sekai-basic-button-light__4e-cr {\n  border: 2px solid var(--sekai-color, #000);\n}\n.BasicButton-module_sekai-basic-button-light__4e-cr:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));\n}\n\n.BasicButton-module_sekai-basic-button-dark__6gtPa {\n  border: 2px solid var(--sekai-color, #fff);\n}\n.BasicButton-module_sekai-basic-button-dark__6gtPa:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));\n}";
+var styles$1 = {"sekai-basic-button":"BasicButton-module_sekai-basic-button__VyCUN","sekai-basic-button-dark":"BasicButton-module_sekai-basic-button-dark__6gtPa","sekai-basic-button-light":"BasicButton-module_sekai-basic-button-light__4e-cr"};
+styleInject(css_248z$1);
 
 var _excluded = ["className", "sekai", "withText", "themeMode", "children", "disabled"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -357,10 +358,154 @@ var BasicButton = function BasicButton(_ref) {
   });
   return /*#__PURE__*/React.createElement("button", _extends({
     type: "button",
-    className: ["".concat(styles["sekai-basic-button--".concat(modeTheme)]), "".concat(globalStyles["sekai-color-".concat(modeTheme)]), "".concat(className)].join(' '),
+    className: [styles$1["sekai-basic-button-".concat(modeTheme)], globalStyles["sekai-color-".concat(modeTheme)], className].join(' '),
     style: optionStyle,
     disabled: disabled
   }, buttonProps), children);
+};
+
+var ClearSvg = function ClearSvg(_ref) {
+  var sekai = _ref.sekai,
+    themeMode = _ref.themeMode;
+  var _useOptionalSekai = useOptionalSekai({
+      sekai: sekai,
+      mode: themeMode
+    }),
+    sekaiColor = _useOptionalSekai.sekaiColor,
+    isLight = _useOptionalSekai.isLight;
+  var color = isLight ? '#212121' : '#e0e0e0';
+  return /*#__PURE__*/React.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    width: "100%",
+    height: "100%"
+  }, sekai ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("line", {
+    x1: "1",
+    y1: "1",
+    x2: "23",
+    y2: "23",
+    stroke: sekaiColor,
+    strokeWidth: "4",
+    opacity: "0.7"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "23",
+    y1: "1",
+    x2: "1",
+    y2: "23",
+    stroke: sekaiColor,
+    strokeWidth: "4",
+    opacity: "0.7"
+  })) : null, /*#__PURE__*/React.createElement("line", {
+    x1: "1",
+    y1: "1",
+    x2: "23",
+    y2: "23",
+    stroke: color,
+    strokeWidth: "2"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "23",
+    y1: "1",
+    x2: "1",
+    y2: "23",
+    stroke: color,
+    strokeWidth: "2"
+  }));
+};
+
+var fireOnEnterKey = function fireOnEnterKey(eventHandler) {
+  return function (e) {
+    if (e.key === 'Enter') {
+      eventHandler(e);
+      e.preventDefault();
+    }
+  };
+};
+var fireOnEscapeKey = function fireOnEscapeKey(eventHandler) {
+  return function (e) {
+    if (e.key === 'Escape') {
+      eventHandler(e);
+      e.preventDefault();
+    }
+  };
+};
+
+var css_248z = ".Dialog-module_sekai-dialog-visible__MhxKQ {\n  display: block;\n}\n\n.Dialog-module_sekai-dialog-hidden__aznHA {\n  display: none;\n}\n\n.Dialog-module_sekai-container__ksO7t, .Dialog-module_sekai-container-wide__NphhS, .Dialog-module_sekai-container-medium__XUhgC, .Dialog-module_sekai-container-narrow__RgWNL {\n  box-sizing: border-box;\n  max-width: 90vw;\n  padding: 16px;\n  border: 2px solid var(--sekai-color);\n  border-radius: 4px;\n}\n\n.Dialog-module_sekai-container-narrow__RgWNL {\n  width: 250px;\n}\n\n.Dialog-module_sekai-container-medium__XUhgC {\n  width: 390px;\n}\n\n.Dialog-module_sekai-container-wide__NphhS {\n  width: 600px;\n}\n\n/** Dialog Title Header */\n.Dialog-module_sekai-title-header__ATn1B, .Dialog-module_sekai-title-header-wide__5Skds, .Dialog-module_sekai-title-header-medium__61bst, .Dialog-module_sekai-title-header-narrow__uQfFd {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n  margin-bottom: 16px;\n}\n.Dialog-module_sekai-title-header__ATn1B span, .Dialog-module_sekai-title-header-wide__5Skds span, .Dialog-module_sekai-title-header-medium__61bst span, .Dialog-module_sekai-title-header-narrow__uQfFd span {\n  font-weight: bold;\n}\n.Dialog-module_sekai-title-header__ATn1B .Dialog-module_sekai-close-icon__CVbZJ, .Dialog-module_sekai-title-header-wide__5Skds .Dialog-module_sekai-close-icon__CVbZJ, .Dialog-module_sekai-title-header-medium__61bst .Dialog-module_sekai-close-icon__CVbZJ, .Dialog-module_sekai-title-header-narrow__uQfFd .Dialog-module_sekai-close-icon__CVbZJ {\n  border: none;\n  padding: 0;\n  background-color: inherit;\n  aspect-ratio: 1/1;\n}\n\n.Dialog-module_sekai-title-header-narrow__uQfFd {\n  min-height: 32px;\n}\n.Dialog-module_sekai-title-header-narrow__uQfFd .Dialog-module_sekai-close-icon__CVbZJ {\n  height: 16px;\n}\n\n.Dialog-module_sekai-title-header-medium__61bst {\n  height: 40px;\n  font-size: 16px;\n}\n.Dialog-module_sekai-title-header-medium__61bst .Dialog-module_sekai-close-icon__CVbZJ {\n  height: 20px;\n}\n\n.Dialog-module_sekai-title-header-wide__5Skds {\n  height: 48px;\n  font-size: 18px;\n}\n.Dialog-module_sekai-title-header-wide__5Skds .Dialog-module_sekai-close-icon__CVbZJ {\n  height: 24px;\n}";
+var styles = {"sekai-dialog-visible":"Dialog-module_sekai-dialog-visible__MhxKQ","sekai-dialog-hidden":"Dialog-module_sekai-dialog-hidden__aznHA","sekai-container":"Dialog-module_sekai-container__ksO7t","sekai-container-wide":"Dialog-module_sekai-container-wide__NphhS","sekai-container-medium":"Dialog-module_sekai-container-medium__XUhgC","sekai-container-narrow":"Dialog-module_sekai-container-narrow__RgWNL","sekai-title-header":"Dialog-module_sekai-title-header__ATn1B","sekai-title-header-wide":"Dialog-module_sekai-title-header-wide__5Skds","sekai-title-header-medium":"Dialog-module_sekai-title-header-medium__61bst","sekai-title-header-narrow":"Dialog-module_sekai-title-header-narrow__uQfFd","sekai-close-icon":"Dialog-module_sekai-close-icon__CVbZJ"};
+styleInject(css_248z);
+
+// todo escape key fire onclose
+var Dialog = function Dialog(_ref) {
+  var sekai = _ref.sekai,
+    open = _ref.open,
+    themeMode = _ref.themeMode,
+    children = _ref.children,
+    containerComponent = _ref.containerComponent,
+    _ref$size = _ref.size,
+    size = _ref$size === undefined ? 'medium' : _ref$size,
+    onClose = _ref.onClose,
+    title = _ref.title,
+    _ref$showCloseIcon = _ref.showCloseIcon,
+    showCloseIcon = _ref$showCloseIcon === undefined ? false : _ref$showCloseIcon;
+  var displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden';
+  var portalContainer = containerComponent || document.body;
+  var _useOptionalSekai = useOptionalSekai({
+      sekai: sekai,
+      mode: themeMode
+    }),
+    sekaiColor = _useOptionalSekai.sekaiColor,
+    modeTheme = _useOptionalSekai.modeTheme,
+    isLight = _useOptionalSekai.isLight;
+  var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
+  var optionStyle = {
+    '--sekai-color': sekaiColor,
+    '--sekai-color-hover': sekaiColorHover
+  };
+  React.useEffect(function () {
+    if (!open) return;
+    var handleKeyDownEsc = function handleKeyDownEsc() {
+      return fireOnEscapeKey(onClose);
+    };
+    document.addEventListener('keydown', handleKeyDownEsc);
+    return function () {
+      return document.removeEventListener('keydown', handleKeyDownEsc);
+    };
+  }, [open]);
+  var headerProps = {
+    sekai: sekai,
+    themeMode: themeMode,
+    size: size,
+    onClose: onClose,
+    title: title,
+    showCloseIcon: showCloseIcon
+  };
+  return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React.createElement("div", {
+    className: styles[displayDialog]
+  }, /*#__PURE__*/React.createElement("div", {
+    className: globalStyles["sekai-overlay-".concat(modeTheme)]
+  }, /*#__PURE__*/React.createElement("div", {
+    role: "dialog",
+    style: optionStyle,
+    className: [globalStyles["sekai-color-".concat(modeTheme)], globalStyles['sekai-absolute-center'], styles["sekai-container-".concat(size)], styles["sekai-".concat(modeTheme)]].join(' ')
+  }, /*#__PURE__*/React.createElement(DialogTitleHeader, headerProps), children))), portalContainer);
+};
+var DialogTitleHeader = function DialogTitleHeader(_ref2) {
+  var sekai = _ref2.sekai,
+    themeMode = _ref2.themeMode,
+    size = _ref2.size,
+    onClose = _ref2.onClose,
+    title = _ref2.title,
+    showCloseIcon = _ref2.showCloseIcon;
+  if (!title && !showCloseIcon) return null;
+  return /*#__PURE__*/React.createElement("div", {
+    className: styles["sekai-title-header-".concat(size)]
+  }, /*#__PURE__*/React.createElement("span", null, title), showCloseIcon ? /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: styles['sekai-close-icon'],
+    onClick: onClose
+  }, /*#__PURE__*/React.createElement(ClearSvg, {
+    sekai: sekai,
+    themeMode: themeMode
+  })) : null);
 };
 
 var defaultTheme = {
@@ -390,6 +535,7 @@ var createSekai = function createSekai(option) {
 exports.BasicButton = BasicButton;
 exports.COLORS_SEKAI_KEYS = COLORS_SEKAI_KEYS;
 exports.DARK_MODE = DARK_MODE;
+exports.Dialog = Dialog;
 exports.LIGHT_MODE = LIGHT_MODE;
 exports.YourSekaiContext = YourSekaiContext;
 exports.YourSekaiProvider = YourSekaiProvider;
@@ -397,5 +543,7 @@ exports.colorsSekai = colorsSekai;
 exports.convertHexToRgb = convertHexToRgb;
 exports.convertHexToRgba = convertHexToRgba;
 exports.createSekai = createSekai;
+exports.fireOnEnterKey = fireOnEnterKey;
+exports.fireOnEscapeKey = fireOnEscapeKey;
 exports.useCreateSekai = useCreateSekai;
 exports.useThemeMode = useThemeMode;

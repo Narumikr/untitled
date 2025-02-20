@@ -10,7 +10,7 @@
   }
 }
 
-.sekai-basic-button--light {
+.sekai-basic-button-light {
   @extend .sekai-basic-button;
   border: 2px solid var(--sekai-color, #000);
   &:hover {
@@ -18,7 +18,7 @@
   }
 }
 
-.sekai-basic-button--dark {
+.sekai-basic-button-dark {
   @extend .sekai-basic-button;
   border: 2px solid var(--sekai-color, #fff);
   &:hover {
