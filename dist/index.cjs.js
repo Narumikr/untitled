@@ -434,12 +434,23 @@ var styles = {"sekai-dialog-visible":"Dialog-module_sekai-dialog-visible__MhxKQ"
 styleInject(css_248z);
 
 // todo escape key fire onclose
-var Dialog = function Dialog(props) {
-  var displayDialog = props.open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden';
-  var portalContainer = props.containerComponent || document.body;
+var Dialog = function Dialog(_ref) {
+  var sekai = _ref.sekai,
+    open = _ref.open,
+    themeMode = _ref.themeMode,
+    children = _ref.children,
+    containerComponent = _ref.containerComponent,
+    _ref$size = _ref.size,
+    size = _ref$size === undefined ? 'medium' : _ref$size,
+    onClose = _ref.onClose,
+    title = _ref.title,
+    _ref$showCloseIcon = _ref.showCloseIcon,
+    showCloseIcon = _ref$showCloseIcon === undefined ? false : _ref$showCloseIcon;
+  var displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden';
+  var portalContainer = containerComponent || document.body;
   var _useOptionalSekai = useOptionalSekai({
-      sekai: props.sekai,
-      mode: props.themeMode
+      sekai: sekai,
+      mode: themeMode
     }),
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme,
@@ -452,13 +463,21 @@ var Dialog = function Dialog(props) {
   React.useEffect(function () {
     if (!open) return;
     var handleKeyDownEsc = function handleKeyDownEsc() {
-      return fireOnEscapeKey(props.onClose);
+      return fireOnEscapeKey(onClose);
     };
     document.addEventListener('keydown', handleKeyDownEsc);
     return function () {
       return document.removeEventListener('keydown', handleKeyDownEsc);
     };
   }, [open]);
+  var headerProps = {
+    sekai: sekai,
+    themeMode: themeMode,
+    size: size,
+    onClose: onClose,
+    title: title,
+    showCloseIcon: showCloseIcon
+  };
   return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React.createElement("div", {
     className: styles[displayDialog]
   }, /*#__PURE__*/React.createElement("div", {
@@ -466,16 +485,16 @@ var Dialog = function Dialog(props) {
   }, /*#__PURE__*/React.createElement("div", {
     role: "dialog",
     style: optionStyle,
-    className: [globalStyles["sekai-color-".concat(props.themeMode)], globalStyles['sekai-absolute-center'], styles["sekai-container-".concat(props.size)], styles["sekai-".concat(props.themeMode)]].join(' ')
-  }, /*#__PURE__*/React.createElement(DialogTitleHeader, props), props.children))), portalContainer);
+    className: [globalStyles["sekai-color-".concat(themeMode)], globalStyles['sekai-absolute-center'], styles["sekai-container-".concat(size)], styles["sekai-".concat(themeMode)]].join(' ')
+  }, /*#__PURE__*/React.createElement(DialogTitleHeader, headerProps), children))), portalContainer);
 };
-var DialogTitleHeader = function DialogTitleHeader(_ref) {
-  var sekai = _ref.sekai,
-    themeMode = _ref.themeMode,
-    size = _ref.size,
-    onClose = _ref.onClose,
-    title = _ref.title,
-    showCloseIcon = _ref.showCloseIcon;
+var DialogTitleHeader = function DialogTitleHeader(_ref2) {
+  var sekai = _ref2.sekai,
+    themeMode = _ref2.themeMode,
+    size = _ref2.size,
+    onClose = _ref2.onClose,
+    title = _ref2.title,
+    showCloseIcon = _ref2.showCloseIcon;
   if (!title && !showCloseIcon) return null;
   return /*#__PURE__*/React.createElement("div", {
     className: styles["sekai-title-header-".concat(size)]

@@ -38,12 +38,22 @@ export interface DialogProps {
 
 // todo escape key fire onclose
 
-export const Dialog = (props: DialogProps) => {
-  const displayDialog = props.open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
-  const portalContainer = props.containerComponent || document.body
+export const Dialog = ({
+  sekai,
+  open,
+  themeMode,
+  children,
+  containerComponent,
+  size = 'medium',
+  onClose,
+  title,
+  showCloseIcon = false
+}: DialogProps) => {
+  const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
+  const portalContainer = containerComponent || document.body
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({
-    sekai: props.sekai,
-    mode: props.themeMode
+    sekai: sekai,
+    mode: themeMode
   })
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
 
@@ -54,12 +64,14 @@ export const Dialog = (props: DialogProps) => {
 
   useEffect(() => {
     if (!open) return
-    const handleKeyDownEsc = () => fireOnEscapeKey(props.onClose)
+    const handleKeyDownEsc = () => fireOnEscapeKey(onClose)
 
     document.addEventListener('keydown', handleKeyDownEsc)
 
     return () => document.removeEventListener('keydown', handleKeyDownEsc)
   }, [open])
+
+  const headerProps = { sekai, themeMode, size, onClose, title, showCloseIcon }
 
   return createPortal(
     <div className={styles[displayDialog]}>
@@ -68,13 +80,13 @@ export const Dialog = (props: DialogProps) => {
           role="dialog"
           style={optionStyle as React.CSSProperties}
           className={[
-            globalStyles[`sekai-color-${props.themeMode}`],
+            globalStyles[`sekai-color-${themeMode}`],
             globalStyles['sekai-absolute-center'],
-            styles[`sekai-container-${props.size}`],
-            styles[`sekai-${props.themeMode}`]
+            styles[`sekai-container-${size}`],
+            styles[`sekai-${themeMode}`]
           ].join(' ')}>
-          <DialogTitleHeader {...props} />
-          {props.children}
+          <DialogTitleHeader {...headerProps} />
+          {children}
         </div>
       </div>
     </div>,

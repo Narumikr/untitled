@@ -117,7 +117,7 @@ interface DialogProps {
     /** Whether to display close icon */
     showCloseIcon?: boolean;
 }
-declare const Dialog: (props: DialogProps) => React$1.ReactPortal;
+declare const Dialog: ({ sekai, open, themeMode, children, containerComponent, size, onClose, title, showCloseIcon }: DialogProps) => React$1.ReactPortal;
 
 type SekaiTheme = {
     palette: {
