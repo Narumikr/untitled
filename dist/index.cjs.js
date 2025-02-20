@@ -96,9 +96,9 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$2 = "/* Styles for common color */\n.global-module_sekai-color-light__HfMHF {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.global-module_sekai-color-dark__6YhnV {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n/* Styles for positioning */\n.global-module_sekai-flex-center__g0QI6 {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.global-module_sekai-absolute-center__VTxH3 {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.global-module_sekai-invisible-scroll__hmrCH {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.global-module_sekai-invisible-scroll__hmrCH::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.global-module_sekai-mb-8__ktEHx {\n  margin-bottom: 8px;\n}\n\n.global-module_sekai-mb-16__6mRfr {\n  margin-bottom: 16px;\n}\n\n.global-module_sekai-mb-24__tgmAP {\n  margin-bottom: 24px;\n}";
+var css_248z$1 = "/* Styles for common color */\n.global-module_sekai-color-light__HfMHF {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.global-module_sekai-color-dark__6YhnV {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n/* Styles for positioning */\n.global-module_sekai-flex-center__g0QI6 {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.global-module_sekai-absolute-center__VTxH3 {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.global-module_sekai-invisible-scroll__hmrCH {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.global-module_sekai-invisible-scroll__hmrCH::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.global-module_sekai-mb-8__ktEHx {\n  margin-bottom: 8px;\n}\n\n.global-module_sekai-mb-16__6mRfr {\n  margin-bottom: 16px;\n}\n\n.global-module_sekai-mb-24__tgmAP {\n  margin-bottom: 24px;\n}";
 var globalStyles = {"sekai-color-light":"global-module_sekai-color-light__HfMHF","sekai-color-dark":"global-module_sekai-color-dark__6YhnV","sekai-flex-center":"global-module_sekai-flex-center__g0QI6","sekai-absolute-center":"global-module_sekai-absolute-center__VTxH3","sekai-invisible-scroll":"global-module_sekai-invisible-scroll__hmrCH","sekai-mb-8":"global-module_sekai-mb-8__ktEHx","sekai-mb-16":"global-module_sekai-mb-16__6mRfr","sekai-mb-24":"global-module_sekai-mb-24__tgmAP"};
-styleInject(css_248z$2);
+styleInject(css_248z$1);
 
 function _arrayWithHoles(r) {
   if (Array.isArray(r)) return r;
@@ -323,11 +323,11 @@ var convertHexToRgba = function convertHexToRgba(hex, alpha) {
   return "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ", ").concat(alpha, ")");
 };
 
-var css_248z$1 = ".BasicButton-module_sekai-basic-button__VyCUN, .BasicButton-module_sekai-basic-button--dark__XLpuB, .BasicButton-module_sekai-basic-button--light__BCQ1L {\n  padding: 5px 10px;\n  border-radius: 10px;\n  min-height: 40px;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled {\n  opacity: 0.5;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled:hover, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled:hover, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled:hover {\n  background-color: transparent;\n}\n\n.BasicButton-module_sekai-basic-button--light__BCQ1L {\n  border: 2px solid var(--sekai-color, #000);\n}\n.BasicButton-module_sekai-basic-button--light__BCQ1L:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));\n}\n\n.BasicButton-module_sekai-basic-button--dark__XLpuB {\n  border: 2px solid var(--sekai-color, #fff);\n}\n.BasicButton-module_sekai-basic-button--dark__XLpuB:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));\n}";
-var styles$1 = {"sekai-basic-button":"BasicButton-module_sekai-basic-button__VyCUN","sekai-basic-button--dark":"BasicButton-module_sekai-basic-button--dark__XLpuB","sekai-basic-button--light":"BasicButton-module_sekai-basic-button--light__BCQ1L"};
-styleInject(css_248z$1);
+var css_248z = ".BasicButton-module_sekai-basic-button__VyCUN, .BasicButton-module_sekai-basic-button--dark__XLpuB, .BasicButton-module_sekai-basic-button--light__BCQ1L {\n  padding: 5px 10px;\n  border-radius: 10px;\n  min-height: 40px;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled {\n  opacity: 0.5;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled:hover, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled:hover, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled:hover {\n  background-color: transparent;\n}\n\n.BasicButton-module_sekai-basic-button--light__BCQ1L {\n  border: 2px solid var(--sekai-color, #000);\n}\n.BasicButton-module_sekai-basic-button--light__BCQ1L:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));\n}\n\n.BasicButton-module_sekai-basic-button--dark__XLpuB {\n  border: 2px solid var(--sekai-color, #fff);\n}\n.BasicButton-module_sekai-basic-button--dark__XLpuB:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));\n}";
+var styles = {"sekai-basic-button":"BasicButton-module_sekai-basic-button__VyCUN","sekai-basic-button--dark":"BasicButton-module_sekai-basic-button--dark__XLpuB","sekai-basic-button--light":"BasicButton-module_sekai-basic-button--light__BCQ1L"};
+styleInject(css_248z);
 
-var _excluded$1 = ["className", "sekai", "withText", "themeMode", "children", "disabled", "onClick"];
+var _excluded = ["className", "sekai", "withText", "themeMode", "children", "disabled"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var BasicButton = function BasicButton(_ref) {
@@ -340,8 +340,7 @@ var BasicButton = function BasicButton(_ref) {
     children = _ref.children,
     _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === undefined ? false : _ref$disabled,
-    onClick = _ref.onClick,
-    buttonProps = _objectWithoutProperties(_ref, _excluded$1);
+    buttonProps = _objectWithoutProperties(_ref, _excluded);
   var _useOptionalSekai = useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -357,37 +356,12 @@ var BasicButton = function BasicButton(_ref) {
     color: sekaiColor
   });
   return /*#__PURE__*/React.createElement("button", _extends({
-    className: "".concat(styles$1["sekai-basic-button--".concat(modeTheme)], " ").concat(globalStyles["sekai-color-".concat(modeTheme)], " ").concat(className),
+    type: "button",
+    className: ["".concat(styles["sekai-basic-button--".concat(modeTheme)]), "".concat(globalStyles["sekai-color-".concat(modeTheme)]), "".concat(className)].join(' '),
     style: optionStyle,
-    disabled: disabled,
-    onClick: onClick
+    disabled: disabled
   }, buttonProps), children);
 };
-
-var css_248z = ".Button-module_storybook-button__S0UP6 {\n  display: inline-block;\n  cursor: pointer;\n  border: 0;\n  border-radius: 3em;\n  font-weight: 700;\n  line-height: 1;\n  font-family: \"Nunito Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n\n.Button-module_storybook-button--primary__zyzb6 {\n  background-color: #555ab9;\n  color: white;\n}\n\n.Button-module_storybook-button--secondary__Z55oq {\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n  background-color: transparent;\n  color: #333;\n}\n\n.Button-module_storybook-button--small__zCOjc {\n  padding: 10px 16px;\n  font-size: 12px;\n}\n\n.Button-module_storybook-button--medium__mfVNW {\n  padding: 11px 20px;\n  font-size: 14px;\n}\n\n.Button-module_storybook-button--large__WUZxs {\n  padding: 12px 24px;\n  font-size: 16px;\n}";
-var styles = {"storybook-button":"Button-module_storybook-button__S0UP6","storybook-button--primary":"Button-module_storybook-button--primary__zyzb6","storybook-button--secondary":"Button-module_storybook-button--secondary__Z55oq","storybook-button--small":"Button-module_storybook-button--small__zCOjc","storybook-button--medium":"Button-module_storybook-button--medium__mfVNW","storybook-button--large":"Button-module_storybook-button--large__WUZxs"};
-styleInject(css_248z);
-
-var _excluded = ["primary", "size", "backgroundColor", "label"];
-/** Primary UI component for user interaction */
-var Button = function Button(_ref) {
-  var _ref$primary = _ref.primary,
-    primary = _ref$primary === undefined ? false : _ref$primary,
-    _ref$size = _ref.size,
-    size = _ref$size === undefined ? 'medium' : _ref$size,
-    backgroundColor = _ref.backgroundColor,
-    label = _ref.label,
-    props = _objectWithoutProperties(_ref, _excluded);
-  var mode = primary ? "".concat(styles['storybook-button--primary']) : "".concat(styles['storybook-button--secondary']);
-  return /*#__PURE__*/React.createElement("button", _extends({
-    type: "button",
-    className: ["".concat(styles['storybook-button']), "".concat(styles["storybook-button--".concat(size)]), mode].join(' '),
-    style: {
-      backgroundColor: backgroundColor
-    }
-  }, props), "-".concat(label, "-"));
-};
-// export default Button
 
 var defaultTheme = {
   palette: {
@@ -414,7 +388,6 @@ var createSekai = function createSekai(option) {
 };
 
 exports.BasicButton = BasicButton;
-exports.Button = Button;
 exports.COLORS_SEKAI_KEYS = COLORS_SEKAI_KEYS;
 exports.DARK_MODE = DARK_MODE;
 exports.LIGHT_MODE = LIGHT_MODE;

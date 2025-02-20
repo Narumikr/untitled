@@ -23,13 +23,13 @@ export default [
     input: 'src/index.ts',
     output: [
       {
-        file: 'dist/index.cjs.js',
+        file: pkg.main,
         format: 'cjs',
         sourcemap: false,
         preserveModules: false
       },
       {
-        file: 'dist/index.esm.js',
+        file: pkg.module,
         format: 'esm',
         sourcemap: false,
         preserveModules: false
@@ -68,7 +68,7 @@ export default [
   },
   {
     input: 'src/index.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'es' }],
+    output: [{ file: pkg.types, format: 'es' }],
     plugins: [tsconfigPaths(), resolve(), dts()]
   }
 ]

@@ -5,7 +5,7 @@ import { BasicButton } from '@/components/button/BasicButton'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Example/BasicButton',
+  title: 'Untitled/BasicButton',
   component: BasicButton,
   parameters: {},
   tags: ['autodocs'],
