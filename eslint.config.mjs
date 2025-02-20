@@ -148,6 +148,11 @@ export default [
               position: 'after'
             },
             {
+              pattern: '@/img',
+              group: 'internal',
+              position: 'after'
+            },
+            {
               pattern: './*.module.scss',
               group: 'sibling',
               position: 'after'
