@@ -43,3 +43,6 @@ storybook-static/
 # Vite build file
 .vite/
 *storybook.log
+
+# local publish
+/local_publish

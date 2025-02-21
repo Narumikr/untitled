@@ -18,12 +18,13 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "package.json"
   ],
   "type": "module",
   "scripts": {
     "generate-index": "python scripts/generator.py",
-    "build": "rm -rf dist && npm run generate-index && rollup -c && tsc --noEmit",
+    "build": "rm -rf dist && npm run generate-index && rollup -c && tsc --noEmit && sh scripts/build_local.sh",
     "lint": "npx eslint .  --no-cache",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
