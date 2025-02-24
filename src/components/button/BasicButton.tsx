@@ -10,19 +10,12 @@ import { convertHexToRgba } from '@/utils/converter'
 import styles from './BasicButton.module.scss'
 
 export type BasicButtonProps = {
-  /** Button styles */
   className?: string
-  /** What SEKAI color to use */
   sekai?: ColorsSekaiKey
-  /** Apply SEKAI color to text */
   withText?: boolean
-  /** Light or Dark mode */
   themeMode?: PaletteMode
-  /** Button contents */
   children?: React.ReactNode
-  /** Button disabled */
   disabled?: boolean
-  /** Click handler */
   onClick?: () => void
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
