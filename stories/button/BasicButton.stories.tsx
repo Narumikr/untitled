@@ -2,6 +2,8 @@ import { fn } from '@storybook/test'
 
 import { BasicButton } from '@/components/button/BasicButton'
 
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
@@ -10,7 +12,43 @@ const meta = {
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
-    className: { control: false }
+    className: {
+      description: 'Button styles',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' }
+      },
+      control: false
+    },
+    sekai: {
+      description: 'What SEKAI color to use',
+      table: {
+        type: { summary: 'ColorsSekaiKey' },
+        defaultValue: { summary: 'Miku' }
+      },
+      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+    },
+    withText: {
+      description: 'Apply SEKAI color to text',
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
+    },
+    themeMode: {
+      description: 'Light or Dark mode',
+      table: {
+        type: { summary: 'PaletteMode' },
+        defaultValue: { summary: 'light' }
+      },
+      options: ['light', 'dark']
+    },
+    children: {
+      description: 'Button contents',
+      table: { type: { summary: 'React.ReactNode' } }
+    },
+    disabled: {
+      description: 'Button disabled',
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
+    },
+    onClick: { description: 'Click handler', table: { type: { summary: '() => void' } } }
   },
   args: { onClick: fn() }
 } satisfies Meta<typeof BasicButton>
