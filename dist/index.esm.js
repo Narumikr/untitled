@@ -24,7 +24,7 @@ function _typeof(o) {
 function toPrimitive(t, r) {
   if ("object" != _typeof(t) || !t) return t;
   var e = t[Symbol.toPrimitive];
-  if (undefined !== e) {
+  if (void 0 !== e) {
     var i = e.call(t, r);
     if ("object" != _typeof(i)) return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
@@ -69,7 +69,7 @@ function _objectWithoutProperties(e, t) {
 }
 
 function styleInject(css, ref) {
-  if ( ref === undefined ) ref = {};
+  if ( ref === void 0 ) ref = {};
   var insertAt = ref.insertAt;
 
   if (!css || typeof document === 'undefined') { return; }
@@ -138,7 +138,7 @@ function _unsupportedIterableToArray(r, a) {
   if (r) {
     if ("string" == typeof r) return _arrayLikeToArray(r, a);
     var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : undefined;
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
   }
 }
 
@@ -197,7 +197,7 @@ var YourSekaiProvider = function YourSekaiProvider(_ref) {
   };
   var globalStyle = useMemo(function () {
     var _sekaiTheme$typograph, _sekaiTheme$palette, _sekaiTheme$palette2;
-    return "\n    * {\n      font-family: ".concat((_sekaiTheme$typograph = sekaiTheme.typography) === null || _sekaiTheme$typograph === undefined ? undefined : _sekaiTheme$typograph.fontFamily, ";\n    }\n    body {\n      color: ").concat(((_sekaiTheme$palette = sekaiTheme.palette) === null || _sekaiTheme$palette === undefined ? undefined : _sekaiTheme$palette.mode) === DARK_MODE ? '#e0e0e0' : '#212121', ";\n      background: ").concat(((_sekaiTheme$palette2 = sekaiTheme.palette) === null || _sekaiTheme$palette2 === undefined ? undefined : _sekaiTheme$palette2.mode) === DARK_MODE ? '#121212' : '#ffffff', ";\n    }\n  ");
+    return "\n    * {\n      font-family: ".concat((_sekaiTheme$typograph = sekaiTheme.typography) === null || _sekaiTheme$typograph === void 0 ? void 0 : _sekaiTheme$typograph.fontFamily, ";\n    }\n    body {\n      color: ").concat(((_sekaiTheme$palette = sekaiTheme.palette) === null || _sekaiTheme$palette === void 0 ? void 0 : _sekaiTheme$palette.mode) === DARK_MODE ? '#e0e0e0' : '#212121', ";\n      background: ").concat(((_sekaiTheme$palette2 = sekaiTheme.palette) === null || _sekaiTheme$palette2 === void 0 ? void 0 : _sekaiTheme$palette2.mode) === DARK_MODE ? '#121212' : '#ffffff', ";\n    }\n  ");
   }, [sekaiTheme]);
   return /*#__PURE__*/React.createElement(YourSekaiContext.Provider, {
     value: provideValue
@@ -331,14 +331,14 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var BasicButton = function BasicButton(_ref) {
   var _ref$className = _ref.className,
-    className = _ref$className === undefined ? '' : _ref$className,
+    className = _ref$className === void 0 ? '' : _ref$className,
     sekai = _ref.sekai,
     _ref$withText = _ref.withText,
-    withText = _ref$withText === undefined ? false : _ref$withText,
+    withText = _ref$withText === void 0 ? false : _ref$withText,
     themeMode = _ref.themeMode,
     children = _ref.children,
     _ref$disabled = _ref.disabled,
-    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+    disabled = _ref$disabled === void 0 ? false : _ref$disabled,
     buttonProps = _objectWithoutProperties(_ref, _excluded);
   var _useOptionalSekai = useOptionalSekai({
       sekai: sekai,
@@ -420,18 +420,17 @@ var fireOnEnterKey = function fireOnEnterKey(eventHandler) {
 };
 var fireOnEscapeKey = function fireOnEscapeKey(eventHandler) {
   return function (e) {
+    e.preventDefault();
     if (e.key === 'Escape') {
       eventHandler(e);
-      e.preventDefault();
     }
   };
 };
 
-var css_248z = ".Dialog-module_sekai-dialog-visible__MhxKQ {\n  display: block;\n}\n\n.Dialog-module_sekai-dialog-hidden__aznHA {\n  display: none;\n}\n\n.Dialog-module_sekai-container__ksO7t, .Dialog-module_sekai-container-wide__NphhS, .Dialog-module_sekai-container-medium__XUhgC, .Dialog-module_sekai-container-narrow__RgWNL {\n  box-sizing: border-box;\n  max-width: 90vw;\n  padding: 16px;\n  border: 2px solid var(--sekai-color);\n  border-radius: 4px;\n}\n\n.Dialog-module_sekai-container-narrow__RgWNL {\n  width: 250px;\n}\n\n.Dialog-module_sekai-container-medium__XUhgC {\n  width: 390px;\n}\n\n.Dialog-module_sekai-container-wide__NphhS {\n  width: 600px;\n}\n\n/** Dialog Title Header */\n.Dialog-module_sekai-title-header__ATn1B, .Dialog-module_sekai-title-header-wide__5Skds, .Dialog-module_sekai-title-header-medium__61bst, .Dialog-module_sekai-title-header-narrow__uQfFd {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n  margin-bottom: 16px;\n}\n.Dialog-module_sekai-title-header__ATn1B span, .Dialog-module_sekai-title-header-wide__5Skds span, .Dialog-module_sekai-title-header-medium__61bst span, .Dialog-module_sekai-title-header-narrow__uQfFd span {\n  font-weight: bold;\n}\n.Dialog-module_sekai-title-header__ATn1B .Dialog-module_sekai-close-icon__CVbZJ, .Dialog-module_sekai-title-header-wide__5Skds .Dialog-module_sekai-close-icon__CVbZJ, .Dialog-module_sekai-title-header-medium__61bst .Dialog-module_sekai-close-icon__CVbZJ, .Dialog-module_sekai-title-header-narrow__uQfFd .Dialog-module_sekai-close-icon__CVbZJ {\n  border: none;\n  padding: 0;\n  background-color: inherit;\n  aspect-ratio: 1/1;\n}\n\n.Dialog-module_sekai-title-header-narrow__uQfFd {\n  min-height: 32px;\n}\n.Dialog-module_sekai-title-header-narrow__uQfFd .Dialog-module_sekai-close-icon__CVbZJ {\n  height: 16px;\n}\n\n.Dialog-module_sekai-title-header-medium__61bst {\n  height: 40px;\n  font-size: 16px;\n}\n.Dialog-module_sekai-title-header-medium__61bst .Dialog-module_sekai-close-icon__CVbZJ {\n  height: 20px;\n}\n\n.Dialog-module_sekai-title-header-wide__5Skds {\n  height: 48px;\n  font-size: 18px;\n}\n.Dialog-module_sekai-title-header-wide__5Skds .Dialog-module_sekai-close-icon__CVbZJ {\n  height: 24px;\n}";
-var styles = {"sekai-dialog-visible":"Dialog-module_sekai-dialog-visible__MhxKQ","sekai-dialog-hidden":"Dialog-module_sekai-dialog-hidden__aznHA","sekai-container":"Dialog-module_sekai-container__ksO7t","sekai-container-wide":"Dialog-module_sekai-container-wide__NphhS","sekai-container-medium":"Dialog-module_sekai-container-medium__XUhgC","sekai-container-narrow":"Dialog-module_sekai-container-narrow__RgWNL","sekai-title-header":"Dialog-module_sekai-title-header__ATn1B","sekai-title-header-wide":"Dialog-module_sekai-title-header-wide__5Skds","sekai-title-header-medium":"Dialog-module_sekai-title-header-medium__61bst","sekai-title-header-narrow":"Dialog-module_sekai-title-header-narrow__uQfFd","sekai-close-icon":"Dialog-module_sekai-close-icon__CVbZJ"};
+var css_248z = ".Dialog-module_sekai-dialog-visible__MhxKQ {\n  display: block;\n}\n\n.Dialog-module_sekai-dialog-hidden__aznHA {\n  display: none;\n}\n\n.Dialog-module_sekai-container__ksO7t, .Dialog-module_sekai-container-wide__NphhS, .Dialog-module_sekai-container-medium__XUhgC, .Dialog-module_sekai-container-narrow__RgWNL {\n  box-sizing: border-box;\n  max-width: 90vw;\n  border: 2px solid var(--sekai-color);\n  border-radius: 4px;\n}\n\n.Dialog-module_sekai-container-narrow__RgWNL {\n  width: 250px;\n}\n\n.Dialog-module_sekai-container-medium__XUhgC {\n  width: 390px;\n}\n\n.Dialog-module_sekai-container-wide__NphhS {\n  width: 600px;\n}\n\n.Dialog-module_sekai-content-wrap__mWRrt {\n  padding: 16px;\n}\n\n/** Dialog Title Header */\n.Dialog-module_sekai-title-header__ATn1B, .Dialog-module_sekai-title-header-wide__5Skds, .Dialog-module_sekai-title-header-medium__61bst, .Dialog-module_sekai-title-header-narrow__uQfFd {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n  margin-bottom: 16px;\n}\n.Dialog-module_sekai-title-header__ATn1B h2, .Dialog-module_sekai-title-header-wide__5Skds h2, .Dialog-module_sekai-title-header-medium__61bst h2, .Dialog-module_sekai-title-header-narrow__uQfFd h2 {\n  margin: 0;\n}\n.Dialog-module_sekai-title-header__ATn1B .Dialog-module_sekai-close-icon__CVbZJ, .Dialog-module_sekai-title-header-wide__5Skds .Dialog-module_sekai-close-icon__CVbZJ, .Dialog-module_sekai-title-header-medium__61bst .Dialog-module_sekai-close-icon__CVbZJ, .Dialog-module_sekai-title-header-narrow__uQfFd .Dialog-module_sekai-close-icon__CVbZJ {\n  border: none;\n  padding: 0;\n  background-color: inherit;\n  aspect-ratio: 1/1;\n}\n\n.Dialog-module_sekai-title-header-narrow__uQfFd {\n  min-height: 32px;\n}\n.Dialog-module_sekai-title-header-narrow__uQfFd h2 {\n  font-size: 1.2em;\n}\n.Dialog-module_sekai-title-header-narrow__uQfFd .Dialog-module_sekai-close-icon__CVbZJ {\n  height: 16px;\n}\n\n.Dialog-module_sekai-title-header-medium__61bst {\n  height: 40px;\n}\n.Dialog-module_sekai-title-header-medium__61bst h2 {\n  font-size: 1.4em;\n}\n.Dialog-module_sekai-title-header-medium__61bst .Dialog-module_sekai-close-icon__CVbZJ {\n  height: 20px;\n}\n\n.Dialog-module_sekai-title-header-wide__5Skds {\n  height: 48px;\n}\n.Dialog-module_sekai-title-header-wide__5Skds .Dialog-module_sekai-close-icon__CVbZJ {\n  height: 24px;\n}\n\n/** Dialog Buttons Area */\n.Dialog-module_sekai-buttons-area__9vRBF {\n  display: flex;\n  width: calc(100% + 4px);\n  margin: 0 -2px -2px;\n  /** Button type : normal */\n  /** Button type : strong */\n}\n.Dialog-module_sekai-buttons-area__9vRBF button {\n  background-color: inherit;\n  padding: 0;\n  min-height: 40px;\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-normal-button-color__mq3H7.Dialog-module_sekai-light__TlNmy, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-normal-button-2-1__FBzF9, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-normal-button-2-0__iZkb-, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg {\n  border: 2px solid var(--sekai-color, #000);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-normal-button-color__mq3H7.Dialog-module_sekai-light__TlNmy:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-normal-button-2-1__FBzF9:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-normal-button-2-0__iZkb-:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-normal-button-color__mq3H7.Dialog-module_sekai-dark__M58Kq, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-normal-button-2-1__FBzF9, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-normal-button-2-0__iZkb-, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg {\n  border: 2px solid var(--sekai-color, #fff);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-normal-button-color__mq3H7.Dialog-module_sekai-dark__M58Kq:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-normal-button-2-1__FBzF9:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-normal-button-2-0__iZkb-:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-normal-button-color__mq3H7:disabled, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-1__FBzF9:disabled, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-0__iZkb-:disabled, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg:disabled {\n  opacity: 0.5;\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-normal-button-color__mq3H7:disabled:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-1__FBzF9:disabled:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-0__iZkb-:disabled:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg:disabled:hover {\n  background-color: transparent;\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg {\n  width: 100%;\n  border-bottom-right-radius: 4px;\n  border-bottom-left-radius: 4px;\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-0__iZkb- {\n  width: 50%;\n  border-bottom-left-radius: 4px;\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-0__iZkb-.Dialog-module_sekai-light__TlNmy {\n  border-right: 1px solid var(--sekai-color, #000);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-0__iZkb-.Dialog-module_sekai-dark__M58Kq {\n  border-right: 1px solid var(--sekai-color, #fff);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-1__FBzF9 {\n  width: 50%;\n  border-bottom-right-radius: 4px;\n  border-left: 1px solid var(--sekai-color, #fff);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-1__FBzF9.Dialog-module_sekai-light__TlNmy {\n  border-left: 1px solid var(--sekai-color, #000);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-1__FBzF9.Dialog-module_sekai-dark__M58Kq {\n  border-left: 1px solid var(--sekai-color, #fff);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-strong-button-color__gzYAg.Dialog-module_sekai-light__TlNmy, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-strong-button-2-1__WxTyF, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-strong-button-2-0__z7H34, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-strong-button-1-0__gM-wb {\n  border: 2px solid var(--sekai-color, #000);\n  background-color: var(--sekai-color, #000);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-strong-button-color__gzYAg.Dialog-module_sekai-light__TlNmy:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-strong-button-2-1__WxTyF:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-strong-button-2-0__z7H34:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-light__TlNmy.Dialog-module_sekai-dialog-strong-button-1-0__gM-wb:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-strong-button-color__gzYAg.Dialog-module_sekai-dark__M58Kq, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-strong-button-2-1__WxTyF, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-strong-button-2-0__z7H34, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-strong-button-1-0__gM-wb {\n  border: 2px solid var(--sekai-color, #fff);\n  background-color: var(--sekai-color, #fff);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-strong-button-color__gzYAg.Dialog-module_sekai-dark__M58Kq:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-strong-button-2-1__WxTyF:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-strong-button-2-0__z7H34:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dark__M58Kq.Dialog-module_sekai-dialog-strong-button-1-0__gM-wb:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-strong-button-color__gzYAg:disabled, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-1__WxTyF:disabled, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-0__z7H34:disabled, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-1-0__gM-wb:disabled {\n  opacity: 0.5;\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-strong-button-color__gzYAg:disabled:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-1__WxTyF:disabled:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-0__z7H34:disabled:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-1-0__gM-wb:disabled:hover {\n  background-color: transparent;\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-1-0__gM-wb {\n  width: 100%;\n  border-bottom-right-radius: 4px;\n  border-bottom-left-radius: 4px;\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-0__z7H34 {\n  width: 50%;\n  border-bottom-left-radius: 4px;\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-0__z7H34.Dialog-module_sekai-light__TlNmy {\n  border-right: 1px solid var(--sekai-color, #000);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-0__z7H34.Dialog-module_sekai-dark__M58Kq {\n  border-right: 1px solid var(--sekai-color, #fff);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-1__WxTyF {\n  width: 50%;\n  border-bottom-right-radius: 4px;\n  border-left: 1px solid var(--sekai-color, #fff);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-1__WxTyF.Dialog-module_sekai-light__TlNmy {\n  border-left: 1px solid var(--sekai-color, #000);\n}\n.Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-1__WxTyF.Dialog-module_sekai-dark__M58Kq {\n  border-left: 1px solid var(--sekai-color, #fff);\n}";
+var styles = {"sekai-dialog-visible":"Dialog-module_sekai-dialog-visible__MhxKQ","sekai-dialog-hidden":"Dialog-module_sekai-dialog-hidden__aznHA","sekai-container":"Dialog-module_sekai-container__ksO7t","sekai-container-wide":"Dialog-module_sekai-container-wide__NphhS","sekai-container-medium":"Dialog-module_sekai-container-medium__XUhgC","sekai-container-narrow":"Dialog-module_sekai-container-narrow__RgWNL","sekai-content-wrap":"Dialog-module_sekai-content-wrap__mWRrt","sekai-title-header":"Dialog-module_sekai-title-header__ATn1B","sekai-title-header-wide":"Dialog-module_sekai-title-header-wide__5Skds","sekai-title-header-medium":"Dialog-module_sekai-title-header-medium__61bst","sekai-title-header-narrow":"Dialog-module_sekai-title-header-narrow__uQfFd","sekai-close-icon":"Dialog-module_sekai-close-icon__CVbZJ","sekai-buttons-area":"Dialog-module_sekai-buttons-area__9vRBF","sekai-normal-button-color":"Dialog-module_sekai-normal-button-color__mq3H7","sekai-light":"Dialog-module_sekai-light__TlNmy","sekai-dialog-normal-button-2-1":"Dialog-module_sekai-dialog-normal-button-2-1__FBzF9","sekai-dialog-normal-button-2-0":"Dialog-module_sekai-dialog-normal-button-2-0__iZkb-","sekai-dialog-normal-button-1-0":"Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg","sekai-dark":"Dialog-module_sekai-dark__M58Kq","sekai-strong-button-color":"Dialog-module_sekai-strong-button-color__gzYAg","sekai-dialog-strong-button-2-1":"Dialog-module_sekai-dialog-strong-button-2-1__WxTyF","sekai-dialog-strong-button-2-0":"Dialog-module_sekai-dialog-strong-button-2-0__z7H34","sekai-dialog-strong-button-1-0":"Dialog-module_sekai-dialog-strong-button-1-0__gM-wb"};
 styleInject(css_248z);
 
-// todo escape key fire onclose
 var Dialog = function Dialog(_ref) {
   var sekai = _ref.sekai,
     open = _ref.open,
@@ -439,11 +438,12 @@ var Dialog = function Dialog(_ref) {
     children = _ref.children,
     containerComponent = _ref.containerComponent,
     _ref$size = _ref.size,
-    size = _ref$size === undefined ? 'medium' : _ref$size,
+    size = _ref$size === void 0 ? 'medium' : _ref$size,
     onClose = _ref.onClose,
     title = _ref.title,
     _ref$showCloseIcon = _ref.showCloseIcon,
-    showCloseIcon = _ref$showCloseIcon === undefined ? false : _ref$showCloseIcon;
+    showCloseIcon = _ref$showCloseIcon === void 0 ? false : _ref$showCloseIcon,
+    buttons = _ref.buttons;
   var displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden';
   var portalContainer = containerComponent || document.body;
   var _useOptionalSekai = useOptionalSekai({
@@ -460,9 +460,7 @@ var Dialog = function Dialog(_ref) {
   };
   useEffect(function () {
     if (!open) return;
-    var handleKeyDownEsc = function handleKeyDownEsc() {
-      return fireOnEscapeKey(onClose);
-    };
+    var handleKeyDownEsc = fireOnEscapeKey(onClose);
     document.addEventListener('keydown', handleKeyDownEsc);
     return function () {
       return document.removeEventListener('keydown', handleKeyDownEsc);
@@ -476,18 +474,29 @@ var Dialog = function Dialog(_ref) {
     title: title,
     showCloseIcon: showCloseIcon
   };
+  var buttonsProps = {
+    sekai: sekai,
+    themeMode: themeMode,
+    size: size,
+    buttons: buttons
+  };
   return /*#__PURE__*/createPortal(/*#__PURE__*/React.createElement("div", {
     className: styles[displayDialog]
   }, /*#__PURE__*/React.createElement("div", {
     className: globalStyles["sekai-overlay-".concat(modeTheme)]
   }, /*#__PURE__*/React.createElement("div", {
     role: "dialog",
+    className: [globalStyles["sekai-color-".concat(modeTheme)], globalStyles['sekai-absolute-center'], styles["sekai-container-".concat(size)], styles["sekai-".concat(modeTheme)]].join(' '),
     style: optionStyle,
-    className: [globalStyles["sekai-color-".concat(modeTheme)], globalStyles['sekai-absolute-center'], styles["sekai-container-".concat(size)], styles["sekai-".concat(modeTheme)]].join(' ')
-  }, /*#__PURE__*/React.createElement(DialogTitleHeader, headerProps), children))), portalContainer);
+    "aria-label": title || 'Dialog'
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles['sekai-content-wrap']
+  }, /*#__PURE__*/React.createElement(DialogTitleHeader, headerProps), children), /*#__PURE__*/React.createElement(DialogButtons, buttonsProps)))), portalContainer);
 };
 var DialogTitleHeader = function DialogTitleHeader(_ref2) {
-  var sekai = _ref2.sekai,
+  var _ref2$className = _ref2.className,
+    className = _ref2$className === void 0 ? '' : _ref2$className,
+    sekai = _ref2.sekai,
     themeMode = _ref2.themeMode,
     size = _ref2.size,
     onClose = _ref2.onClose,
@@ -495,8 +504,8 @@ var DialogTitleHeader = function DialogTitleHeader(_ref2) {
     showCloseIcon = _ref2.showCloseIcon;
   if (!title && !showCloseIcon) return null;
   return /*#__PURE__*/React.createElement("div", {
-    className: styles["sekai-title-header-".concat(size)]
-  }, /*#__PURE__*/React.createElement("span", null, title), showCloseIcon ? /*#__PURE__*/React.createElement("button", {
+    className: [styles["sekai-title-header-".concat(size)], className].join(' ')
+  }, /*#__PURE__*/React.createElement("h2", null, title), showCloseIcon ? /*#__PURE__*/React.createElement("button", {
     type: "button",
     className: styles['sekai-close-icon'],
     onClick: onClose
@@ -504,6 +513,45 @@ var DialogTitleHeader = function DialogTitleHeader(_ref2) {
     sekai: sekai,
     themeMode: themeMode
   })) : null);
+};
+var DialogButtons = function DialogButtons(_ref3) {
+  var _ref3$className = _ref3.className,
+    className = _ref3$className === void 0 ? '' : _ref3$className,
+    sekai = _ref3.sekai,
+    themeMode = _ref3.themeMode,
+    buttons = _ref3.buttons;
+  if (!buttons) return null;
+  var buttonLength = buttons.length;
+  var _useOptionalSekai2 = useOptionalSekai({
+      sekai: sekai,
+      mode: themeMode
+    }),
+    sekaiColor = _useOptionalSekai2.sekaiColor,
+    modeTheme = _useOptionalSekai2.modeTheme,
+    isLight = _useOptionalSekai2.isLight;
+  var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
+  var optionStyle = {
+    '--sekai-color': sekaiColor,
+    '--sekai-color-hover': sekaiColorHover
+  };
+  var getButtonArgs = function getButtonArgs(index) {
+    return {
+      'onClick': buttons[index].onClick,
+      'disabled': Boolean(buttons[index].disabled),
+      'aria-label': buttons[index].ariaLabel ? buttons[index].ariaLabel : buttons[index].text
+    };
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: [styles['sekai-buttons-area'], className].join(' ')
+  }, buttons.map(function (el, index) {
+    return /*#__PURE__*/React.createElement("button", _extends({
+      key: el.text,
+      type: "button"
+    }, getButtonArgs(index), {
+      className: [globalStyles["sekai-color-".concat(modeTheme)], styles["sekai-dialog-".concat(el.type || 'normal', "-button-").concat(buttonLength, "-").concat(index)], styles["sekai-".concat(modeTheme)], el.buttonStyle || ''].join(' '),
+      style: optionStyle
+    }), el.text);
+  }));
 };
 
 var defaultTheme = {
@@ -517,17 +565,17 @@ var defaultTheme = {
 };
 var createSekai = function createSekai(option) {
   var palette = option.palette;
-  var typography = option === null || option === undefined ? undefined : option.typography;
+  var typography = option === null || option === void 0 ? void 0 : option.typography;
   var sekaiTheme = {
     palette: {
       sekai: palette.sekai,
       mode: palette.mode || defaultTheme.palette.mode
     },
     typography: {
-      fontFamily: (typography === null || typography === undefined ? undefined : typography.fontFamily) || defaultTheme.typography.fontFamily
+      fontFamily: (typography === null || typography === void 0 ? void 0 : typography.fontFamily) || defaultTheme.typography.fontFamily
     }
   };
   return sekaiTheme;
 };
 
-export { BasicButton, COLORS_SEKAI_KEYS, DARK_MODE, Dialog, LIGHT_MODE, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
+export { BasicButton, COLORS_SEKAI_KEYS, DARK_MODE, Dialog, DialogButtons, DialogTitleHeader, LIGHT_MODE, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };

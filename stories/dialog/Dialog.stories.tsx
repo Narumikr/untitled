@@ -1,6 +1,10 @@
 import { fn } from '@storybook/test'
 
+import type { DialogButton } from '@/components/dialog/Dialog'
 import { Dialog } from '@/components/dialog/Dialog'
+
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
@@ -10,7 +14,70 @@ const meta = {
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
-    // className: { control: false }
+    sekai: {
+      description: 'What SEKAI color to use',
+      table: {
+        type: { summary: 'ColorsSekaiKey' },
+        defaultValue: { summary: 'Miku' }
+      },
+      control: { type: 'select' },
+      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+    },
+    open: {
+      description: 'Dialog open',
+      table: {
+        types: 'boolean',
+        defaultValue: { summary: 'false' }
+      }
+    },
+    themeMode: {
+      description: 'Light or Dark mode',
+      table: {
+        type: { summary: 'PaletteMode' },
+        defaultValue: { summary: 'light' }
+      },
+      control: { type: 'select' },
+      options: ['light', 'dark']
+    },
+    children: {
+      description: 'Button contents',
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
+      table: { type: { summary: 'React.ReactNode' } }
+    },
+    containerComponent: {
+      description: 'Target element where the portal content will be rendered',
+      table: { type: { summary: 'HTMLElement' } },
+      control: false
+    },
+    size: {
+      description: 'Dialog size',
+      table: {
+        type: { summary: 'DialogSize' },
+        defaultValue: { summary: 'medium' }
+      },
+      control: 'select',
+      options: ['narrow', 'medium', 'wide']
+    },
+    onClose: {
+      description: 'Dialog close method',
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
+      table: { type: { summary: '() => void' } }
+    },
+    title: {
+      description: 'Dialog header title',
+      table: { type: { summary: 'string' } }
+    },
+    showCloseIcon: {
+      description: 'Whether to display close icon',
+      control: { type: 'boolean' },
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
+    },
+    buttons: {
+      description: 'Dialog buttons',
+      table: { type: { summary: 'DialogButton[]' } }
+    }
   },
   args: {
     onClose: fn()
@@ -20,14 +87,18 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const DefaultLight: Story = {
+const commonArgs = {
+  sekai: COLORS_SEKAI_KEYS.Miku as ColorsSekaiKey,
+  open: true,
+  children: 'Dialog Contents',
+  title: 'Dialog Title'
+}
+
+export const LightMedium: Story = {
   args: {
-    sekai: 'Miku',
-    open: true,
+    ...commonArgs,
     themeMode: 'light',
-    children: 'Hatsune Miku',
     size: 'medium',
-    title: '開かれた窓のセカイ',
     showCloseIcon: false
   },
   parameters: {
@@ -37,14 +108,11 @@ export const DefaultLight: Story = {
   }
 }
 
-export const DefaultDark: Story = {
+export const DarkMedium: Story = {
   args: {
-    sekai: 'Miku',
-    open: true,
+    ...commonArgs,
     themeMode: 'dark',
-    children: 'Hatsune Miku',
     size: 'medium',
-    title: '閉ざされた窓のセカイ',
     showCloseIcon: false
   },
   parameters: {
@@ -56,12 +124,9 @@ export const DefaultDark: Story = {
 
 export const LightNarrow: Story = {
   args: {
-    sekai: 'Miku',
-    open: true,
+    ...commonArgs,
     themeMode: 'light',
-    children: 'Hatsune Miku',
     size: 'narrow',
-    title: '開かれた窓のセカイ',
     showCloseIcon: false
   },
   parameters: {
@@ -73,12 +138,9 @@ export const LightNarrow: Story = {
 
 export const DarkNarrow: Story = {
   args: {
-    sekai: 'Miku',
-    open: true,
+    ...commonArgs,
     themeMode: 'dark',
-    children: 'Hatsune Miku',
     size: 'narrow',
-    title: '閉ざされた窓のセカイ',
     showCloseIcon: false
   },
   parameters: {
@@ -90,12 +152,9 @@ export const DarkNarrow: Story = {
 
 export const LightWide: Story = {
   args: {
-    sekai: 'Miku',
-    open: true,
+    ...commonArgs,
     themeMode: 'light',
-    children: 'Hatsune Miku',
     size: 'wide',
-    title: '開かれた窓のセカイ',
     showCloseIcon: false
   },
   parameters: {
@@ -107,12 +166,144 @@ export const LightWide: Story = {
 
 export const DarkWide: Story = {
   args: {
-    sekai: 'Miku',
-    open: true,
+    ...commonArgs,
     themeMode: 'dark',
-    children: 'Hatsune Miku',
     size: 'wide',
-    title: '閉ざされた窓のセカイ',
+    showCloseIcon: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark',
+    portal: true
+  }
+}
+
+export const CloseIconLight: Story = {
+  args: {
+    ...commonArgs,
+    themeMode: 'light',
+    size: 'medium',
+    showCloseIcon: true
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light',
+    portal: true
+  }
+}
+
+export const CloseIconDark: Story = {
+  args: {
+    ...commonArgs,
+    themeMode: 'dark',
+    size: 'medium',
+    showCloseIcon: true
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark',
+    portal: true
+  }
+}
+
+const buttons = [
+  {
+    text: 'Cancel',
+    type: 'normal',
+    onClick: fn()
+  },
+  {
+    text: 'OK',
+    type: 'normal',
+    onClick: fn()
+  },
+  {
+    text: 'OK',
+    type: 'strong',
+    onClick: fn()
+  }
+]
+export const OneButtonsLight: Story = {
+  args: {
+    ...commonArgs,
+    themeMode: 'light',
+    buttons: [buttons[1]] as [DialogButton],
+    size: 'medium',
+    showCloseIcon: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light',
+    portal: true
+  }
+}
+
+export const OneButtonsDark: Story = {
+  args: {
+    ...commonArgs,
+    themeMode: 'dark',
+    buttons: [buttons[1]] as [DialogButton],
+    size: 'medium',
+    showCloseIcon: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark',
+    portal: true
+  }
+}
+
+export const DoubleButtonsLight: Story = {
+  args: {
+    ...commonArgs,
+    themeMode: 'light',
+    buttons: [buttons[0], buttons[1]] as [DialogButton, DialogButton],
+    size: 'medium',
+    showCloseIcon: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light',
+    portal: true
+  }
+}
+
+export const DoubleButtonsDark: Story = {
+  args: {
+    ...commonArgs,
+    themeMode: 'dark',
+    buttons: [buttons[0], buttons[1]] as [DialogButton, DialogButton],
+    size: 'medium',
+    showCloseIcon: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark',
+    portal: true
+  }
+}
+
+export const StrongButtonsLight: Story = {
+  args: {
+    ...commonArgs,
+    themeMode: 'light',
+    buttons: [buttons[0], buttons[2]] as [DialogButton, DialogButton],
+    size: 'medium',
+    showCloseIcon: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light',
+    portal: true
+  }
+}
+
+export const StrongButtonsDark: Story = {
+  args: {
+    ...commonArgs,
+    themeMode: 'dark',
+    buttons: [buttons[0], buttons[2]] as [DialogButton, DialogButton],
+    size: 'medium',
     showCloseIcon: false
   },
   parameters: {

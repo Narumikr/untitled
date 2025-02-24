@@ -1,4 +1,4 @@
-import React$1 from 'react';
+import React from 'react';
 
 declare const COLORS_SEKAI_KEYS: {
     readonly Miku: "Miku";
@@ -79,45 +79,47 @@ type PaletteMode = typeof LIGHT_MODE | typeof DARK_MODE;
 declare const useThemeMode: () => PaletteMode;
 
 type BasicButtonProps = {
-    /** Button styles */
     className?: string;
-    /** What SEKAI color to use */
     sekai?: ColorsSekaiKey;
-    /** Apply SEKAI color to text */
     withText?: boolean;
-    /** Light or Dark mode */
     themeMode?: PaletteMode;
-    /** Button contents */
-    children?: React$1.ReactNode;
-    /** Button disabled */
+    children?: React.ReactNode;
     disabled?: boolean;
-    /** Click handler */
     onClick?: () => void;
-} & React$1.ButtonHTMLAttributes<HTMLButtonElement>;
-declare const BasicButton: ({ className, sekai, withText, themeMode, children, disabled, ...buttonProps }: BasicButtonProps) => React$1.JSX.Element;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+declare const BasicButton: ({ className, sekai, withText, themeMode, children, disabled, ...buttonProps }: BasicButtonProps) => React.JSX.Element;
 
 type DialogSize = 'narrow' | 'medium' | 'wide';
-interface DialogProps {
-    /** What SEKAI color to use */
-    sekai?: ColorsSekaiKey;
-    /** Dialog open */
-    open: boolean;
-    /** Light or Dark mode */
-    themeMode?: PaletteMode;
-    /** Button contents */
-    children: React$1.ReactNode;
-    /** */
-    containerComponent?: HTMLElement;
-    /** Dialog size */
-    size?: DialogSize;
-    /** Dialog close method */
-    onClose: () => void;
-    /** Dialog header title */
-    title?: string;
-    /** Whether to display close icon */
-    showCloseIcon?: boolean;
+type DialogButtonType = 'normal' | 'strong';
+interface DialogButton {
+    text: string;
+    onClick: () => void;
+    type?: DialogButtonType;
+    disabled?: boolean;
+    ariaLabel?: string;
+    buttonStyle?: string;
 }
-declare const Dialog: ({ sekai, open, themeMode, children, containerComponent, size, onClose, title, showCloseIcon }: DialogProps) => React$1.ReactPortal;
+interface DialogProps {
+    sekai?: ColorsSekaiKey;
+    open: boolean;
+    themeMode?: PaletteMode;
+    children: React.ReactNode;
+    containerComponent?: HTMLElement;
+    size?: DialogSize;
+    onClose: () => void;
+    title?: string;
+    showCloseIcon?: boolean;
+    buttons?: [DialogButton] | [DialogButton, DialogButton];
+}
+declare const Dialog: ({ sekai, open, themeMode, children, containerComponent, size, onClose, title, showCloseIcon, buttons }: DialogProps) => React.ReactPortal;
+type DialogTitleHeaderProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'size' | 'onClose' | 'title' | 'showCloseIcon'> & {
+    className?: string;
+};
+declare const DialogTitleHeader: ({ className, sekai, themeMode, size, onClose, title, showCloseIcon }: DialogTitleHeaderProps) => React.JSX.Element | null;
+type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'buttons'> & {
+    className?: string;
+};
+declare const DialogButtons: ({ className, sekai, themeMode, buttons }: DialogButtonsProps) => React.JSX.Element | null;
 
 type SekaiTheme = {
     palette: {
@@ -134,19 +136,19 @@ interface YourSekaiContextProps {
     sekaiTheme: SekaiTheme;
     onSwitchSekaiColor: (sekai: ColorsSekaiKey) => void;
 }
-declare const YourSekaiContext: React$1.Context<YourSekaiContextProps | null>;
+declare const YourSekaiContext: React.Context<YourSekaiContextProps | null>;
 interface YourSekaiProviderProps {
-    children: React$1.ReactNode;
+    children: React.ReactNode;
     sekaiTheme: SekaiTheme;
 }
-declare const YourSekaiProvider: ({ children, sekaiTheme }: YourSekaiProviderProps) => React$1.JSX.Element;
+declare const YourSekaiProvider: ({ children, sekaiTheme }: YourSekaiProviderProps) => React.JSX.Element;
 
 declare const useCreateSekai: () => YourSekaiContextProps;
 
 declare const convertHexToRgb: (hex: string) => string;
 declare const convertHexToRgba: (hex: string, alpha: number) => string;
 
-declare const fireOnEnterKey: (eventHandler: (e: React.KeyboardEvent) => void) => (e: React.KeyboardEvent) => void;
+declare const fireOnEnterKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 
-export { BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogProps, type DialogSize, LIGHT_MODE, type PaletteMode, type SekaiTheme, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
+export { BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogProps, type DialogSize, DialogTitleHeader, LIGHT_MODE, type PaletteMode, type SekaiTheme, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };

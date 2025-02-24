@@ -44,6 +44,10 @@ const preview: Preview = {
             `,
           `
           .docs-story {
+            aspect-ratio: 16 / 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
           }
           `
