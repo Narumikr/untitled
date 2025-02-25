@@ -75,8 +75,14 @@ const meta = {
       table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
     },
     buttons: {
-      description: 'Dialog buttons',
-      table: { type: { summary: 'DialogButton[]' } }
+      description: 'Use Dialog default buttons',
+      table: { type: { summary: '[DialogButton] || [DialogButton. DialogButton]' } },
+      control: { type: 'object' }
+    },
+    dialogButtons: {
+      description: 'Use custom buttons component',
+      table: { type: { summary: 'React.ReactNode' } },
+      control: { type: 'object' }
     }
   },
   args: {

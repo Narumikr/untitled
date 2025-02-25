@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 
 import { createPortal } from 'react-dom'
 
@@ -36,6 +36,7 @@ export interface DialogProps {
   title?: string
   showCloseIcon?: boolean
   buttons?: [DialogButton] | [DialogButton, DialogButton]
+  dialogButtons?: React.ReactNode
 }
 
 export const Dialog = ({
@@ -48,14 +49,15 @@ export const Dialog = ({
   onClose,
   title,
   showCloseIcon = false,
-  buttons
+  buttons,
+  dialogButtons
 }: DialogProps) => {
   const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
   const portalContainer = containerComponent || document.body
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({
-    sekai: sekai,
-    mode: themeMode
-  })
+  const { sekaiColor, modeTheme, isLight } = useMemo(() => {
+    return useOptionalSekai({ sekai, mode: themeMode })
+  }, [sekai, themeMode])
+
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
   const optionStyle = {
     '--sekai-color': sekaiColor,
@@ -72,7 +74,7 @@ export const Dialog = ({
   }, [open])
 
   const headerProps = { sekai, themeMode, size, onClose, title, showCloseIcon }
-  const buttonsProps = { sekai, themeMode, size, buttons }
+  const buttonsProps = { sekai, themeMode, buttons }
 
   return createPortal(
     <div className={styles[displayDialog]}>
@@ -91,7 +93,7 @@ export const Dialog = ({
             <DialogTitleHeader {...headerProps} />
             {children}
           </div>
-          <DialogButtons {...buttonsProps} />
+          {dialogButtons || <DialogButtons {...buttonsProps} />}
         </div>
       </div>
     </div>,
@@ -99,7 +101,7 @@ export const Dialog = ({
   )
 }
 
-type DialogTitleHeaderProps = Pick<
+export type DialogTitleHeaderProps = Pick<
   DialogProps,
   'sekai' | 'themeMode' | 'size' | 'onClose' | 'title' | 'showCloseIcon'
 > & { className?: string }
@@ -127,7 +129,7 @@ export const DialogTitleHeader = ({
   )
 }
 
-type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'buttons'> & {
+export type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'buttons'> & {
   className?: string
 }
 
@@ -138,25 +140,18 @@ export const DialogButtons = ({
   buttons
 }: DialogButtonsProps) => {
   if (!buttons) return null
-  const buttonLength = buttons.length
 
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({
-    sekai: sekai,
-    mode: themeMode
-  })
+  const buttonLength = buttons.length
+  const { sekaiColor, modeTheme, isLight } = useMemo(() => {
+    return useOptionalSekai({ sekai, mode: themeMode })
+  }, [sekai, themeMode])
 
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
+  const sekaiColorStrongHover = convertHexToRgba(sekaiColor, 0.8)
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-hover': sekaiColorHover
-  }
-
-  const getButtonArgs = (index: number) => {
-    return {
-      'onClick': buttons[index].onClick,
-      'disabled': Boolean(buttons[index].disabled),
-      'aria-label': buttons[index].ariaLabel ? buttons[index].ariaLabel : buttons[index].text
-    }
+    '--sekai-color-hover': sekaiColorHover,
+    '--sekai-color-strong-hover': sekaiColorStrongHover
   }
 
   return (
@@ -165,7 +160,9 @@ export const DialogButtons = ({
         <button
           key={el.text}
           type="button"
-          {...getButtonArgs(index)}
+          onClick={el.onClick}
+          disabled={Boolean(el.disabled)}
+          aria-label={el.ariaLabel || el.text}
           className={[
             globalStyles[`sekai-color-${modeTheme}`],
             styles[`sekai-dialog-${el.type || 'normal'}-button-${buttonLength}-${index}`],
@@ -179,3 +176,5 @@ export const DialogButtons = ({
     </div>
   )
 }
+
+// https://chatgpt.com/share/67bd523a-2e6c-8006-9c3f-8b6a126faa54

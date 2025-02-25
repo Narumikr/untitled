@@ -145,14 +145,14 @@ $border-line-width: 2px;
       border: $border-line-width solid var(--sekai-color, #000);
       background-color: var(--sekai-color, #000);
       &:hover {
-        background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));
+        background-color: var(--sekai-color-strong-hover, rgba(0, 0, 0, 0.1));
       }
     }
     &.sekai-dark {
       border: $border-line-width solid var(--sekai-color, #fff);
       background-color: var(--sekai-color, #fff);
       &:hover {
-        background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));
+        background-color: var(--sekai-color-strong-hover, rgba(0, 0, 0, 0.3));
       }
     }
     &:disabled {
