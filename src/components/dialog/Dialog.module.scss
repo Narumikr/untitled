@@ -1,0 +1,194 @@
+$border-radius-px: 4px;
+$border-line-width: 2px;
+
+.sekai-dialog-visible {
+  display: block;
+}
+.sekai-dialog-hidden {
+  display: none;
+}
+
+.sekai-container {
+  box-sizing: border-box;
+  max-width: 90vw;
+  border: $border-line-width solid var(--sekai-color);
+  border-radius: $border-radius-px;
+}
+.sekai-container-narrow {
+  @extend .sekai-container;
+  width: 250px;
+}
+.sekai-container-medium {
+  @extend .sekai-container;
+  width: 390px;
+}
+.sekai-container-wide {
+  @extend .sekai-container;
+  width: 600px;
+}
+
+.sekai-content-wrap {
+  padding: 16px;
+}
+
+/** Dialog Title Header */
+.sekai-title-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 16px;
+  h2 {
+    margin: 0;
+  }
+  .sekai-close-icon {
+    border: none;
+    padding: 0;
+    background-color: inherit;
+    aspect-ratio: 1/1;
+  }
+}
+.sekai-title-header-narrow {
+  @extend .sekai-title-header;
+  min-height: 32px;
+  h2 {
+    font-size: 1.2em;
+  }
+  .sekai-close-icon {
+    height: 16px;
+  }
+}
+.sekai-title-header-medium {
+  @extend .sekai-title-header;
+  height: 40px;
+  h2 {
+    font-size: 1.4em;
+  }
+  .sekai-close-icon {
+    height: 20px;
+  }
+}
+.sekai-title-header-wide {
+  @extend .sekai-title-header;
+  height: 48px;
+  .sekai-close-icon {
+    height: 24px;
+  }
+}
+
+/** Dialog Buttons Area */
+.sekai-buttons-area {
+  display: flex;
+  width: calc(100% + 2 * $border-line-width);
+  margin: 0 (-$border-line-width) (-$border-line-width);
+
+  button {
+    background-color: inherit;
+    padding: 0;
+    min-height: 40px;
+  }
+
+  /** Button type : normal */
+  .sekai-normal-button-color {
+    &.sekai-light {
+      border: $border-line-width solid var(--sekai-color, #000);
+      &:hover {
+        background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));
+      }
+    }
+    &.sekai-dark {
+      border: $border-line-width solid var(--sekai-color, #fff);
+      &:hover {
+        background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));
+      }
+    }
+    &:disabled {
+      opacity: 0.5;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  .sekai-dialog-normal-button-1-0 {
+    @extend .sekai-normal-button-color;
+    width: 100%;
+    border-bottom-right-radius: $border-radius-px;
+    border-bottom-left-radius: $border-radius-px;
+  }
+  .sekai-dialog-normal-button-2-0 {
+    @extend .sekai-normal-button-color;
+    width: 50%;
+    border-bottom-left-radius: $border-radius-px;
+    &.sekai-light {
+      border-right: 1px solid var(--sekai-color, #000);
+    }
+    &.sekai-dark {
+      border-right: 1px solid var(--sekai-color, #fff);
+    }
+  }
+  .sekai-dialog-normal-button-2-1 {
+    @extend .sekai-normal-button-color;
+    width: 50%;
+    border-bottom-right-radius: $border-radius-px;
+    border-left: 1px solid var(--sekai-color, #fff);
+    &.sekai-light {
+      border-left: 1px solid var(--sekai-color, #000);
+    }
+    &.sekai-dark {
+      border-left: 1px solid var(--sekai-color, #fff);
+    }
+  }
+
+  /** Button type : strong */
+  .sekai-strong-button-color {
+    &.sekai-light {
+      border: $border-line-width solid var(--sekai-color, #000);
+      background-color: var(--sekai-color, #000);
+      &:hover {
+        background-color: var(--sekai-color-strong-hover, rgba(0, 0, 0, 0.1));
+      }
+    }
+    &.sekai-dark {
+      border: $border-line-width solid var(--sekai-color, #fff);
+      background-color: var(--sekai-color, #fff);
+      &:hover {
+        background-color: var(--sekai-color-strong-hover, rgba(0, 0, 0, 0.3));
+      }
+    }
+    &:disabled {
+      opacity: 0.5;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  .sekai-dialog-strong-button-1-0 {
+    @extend .sekai-strong-button-color;
+    width: 100%;
+    border-bottom-right-radius: $border-radius-px;
+    border-bottom-left-radius: $border-radius-px;
+  }
+  .sekai-dialog-strong-button-2-0 {
+    @extend .sekai-strong-button-color;
+    width: 50%;
+    border-bottom-left-radius: $border-radius-px;
+    &.sekai-light {
+      border-right: 1px solid var(--sekai-color, #000);
+    }
+    &.sekai-dark {
+      border-right: 1px solid var(--sekai-color, #fff);
+    }
+  }
+  .sekai-dialog-strong-button-2-1 {
+    @extend .sekai-strong-button-color;
+    width: 50%;
+    border-bottom-right-radius: $border-radius-px;
+    border-left: 1px solid var(--sekai-color, #fff);
+    &.sekai-light {
+      border-left: 1px solid var(--sekai-color, #000);
+    }
+    &.sekai-dark {
+      border-left: 1px solid var(--sekai-color, #fff);
+    }
+  }
+}

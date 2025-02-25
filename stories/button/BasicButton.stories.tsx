@@ -26,6 +26,7 @@ const meta = {
         type: { summary: 'ColorsSekaiKey' },
         defaultValue: { summary: 'Miku' }
       },
+      control: { type: 'select' },
       options: [...Object.keys(COLORS_SEKAI_KEYS)]
     },
     withText: {
@@ -38,6 +39,7 @@ const meta = {
         type: { summary: 'PaletteMode' },
         defaultValue: { summary: 'light' }
       },
+      control: { type: 'select' },
       options: ['light', 'dark']
     },
     children: {

@@ -4,6 +4,7 @@ import { DocsContainer } from '@storybook/addon-docs'
 
 import { YourSekaiProvider } from '@/components/provider/YourSekaiProvider'
 
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
 import { DARK_MODE, LIGHT_MODE } from '@/hooks/useThemeMode'
@@ -11,7 +12,7 @@ import { createSekai } from '@/utils/createSekai'
 
 import type { SekaiTheme } from '@/utils/createSekai'
 import type { DocsContextProps } from '@storybook/addon-docs'
-import type { Preview } from '@storybook/react'
+import type { Preview, StoryContext } from '@storybook/react'
 
 const preview: Preview = {
   parameters: {
@@ -43,6 +44,10 @@ const preview: Preview = {
             `,
           `
           .docs-story {
+            aspect-ratio: 16 / 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
           }
           `
@@ -61,8 +66,10 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      const sekai = context.parameters.sekai || COLORS_SEKAI_KEYS.Miku
+      const sekai: ColorsSekaiKey = context.parameters.sekai || COLORS_SEKAI_KEYS.Miku
       const isDark = DARK_MODE === context.parameters.background
+      const isDocs = context.viewMode === 'docs'
+      const isPortal: boolean = context.parameters.portal
 
       const theme: SekaiTheme = createSekai({
         palette: {
@@ -71,13 +78,39 @@ const preview: Preview = {
         }
       })
 
+      if (isPortal) setStylesFixedToAbsolute()
+
       return (
         <YourSekaiProvider sekaiTheme={theme}>
-          <Story />
+          <Story
+            args={{
+              ...context.args,
+              ...(isPortal && { containerComponent: getContainerPortalRoot(context, isDocs) })
+            }}
+          />
         </YourSekaiProvider>
       )
     }
   ]
+}
+
+const setStylesFixedToAbsolute = () => {
+  setTimeout(() => {
+    const modals = document.querySelectorAll('[class*=sekai-overlay]')
+    modals.forEach((modal) => {
+      ;(modal as HTMLElement).style.position = 'absolute'
+    })
+  }, 0)
+}
+
+const getContainerPortalRoot = (context: StoryContext, isDocs: boolean) => {
+  const isPrimary = context.canvasElement.id.indexOf('primary') !== -1
+  const nodeList = document.querySelectorAll(`#anchor--${context.id}`) || []
+  return isDocs
+    ? nodeList.length > 1
+      ? nodeList[isPrimary ? 0 : 1]?.querySelector('.docs-story')
+      : document.getElementById(`anchor--${context.id}`)?.querySelector('.docs-story')
+    : document.getElementById('storybook-root')
 }
 
 export default preview
