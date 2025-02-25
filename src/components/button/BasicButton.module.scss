@@ -16,6 +16,9 @@
   &:hover {
     background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));
   }
+  &:focus-visible {
+    outline: 1px solid var(--sekai-color, #000);
+  }
 }
 
 .sekai-basic-button--dark {
@@ -23,5 +26,8 @@
   border: 2px solid var(--sekai-color, #fff);
   &:hover {
     background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));
+  }
+  &:focus-visible {
+    outline: 1px solid var(--sekai-color, #fff);
   }
 }

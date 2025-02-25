@@ -25,7 +25,7 @@ function _typeof(o) {
 function toPrimitive(t, r) {
   if ("object" != _typeof(t) || !t) return t;
   var e = t[Symbol.toPrimitive];
-  if (undefined !== e) {
+  if (void 0 !== e) {
     var i = e.call(t, r);
     if ("object" != _typeof(i)) return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
@@ -70,7 +70,7 @@ function _objectWithoutProperties(e, t) {
 }
 
 function styleInject(css, ref) {
-  if ( ref === undefined ) ref = {};
+  if ( ref === void 0 ) ref = {};
   var insertAt = ref.insertAt;
 
   if (!css || typeof document === 'undefined') { return; }
@@ -139,7 +139,7 @@ function _unsupportedIterableToArray(r, a) {
   if (r) {
     if ("string" == typeof r) return _arrayLikeToArray(r, a);
     var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : undefined;
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
   }
 }
 
@@ -198,7 +198,7 @@ var YourSekaiProvider = function YourSekaiProvider(_ref) {
   };
   var globalStyle = React.useMemo(function () {
     var _sekaiTheme$typograph, _sekaiTheme$palette, _sekaiTheme$palette2;
-    return "\n    * {\n      font-family: ".concat((_sekaiTheme$typograph = sekaiTheme.typography) === null || _sekaiTheme$typograph === undefined ? undefined : _sekaiTheme$typograph.fontFamily, ";\n    }\n    body {\n      color: ").concat(((_sekaiTheme$palette = sekaiTheme.palette) === null || _sekaiTheme$palette === undefined ? undefined : _sekaiTheme$palette.mode) === DARK_MODE ? '#e0e0e0' : '#212121', ";\n      background: ").concat(((_sekaiTheme$palette2 = sekaiTheme.palette) === null || _sekaiTheme$palette2 === undefined ? undefined : _sekaiTheme$palette2.mode) === DARK_MODE ? '#121212' : '#ffffff', ";\n    }\n  ");
+    return "\n    * {\n      font-family: ".concat((_sekaiTheme$typograph = sekaiTheme.typography) === null || _sekaiTheme$typograph === void 0 ? void 0 : _sekaiTheme$typograph.fontFamily, ";\n    }\n    body {\n      color: ").concat(((_sekaiTheme$palette = sekaiTheme.palette) === null || _sekaiTheme$palette === void 0 ? void 0 : _sekaiTheme$palette.mode) === DARK_MODE ? '#e0e0e0' : '#212121', ";\n      background: ").concat(((_sekaiTheme$palette2 = sekaiTheme.palette) === null || _sekaiTheme$palette2 === void 0 ? void 0 : _sekaiTheme$palette2.mode) === DARK_MODE ? '#121212' : '#ffffff', ";\n    }\n  ");
   }, [sekaiTheme]);
   return /*#__PURE__*/React.createElement(YourSekaiContext.Provider, {
     value: provideValue
@@ -323,7 +323,7 @@ var convertHexToRgba = function convertHexToRgba(hex, alpha) {
   return "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ", ").concat(alpha, ")");
 };
 
-var css_248z = ".BasicButton-module_sekai-basic-button__VyCUN, .BasicButton-module_sekai-basic-button--dark__XLpuB, .BasicButton-module_sekai-basic-button--light__BCQ1L {\n  padding: 5px 10px;\n  border-radius: 10px;\n  min-height: 40px;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled {\n  opacity: 0.5;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled:hover, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled:hover, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled:hover {\n  background-color: transparent;\n}\n\n.BasicButton-module_sekai-basic-button--light__BCQ1L {\n  border: 2px solid var(--sekai-color, #000);\n}\n.BasicButton-module_sekai-basic-button--light__BCQ1L:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));\n}\n\n.BasicButton-module_sekai-basic-button--dark__XLpuB {\n  border: 2px solid var(--sekai-color, #fff);\n}\n.BasicButton-module_sekai-basic-button--dark__XLpuB:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));\n}";
+var css_248z = ".BasicButton-module_sekai-basic-button__VyCUN, .BasicButton-module_sekai-basic-button--dark__XLpuB, .BasicButton-module_sekai-basic-button--light__BCQ1L {\n  padding: 5px 10px;\n  border-radius: 10px;\n  min-height: 40px;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled {\n  opacity: 0.5;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled:hover, .BasicButton-module_sekai-basic-button--dark__XLpuB:disabled:hover, .BasicButton-module_sekai-basic-button--light__BCQ1L:disabled:hover {\n  background-color: transparent;\n}\n\n.BasicButton-module_sekai-basic-button--light__BCQ1L {\n  border: 2px solid var(--sekai-color, #000);\n}\n.BasicButton-module_sekai-basic-button--light__BCQ1L:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));\n}\n.BasicButton-module_sekai-basic-button--light__BCQ1L:focus-visible {\n  outline: 1px solid var(--sekai-color, #000);\n}\n\n.BasicButton-module_sekai-basic-button--dark__XLpuB {\n  border: 2px solid var(--sekai-color, #fff);\n}\n.BasicButton-module_sekai-basic-button--dark__XLpuB:hover {\n  background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));\n}\n.BasicButton-module_sekai-basic-button--dark__XLpuB:focus-visible {\n  outline: 1px solid var(--sekai-color, #fff);\n}";
 var styles = {"sekai-basic-button":"BasicButton-module_sekai-basic-button__VyCUN","sekai-basic-button--dark":"BasicButton-module_sekai-basic-button--dark__XLpuB","sekai-basic-button--light":"BasicButton-module_sekai-basic-button--light__BCQ1L"};
 styleInject(css_248z);
 
@@ -332,14 +332,14 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var BasicButton = function BasicButton(_ref) {
   var _ref$className = _ref.className,
-    className = _ref$className === undefined ? '' : _ref$className,
+    className = _ref$className === void 0 ? '' : _ref$className,
     sekai = _ref.sekai,
     _ref$withText = _ref.withText,
-    withText = _ref$withText === undefined ? false : _ref$withText,
+    withText = _ref$withText === void 0 ? false : _ref$withText,
     themeMode = _ref.themeMode,
     children = _ref.children,
     _ref$disabled = _ref.disabled,
-    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+    disabled = _ref$disabled === void 0 ? false : _ref$disabled,
     buttonProps = _objectWithoutProperties(_ref, _excluded);
   var _useOptionalSekai = useOptionalSekai({
       sekai: sekai,
@@ -357,7 +357,7 @@ var BasicButton = function BasicButton(_ref) {
   });
   return /*#__PURE__*/React.createElement("button", _extends({
     type: "button",
-    className: ["".concat(styles["sekai-basic-button--".concat(modeTheme)]), "".concat(globalStyles["sekai-color-".concat(modeTheme)]), "".concat(className)].join(' '),
+    className: [styles["sekai-basic-button--".concat(modeTheme)], globalStyles["sekai-color-".concat(modeTheme)], className].join(' '),
     style: optionStyle,
     disabled: disabled
   }, buttonProps), children);
@@ -374,14 +374,14 @@ var defaultTheme = {
 };
 var createSekai = function createSekai(option) {
   var palette = option.palette;
-  var typography = option === null || option === undefined ? undefined : option.typography;
+  var typography = option === null || option === void 0 ? void 0 : option.typography;
   var sekaiTheme = {
     palette: {
       sekai: palette.sekai,
       mode: palette.mode || defaultTheme.palette.mode
     },
     typography: {
-      fontFamily: (typography === null || typography === undefined ? undefined : typography.fontFamily) || defaultTheme.typography.fontFamily
+      fontFamily: (typography === null || typography === void 0 ? void 0 : typography.fontFamily) || defaultTheme.typography.fontFamily
     }
   };
   return sekaiTheme;
