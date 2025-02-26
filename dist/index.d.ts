@@ -79,19 +79,12 @@ type PaletteMode = typeof LIGHT_MODE | typeof DARK_MODE;
 declare const useThemeMode: () => PaletteMode;
 
 type BasicButtonProps = {
-    /** Button styles */
     className?: string;
-    /** What SEKAI color to use */
     sekai?: ColorsSekaiKey;
-    /** Apply SEKAI color to text */
     withText?: boolean;
-    /** Light or Dark mode */
     themeMode?: PaletteMode;
-    /** Button contents */
     children?: React.ReactNode;
-    /** Button disabled */
     disabled?: boolean;
-    /** Click handler */
     onClick?: () => void;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 declare const BasicButton: ({ className, sekai, withText, themeMode, children, disabled, ...buttonProps }: BasicButtonProps) => React.JSX.Element;
