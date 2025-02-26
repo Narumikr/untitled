@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
 import globalStyles from '@/styles/global.module.scss'
 import { type ColorsSekaiKey } from '@/styles/sekai-colors'
@@ -28,9 +28,7 @@ export const BasicButton = ({
   disabled = false,
   ...buttonProps
 }: BasicButtonProps) => {
-  const { sekaiColor, modeTheme, isLight } = useMemo(() => {
-    return useOptionalSekai({ sekai, mode: themeMode })
-  }, [sekai, themeMode])
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
 

@@ -342,15 +342,13 @@ var BasicButton = function BasicButton(_ref) {
     _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
     buttonProps = _objectWithoutProperties(_ref, _excluded);
-  var _useMemo = React.useMemo(function () {
-      return useOptionalSekai({
-        sekai: sekai,
-        mode: themeMode
-      });
-    }, [sekai, themeMode]),
-    sekaiColor = _useMemo.sekaiColor,
-    modeTheme = _useMemo.modeTheme,
-    isLight = _useMemo.isLight;
+  var _useOptionalSekai = useOptionalSekai({
+      sekai: sekai,
+      mode: themeMode
+    }),
+    sekaiColor = _useOptionalSekai.sekaiColor,
+    modeTheme = _useOptionalSekai.modeTheme,
+    isLight = _useOptionalSekai.isLight;
   var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
   var optionStyle = _objectSpread({
     '--sekai-color': sekaiColor,
@@ -367,7 +365,9 @@ var BasicButton = function BasicButton(_ref) {
 };
 
 var ClearSvg = function ClearSvg(_ref) {
-  var sekai = _ref.sekai,
+  var _ref$className = _ref.className,
+    className = _ref$className === void 0 ? '' : _ref$className,
+    sekai = _ref.sekai,
     themeMode = _ref.themeMode;
   var _useOptionalSekai = useOptionalSekai({
       sekai: sekai,
@@ -377,40 +377,41 @@ var ClearSvg = function ClearSvg(_ref) {
     isLight = _useOptionalSekai.isLight;
   var color = isLight ? '#212121' : '#e0e0e0';
   return /*#__PURE__*/React.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 24 24",
+    className: className,
+    viewBox: "0 0 100 100",
     width: "100%",
-    height: "100%"
+    height: "100%",
+    xmlns: "http://www.w3.org/2000/svg"
   }, sekai ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("line", {
-    x1: "1",
-    y1: "1",
-    x2: "23",
-    y2: "23",
+    x1: "15",
+    y1: "15",
+    x2: "85",
+    y2: "85",
     stroke: sekaiColor,
-    strokeWidth: "4",
+    strokeWidth: "17",
     opacity: "0.7"
   }), /*#__PURE__*/React.createElement("line", {
-    x1: "23",
-    y1: "1",
-    x2: "1",
-    y2: "23",
+    x1: "85",
+    y1: "15",
+    x2: "15",
+    y2: "85",
     stroke: sekaiColor,
-    strokeWidth: "4",
+    strokeWidth: "17",
     opacity: "0.7"
   })) : null, /*#__PURE__*/React.createElement("line", {
-    x1: "1",
-    y1: "1",
-    x2: "23",
-    y2: "23",
+    x1: "15",
+    y1: "15",
+    x2: "85",
+    y2: "85",
     stroke: color,
-    strokeWidth: "2"
+    strokeWidth: "10"
   }), /*#__PURE__*/React.createElement("line", {
-    x1: "23",
-    y1: "1",
-    x2: "1",
-    y2: "23",
+    x1: "85",
+    y1: "15",
+    x2: "15",
+    y2: "85",
     stroke: color,
-    strokeWidth: "2"
+    strokeWidth: "10"
   }));
 };
 
@@ -451,15 +452,13 @@ var Dialog = function Dialog(_ref) {
     dialogButtons = _ref.dialogButtons;
   var displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden';
   var portalContainer = containerComponent || document.body;
-  var _useMemo = React.useMemo(function () {
-      return useOptionalSekai({
-        sekai: sekai,
-        mode: themeMode
-      });
-    }, [sekai, themeMode]),
-    sekaiColor = _useMemo.sekaiColor,
-    modeTheme = _useMemo.modeTheme,
-    isLight = _useMemo.isLight;
+  var _useOptionalSekai = useOptionalSekai({
+      sekai: sekai,
+      mode: themeMode
+    }),
+    sekaiColor = _useOptionalSekai.sekaiColor,
+    modeTheme = _useOptionalSekai.modeTheme,
+    isLight = _useOptionalSekai.isLight;
   var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
   var optionStyle = {
     '--sekai-color': sekaiColor,
@@ -528,15 +527,13 @@ var DialogButtons = function DialogButtons(_ref3) {
     buttons = _ref3.buttons;
   if (!buttons) return null;
   var buttonLength = buttons.length;
-  var _useMemo2 = React.useMemo(function () {
-      return useOptionalSekai({
-        sekai: sekai,
-        mode: themeMode
-      });
-    }, [sekai, themeMode]),
-    sekaiColor = _useMemo2.sekaiColor,
-    modeTheme = _useMemo2.modeTheme,
-    isLight = _useMemo2.isLight;
+  var _useOptionalSekai2 = useOptionalSekai({
+      sekai: sekai,
+      mode: themeMode
+    }),
+    sekaiColor = _useOptionalSekai2.sekaiColor,
+    modeTheme = _useOptionalSekai2.modeTheme,
+    isLight = _useOptionalSekai2.isLight;
   var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
   var sekaiColorStrongHover = convertHexToRgba(sekaiColor, 0.8);
   var optionStyle = {
@@ -558,7 +555,6 @@ var DialogButtons = function DialogButtons(_ref3) {
     }, el.text);
   }));
 };
-// https://chatgpt.com/share/67bd523a-2e6c-8006-9c3f-8b6a126faa54
 
 var defaultTheme = {
   palette: {

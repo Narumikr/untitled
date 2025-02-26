@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 
 import { createPortal } from 'react-dom'
 
@@ -54,9 +54,7 @@ export const Dialog = ({
 }: DialogProps) => {
   const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
   const portalContainer = containerComponent || document.body
-  const { sekaiColor, modeTheme, isLight } = useMemo(() => {
-    return useOptionalSekai({ sekai, mode: themeMode })
-  }, [sekai, themeMode])
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
   const optionStyle = {
@@ -142,9 +140,7 @@ export const DialogButtons = ({
   if (!buttons) return null
 
   const buttonLength = buttons.length
-  const { sekaiColor, modeTheme, isLight } = useMemo(() => {
-    return useOptionalSekai({ sekai, mode: themeMode })
-  }, [sekai, themeMode])
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
   const sekaiColorStrongHover = convertHexToRgba(sekaiColor, 0.8)
@@ -176,5 +172,3 @@ export const DialogButtons = ({
     </div>
   )
 }
-
-// https://chatgpt.com/share/67bd523a-2e6c-8006-9c3f-8b6a126faa54
