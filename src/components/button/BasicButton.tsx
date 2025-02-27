@@ -28,7 +28,8 @@ export const BasicButton = ({
   disabled = false,
   ...buttonProps
 }: BasicButtonProps) => {
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
 
   const optionStyle = {
@@ -41,7 +42,7 @@ export const BasicButton = ({
     <button
       type="button"
       className={[
-        styles[`sekai-basic-button--${modeTheme}`],
+        styles[`sekai-basic-button-${modeTheme}`],
         globalStyles[`sekai-color-${modeTheme}`],
         className
       ].join(' ')}
