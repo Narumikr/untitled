@@ -10,6 +10,7 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import { DARK_MODE, LIGHT_MODE } from '@/hooks/useThemeMode'
 import { createSekai } from '@/utils/createSekai'
 
+import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { SekaiTheme } from '@/utils/createSekai'
 import type { DocsContextProps } from '@storybook/addon-docs'
 import type { Preview, StoryContext } from '@storybook/react'
@@ -31,15 +32,15 @@ const preview: Preview = {
         children: React.ReactNode
         context: DocsContextProps
       }) => {
-        const storyIds = Array.from(context.componentStories())
-          .map((el) => (DARK_MODE === el.parameters.background ? el.id : -1))
-          .filter((el) => -1 !== el)
-        const bgStyles = storyIds.reduce(
+        const lightStoryIds = sortStories(context, LIGHT_MODE)
+        const darkStoryIds = sortStories(context, DARK_MODE)
+        const llightStyles = lightStoryIds.reduce(
           (pre, el) =>
             pre +
             `
             #anchor--${el} .docs-story {
-              background-color: #121212 !important;
+              color: #212121 !important;
+              background-color: #ffffff !important;
             }
             `,
           `
@@ -52,11 +53,22 @@ const preview: Preview = {
           }
           `
         )
+        const styles = darkStoryIds.reduce(
+          (pre, el) =>
+            pre +
+            `
+            #anchor--${el} .docs-story {
+              color: #e0e0e0 !important;
+              background-color: #121212 !important;
+            }
+            `,
+          llightStyles
+        )
 
         return (
           <DocsContainer context={context}>
             <div>
-              <style>{bgStyles}</style>
+              <style>{styles}</style>
               {children}
             </div>
           </DocsContainer>
@@ -92,6 +104,13 @@ const preview: Preview = {
       )
     }
   ]
+}
+
+const sortStories = (context: DocsContextProps, mode: PaletteMode) => {
+  const storyIds = Array.from(context.componentStories())
+    .map((el) => (mode === el.parameters.background ? el.id : -1))
+    .filter((el) => -1 !== el)
+  return storyIds
 }
 
 const setStylesFixedToAbsolute = () => {
