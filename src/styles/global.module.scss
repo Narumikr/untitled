@@ -1,10 +1,18 @@
+@use 'sass:color';
+
 /* Styles for common color */
 $color-text-light: #212121;
 $color-text-dark: #e0e0e0;
+$color-text-disabled-light: color.mix(white, $color-text-light, 55%);
+$color-text-disabled-dark: color.mix(black, $color-text-dark, 55%);
 $color-bg-light: #ffffff;
 $color-bg-dark: #121212;
-$color-overlay-light: #00000080;
-$color-overlay-dark: #ffffff33;
+$color-overlay-light: #00000063;
+$color-overlay-dark: #ffffff4d;
+
+/* Styles for z-index */
+$overlay-z-index: 1000;
+$modal-z-index: 1010;
 
 .sekai-color-light {
   color: $color-text-light;
@@ -22,6 +30,7 @@ $color-overlay-dark: #ffffff33;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: $overlay-z-index;
 }
 
 .sekai-overlay-light {

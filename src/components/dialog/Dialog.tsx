@@ -35,7 +35,7 @@ export interface DialogProps {
   onClose: () => void
   title?: string
   showCloseIcon?: boolean
-  buttons?: [DialogButton] | [DialogButton, DialogButton]
+  buttons?: DialogButton[]
   dialogButtons?: React.ReactNode
 }
 
@@ -82,8 +82,7 @@ export const Dialog = ({
           className={[
             globalStyles[`sekai-color-${modeTheme}`],
             globalStyles['sekai-absolute-center'],
-            styles[`sekai-container-${size}`],
-            styles[`sekai-${modeTheme}`]
+            styles[`sekai-container-${size}`]
           ].join(' ')}
           style={optionStyle as React.CSSProperties}
           aria-label={title || 'Dialog'}>
@@ -137,22 +136,24 @@ export const DialogButtons = ({
   themeMode,
   buttons
 }: DialogButtonsProps) => {
-  if (!buttons) return null
+  if (!buttons || !buttons.length) return null
 
   const buttonLength = buttons.length
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
   const sekaiColorStrongHover = convertHexToRgba(sekaiColor, 0.8)
+  const sekaiColorStrongDisabled = convertHexToRgba(sekaiColor, 0.5)
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-hover': sekaiColorHover,
-    '--sekai-color-strong-hover': sekaiColorStrongHover
+    '--sekai-color-strong-hover': sekaiColorStrongHover,
+    '--sekai-color-disabled': sekaiColorStrongDisabled
   }
 
   return (
     <div className={[styles['sekai-buttons-area'], className].join(' ')}>
-      {buttons.map((el, index) => (
+      {[...buttons.slice(0, 2)].map((el, index) => (
         <button
           key={el.text}
           type="button"
