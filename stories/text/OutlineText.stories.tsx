@@ -53,7 +53,7 @@ export const DefaultLight: Story = {
   args: {
     sekai: 'Miku',
     themeMode: 'light',
-    text: 'Hatsune Miku'
+    text: 'Project SEKAI feat. Hatsune Miku'
   },
   parameters: {
     sekai: 'Miku',
@@ -65,7 +65,7 @@ export const DefaultDark: Story = {
   args: {
     sekai: 'Miku',
     themeMode: 'dark',
-    text: 'Hatsune Miku'
+    text: 'Project SEKAI feat. Hatsune Miku'
   },
   parameters: {
     sekai: 'Miku',
