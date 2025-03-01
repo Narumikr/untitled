@@ -1,0 +1,39 @@
+@use '../../styles/global.module.scss' as global;
+@use 'sass:color';
+
+.sekai-strong-button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  min-height: 40px;
+  border: 2px solid var(--sekai-color);
+  background-color: var(--sekai-color-bg);
+
+  &:hover {
+    background-color: var(--sekai-color);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    &:hover {
+      background-color: var(--sekai-color-bg);
+    }
+  }
+}
+
+.sekai-strong-button-light {
+  @extend .sekai-strong-button;
+  color: global.$color-text-light;
+
+  &:disabled {
+    color: color.mix(white, global.$color-text-light, 39%);
+  }
+}
+
+.sekai-strong-button-dark {
+  @extend .sekai-strong-button;
+  color: global.$color-text-dark;
+
+  &:disabled {
+    color: color.mix(white, global.$color-text-dark, 39%);
+  }
+}
