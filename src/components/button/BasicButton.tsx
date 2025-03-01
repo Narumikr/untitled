@@ -46,7 +46,7 @@ export const BasicButton = ({
         globalStyles[`sekai-color-${modeTheme}`],
         className
       ].join(' ')}
-      style={optionStyle}
+      style={optionStyle as React.CSSProperties}
       disabled={disabled}
       {...buttonProps}>
       {children}
