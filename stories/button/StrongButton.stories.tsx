@@ -1,12 +1,14 @@
-import { OutlineText } from '@/components/text/OutlineText'
+import { fn } from '@storybook/test'
+
+import { StrongButton } from '@/components/button/StrongButton'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/OutlineText',
-  component: OutlineText,
+  title: 'Untitled/StrongButton',
+  component: StrongButton,
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
@@ -36,15 +38,18 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark']
     },
-    text: {
-      description: 'Text to display',
-      table: {
-        type: { summary: 'string' }
-      }
-    }
+    children: {
+      description: 'Button contents',
+      table: { type: { summary: 'React.ReactNode' } }
+    },
+    disabled: {
+      description: 'Button disabled',
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
+    },
+    onClick: { description: 'Click handler', table: { type: { summary: '() => void' } } }
   },
-  args: {}
-} satisfies Meta<typeof OutlineText>
+  args: { onClick: fn() }
+} satisfies Meta<typeof StrongButton>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -53,7 +58,8 @@ export const DefaultLight: Story = {
   args: {
     sekai: 'Miku',
     themeMode: 'light',
-    text: 'Hatsune Miku'
+    children: 'Hatsune Miku',
+    disabled: false
   },
   parameters: {
     sekai: 'Miku',
@@ -65,7 +71,34 @@ export const DefaultDark: Story = {
   args: {
     sekai: 'Miku',
     themeMode: 'dark',
-    text: 'Hatsune Miku'
+    children: 'Hatsune Miku',
+    disabled: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark'
+  }
+}
+
+export const DisabledLight: Story = {
+  args: {
+    sekai: 'Miku',
+    themeMode: 'light',
+    children: 'Hatsune Miku',
+    disabled: true
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light'
+  }
+}
+
+export const DisabledtDark: Story = {
+  args: {
+    sekai: 'Miku',
+    themeMode: 'dark',
+    children: 'Hatsune Miku',
+    disabled: true
   },
   parameters: {
     sekai: 'Miku',

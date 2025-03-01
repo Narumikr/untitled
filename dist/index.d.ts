@@ -89,6 +89,16 @@ type BasicButtonProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 declare const BasicButton: ({ className, sekai, withText, themeMode, children, disabled, ...buttonProps }: BasicButtonProps) => React.JSX.Element;
 
+type StrongButtonProps = {
+    className?: string;
+    sekai?: ColorsSekaiKey;
+    themeMode?: PaletteMode;
+    children?: React.ReactNode;
+    disabled?: boolean;
+    onClick?: () => void;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+declare const StrongButton: ({ className, sekai, themeMode, children, disabled, ...buttonProps }: StrongButtonProps) => React.JSX.Element;
+
 type DialogSize = 'narrow' | 'medium' | 'wide';
 type DialogButtonType = 'normal' | 'strong';
 interface DialogButton {
@@ -160,4 +170,4 @@ declare const convertHexToRgba: (hex: string, alpha: number) => string;
 declare const fireOnEnterKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 
-export { BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, LIGHT_MODE, OutlineText, type OutlineTextProps, type PaletteMode, type SekaiTheme, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
+export { BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, LIGHT_MODE, OutlineText, type OutlineTextProps, type PaletteMode, type SekaiTheme, StrongButton, type StrongButtonProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
