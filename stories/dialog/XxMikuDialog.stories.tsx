@@ -73,8 +73,7 @@ const commonArgs = {
   open: true,
   children: (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <span>閉ざされた窓のセカイのミクをイメージした～</span>
-      <span>結構気に入っている^ ^</span>
+      <span>閉ざされた窓のセカイのミクをイメージしたコンセプトダイアログ</span>
     </div>
   ),
   title: 'Dialog Title'
