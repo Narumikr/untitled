@@ -144,14 +144,6 @@ interface YourSekaiProviderProps {
 }
 declare const YourSekaiProvider: ({ children, sekaiTheme }: YourSekaiProviderProps) => React.JSX.Element;
 
-interface OutlineTextProps {
-    className?: string;
-    sekai?: ColorsSekaiKey;
-    themeMode?: PaletteMode;
-    text: string;
-}
-declare const OutlineText: ({ className, sekai, themeMode, text }: OutlineTextProps) => React.JSX.Element;
-
 declare const useCreateSekai: () => YourSekaiContextProps;
 
 declare const convertHexToRgb: (hex: string) => string;
@@ -160,4 +152,4 @@ declare const convertHexToRgba: (hex: string, alpha: number) => string;
 declare const fireOnEnterKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 
-export { BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, LIGHT_MODE, OutlineText, type OutlineTextProps, type PaletteMode, type SekaiTheme, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
+export { BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, LIGHT_MODE, type PaletteMode, type SekaiTheme, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
