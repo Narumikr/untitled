@@ -1,0 +1,41 @@
+@use '../../styles/global.module.scss' as global;
+
+@mixin text-shadow($shadow-color) {
+  text-shadow:
+    0.75px 0.75px 0 $shadow-color,
+    -0.75px 0.75px 0 $shadow-color,
+    0.75px -0.75px 0 $shadow-color,
+    -0.75px -0.75px 0 $shadow-color,
+    0.75px 0 0 $shadow-color,
+    -0.75px 0 0 $shadow-color,
+    0 0.75px 0 $shadow-color,
+    0 -0.75px 0 $shadow-color;
+}
+
+.sekai-outline-text-light {
+  color: global.$color-bg-light;
+  font-weight: bold;
+  position: relative;
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include text-shadow(var(--sekai-color));
+  }
+}
+
+.sekai-outline-text-dark {
+  color: global.$color-bg-dark;
+  font-weight: bold;
+  position: relative;
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include text-shadow(var(--sekai-color));
+  }
+}
