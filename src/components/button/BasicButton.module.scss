@@ -12,22 +12,22 @@
 
 .sekai-basic-button-light {
   @extend .sekai-basic-button;
-  border: 2px solid var(--sekai-color, #000);
+  border: 2px solid var(--sekai-color);
   &:hover {
-    background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.1));
+    background-color: var(--sekai-color-hover);
   }
   &:focus-visible {
-    outline: 1px solid var(--sekai-color, #000);
+    outline: 1px solid var(--sekai-color);
   }
 }
 
 .sekai-basic-button-dark {
   @extend .sekai-basic-button;
-  border: 2px solid var(--sekai-color, #fff);
+  border: 2px solid var(--sekai-color);
   &:hover {
-    background-color: var(--sekai-color-hover, rgba(0, 0, 0, 0.3));
+    background-color: var(--sekai-color-hover);
   }
   &:focus-visible {
-    outline: 1px solid var(--sekai-color, #fff);
+    outline: 1px solid var(--sekai-color);
   }
 }
