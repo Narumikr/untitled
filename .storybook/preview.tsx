@@ -51,6 +51,9 @@ const preview: Preview = {
             justify-content: center;
             padding: 20px;
           }
+          .css-11xgcgt {
+            z-index: 10000;
+          }
           `
         )
         const styles = darkStoryIds.reduce(

@@ -1,3 +1,5 @@
+@use '../../styles/global.module.scss' as global;
+
 $border-radius-px: 4px;
 $border-line-width: 2px;
 
@@ -13,6 +15,7 @@ $border-line-width: 2px;
   max-width: 90vw;
   border: $border-line-width solid var(--sekai-color);
   border-radius: $border-radius-px;
+  z-index: global.$modal-z-index;
 }
 .sekai-container-narrow {
   @extend .sekai-container;
@@ -103,7 +106,12 @@ $border-line-width: 2px;
       }
     }
     &:disabled {
-      opacity: 0.5;
+      &.sekai-light {
+        color: global.$color-text-disabled-light;
+      }
+      &.sekai-dark {
+        color: global.$color-text-disabled-dark;
+      }
       &:hover {
         background-color: transparent;
       }
@@ -156,9 +164,13 @@ $border-line-width: 2px;
       }
     }
     &:disabled {
-      opacity: 0.5;
-      &:hover {
-        background-color: transparent;
+      &.sekai-light {
+        color: global.$color-text-disabled-light;
+        background-color: var(--sekai-color-disabled);
+      }
+      &.sekai-dark {
+        color: global.$color-text-disabled-dark;
+        background-color: var(--sekai-color-disabled);
       }
     }
   }

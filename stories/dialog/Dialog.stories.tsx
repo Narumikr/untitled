@@ -25,10 +25,7 @@ const meta = {
     },
     open: {
       description: 'Dialog open',
-      table: {
-        types: 'boolean',
-        defaultValue: { summary: 'false' }
-      }
+      table: { types: 'boolean' }
     },
     themeMode: {
       description: 'Light or Dark mode',
@@ -40,7 +37,7 @@ const meta = {
       options: ['light', 'dark']
     },
     children: {
-      description: 'Button contents',
+      description: 'Dialog contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
       table: { type: { summary: 'React.ReactNode' } }
@@ -76,13 +73,13 @@ const meta = {
     },
     buttons: {
       description: 'Use Dialog default buttons',
-      table: { type: { summary: '[DialogButton] || [DialogButton. DialogButton]' } },
+      table: { type: { summary: 'DialogButton[]' } },
       control: { type: 'object' }
     },
     dialogButtons: {
       description: 'Use custom buttons component',
       table: { type: { summary: 'React.ReactNode' } },
-      control: { type: 'object' }
+      control: false
     }
   },
   args: {
@@ -105,7 +102,8 @@ export const LightMedium: Story = {
     ...commonArgs,
     themeMode: 'light',
     size: 'medium',
-    showCloseIcon: false
+    showCloseIcon: false,
+    buttons: []
   },
   parameters: {
     sekai: 'Miku',
@@ -119,7 +117,8 @@ export const DarkMedium: Story = {
     ...commonArgs,
     themeMode: 'dark',
     size: 'medium',
-    showCloseIcon: false
+    showCloseIcon: false,
+    buttons: []
   },
   parameters: {
     sekai: 'Miku',
@@ -133,7 +132,8 @@ export const LightNarrow: Story = {
     ...commonArgs,
     themeMode: 'light',
     size: 'narrow',
-    showCloseIcon: false
+    showCloseIcon: false,
+    buttons: []
   },
   parameters: {
     sekai: 'Miku',
@@ -147,7 +147,8 @@ export const DarkNarrow: Story = {
     ...commonArgs,
     themeMode: 'dark',
     size: 'narrow',
-    showCloseIcon: false
+    showCloseIcon: false,
+    buttons: []
   },
   parameters: {
     sekai: 'Miku',
@@ -161,7 +162,8 @@ export const LightWide: Story = {
     ...commonArgs,
     themeMode: 'light',
     size: 'wide',
-    showCloseIcon: false
+    showCloseIcon: false,
+    buttons: []
   },
   parameters: {
     sekai: 'Miku',
@@ -175,7 +177,8 @@ export const DarkWide: Story = {
     ...commonArgs,
     themeMode: 'dark',
     size: 'wide',
-    showCloseIcon: false
+    showCloseIcon: false,
+    buttons: []
   },
   parameters: {
     sekai: 'Miku',
@@ -189,7 +192,8 @@ export const CloseIconLight: Story = {
     ...commonArgs,
     themeMode: 'light',
     size: 'medium',
-    showCloseIcon: true
+    showCloseIcon: true,
+    buttons: []
   },
   parameters: {
     sekai: 'Miku',
@@ -203,7 +207,8 @@ export const CloseIconDark: Story = {
     ...commonArgs,
     themeMode: 'dark',
     size: 'medium',
-    showCloseIcon: true
+    showCloseIcon: true,
+    buttons: []
   },
   parameters: {
     sekai: 'Miku',
@@ -233,7 +238,7 @@ export const OneButtonsLight: Story = {
   args: {
     ...commonArgs,
     themeMode: 'light',
-    buttons: [buttons[1]] as [DialogButton],
+    buttons: [buttons[1]] as DialogButton[],
     size: 'medium',
     showCloseIcon: false
   },
@@ -248,7 +253,7 @@ export const OneButtonsDark: Story = {
   args: {
     ...commonArgs,
     themeMode: 'dark',
-    buttons: [buttons[1]] as [DialogButton],
+    buttons: [buttons[1]] as DialogButton[],
     size: 'medium',
     showCloseIcon: false
   },
@@ -263,7 +268,7 @@ export const DoubleButtonsLight: Story = {
   args: {
     ...commonArgs,
     themeMode: 'light',
-    buttons: [buttons[0], buttons[1]] as [DialogButton, DialogButton],
+    buttons: [buttons[0], buttons[1]] as DialogButton[],
     size: 'medium',
     showCloseIcon: false
   },
@@ -278,7 +283,7 @@ export const DoubleButtonsDark: Story = {
   args: {
     ...commonArgs,
     themeMode: 'dark',
-    buttons: [buttons[0], buttons[1]] as [DialogButton, DialogButton],
+    buttons: [buttons[0], buttons[1]] as DialogButton[],
     size: 'medium',
     showCloseIcon: false
   },
@@ -293,7 +298,7 @@ export const StrongButtonsLight: Story = {
   args: {
     ...commonArgs,
     themeMode: 'light',
-    buttons: [buttons[0], buttons[2]] as [DialogButton, DialogButton],
+    buttons: [buttons[0], buttons[2]] as DialogButton[],
     size: 'medium',
     showCloseIcon: false
   },
@@ -308,7 +313,7 @@ export const StrongButtonsDark: Story = {
   args: {
     ...commonArgs,
     themeMode: 'dark',
-    buttons: [buttons[0], buttons[2]] as [DialogButton, DialogButton],
+    buttons: [buttons[0], buttons[2]] as DialogButton[],
     size: 'medium',
     showCloseIcon: false
   },
