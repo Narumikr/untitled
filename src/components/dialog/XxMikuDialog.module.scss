@@ -1,0 +1,202 @@
+@use '../../styles/global.module.scss' as global;
+@use 'sass:color';
+
+$border-radius-px: 4px;
+$border-line-width: 3.9px;
+
+$xx-miku-color: #9ccdd3;
+$xx-miku-color-gray: #797979;
+
+.sekai-dialog-visible {
+  display: block;
+}
+.sekai-dialog-hidden {
+  display: none;
+}
+
+.sekai-container {
+  position: relative;
+  box-sizing: border-box;
+  max-width: 90vw;
+  border: $border-line-width solid $xx-miku-color;
+  border-radius: $border-radius-px;
+  background-color: $xx-miku-color-gray;
+  z-index: global.$modal-z-index;
+
+  &.sekai-light {
+    color: global.$color-text-light;
+  }
+  &.sekai-dark {
+    color: global.$color-text-dark;
+  }
+}
+.sekai-container-narrow {
+  @extend .sekai-container;
+  width: 250px;
+}
+.sekai-container-medium {
+  @extend .sekai-container;
+  width: 390px;
+}
+.sekai-container-wide {
+  @extend .sekai-container;
+  width: 600px;
+}
+
+.sekai-content-wrap {
+  padding: 16px;
+}
+
+/** Button styles */
+.sekai-xxmiku-button {
+  margin-top: 16px;
+  button {
+    border-radius: 0 !important;
+    border-color: $xx-miku-color !important;
+  }
+}
+.sekai-xxmiku-normal-button {
+  &:hover {
+    background-color: color.mix($xx-miku-color-gray, $xx-miku-color, 80%) !important;
+  }
+  &:disabled {
+    &.sekai-light {
+      color: color.mix($xx-miku-color-gray, global.$color-text-light, 80%) !important;
+    }
+    &.sekai-dark {
+      color: color.mix($xx-miku-color-gray, global.$color-text-dark, 80%) !important;
+    }
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+}
+.sekai-xxmiku-strong-button {
+  font-weight: bold;
+  background-color: $xx-miku-color !important;
+  &:hover {
+    background-color: color.mix($xx-miku-color-gray, $xx-miku-color, 25%) !important;
+  }
+  &:disabled {
+    &.sekai-light {
+      color: color.mix(white, global.$color-text-light, 39%) !important;
+      background-color: color.mix($xx-miku-color-gray, $xx-miku-color, 30%) !important;
+    }
+    &.sekai-dark {
+      color: color.mix($xx-miku-color-gray, global.$color-text-dark, 25%) !important;
+      background-color: color.mix($xx-miku-color-gray, $xx-miku-color, 30%) !important;
+    }
+  }
+}
+
+/** XxMikuSvg type1 styles */
+.sekai-xxmiku-svg-1-narrow {
+  position: absolute;
+  right: 8%;
+  top: -24px;
+  width: 40px;
+  height: 40px;
+}
+.sekai-xxmiku-svg-1-medium {
+  position: absolute;
+  right: 5%;
+  top: -34px;
+  width: 50px;
+  height: 50px;
+}
+.sekai-xxmiku-svg-1-wide {
+  position: absolute;
+  right: 3%;
+  top: -44px;
+  width: 60px;
+  height: 60px;
+}
+
+.sekai-xxmiku-svg-2-narrow {
+  position: absolute;
+  right: -12px;
+  top: 10%;
+  width: 25px;
+  height: 25px;
+}
+.sekai-xxmiku-svg-2-medium {
+  position: absolute;
+  right: -19px;
+  top: 10%;
+  width: 35px;
+  height: 35px;
+}
+.sekai-xxmiku-svg-2-wide {
+  position: absolute;
+  right: -20px;
+  top: 10%;
+  width: 36px;
+  height: 36px;
+}
+
+/** XxMikuSvg type2 styles */
+.sekai-xxmiku-svg-3-narrow {
+  position: absolute;
+  left: -12px;
+  bottom: 20px;
+  width: 25px;
+  height: 25px;
+}
+.sekai-xxmiku-svg-3-medium {
+  position: absolute;
+  left: -17px;
+  bottom: 25px;
+  width: 30px;
+  height: 30px;
+}
+.sekai-xxmiku-svg-3-wide {
+  position: absolute;
+  left: -18px;
+  bottom: 27px;
+  width: 33px;
+  height: 33px;
+}
+
+.sekai-xxmiku-svg-4-narrow {
+  position: absolute;
+  left: -19px;
+  bottom: -19px;
+  width: 35px;
+  height: 35px;
+}
+.sekai-xxmiku-svg-4-medium {
+  position: absolute;
+  left: -24px;
+  bottom: -24px;
+  width: 40px;
+  height: 40px;
+}
+.sekai-xxmiku-svg-4-wide {
+  position: absolute;
+  left: -24px;
+  bottom: -30px;
+  width: 45px;
+  height: 45px;
+}
+
+.sekai-xxmiku-svg-5-narrow {
+  position: absolute;
+  left: 25%;
+  bottom: -16px;
+  width: 30px;
+  height: 30px;
+}
+.sekai-xxmiku-svg-5-medium {
+  position: absolute;
+  left: 25%;
+  bottom: -19px;
+  width: 35px;
+  height: 35px;
+}
+.sekai-xxmiku-svg-5-wide {
+  position: absolute;
+  left: 25%;
+  bottom: -25px;
+  width: 40px;
+  height: 40px;
+}

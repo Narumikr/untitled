@@ -119,7 +119,7 @@ interface DialogProps {
     onClose: () => void;
     title?: string;
     showCloseIcon?: boolean;
-    buttons?: [DialogButton] | [DialogButton, DialogButton];
+    buttons?: DialogButton[];
     dialogButtons?: React.ReactNode;
 }
 declare const Dialog: ({ sekai, open, themeMode, children, containerComponent, size, onClose, title, showCloseIcon, buttons, dialogButtons }: DialogProps) => React.ReactPortal;
@@ -131,6 +131,28 @@ type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'buttons'> &
     className?: string;
 };
 declare const DialogButtons: ({ className, sekai, themeMode, buttons }: DialogButtonsProps) => React.JSX.Element | null;
+
+interface XxMikuDialogProps {
+    open: boolean;
+    themeMode?: PaletteMode;
+    children: React.ReactNode;
+    size?: DialogSize;
+    containerComponent?: HTMLElement;
+    onClose: () => void;
+    title?: string;
+    buttons?: DialogButton[];
+}
+declare const XxMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons }: XxMikuDialogProps) => React.ReactPortal;
+
+interface TextLinkProps {
+    className?: string;
+    sekai?: ColorsSekaiKey;
+    themeMode?: PaletteMode;
+    text: string;
+    href: string;
+    ariaLabel?: string;
+}
+declare const TextLink: ({ className, sekai, themeMode, text, href, ariaLabel }: TextLinkProps) => React.JSX.Element;
 
 type SekaiTheme = {
     palette: {
@@ -170,4 +192,4 @@ declare const convertHexToRgba: (hex: string, alpha: number) => string;
 declare const fireOnEnterKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 
-export { BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, LIGHT_MODE, OutlineText, type OutlineTextProps, type PaletteMode, type SekaiTheme, StrongButton, type StrongButtonProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
+export { BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, LIGHT_MODE, OutlineText, type OutlineTextProps, type PaletteMode, type SekaiTheme, StrongButton, type StrongButtonProps, TextLink, type TextLinkProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
