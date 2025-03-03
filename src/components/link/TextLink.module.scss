@@ -3,6 +3,7 @@
 .sekai-text-link {
   width: fit-content;
   text-decoration: underline;
+  text-decoration-color: var(--sekai-color);
   padding: 2px 8px;
 
   &.sekai-disabled {

@@ -43,7 +43,7 @@ const meta = {
       }
     },
     href: {
-      description: '',
+      description: 'URL that a link points to',
       table: {
         type: { summary: 'string' }
       }
@@ -56,14 +56,14 @@ const meta = {
       }
     },
     disabled: {
-      description: '',
+      description: 'Whether the link is valid',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' }
       }
     },
     ariaLabel: {
-      description: '',
+      description: 'Text for aria-label',
       table: {
         type: { summary: 'string' }
       }
