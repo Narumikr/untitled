@@ -2,12 +2,12 @@ import React from 'react'
 
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
+import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
+import { convertHexToRgba } from '@/utils/converter'
+
 import styles from './StrongButton.module.scss'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
-
-import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
-import { convertHexToRgba } from '@/utils/converter'
 
 export type StrongButtonProps = {
   className?: string
