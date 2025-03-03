@@ -13,7 +13,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     className: {
-      description: 'Button styles',
+      description: 'Custom styles',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' }
