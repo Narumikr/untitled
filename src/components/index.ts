@@ -10,4 +10,6 @@ export * from './link/TextLink'
 
 export * from './provider/YourSekaiProvider'
 
+export * from './text/NamePlate'
+
 export * from './text/OutlineText'

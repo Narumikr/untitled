@@ -1,0 +1,17 @@
+@use '../../styles/global.module.scss' as global;
+
+.sekai-name-plate-light {
+  color: global.$color-text-light;
+  width: fit-content;
+}
+
+.sekai-name-plate-dark {
+  color: global.$color-text-dark;
+  width: fit-content;
+}
+
+.sekai-name-plate-color {
+  color: var(--sekai-color);
+  font-size: 1.25em;
+  font-weight: bold;
+}
