@@ -1,11 +1,11 @@
 import { fn } from '@storybook/test'
 
-import type { DialogButton } from '@/components/dialog/Dialog'
 import { Dialog } from '@/components/dialog/Dialog'
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
+import type { DialogButton } from '@/components/dialog/Dialog'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {

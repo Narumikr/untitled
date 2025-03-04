@@ -120,7 +120,7 @@ export default [
             order: 'asc',
             caseInsensitive: true
           },
-          'pathGroupsExcludedImportTypes': ['builtin'],
+          'pathGroupsExcludedImportTypes': ['builtin', 'type'],
           'pathGroups': [
             {
               pattern: 'react',
@@ -134,21 +134,6 @@ export default [
             },
             {
               pattern: '@/styles/**',
-              group: 'internal',
-              position: 'before'
-            },
-            {
-              pattern: '@/hooks',
-              group: 'internal',
-              position: 'after'
-            },
-            {
-              pattern: '@/utills',
-              group: 'internal',
-              position: 'after'
-            },
-            {
-              pattern: '@/img',
               group: 'internal',
               position: 'after'
             },

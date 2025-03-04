@@ -2,17 +2,17 @@ import React, { useEffect, useMemo } from 'react'
 
 import { createPortal } from 'react-dom'
 
-import type { DialogButton } from '@/components/dialog/Dialog'
 import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog'
-
-import globalStyles from '@/styles/global.module.scss'
 
 import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
 import { XxMikuSvg } from '@/img/xxmiku'
 import { fireOnEscapeKey } from '@/utils/operation'
 
+import globalStyles from '@/styles/global.module.scss'
+
 import styles from './XxMikuDialog.module.scss'
 
+import type { DialogButton } from '@/components/dialog/Dialog'
 import type { PaletteMode } from '@/hooks/useThemeMode'
 
 export interface XxMikuDialogProps {
