@@ -150,9 +150,11 @@ interface TextLinkProps {
     themeMode?: PaletteMode;
     text: string;
     href: string;
+    isExternal?: boolean;
+    disabled?: boolean;
     ariaLabel?: string;
 }
-declare const TextLink: ({ className, sekai, themeMode, text, href, ariaLabel }: TextLinkProps) => React.JSX.Element;
+declare const TextLink: ({ className, sekai, themeMode, text, href, isExternal, disabled, ariaLabel }: TextLinkProps) => React.JSX.Element;
 
 type SekaiTheme = {
     palette: {

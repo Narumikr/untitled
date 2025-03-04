@@ -1,0 +1,39 @@
+@use '../../styles/global.module.scss' as global;
+
+.sekai-text-link {
+  width: fit-content;
+  text-decoration: underline;
+  text-decoration-color: var(--sekai-color);
+  padding: 2px 8px;
+
+  &.sekai-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+
+    &:focus {
+      background-color: transparent;
+      outline: none;
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+    background-color: var(--sekai-color-hover);
+  }
+
+  &:focus {
+    text-decoration: none;
+    outline: 1px solid var(--sekai-color);
+    background-color: var(--sekai-color-hover);
+  }
+}
+
+.sekai-text-link-light {
+  @extend .sekai-text-link;
+  color: global.$color-text-light;
+}
+
+.sekai-text-link-dark {
+  @extend .sekai-text-link;
+  color: global.$color-text-dark;
+}

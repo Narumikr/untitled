@@ -744,8 +744,8 @@ var XxMikuDialog = function XxMikuDialog(_ref) {
 // type ButtonGroup = Pick<XxMikuDialogProps, 'themeMode' | 'buttons'>
 // const ButtonGroup = ({ themeMode, buttons }: ButtonGroup) => {}
 
-var css_248z$1 = "";
-var styles$1 = {};
+var css_248z$1 = "/* Styles for common color */\n/* Styles for z-index */\n.TextLink-module_sekai-color-light__-On-Y {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.TextLink-module_sekai-color-dark__mO6W5 {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n.TextLink-module_sekai-overlay__-Te9w, .TextLink-module_sekai-overlay-dark__aeUHe, .TextLink-module_sekai-overlay-light__C5b0b {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1000;\n}\n\n.TextLink-module_sekai-overlay-light__C5b0b {\n  background-color: rgba(0, 0, 0, 0.3882352941);\n}\n\n.TextLink-module_sekai-overlay-dark__aeUHe {\n  background-color: rgba(255, 255, 255, 0.3019607843);\n}\n\n/* Styles for positioning */\n.TextLink-module_sekai-flex-center__1DDJH {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.TextLink-module_sekai-absolute-center__xMuSU {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.TextLink-module_sekai-invisible-scroll__xuDbm {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.TextLink-module_sekai-invisible-scroll__xuDbm::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.TextLink-module_sekai-mb-8__1cXZT {\n  margin-bottom: 8px;\n}\n\n.TextLink-module_sekai-mb-16__jOiZC {\n  margin-bottom: 16px;\n}\n\n.TextLink-module_sekai-mb-24__hbdGp {\n  margin-bottom: 24px;\n}\n\n.TextLink-module_sekai-text-link__U5trb, .TextLink-module_sekai-text-link-dark__3zbvG, .TextLink-module_sekai-text-link-light__sBYGX {\n  width: -moz-fit-content;\n  width: fit-content;\n  text-decoration: underline;\n  text-decoration-color: var(--sekai-color);\n  padding: 2px 8px;\n}\n.TextLink-module_sekai-text-link__U5trb.TextLink-module_sekai-disabled__lX1Rv, .TextLink-module_sekai-disabled__lX1Rv.TextLink-module_sekai-text-link-dark__3zbvG, .TextLink-module_sekai-disabled__lX1Rv.TextLink-module_sekai-text-link-light__sBYGX {\n  pointer-events: none;\n  opacity: 0.5;\n}\n.TextLink-module_sekai-text-link__U5trb.TextLink-module_sekai-disabled__lX1Rv:focus, .TextLink-module_sekai-disabled__lX1Rv.TextLink-module_sekai-text-link-dark__3zbvG:focus, .TextLink-module_sekai-disabled__lX1Rv.TextLink-module_sekai-text-link-light__sBYGX:focus {\n  background-color: transparent;\n  outline: none;\n}\n.TextLink-module_sekai-text-link__U5trb:hover, .TextLink-module_sekai-text-link-dark__3zbvG:hover, .TextLink-module_sekai-text-link-light__sBYGX:hover {\n  text-decoration: none;\n  background-color: var(--sekai-color-hover);\n}\n.TextLink-module_sekai-text-link__U5trb:focus, .TextLink-module_sekai-text-link-dark__3zbvG:focus, .TextLink-module_sekai-text-link-light__sBYGX:focus {\n  text-decoration: none;\n  outline: 1px solid var(--sekai-color);\n  background-color: var(--sekai-color-hover);\n}\n\n.TextLink-module_sekai-text-link-light__sBYGX {\n  color: #212121;\n}\n\n.TextLink-module_sekai-text-link-dark__3zbvG {\n  color: #e0e0e0;\n}";
+var styles$1 = {"sekai-color-light":"TextLink-module_sekai-color-light__-On-Y","sekai-color-dark":"TextLink-module_sekai-color-dark__mO6W5","sekai-overlay":"TextLink-module_sekai-overlay__-Te9w","sekai-overlay-dark":"TextLink-module_sekai-overlay-dark__aeUHe","sekai-overlay-light":"TextLink-module_sekai-overlay-light__C5b0b","sekai-flex-center":"TextLink-module_sekai-flex-center__1DDJH","sekai-absolute-center":"TextLink-module_sekai-absolute-center__xMuSU","sekai-invisible-scroll":"TextLink-module_sekai-invisible-scroll__xuDbm","sekai-mb-8":"TextLink-module_sekai-mb-8__1cXZT","sekai-mb-16":"TextLink-module_sekai-mb-16__jOiZC","sekai-mb-24":"TextLink-module_sekai-mb-24__hbdGp","sekai-text-link":"TextLink-module_sekai-text-link__U5trb","sekai-text-link-dark":"TextLink-module_sekai-text-link-dark__3zbvG","sekai-text-link-light":"TextLink-module_sekai-text-link-light__sBYGX","sekai-disabled":"TextLink-module_sekai-disabled__lX1Rv"};
 styleInject(css_248z$1);
 
 var TextLink = function TextLink(_ref) {
@@ -755,22 +755,30 @@ var TextLink = function TextLink(_ref) {
     themeMode = _ref.themeMode,
     text = _ref.text,
     href = _ref.href,
+    _ref$isExternal = _ref.isExternal,
+    isExternal = _ref$isExternal === void 0 ? true : _ref$isExternal,
+    _ref$disabled = _ref.disabled,
+    disabled = _ref$disabled === void 0 ? false : _ref$disabled,
     ariaLabel = _ref.ariaLabel;
   var _useOptionalSekai = useOptionalSekai({
       sekai: sekai,
       mode: themeMode
     }),
     sekaiColor = _useOptionalSekai.sekaiColor,
-    modeTheme = _useOptionalSekai.modeTheme;
+    modeTheme = _useOptionalSekai.modeTheme,
+    isLight = _useOptionalSekai.isLight;
+  var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.2 : 0.6);
   var optionStyle = {
-    '--sekai-color': sekaiColor
+    '--sekai-color': sekaiColor,
+    '--sekai-color-hover': sekaiColorHover
   };
   return /*#__PURE__*/React.createElement("a", {
-    className: [styles$1["sekai-text-link-".concat(modeTheme)], className].join(' '),
+    className: [styles$1["sekai-text-link-".concat(modeTheme)], disabled && styles$1['sekai-disabled'], className].join(' '),
     style: optionStyle,
     href: href,
     "aria-label": ariaLabel,
-    target: "_blank",
+    "aria-disabled": disabled,
+    target: isExternal ? '_blank' : '_self',
     rel: "noopener noreferrer"
   }, text);
 };
