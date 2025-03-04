@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 
 import { createPortal } from 'react-dom'
 
-import globalStyles from '@/styles/global.module.scss'
-import { type ColorsSekaiKey } from '@/styles/sekai-colors'
-
 import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
 import { type PaletteMode } from '@/hooks/useThemeMode'
 import { ClearSvg } from '@/img/clear'
 import { convertHexToRgba } from '@/utils/converter'
 import { fireOnEscapeKey } from '@/utils/operation'
+
+import globalStyles from '@/styles/global.module.scss'
+import { type ColorsSekaiKey } from '@/styles/sekai-colors'
 
 import styles from './Dialog.module.scss'
 

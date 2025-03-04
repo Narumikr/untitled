@@ -1,12 +1,11 @@
 import React from 'react'
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
 import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
 
 import styles from './OutlineText.module.scss'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export interface OutlineTextProps {
   className?: string

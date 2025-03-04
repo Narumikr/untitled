@@ -2,13 +2,13 @@ import { useContext } from 'react'
 
 import { YourSekaiContext } from '@/components/provider/YourSekaiProvider'
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-import { COLORS_SEKAI_KEYS, colorsSekai } from '@/styles/sekai-colors'
-
 import { useCreateSekai } from '@/hooks/useCreateSekai'
 import { LIGHT_MODE } from '@/hooks/useThemeMode'
 
+import { COLORS_SEKAI_KEYS, colorsSekai } from '@/styles/sekai-colors'
+
 import type { PaletteMode } from '@/hooks/useThemeMode'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 import type { SekaiTheme } from '@/utils/createSekai'
 
 const defaultTheme: Required<SekaiTheme> = {

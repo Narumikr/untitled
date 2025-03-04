@@ -1,9 +1,9 @@
 import React, { createContext, useMemo, useState } from 'react'
 
-import { type ColorsSekaiKey } from '@/styles/sekai-colors'
-
 import { DARK_MODE } from '@/hooks/useThemeMode'
 import { type SekaiTheme } from '@/utils/createSekai'
+
+import { type ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export interface YourSekaiContextProps {
   sekaiTheme: SekaiTheme

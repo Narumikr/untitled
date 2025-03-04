@@ -4,13 +4,13 @@ import { DocsContainer } from '@storybook/addon-docs'
 
 import { YourSekaiProvider } from '@/components/provider/YourSekaiProvider'
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
-
 import { DARK_MODE, LIGHT_MODE } from '@/hooks/useThemeMode'
 import { createSekai } from '@/utils/createSekai'
 
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+
 import type { PaletteMode } from '@/hooks/useThemeMode'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 import type { SekaiTheme } from '@/utils/createSekai'
 import type { DocsContextProps } from '@storybook/addon-docs'
 import type { Preview, StoryContext } from '@storybook/react'
