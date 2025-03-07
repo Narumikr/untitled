@@ -71,11 +71,7 @@ type Story = StoryObj<typeof meta>
 
 const commonArgs = {
   open: true,
-  children: (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <span>開かれた窓のセカイのミクをイメージしたコンセプトダイアログ</span>
-    </div>
-  ),
+  children: <span>開かれた窓のセカイのミクをイメージしたコンセプトダイアログ</span>,
   title: 'Dialog Title'
 }
 
