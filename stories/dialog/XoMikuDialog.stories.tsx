@@ -2,13 +2,13 @@ import React from 'react'
 
 import { fn } from '@storybook/test'
 
-import { XxMikuDialog } from '@/components/dialog/XxMikuDialog'
+import { XoMikuDialog } from '@/components/dialog/XoMikuDialog'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/XxMikuDialog',
-  component: XxMikuDialog,
+  title: 'Untitled/XoMikuDialog',
+  component: XoMikuDialog,
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
@@ -64,14 +64,14 @@ const meta = {
   args: {
     onClose: fn()
   }
-} satisfies Meta<typeof XxMikuDialog>
+} satisfies Meta<typeof XoMikuDialog>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 const commonArgs = {
   open: true,
-  children: <span>閉ざされた窓のセカイのミクをイメージしたコンセプトダイアログ</span>,
+  children: <span>開かれた窓のセカイのミクをイメージしたコンセプトダイアログ</span>,
   title: 'Dialog Title'
 }
 
