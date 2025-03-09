@@ -4,9 +4,9 @@ import { createPortal } from 'react-dom'
 
 import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog'
 
-import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
 import { LIGHT_MODE, type PaletteMode } from '@/hooks/useThemeMode'
 import { XoMikuSvg } from '@/img/xomiku'
+import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { fireOnEscapeKey } from '@/utils/operation'
 
 import globalStyles from '@/styles/global.module.scss'
