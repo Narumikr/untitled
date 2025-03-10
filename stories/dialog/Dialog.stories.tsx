@@ -217,21 +217,30 @@ export const CloseIconDark: Story = {
   }
 }
 
-const buttons = [
+const buttons: DialogButton[] = [
   {
     text: 'Cancel',
+    onClick: fn(),
     type: 'normal',
-    onClick: fn()
+    disabled: false,
+    ariaLabel: 'Cancel',
+    buttonStyle: ''
   },
   {
     text: 'OK',
+    onClick: fn(),
     type: 'normal',
-    onClick: fn()
+    disabled: false,
+    ariaLabel: 'OK',
+    buttonStyle: ''
   },
   {
     text: 'OK',
+    onClick: fn(),
     type: 'strong',
-    onClick: fn()
+    disabled: false,
+    ariaLabel: 'OK',
+    buttonStyle: ''
   }
 ]
 export const OneButtonsLight: Story = {
