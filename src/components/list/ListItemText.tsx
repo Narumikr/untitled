@@ -1,0 +1,70 @@
+import React, { useContext } from 'react'
+
+import { ConsoleWarning } from '@/internal/logging'
+import { useOptionalSekai } from '@/internal/useOptionalSekai'
+
+import globalStyles from '@/styles/global.module.scss'
+
+import { ListContext } from './List'
+
+import styles from './List.module.scss'
+
+import type { PaletteMode } from '@/hooks/useThemeMode'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+
+export interface ListItemTextProps {
+  className?: string
+  sekai?: ColorsSekaiKey
+  themeMode?: PaletteMode
+  children: React.ReactNode
+  as?: 'p' | 'span'
+  icon?: 'string' | React.ReactNode
+}
+
+export const ListItemText = ({
+  className = '',
+  sekai,
+  themeMode,
+  children,
+  as = 'p',
+  icon
+}: ListItemTextProps) => {
+  const isListWrap = useContext(ListContext)
+  if (!isListWrap) ConsoleWarning('⚠ Warning: <ListItemText> should be used inside <List>')
+
+  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+
+  const isChildrenElement = hasReactElement(children)
+
+  const Component = as
+  const optionStyle = {
+    '--sekai-color': sekaiColor
+  }
+
+  return (
+    <li
+      className={[
+        styles['sekai-list-item-text'],
+        globalStyles[`sekai-color-${modeTheme}`],
+        className
+      ].join(' ')}
+      style={optionStyle as React.CSSProperties}>
+      {getImgComponent(icon)}
+      {isChildrenElement ? children : <Component>{children}</Component>}
+    </li>
+  )
+}
+
+const getImgComponent = (icon?: string | React.ReactNode) => {
+  if (!icon) return null
+
+  if (typeof icon === 'string') {
+    return <img className={styles['sekai-list-icon']} src={icon} alt="" />
+  } else {
+    return icon
+  }
+}
+
+const hasReactElement = (children: React.ReactNode) => {
+  return React.Children.toArray(children).some((child) => React.isValidElement(child))
+}

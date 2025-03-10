@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'

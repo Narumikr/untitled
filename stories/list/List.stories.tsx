@@ -1,0 +1,127 @@
+import React from 'react'
+
+import { List } from '@/components/list/List'
+
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+
+import type { Meta, StoryObj } from '@storybook/react'
+
+const meta = {
+  title: 'Untitled/List',
+  component: List,
+  parameters: {},
+  tags: ['autodocs'],
+  argTypes: {
+    className: {
+      description: 'Custom styles',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' }
+      },
+      control: false
+    },
+    sekai: {
+      description: 'What SEKAI color to use',
+      table: {
+        type: { summary: 'ColorsSekaiKey' },
+        defaultValue: { summary: 'Miku' }
+      },
+      control: { type: 'select' },
+      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+    },
+    themeMode: {
+      description: 'Light or Dark mode',
+      table: {
+        type: { summary: 'PaletteMode' },
+        defaultValue: { summary: 'light' }
+      },
+      control: { type: 'select' },
+      options: ['light', 'dark']
+    },
+    children: {
+      description: 'List contents',
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
+      table: { type: { summary: 'React.ReactNode' } }
+    },
+    as: {
+      description: 'List base component',
+      table: {
+        type: { summary: 'ul | ol' },
+        defaultValue: { summary: 'ul' }
+      },
+      control: { type: 'select' },
+      options: ['ul', 'ol']
+    },
+    noBullet: {
+      description: 'Remove bullet list style',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' }
+      },
+      control: { type: 'boolean' }
+    }
+  },
+  args: {}
+} satisfies Meta<typeof List>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+const sample = ['Sample 1', 'Sample 2', 'Sample 3']
+
+export const BulletLight: Story = {
+  args: {
+    sekai: 'Miku',
+    themeMode: 'light',
+    children: sample.map((el) => <li key={el}>{el}</li>),
+    as: 'ul',
+    noBullet: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light'
+  }
+}
+
+export const BulletDark: Story = {
+  args: {
+    sekai: 'Miku',
+    themeMode: 'dark',
+    children: sample.map((el) => <li key={el}>{el}</li>),
+    as: 'ul',
+    noBullet: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark'
+  }
+}
+
+export const OrderLight: Story = {
+  args: {
+    sekai: 'Miku',
+    themeMode: 'light',
+    children: sample.map((el) => <li key={el}>{el}</li>),
+    as: 'ol',
+    noBullet: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light'
+  }
+}
+
+export const OrderDark: Story = {
+  args: {
+    sekai: 'Miku',
+    themeMode: 'dark',
+    children: sample.map((el) => <li key={el}>{el}</li>),
+    as: 'ol',
+    noBullet: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark'
+  }
+}
