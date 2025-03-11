@@ -83,12 +83,19 @@ export const DefaultLight: Story = {
     buttons: [
       {
         text: 'Cancel',
-        onClick: fn()
+        onClick: fn(),
+        type: 'normal',
+        disabled: false,
+        ariaLabel: 'Cancel',
+        buttonStyle: ''
       },
       {
         text: 'OK',
+        onClick: fn(),
         type: 'normal',
-        onClick: fn()
+        disabled: false,
+        ariaLabel: 'OK',
+        buttonStyle: ''
       }
     ]
   },
@@ -107,12 +114,19 @@ export const DefalutDark: Story = {
     buttons: [
       {
         text: 'Cancel',
-        onClick: fn()
+        onClick: fn(),
+        type: 'normal',
+        disabled: false,
+        ariaLabel: 'Cancel',
+        buttonStyle: ''
       },
       {
         text: 'OK',
+        onClick: fn(),
         type: 'normal',
-        onClick: fn()
+        disabled: false,
+        ariaLabel: 'OK',
+        buttonStyle: ''
       }
     ]
   },
