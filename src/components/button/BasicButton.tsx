@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
 import { type PaletteMode } from '@/hooks/useThemeMode'
+import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
 
 import globalStyles from '@/styles/global.module.scss'

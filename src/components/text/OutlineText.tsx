@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './OutlineText.module.scss'
 

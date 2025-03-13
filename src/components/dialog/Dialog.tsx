@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 
 import { createPortal } from 'react-dom'
 
-import { useOptionalSekai } from '@/hooks/internal/useOptionalSekai'
 import { type PaletteMode } from '@/hooks/useThemeMode'
 import { ClearSvg } from '@/img/clear'
+import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
 import { fireOnEscapeKey } from '@/utils/operation'
 
