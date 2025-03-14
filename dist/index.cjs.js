@@ -3,16 +3,6 @@
 var React = require('react');
 var reactDom = require('react-dom');
 
-function _extends() {
-  return _extends = Object.assign ? Object.assign.bind() : function (n) {
-    for (var e = 1; e < arguments.length; e++) {
-      var t = arguments[e];
-      for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
-    }
-    return n;
-  }, _extends.apply(null, arguments);
-}
-
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -46,28 +36,6 @@ function _defineProperty(e, r, t) {
     configurable: true,
     writable: true
   }) : e[r] = t, e;
-}
-
-function _objectWithoutPropertiesLoose(r, e) {
-  if (null == r) return {};
-  var t = {};
-  for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
-    if (-1 !== e.indexOf(n)) continue;
-    t[n] = r[n];
-  }
-  return t;
-}
-
-function _objectWithoutProperties(e, t) {
-  if (null == e) return {};
-  var o,
-    r,
-    i = _objectWithoutPropertiesLoose(e, t);
-  if (Object.getOwnPropertySymbols) {
-    var n = Object.getOwnPropertySymbols(e);
-    for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]);
-  }
-  return i;
 }
 
 function _arrayWithHoles(r) {
@@ -143,8 +111,8 @@ var useThemeMode = function useThemeMode() {
   return isDarkMode === null ? LIGHT_MODE : isDarkMode ? DARK_MODE : LIGHT_MODE;
 };
 
-function ownKeys$4(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$4(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$4(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$4(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$5(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$5(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$5(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$5(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var YourSekaiContext = /*#__PURE__*/React.createContext(null);
 var YourSekaiProvider = function YourSekaiProvider(_ref) {
   var children = _ref.children,
@@ -155,8 +123,8 @@ var YourSekaiProvider = function YourSekaiProvider(_ref) {
     setCurrentSekaiTheme = _useState2[1];
   var onSwitchSekaiColor = function onSwitchSekaiColor(sekai) {
     setCurrentSekaiTheme(function (pre) {
-      return _objectSpread$4(_objectSpread$4({}, pre), {}, {
-        palette: _objectSpread$4(_objectSpread$4({}, pre.palette), {}, {
+      return _objectSpread$5(_objectSpread$5({}, pre), {}, {
+        palette: _objectSpread$5(_objectSpread$5({}, pre.palette), {}, {
           sekai: sekai
         })
       });
@@ -271,6 +239,63 @@ var useOptionalSekai = function useOptionalSekai(option) {
   };
 };
 
+var ChevronSvg = function ChevronSvg(_ref) {
+  var _ref$className = _ref.className,
+    className = _ref$className === void 0 ? '' : _ref$className,
+    sekai = _ref.sekai,
+    themeMode = _ref.themeMode,
+    _ref$vector = _ref.vector,
+    vector = _ref$vector === void 0 ? 'up' : _ref$vector;
+  var _useOptionalSekai = useOptionalSekai({
+      sekai: sekai,
+      mode: themeMode
+    }),
+    sekaiColor = _useOptionalSekai.sekaiColor,
+    isLight = _useOptionalSekai.isLight;
+  var color = isLight ? '#212121' : '#e0e0e0';
+  var getCoordinate = function getCoordinate(y) {
+    return 'up' === vector ? Math.abs(0 - y) : Math.abs(100 - y);
+  };
+  return /*#__PURE__*/React.createElement("svg", {
+    // style={vectorStyles}
+    className: className,
+    viewBox: "0 0 100 100",
+    width: "100%",
+    height: "100%",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, sekai ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("line", {
+    x1: "48",
+    y1: getCoordinate(30.5),
+    x2: "85",
+    y2: getCoordinate(67.5),
+    stroke: sekaiColor,
+    strokeWidth: "15",
+    opacity: "0.7"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "52",
+    y1: getCoordinate(30.5),
+    x2: "15",
+    y2: getCoordinate(67.5),
+    stroke: sekaiColor,
+    strokeWidth: "15",
+    opacity: "0.7"
+  })) : null, /*#__PURE__*/React.createElement("line", {
+    x1: "48",
+    y1: getCoordinate(30.5),
+    x2: "85",
+    y2: getCoordinate(67.5),
+    stroke: color,
+    strokeWidth: "8"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "52",
+    y1: getCoordinate(30.5),
+    x2: "15",
+    y2: getCoordinate(67.5),
+    stroke: color,
+    strokeWidth: "8"
+  }));
+};
+
 var convertHexToRgb = function convertHexToRgb(hex) {
   if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
     throw new Error('Invalid hex color format. Use #RRGGBB');
@@ -320,9 +345,161 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$9 = "/* Styles for common color */\n/* Styles for z-index */\n.global-module_sekai-color-light__HfMHF {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.global-module_sekai-color-dark__6YhnV {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n.global-module_sekai-overlay__mmwzM, .global-module_sekai-overlay-dark__6yGpR, .global-module_sekai-overlay-light__HL9EZ {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1000;\n}\n\n.global-module_sekai-overlay-light__HL9EZ {\n  background-color: rgba(0, 0, 0, 0.3882352941);\n}\n\n.global-module_sekai-overlay-dark__6yGpR {\n  background-color: rgba(255, 255, 255, 0.3019607843);\n}\n\n/* Styles for positioning */\n.global-module_sekai-flex-center__g0QI6 {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.global-module_sekai-absolute-center__VTxH3 {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.global-module_sekai-invisible-scroll__hmrCH {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.global-module_sekai-invisible-scroll__hmrCH::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.global-module_sekai-mb-8__ktEHx {\n  margin-bottom: 8px;\n}\n\n.global-module_sekai-mb-16__6mRfr {\n  margin-bottom: 16px;\n}\n\n.global-module_sekai-mb-24__tgmAP {\n  margin-bottom: 24px;\n}";
+var css_248z$a = "/* Styles for common color */\n/* Styles for z-index */\n.global-module_sekai-color-light__HfMHF {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.global-module_sekai-color-dark__6YhnV {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n.global-module_sekai-overlay__mmwzM, .global-module_sekai-overlay-dark__6yGpR, .global-module_sekai-overlay-light__HL9EZ {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1000;\n}\n\n.global-module_sekai-overlay-light__HL9EZ {\n  background-color: rgba(0, 0, 0, 0.3882352941);\n}\n\n.global-module_sekai-overlay-dark__6yGpR {\n  background-color: rgba(255, 255, 255, 0.3019607843);\n}\n\n/* Styles for positioning */\n.global-module_sekai-flex-center__g0QI6 {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.global-module_sekai-absolute-center__VTxH3 {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.global-module_sekai-invisible-scroll__hmrCH {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.global-module_sekai-invisible-scroll__hmrCH::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.global-module_sekai-mb-8__ktEHx {\n  margin-bottom: 8px;\n}\n\n.global-module_sekai-mb-16__6mRfr {\n  margin-bottom: 16px;\n}\n\n.global-module_sekai-mb-24__tgmAP {\n  margin-bottom: 24px;\n}";
 var globalStyles = {"sekai-color-light":"global-module_sekai-color-light__HfMHF","sekai-color-dark":"global-module_sekai-color-dark__6YhnV","sekai-overlay":"global-module_sekai-overlay__mmwzM","sekai-overlay-dark":"global-module_sekai-overlay-dark__6yGpR","sekai-overlay-light":"global-module_sekai-overlay-light__HL9EZ","sekai-flex-center":"global-module_sekai-flex-center__g0QI6","sekai-absolute-center":"global-module_sekai-absolute-center__VTxH3","sekai-invisible-scroll":"global-module_sekai-invisible-scroll__hmrCH","sekai-mb-8":"global-module_sekai-mb-8__ktEHx","sekai-mb-16":"global-module_sekai-mb-16__6mRfr","sekai-mb-24":"global-module_sekai-mb-24__tgmAP"};
+styleInject(css_248z$a);
+
+var css_248z$9 = ".Accordion-module_sekai-accordion-container__LCxry {\n  width: 100%;\n}\n\n.Accordion-module_sekai-accordion-summary__IkhFf {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  min-height: 40px;\n  font-weight: bold;\n  border: none;\n  padding: 4px 10px;\n}\n.Accordion-module_sekai-accordion-summary__IkhFf:focus-visible {\n  outline: 1px solid var(--sekai-color);\n  background-color: var(--sekai-color-hover);\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-text__EyeSy {\n  margin: 0;\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-icon__yDBmI {\n  width: 18px;\n  height: 18px;\n  transition: transform 0.3s ease-out;\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-icon__yDBmI.Accordion-module_sekai-icon-open__Tj6I0 {\n  transform: rotate(0);\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-icon__yDBmI.Accordion-module_sekai-icon-close__9yyDB {\n  transform: rotate(-180deg);\n}\n\n.Accordion-module_sekai-web-horizon__q2Dio {\n  margin: 0;\n  border: none;\n  width: 100%;\n  height: 1px;\n  background-color: var(--sekai-color);\n}\n\n.Accordion-module_sekai-accordion-details__92WkS {\n  overflow: hidden;\n  padding: 0 10px;\n}\n.Accordion-module_sekai-accordion-details__92WkS .Accordion-module_sekai-detail-text__oPWs- {\n  margin: 0 0 5px 0;\n}";
+var styles$9 = {"sekai-accordion-container":"Accordion-module_sekai-accordion-container__LCxry","sekai-accordion-summary":"Accordion-module_sekai-accordion-summary__IkhFf","sekai-accordion-summary-text":"Accordion-module_sekai-accordion-summary-text__EyeSy","sekai-accordion-summary-icon":"Accordion-module_sekai-accordion-summary-icon__yDBmI","sekai-icon-open":"Accordion-module_sekai-icon-open__Tj6I0","sekai-icon-close":"Accordion-module_sekai-icon-close__9yyDB","sekai-web-horizon":"Accordion-module_sekai-web-horizon__q2Dio","sekai-accordion-details":"Accordion-module_sekai-accordion-details__92WkS","sekai-detail-text":"Accordion-module_sekai-detail-text__oPWs-"};
 styleInject(css_248z$9);
+
+function ownKeys$4(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$4(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$4(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$4(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var Accordion = function Accordion(_ref) {
+  var _ref$className = _ref.className,
+    className = _ref$className === void 0 ? '' : _ref$className,
+    sekai = _ref.sekai,
+    themeMode = _ref.themeMode,
+    summary = _ref.summary,
+    _ref$summaryStyles = _ref.summaryStyles,
+    summaryStyles = _ref$summaryStyles === void 0 ? '' : _ref$summaryStyles,
+    _ref$defaultOpen = _ref.defaultOpen,
+    defaultOpen = _ref$defaultOpen === void 0 ? false : _ref$defaultOpen,
+    details = _ref.details;
+  var _useOptionalSekai = useOptionalSekai({
+      sekai: sekai,
+      mode: themeMode
+    }),
+    sekaiColor = _useOptionalSekai.sekaiColor,
+    modeTheme = _useOptionalSekai.modeTheme,
+    isLight = _useOptionalSekai.isLight;
+  var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
+  var optionStyle = {
+    '--sekai-color': sekaiColor,
+    '--sekai-color-hover': sekaiColorHover
+  };
+  var _useState = React.useState(defaultOpen),
+    _useState2 = _slicedToArray(_useState, 2),
+    openAccordion = _useState2[0],
+    setOpenAccordion = _useState2[1];
+  var handleOpenClose = function handleOpenClose() {
+    return setOpenAccordion(function (pre) {
+      return !pre;
+    });
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: [styles$9['sekai-accordion-container'], className].join(' '),
+    style: optionStyle
+  }, /*#__PURE__*/React.createElement("button", {
+    className: [styles$9['sekai-accordion-summary'], globalStyles["sekai-color-".concat(modeTheme)], summaryStyles].join(' '),
+    onClick: handleOpenClose,
+    id: "accordion-summary",
+    "aria-expanded": openAccordion,
+    "aria-controls": "details-contents"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: styles$9['sekai-accordion-summary-text']
+  }, summary), /*#__PURE__*/React.createElement(ChevronSvg, {
+    className: [styles$9["sekai-accordion-summary-icon"], openAccordion ? styles$9['sekai-icon-open'] : styles$9['sekai-icon-close']].join(' '),
+    sekai: sekai,
+    themeMode: themeMode,
+    vector: "up"
+  })), /*#__PURE__*/React.createElement("hr", {
+    className: styles$9['sekai-web-horizon']
+  }), /*#__PURE__*/React.createElement(AccordionDetailsContents, {
+    open: openAccordion,
+    details: details
+  }));
+};
+var AccordionDetailsContents = function AccordionDetailsContents(_ref2) {
+  var open = _ref2.open,
+    details = _ref2.details;
+  var refDetails = React.useRef(null);
+  var _useState3 = React.useState(0),
+    _useState4 = _slicedToArray(_useState3, 2),
+    heightDetails = _useState4[0],
+    setHeightDetails = _useState4[1];
+  React.useEffect(function () {
+    if (refDetails.current) {
+      requestAnimationFrame(function () {
+        setHeightDetails(refDetails.current.scrollHeight);
+      });
+    }
+  }, []);
+  var animationDetailsStyles = _objectSpread$4(_objectSpread$4({
+    maxHeight: open ? heightDetails ? "".concat(heightDetails, "px") : 'none' : '0px',
+    opacity: open ? 1 : 0
+  }, open && {
+    margin: '10px 0'
+  }), {}, {
+    transition: 'max-height 0.3s ease-out, opacity 0.3s ease-out, margin 0.3s ease-out'
+  });
+  var renderDetails = function renderDetails(details) {
+    if (isString(details)) return /*#__PURE__*/React.createElement(DetailText, {
+      text: details
+    });
+    if (isStringArray(details)) {
+      return details.map(function (el) {
+        return /*#__PURE__*/React.createElement(DetailText, {
+          key: el,
+          text: el
+        });
+      });
+    }
+    return details;
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    ref: refDetails,
+    id: "details-contents",
+    role: "region",
+    "aria-labelledby": "accordion-summary",
+    className: styles$9['sekai-accordion-details'],
+    style: animationDetailsStyles
+  }, renderDetails(details));
+};
+var isString = function isString(el) {
+  return typeof el === 'string';
+};
+var isStringArray = function isStringArray(el) {
+  return Array.isArray(el) && el.every(isString);
+};
+var DetailText = function DetailText(_ref3) {
+  var text = _ref3.text;
+  return /*#__PURE__*/React.createElement("p", {
+    className: styles$9['sekai-detail-text']
+  }, text);
+};
+
+function _extends() {
+  return _extends = Object.assign ? Object.assign.bind() : function (n) {
+    for (var e = 1; e < arguments.length; e++) {
+      var t = arguments[e];
+      for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
+    }
+    return n;
+  }, _extends.apply(null, arguments);
+}
+
+function _objectWithoutPropertiesLoose(r, e) {
+  if (null == r) return {};
+  var t = {};
+  for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
+    if (-1 !== e.indexOf(n)) continue;
+    t[n] = r[n];
+  }
+  return t;
+}
+
+function _objectWithoutProperties(e, t) {
+  if (null == e) return {};
+  var o,
+    r,
+    i = _objectWithoutPropertiesLoose(e, t);
+  if (Object.getOwnPropertySymbols) {
+    var n = Object.getOwnPropertySymbols(e);
+    for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]);
+  }
+  return i;
+}
 
 var css_248z$8 = ".BasicButton-module_sekai-basic-button__VyCUN, .BasicButton-module_sekai-basic-button-dark__6gtPa, .BasicButton-module_sekai-basic-button-light__4e-cr {\n  padding: 5px 10px;\n  border-radius: 10px;\n  min-height: 40px;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled, .BasicButton-module_sekai-basic-button-dark__6gtPa:disabled, .BasicButton-module_sekai-basic-button-light__4e-cr:disabled {\n  opacity: 0.5;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled:hover, .BasicButton-module_sekai-basic-button-dark__6gtPa:disabled:hover, .BasicButton-module_sekai-basic-button-light__4e-cr:disabled:hover {\n  background-color: transparent;\n}\n\n.BasicButton-module_sekai-basic-button-light__4e-cr {\n  border: 2px solid var(--sekai-color);\n}\n.BasicButton-module_sekai-basic-button-light__4e-cr:hover {\n  background-color: var(--sekai-color-hover);\n}\n.BasicButton-module_sekai-basic-button-light__4e-cr:focus-visible {\n  outline: 1px solid var(--sekai-color);\n}\n\n.BasicButton-module_sekai-basic-button-dark__6gtPa {\n  border: 2px solid var(--sekai-color);\n}\n.BasicButton-module_sekai-basic-button-dark__6gtPa:hover {\n  background-color: var(--sekai-color-hover);\n}\n.BasicButton-module_sekai-basic-button-dark__6gtPa:focus-visible {\n  outline: 1px solid var(--sekai-color);\n}";
 var styles$8 = {"sekai-basic-button":"BasicButton-module_sekai-basic-button__VyCUN","sekai-basic-button-dark":"BasicButton-module_sekai-basic-button-dark__6gtPa","sekai-basic-button-light":"BasicButton-module_sekai-basic-button-light__4e-cr"};
@@ -1214,6 +1391,7 @@ var createSekai = function createSekai(option) {
   return sekaiTheme;
 };
 
+exports.Accordion = Accordion;
 exports.BasicButton = BasicButton;
 exports.COLORS_SEKAI_KEYS = COLORS_SEKAI_KEYS;
 exports.DARK_MODE = DARK_MODE;

@@ -1,5 +1,7 @@
-export const fireOnEnterKey = (eventHandler: (e: KeyboardEvent) => void) => {
-  return (e: KeyboardEvent) => {
+export const fireOnEnterKey = (
+  eventHandler: (e: React.KeyboardEvent<HTMLDivElement>) => void
+) => {
+  return (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
       eventHandler(e)
       e.preventDefault()
