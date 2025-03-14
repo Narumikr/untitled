@@ -1,13 +1,14 @@
 import React from 'react'
 
-import { type PaletteMode } from '@/hooks/useThemeMode'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
 
 import globalStyles from '@/styles/global.module.scss'
-import { type ColorsSekaiKey } from '@/styles/sekai-colors'
 
 import styles from './BasicButton.module.scss'
+
+import type { PaletteMode } from '@/hooks/useThemeMode'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export type BasicButtonProps = {
   className?: string

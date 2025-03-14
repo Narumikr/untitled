@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { colorsSekai, type ColorsSekaiKey } from '@/styles/sekai-colors'
+import { colorsSekai } from '@/styles/sekai-colors'
+
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 interface ColorProps {
   sekai: ColorsSekaiKey

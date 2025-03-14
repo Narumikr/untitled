@@ -2,16 +2,17 @@ import React, { useEffect } from 'react'
 
 import { createPortal } from 'react-dom'
 
-import { type PaletteMode } from '@/hooks/useThemeMode'
 import { ClearSvg } from '@/img/clear'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
 import { fireOnEscapeKey } from '@/utils/operation'
 
 import globalStyles from '@/styles/global.module.scss'
-import { type ColorsSekaiKey } from '@/styles/sekai-colors'
 
 import styles from './Dialog.module.scss'
+
+import type { PaletteMode } from '@/hooks/useThemeMode'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export type DialogSize = 'narrow' | 'medium' | 'wide'
 
