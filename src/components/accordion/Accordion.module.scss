@@ -1,0 +1,54 @@
+$summary-height: 40px;
+
+.sekai-accordion-container {
+  width: 100%;
+}
+
+.sekai-accordion-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: $summary-height;
+  font-weight: bold;
+  border: none;
+  padding: 4px 10px;
+
+  &:focus-visible {
+    outline: 1px solid var(--sekai-color);
+    background-color: var(--sekai-color-hover);
+  }
+
+  .sekai-accordion-summary-text {
+    margin: 0;
+  }
+
+  .sekai-accordion-summary-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease-out;
+    &.sekai-icon-open {
+      transform: rotate(0);
+    }
+    &.sekai-icon-close {
+      transform: rotate(-180deg);
+    }
+  }
+}
+
+.sekai-web-horizon {
+  margin: 0;
+  border: none;
+  width: 100%;
+  height: 1px;
+  background-color: var(--sekai-color);
+}
+
+.sekai-accordion-details {
+  overflow: hidden;
+  padding: 0 10px;
+
+  .sekai-detail-text {
+    margin: 0 0 5px 0;
+  }
+}
