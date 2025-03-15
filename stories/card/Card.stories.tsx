@@ -48,6 +48,8 @@ const meta = {
     },
     children: {
       description: 'Card contents',
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
       table: { type: { summary: 'React.ReactNode' } }
     }
   },
