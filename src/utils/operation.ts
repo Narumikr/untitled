@@ -1,3 +1,5 @@
+import type React from 'react'
+
 export const fireOnEnterKey = (
   eventHandler: (e: React.KeyboardEvent<HTMLDivElement>) => void
 ) => {

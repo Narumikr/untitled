@@ -4,6 +4,8 @@ export * from './button/BasicButton'
 
 export * from './button/StrongButton'
 
+export * from './card/Card'
+
 export * from './dialog/Dialog'
 
 export * from './dialog/XoMikuDialog'
