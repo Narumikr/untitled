@@ -572,6 +572,16 @@ var StrongButton = function StrongButton(_ref) {
   }, buttonProps), children);
 };
 
+var Card = function Card(_ref) {
+  var _ref$className = _ref.className,
+    className = _ref$className === void 0 ? '' : _ref$className,
+    sekai = _ref.sekai,
+    themeMode = _ref.themeMode;
+  return /*#__PURE__*/React.createElement("div", {
+    className: className
+  }, /*#__PURE__*/React.createElement("p", null, sekai), /*#__PURE__*/React.createElement("p", null, themeMode));
+};
+
 function _arrayWithoutHoles(r) {
   if (Array.isArray(r)) return _arrayLikeToArray(r);
 }
@@ -1389,4 +1399,4 @@ var createSekai = function createSekai(option) {
   return sekaiTheme;
 };
 
-export { Accordion, BasicButton, COLORS_SEKAI_KEYS, DARK_MODE, Dialog, DialogButtons, DialogTitleHeader, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, NamePlate, OutlineText, StrongButton, TextLink, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
+export { Accordion, BasicButton, COLORS_SEKAI_KEYS, Card, DARK_MODE, Dialog, DialogButtons, DialogTitleHeader, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, NamePlate, OutlineText, StrongButton, TextLink, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };

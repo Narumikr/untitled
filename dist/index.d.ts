@@ -1,4 +1,4 @@
-import React$1 from 'react';
+import React from 'react';
 
 declare const LIGHT_MODE = "light";
 declare const DARK_MODE = "dark";
@@ -85,30 +85,37 @@ interface AccordionProps {
     summary: string;
     summaryStyles?: string;
     defaultOpen?: boolean;
-    details: string | string[] | React$1.ReactNode;
+    details: string | string[] | React.ReactNode;
 }
-declare const Accordion: ({ className, sekai, themeMode, summary, summaryStyles, defaultOpen, details }: AccordionProps) => React$1.JSX.Element;
+declare const Accordion: ({ className, sekai, themeMode, summary, summaryStyles, defaultOpen, details }: AccordionProps) => React.JSX.Element;
 
 type BasicButtonProps = {
     className?: string;
     sekai?: ColorsSekaiKey;
     withText?: boolean;
     themeMode?: PaletteMode;
-    children?: React$1.ReactNode;
+    children?: React.ReactNode;
     disabled?: boolean;
     onClick?: () => void;
-} & React$1.ButtonHTMLAttributes<HTMLButtonElement>;
-declare const BasicButton: ({ className, sekai, withText, themeMode, children, disabled, ...buttonProps }: BasicButtonProps) => React$1.JSX.Element;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+declare const BasicButton: ({ className, sekai, withText, themeMode, children, disabled, ...buttonProps }: BasicButtonProps) => React.JSX.Element;
 
 type StrongButtonProps = {
     className?: string;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    children?: React$1.ReactNode;
+    children?: React.ReactNode;
     disabled?: boolean;
     onClick?: () => void;
-} & React$1.ButtonHTMLAttributes<HTMLButtonElement>;
-declare const StrongButton: ({ className, sekai, themeMode, children, disabled, ...buttonProps }: StrongButtonProps) => React$1.JSX.Element;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+declare const StrongButton: ({ className, sekai, themeMode, children, disabled, ...buttonProps }: StrongButtonProps) => React.JSX.Element;
+
+interface CardProps {
+    className?: string;
+    sekai?: ColorsSekaiKey;
+    themeMode?: PaletteMode;
+}
+declare const Card: ({ className, sekai, themeMode }: CardProps) => React.JSX.Element;
 
 type DialogSize = 'narrow' | 'medium' | 'wide';
 type DialogButtonType = 'normal' | 'strong';
@@ -124,48 +131,48 @@ interface DialogProps {
     sekai?: ColorsSekaiKey;
     open: boolean;
     themeMode?: PaletteMode;
-    children: React$1.ReactNode;
+    children: React.ReactNode;
     containerComponent?: HTMLElement;
     size?: DialogSize;
     onClose: () => void;
     title?: string;
     showCloseIcon?: boolean;
     buttons?: DialogButton[];
-    dialogButtons?: React$1.ReactNode;
+    dialogButtons?: React.ReactNode;
 }
-declare const Dialog: ({ sekai, open, themeMode, children, containerComponent, size, onClose, title, showCloseIcon, buttons, dialogButtons }: DialogProps) => React$1.ReactPortal;
+declare const Dialog: ({ sekai, open, themeMode, children, containerComponent, size, onClose, title, showCloseIcon, buttons, dialogButtons }: DialogProps) => React.ReactPortal;
 type DialogTitleHeaderProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'size' | 'onClose' | 'title' | 'showCloseIcon'> & {
     className?: string;
 };
-declare const DialogTitleHeader: ({ className, sekai, themeMode, size, onClose, title, showCloseIcon }: DialogTitleHeaderProps) => React$1.JSX.Element | null;
+declare const DialogTitleHeader: ({ className, sekai, themeMode, size, onClose, title, showCloseIcon }: DialogTitleHeaderProps) => React.JSX.Element | null;
 type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'buttons'> & {
     className?: string;
 };
-declare const DialogButtons: ({ className, sekai, themeMode, buttons }: DialogButtonsProps) => React$1.JSX.Element | null;
+declare const DialogButtons: ({ className, sekai, themeMode, buttons }: DialogButtonsProps) => React.JSX.Element | null;
 
 interface XoMikuDialogProps {
     open: boolean;
     themeMode?: PaletteMode;
-    children: React$1.ReactNode;
+    children: React.ReactNode;
     size?: DialogSize;
     containerComponent?: HTMLElement;
     onClose: () => void;
     title?: string;
     buttons?: DialogButton[];
 }
-declare const XoMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons }: XoMikuDialogProps) => React$1.ReactPortal;
+declare const XoMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons }: XoMikuDialogProps) => React.ReactPortal;
 
 interface XxMikuDialogProps {
     open: boolean;
     themeMode?: PaletteMode;
-    children: React$1.ReactNode;
+    children: React.ReactNode;
     size?: DialogSize;
     containerComponent?: HTMLElement;
     onClose: () => void;
     title?: string;
     buttons?: DialogButton[];
 }
-declare const XxMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons }: XxMikuDialogProps) => React$1.ReactPortal;
+declare const XxMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons }: XxMikuDialogProps) => React.ReactPortal;
 
 interface TextLinkProps {
     className?: string;
@@ -177,39 +184,39 @@ interface TextLinkProps {
     disabled?: boolean;
     ariaLabel?: string;
 }
-declare const TextLink: ({ className, sekai, themeMode, text, href, isExternal, disabled, ariaLabel }: TextLinkProps) => React$1.JSX.Element;
+declare const TextLink: ({ className, sekai, themeMode, text, href, isExternal, disabled, ariaLabel }: TextLinkProps) => React.JSX.Element;
 
-declare const ListContext: React$1.Context<boolean>;
+declare const ListContext: React.Context<boolean>;
 interface ListProps {
     className?: string;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    children: React$1.ReactNode;
+    children: React.ReactNode;
     as?: 'ul' | 'ol';
     noBullet?: boolean;
 }
-declare const List: ({ className, sekai, themeMode, children, as, noBullet }: ListProps) => React$1.JSX.Element;
+declare const List: ({ className, sekai, themeMode, children, as, noBullet }: ListProps) => React.JSX.Element;
 
 interface ListItemButtonProps {
     className?: string;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    children: React$1.ReactNode;
-    icon?: 'string' | React$1.ReactNode;
+    children: React.ReactNode;
+    icon?: 'string' | React.ReactNode;
     disabled?: boolean;
     onClick?: () => void;
 }
-declare const ListItemButton: ({ className, sekai, themeMode, children, icon, disabled, onClick }: ListItemButtonProps) => React$1.JSX.Element;
+declare const ListItemButton: ({ className, sekai, themeMode, children, icon, disabled, onClick }: ListItemButtonProps) => React.JSX.Element;
 
 interface ListItemTextProps {
     className?: string;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    children: React$1.ReactNode;
+    children: React.ReactNode;
     as?: 'p' | 'span';
-    icon?: 'string' | React$1.ReactNode;
+    icon?: 'string' | React.ReactNode;
 }
-declare const ListItemText: ({ className, sekai, themeMode, children, as, icon }: ListItemTextProps) => React$1.JSX.Element;
+declare const ListItemText: ({ className, sekai, themeMode, children, as, icon }: ListItemTextProps) => React.JSX.Element;
 
 type SekaiTheme = {
     palette: {
@@ -226,12 +233,12 @@ interface YourSekaiContextProps {
     sekaiTheme: SekaiTheme;
     onSwitchSekaiColor: (sekai: ColorsSekaiKey) => void;
 }
-declare const YourSekaiContext: React$1.Context<YourSekaiContextProps | null>;
+declare const YourSekaiContext: React.Context<YourSekaiContextProps | null>;
 interface YourSekaiProviderProps {
-    children: React$1.ReactNode;
+    children: React.ReactNode;
     sekaiTheme: SekaiTheme;
 }
-declare const YourSekaiProvider: ({ children, sekaiTheme }: YourSekaiProviderProps) => React$1.JSX.Element;
+declare const YourSekaiProvider: ({ children, sekaiTheme }: YourSekaiProviderProps) => React.JSX.Element;
 
 interface NamePlateProps {
     className?: string;
@@ -240,7 +247,7 @@ interface NamePlateProps {
     text: string;
     colorCount?: number;
 }
-declare const NamePlate: ({ className, sekai, themeMode, text, colorCount }: NamePlateProps) => React$1.JSX.Element;
+declare const NamePlate: ({ className, sekai, themeMode, text, colorCount }: NamePlateProps) => React.JSX.Element;
 
 interface OutlineTextProps {
     className?: string;
@@ -248,7 +255,7 @@ interface OutlineTextProps {
     themeMode?: PaletteMode;
     text: string;
 }
-declare const OutlineText: ({ className, sekai, themeMode, text }: OutlineTextProps) => React$1.JSX.Element;
+declare const OutlineText: ({ className, sekai, themeMode, text }: OutlineTextProps) => React.JSX.Element;
 
 declare const useCreateSekai: () => YourSekaiContextProps;
 
@@ -258,4 +265,4 @@ declare const convertHexToRgba: (hex: string, alpha: number) => string;
 declare const fireOnEnterKey: (eventHandler: (e: React.KeyboardEvent<HTMLDivElement>) => void) => (e: React.KeyboardEvent<HTMLDivElement>) => void;
 declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 
-export { Accordion, type AccordionProps, BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, NamePlate, type NamePlateProps, OutlineText, type OutlineTextProps, type PaletteMode, type SekaiTheme, StrongButton, type StrongButtonProps, TextLink, type TextLinkProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
+export { Accordion, type AccordionProps, BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, Card, type CardProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, NamePlate, type NamePlateProps, OutlineText, type OutlineTextProps, type PaletteMode, type SekaiTheme, StrongButton, type StrongButtonProps, TextLink, type TextLinkProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };

@@ -574,6 +574,16 @@ var StrongButton = function StrongButton(_ref) {
   }, buttonProps), children);
 };
 
+var Card = function Card(_ref) {
+  var _ref$className = _ref.className,
+    className = _ref$className === void 0 ? '' : _ref$className,
+    sekai = _ref.sekai,
+    themeMode = _ref.themeMode;
+  return /*#__PURE__*/React.createElement("div", {
+    className: className
+  }, /*#__PURE__*/React.createElement("p", null, sekai), /*#__PURE__*/React.createElement("p", null, themeMode));
+};
+
 function _arrayWithoutHoles(r) {
   if (Array.isArray(r)) return _arrayLikeToArray(r);
 }
@@ -1394,6 +1404,7 @@ var createSekai = function createSekai(option) {
 exports.Accordion = Accordion;
 exports.BasicButton = BasicButton;
 exports.COLORS_SEKAI_KEYS = COLORS_SEKAI_KEYS;
+exports.Card = Card;
 exports.DARK_MODE = DARK_MODE;
 exports.Dialog = Dialog;
 exports.DialogButtons = DialogButtons;
