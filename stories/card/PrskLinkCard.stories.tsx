@@ -1,15 +1,18 @@
 import React from 'react'
 
-import { Card, CardContent, CardTitle } from '@/components/card/Card'
+import { fn } from '@storybook/test'
+
+import { PrskLinkCard } from '@/components/card/PrskLinkCard'
+
+import { ProfileSvg } from '@/img/profile'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { CardProps } from '@/components/card/Card'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/Card',
-  component: Card,
+  title: 'Untitled/PrskLinkCard',
+  component: PrskLinkCard,
   decorators: [
     (Story) => (
       <div style={{ width: 390, maxWidth: '80vw', display: 'flex', justifyContent: 'center' }}>
@@ -45,44 +48,24 @@ const meta = {
       },
       control: { type: 'select' },
       options: ['light', 'dark']
-    },
-    children: {
-      description: 'Card contents',
-      // @ts-expect-error Storybook's typing issue
-      type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } }
     }
   },
   args: {}
-} satisfies Meta<typeof Card>
+} satisfies Meta<typeof PrskLinkCard>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-const TemplateStory = {
-  render: (args: CardProps) => {
-    const commonArgs = { sekai: args.sekai, themeMode: args.themeMode }
-    return (
-      <Card {...commonArgs}>
-        <CardContent themeMode={args.themeMode}>
-          <CardTitle {...commonArgs} title="Card Title" underline />
-          {args.children}
-        </CardContent>
-      </Card>
-    )
-  }
-}
-
 export const DefaultLight: Story = {
-  ...TemplateStory,
   args: {
     sekai: 'Miku',
     themeMode: 'light',
-    children: (
-      <p>
-        Card内部でコンテンツをラップするCardContentやタイトル表示のためのCardTitleコンポーネントも提供しています
-      </p>
-    )
+    height: 85,
+    width: 160,
+    onClick: fn(),
+    title: 'プロフィール',
+    subText: 'Profile',
+    icon: <ProfileSvg />
   },
   parameters: {
     sekai: 'Miku',
@@ -91,15 +74,15 @@ export const DefaultLight: Story = {
 }
 
 export const DefaultDark: Story = {
-  ...TemplateStory,
   args: {
     sekai: 'Miku',
     themeMode: 'dark',
-    children: (
-      <p>
-        Card内部でコンテンツをラップするCardContentやタイトル表示のためのCardTitleコンポーネントも提供しています
-      </p>
-    )
+    height: 85,
+    width: 160,
+    onClick: fn(),
+    title: 'プロフィール',
+    subText: 'Profile',
+    icon: <ProfileSvg themeMode="dark" />
   },
   parameters: {
     sekai: 'Miku',
