@@ -48,6 +48,48 @@ const meta = {
       },
       control: { type: 'select' },
       options: ['light', 'dark']
+    },
+    height: {
+      description: 'PrskLinkCard height',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '72' }
+      }
+    },
+    width: {
+      description: 'PrskLinkCard width',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '160' }
+      }
+    },
+    onClick: {
+      description: 'Click handler',
+      table: { type: { summary: '() => void' } }
+    },
+    title: {
+      description: 'Title text',
+      table: {
+        type: { summary: 'string' }
+      },
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true }
+    },
+    subText: {
+      description: 'Subtext, displayed as outline text',
+      table: {
+        type: { summary: 'string' }
+      },
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true }
+    },
+    icon: {
+      description: 'Icon image src or component ',
+      table: {
+        type: { summary: 'string | React.ReactNode' }
+      },
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true }
     }
   },
   args: {}

@@ -59,7 +59,10 @@ const meta = {
       description: 'Button disabled',
       table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
     },
-    onClick: { description: 'Click handler', table: { type: { summary: '() => void' } } }
+    onClick: {
+      description: 'Click handler',
+      table: { type: { summary: '() => void' } }
+    }
   },
   args: { onClick: fn() }
 } satisfies Meta<typeof ListItemButton>
