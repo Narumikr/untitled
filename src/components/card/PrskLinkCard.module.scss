@@ -1,0 +1,58 @@
+@use '../../styles/global.module.scss' as global;
+$card-border-radius: 5px;
+
+.sekai-prsk-link-card-button {
+  display: flex;
+  position: relative;
+  border: none;
+  border-radius: $card-border-radius;
+  padding: 0;
+
+  &:focus-visible {
+    outline: 1px solid var(--sekai-color);
+  }
+
+  .sekai-prsk-link-card-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: global.$color-text-dark;
+    background-color: #636382;
+    padding: 0 5px;
+    margin: 5px;
+    height: fit-content;
+    z-index: 2;
+
+    &.sekai-title-effect-light {
+      mix-blend-mode: multiply;
+    }
+    &.sekai-title-effect-dark {
+      mix-blend-mode: screen;
+    }
+  }
+
+  .sekai-prsk-link-card-subtext {
+    position: absolute;
+    opacity: 0.3;
+    left: 0;
+    bottom: 0;
+    line-height: 28px;
+    font-size: 28px;
+    z-index: 0;
+  }
+
+  .sekai-prsk-link-card-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-bottom-right-radius: $card-border-radius;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

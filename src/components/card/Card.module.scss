@@ -1,13 +1,19 @@
+$card-border-radius: 5px;
+
 .sekai-card {
   box-shadow:
     0px 2px 1px -1px var(--sekai-color-shadow),
     0px 1px 1px 0px var(--sekai-color-shadow),
-    0px 1px 3px 0px var(--sekai-color-shadow);
-  border-radius: 5px;
+    0px 1px 3px 0px var(--sekai-color-shadow),
+    0px -0.5px 1px 0px var(--sekai-color-shadow);
+  border-radius: $card-border-radius;
+  background-clip: padding-box;
+  width: fit-content;
 }
 
 .sekai-card-content {
   padding: 16px;
+  border-radius: $card-border-radius;
 }
 
 .sekai-card-title {

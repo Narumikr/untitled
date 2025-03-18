@@ -12,7 +12,7 @@ const meta = {
   component: Card,
   decorators: [
     (Story) => (
-      <div style={{ width: 390, maxWidth: '80vw' }}>
+      <div style={{ width: 390, maxWidth: '80vw', display: 'flex', justifyContent: 'center' }}>
         <Story />
       </div>
     )
