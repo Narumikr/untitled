@@ -2,6 +2,8 @@ export * from './accordion/Accordion'
 
 export * from './button/BasicButton'
 
+export * from './button/HamburgerButton'
+
 export * from './button/StrongButton'
 
 export * from './card/Card'

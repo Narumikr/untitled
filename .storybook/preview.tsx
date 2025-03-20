@@ -45,11 +45,11 @@ const preview: Preview = {
             `,
           `
           .docs-story {
-            aspect-ratio: 16 / 5;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            max-width: 100%;
+            min-height: 250px;
           }
           .css-11xgcgt {
             z-index: 10000;

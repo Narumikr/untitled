@@ -1,0 +1,58 @@
+@use '../../styles/global.module.scss' as global;
+@use 'sass:color';
+
+$hamburger-button-height: 40px;
+$hamburger-line-height: 4px;
+
+.sekai-hamburger-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--sekai-color-bg);
+
+  .sekai-hamburger-line-light {
+    background-color: color.mix(white, global.$color-bg-dark, 25%);
+  }
+  .sekai-hamburger-line-dark {
+    background-color: color.mix(black, global.$color-bg-light, 10%);
+  }
+
+  span {
+    position: absolute;
+    display: block;
+    height: $hamburger-line-height;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition:
+      transform 0.2s ease-in-out,
+      top 0.2s ease-in-out,
+      opacity 0.2s ease-in-out;
+  }
+  span:nth-child(1) {
+    top: calc($hamburger-button-height / 3 - $hamburger-line-height / 2);
+    transform-origin: center;
+    &.sekai-open {
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+  span:nth-child(2) {
+    top: calc(50% - $hamburger-line-height / 2);
+    &.sekai-open {
+      opacity: 0;
+    }
+  }
+  span:nth-child(3) {
+    top: calc($hamburger-button-height / 3 * 2 - $hamburger-line-height / 2);
+    transform-origin: center;
+    &.sekai-open {
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}
