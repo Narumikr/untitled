@@ -1,5 +1,7 @@
 import React, { useContext, useRef } from 'react'
 
+import clsx from 'clsx'
+
 import { ConsoleWarning } from '@/internal/logging'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
@@ -12,7 +14,9 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export interface ListItemButtonProps {
+  id?: string
   className?: string
+  style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
   children: React.ReactNode
@@ -24,7 +28,9 @@ export interface ListItemButtonProps {
 const rippleEffectClassName = 'sekai-ripple'
 
 export const ListItemButton = ({
-  className = '',
+  id,
+  className,
+  style,
   sekai,
   themeMode,
   children,
@@ -77,8 +83,9 @@ export const ListItemButton = ({
 
   return (
     <li
-      className={[styles['sekai-list-item-button'], className].join(' ')}
-      style={optionStyle as React.CSSProperties}>
+      id={id}
+      className={clsx(styles['sekai-list-item-button'], className)}
+      style={{ ...(optionStyle as React.CSSProperties), ...style }}>
       <button
         type="button"
         ref={listItemButtonRef}

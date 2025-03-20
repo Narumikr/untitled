@@ -12,11 +12,23 @@ const meta = {
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
+    id: {
+      description: 'Unique Id',
+      table: {
+        type: { summary: 'string' }
+      }
+    },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' }
+        type: { summary: 'string' }
+      },
+      control: false
+    },
+    style: {
+      description: 'Style object',
+      table: {
+        type: { summary: 'React.CSSProperties' }
       },
       control: false
     },
@@ -59,6 +71,7 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultLight: Story = {
   args: {
+    id: 'strong-button-default-light',
     sekai: 'Miku',
     themeMode: 'light',
     children: 'Hatsune Miku',
@@ -72,6 +85,7 @@ export const DefaultLight: Story = {
 
 export const DefaultDark: Story = {
   args: {
+    id: 'strong-button-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     children: 'Hatsune Miku',
@@ -85,6 +99,7 @@ export const DefaultDark: Story = {
 
 export const DisabledLight: Story = {
   args: {
+    id: 'strong-button-disabled-light',
     sekai: 'Miku',
     themeMode: 'light',
     children: 'Hatsune Miku',
@@ -98,6 +113,7 @@ export const DisabledLight: Story = {
 
 export const DisabledtDark: Story = {
   args: {
+    id: 'strong-button-disabled-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     children: 'Hatsune Miku',

@@ -12,11 +12,23 @@ const meta = {
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
+    id: {
+      description: 'Unique Id',
+      table: {
+        type: { summary: 'string' }
+      }
+    },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' }
+        type: { summary: 'string' }
+      },
+      control: false
+    },
+    style: {
+      description: 'Style object',
+      table: {
+        type: { summary: 'React.CSSProperties' }
       },
       control: false
     },
@@ -31,7 +43,10 @@ const meta = {
     },
     withText: {
       description: 'Apply SEKAI color to text',
-      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' }
+      }
     },
     themeMode: {
       description: 'Light or Dark mode',
@@ -63,6 +78,7 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultLight: Story = {
   args: {
+    id: 'basic-button-default-light',
     sekai: 'Miku',
     withText: false,
     themeMode: 'light',
@@ -77,6 +93,7 @@ export const DefaultLight: Story = {
 
 export const DefaultDark: Story = {
   args: {
+    id: 'basic-button-default-dark',
     sekai: 'Miku',
     withText: false,
     themeMode: 'dark',
@@ -91,6 +108,7 @@ export const DefaultDark: Story = {
 
 export const WithTextLight: Story = {
   args: {
+    id: 'basic-button-with-text-light',
     sekai: 'Miku',
     withText: true,
     themeMode: 'light',
@@ -105,6 +123,7 @@ export const WithTextLight: Story = {
 
 export const WithTextDark: Story = {
   args: {
+    id: 'basic-button-with-text-dark',
     sekai: 'Miku',
     withText: true,
     themeMode: 'dark',
@@ -119,6 +138,7 @@ export const WithTextDark: Story = {
 
 export const DisabledLight: Story = {
   args: {
+    id: 'basic-button-disabled-light',
     sekai: 'Miku',
     withText: false,
     themeMode: 'light',
@@ -133,6 +153,7 @@ export const DisabledLight: Story = {
 
 export const DisabledtDark: Story = {
   args: {
+    id: 'basic-button-disabled-dark',
     sekai: 'Miku',
     withText: false,
     themeMode: 'dark',

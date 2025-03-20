@@ -16,11 +16,23 @@ const meta = {
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
+    id: {
+      description: 'Unique Id',
+      table: {
+        type: { summary: 'string' }
+      }
+    },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' }
+        type: { summary: 'string' }
+      },
+      control: false
+    },
+    style: {
+      description: 'Style object',
+      table: {
+        type: { summary: 'React.CSSProperties' }
       },
       control: false
     },
@@ -84,6 +96,7 @@ const TemplateStory = {
 export const DefaultLight: Story = {
   ...TemplateStory,
   args: {
+    id: 'list-item-button-default-light',
     sekai: 'Miku',
     themeMode: 'light',
     children: <></>,
@@ -99,6 +112,7 @@ export const DefaultLight: Story = {
 export const DefaultDark: Story = {
   ...TemplateStory,
   args: {
+    id: 'list-item-button-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     children: <></>,
@@ -114,6 +128,7 @@ export const DefaultDark: Story = {
 export const IconLight: Story = {
   ...TemplateStory,
   args: {
+    id: 'list-item-button-icon-light',
     sekai: 'Miku',
     themeMode: 'light',
     children: <></>,
@@ -129,6 +144,7 @@ export const IconLight: Story = {
 export const IconDark: Story = {
   ...TemplateStory,
   args: {
+    id: 'list-item-button-icon-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     children: <></>,
@@ -144,6 +160,7 @@ export const IconDark: Story = {
 export const DisabledLight: Story = {
   ...TemplateStory,
   args: {
+    id: 'list-item-button-disabled-light',
     sekai: 'Miku',
     themeMode: 'light',
     children: <></>,
@@ -159,6 +176,7 @@ export const DisabledLight: Story = {
 export const DisabledDark: Story = {
   ...TemplateStory,
   args: {
+    id: 'list-item-button-disabled-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     children: <></>,

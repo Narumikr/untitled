@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 
+import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
 import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog'
@@ -17,6 +18,9 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 
 export interface XxMikuDialogProps {
   open: boolean
+  id?: string
+  className?: string
+  style?: React.CSSProperties
   themeMode?: PaletteMode
   children: React.ReactNode
   size?: DialogSize
@@ -28,6 +32,9 @@ export interface XxMikuDialogProps {
 
 export const XxMikuDialog = ({
   open,
+  id,
+  className,
+  style,
   themeMode,
   children,
   size = 'medium',
@@ -70,12 +77,15 @@ export const XxMikuDialog = ({
     <div className={styles[displayDialog]}>
       <div className={globalStyles[`sekai-overlay-${modeTheme}`]}>
         <div
+          id={id}
           role="dialog"
-          className={[
+          className={clsx(
             globalStyles['sekai-absolute-center'],
             styles[`sekai-container-${size}`],
-            styles[`sekai-${modeTheme}`]
-          ].join(' ')}
+            styles[`sekai-${modeTheme}`],
+            className
+          )}
+          style={style}
           aria-label={title || 'Dialog'}>
           <XxMikuSvg className={styles[`sekai-xxmiku-svg-1-${size}`]} />
           <XxMikuSvg className={styles[`sekai-xxmiku-svg-2-${size}`]} />
@@ -83,9 +93,13 @@ export const XxMikuDialog = ({
           <XxMikuSvg className={styles[`sekai-xxmiku-svg-4-${size}`]} type={'type2'} />
           <XxMikuSvg className={styles[`sekai-xxmiku-svg-5-${size}`]} type={'type2'} />
           <div className={styles['sekai-content-wrap']}>
-            <DialogTitleHeader {...headerProps} />
+            <DialogTitleHeader id="xo-miku-dialog-header" {...headerProps} />
             {children}
-            <DialogButtons className={styles['sekai-xxmiku-button']} {...buttonsProps} />
+            <DialogButtons
+              id="xo-miku-dialog-buttons"
+              className={styles['sekai-xxmiku-button']}
+              {...buttonsProps}
+            />
           </div>
         </div>
       </div>

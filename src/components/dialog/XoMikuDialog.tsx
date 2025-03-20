@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 
+import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
 import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog'
@@ -17,6 +18,9 @@ import type { DialogButton } from '@/components/dialog/Dialog'
 
 export interface XoMikuDialogProps {
   open: boolean
+  id?: string
+  className?: string
+  style?: React.CSSProperties
   themeMode?: PaletteMode
   children: React.ReactNode
   size?: DialogSize
@@ -28,6 +32,9 @@ export interface XoMikuDialogProps {
 
 export const XoMikuDialog = ({
   open,
+  id,
+  className,
+  style,
   themeMode,
   children,
   size = 'medium',
@@ -50,7 +57,7 @@ export const XoMikuDialog = ({
   }, [open])
 
   const headerProps = { size, onClose, title }
-  const xxButtonProps = useMemo(
+  const xoButtonProps = useMemo(
     () =>
       buttons?.map((button) => {
         const type = button.type ? button.type : 'normal'
@@ -61,17 +68,20 @@ export const XoMikuDialog = ({
       }),
     [buttons, modeTheme]
   )
-  const buttonsProps = { buttons: xxButtonProps }
+  const buttonsProps = { themeMode: LIGHT_MODE as PaletteMode, buttons: xoButtonProps }
 
   return createPortal(
     <div className={styles[displayDialog]}>
       <div className={globalStyles[`sekai-overlay-${modeTheme}`]}>
         <div
+          id={id}
           role="dialog"
-          className={[
+          className={clsx(
             globalStyles['sekai-absolute-center'],
-            styles[`sekai-container-${size}`]
-          ].join(' ')}
+            styles[`sekai-container-${size}`],
+            className
+          )}
+          style={style}
           aria-label={title || 'Dialog'}>
           <XoMikuSvg className={styles[`sekai-xomiku-svg-1-${size}`]} />
           <XoMikuSvg className={styles[`sekai-xomiku-svg-2-${size}`]} />
@@ -79,11 +89,11 @@ export const XoMikuDialog = ({
           <XoMikuSvg className={styles[`sekai-xomiku-svg-4-${size}`]} type={'type2'} />
           <XoMikuSvg className={styles[`sekai-xomiku-svg-5-${size}`]} type={'type2'} />
           <div className={styles['sekai-content-wrap']}>
-            <DialogTitleHeader {...headerProps} />
+            <DialogTitleHeader id="xo-miku-dialog-header" {...headerProps} />
             {children}
             <DialogButtons
+              id="xo-miku-dialog-buttons"
               className={styles['sekai-xomiku-button']}
-              themeMode={LIGHT_MODE}
               {...buttonsProps}
             />
           </div>

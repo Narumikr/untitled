@@ -19,11 +19,23 @@ const meta = {
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
+    id: {
+      description: 'Unique Id',
+      table: {
+        type: { summary: 'string' }
+      }
+    },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' }
+        type: { summary: 'string' }
+      },
+      control: false
+    },
+    style: {
+      description: 'Style object',
+      table: {
+        type: { summary: 'React.CSSProperties' }
       },
       control: false
     },
@@ -56,8 +68,7 @@ const meta = {
     summaryStyles: {
       description: 'Custom summary styles',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' }
+        type: { summary: 'string' }
       },
       control: false
     },
@@ -85,6 +96,7 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultLight: Story = {
   args: {
+    id: 'accordion-default-light',
     sekai: 'Miku',
     themeMode: 'light',
     summary: 'このライブラリは何？',
@@ -99,6 +111,7 @@ export const DefaultLight: Story = {
 
 export const DefaultDark: Story = {
   args: {
+    id: 'accordion-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     summary: 'このライブラリは何？',

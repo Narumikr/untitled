@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
+import clsx from 'clsx'
+
 import { ChevronSvg } from '@/img/chevron'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
@@ -12,7 +14,9 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export interface AccordionProps {
+  id?: string
   className?: string
+  style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
   summary: string
@@ -22,11 +26,13 @@ export interface AccordionProps {
 }
 
 export const Accordion = ({
-  className = '',
+  id,
+  className,
+  style,
   sekai,
   themeMode,
   summary,
-  summaryStyles = '',
+  summaryStyles,
   defaultOpen = false,
   details
 }: AccordionProps) => {
@@ -43,24 +49,25 @@ export const Accordion = ({
 
   return (
     <div
-      className={[styles['sekai-accordion-container'], className].join(' ')}
-      style={optionStyle as React.CSSProperties}>
+      id={id}
+      className={clsx(styles['sekai-accordion-container'], className)}
+      style={{ ...(optionStyle as React.CSSProperties), ...style }}>
       <button
-        className={[
+        className={clsx(
           styles['sekai-accordion-summary'],
           globalStyles[`sekai-color-${modeTheme}`],
           summaryStyles
-        ].join(' ')}
+        )}
         onClick={handleOpenClose}
         id="accordion-summary"
         aria-expanded={openAccordion}
         aria-controls="details-contents">
         <p className={styles['sekai-accordion-summary-text']}>{summary}</p>
         <ChevronSvg
-          className={[
+          className={clsx(
             styles[`sekai-accordion-summary-icon`],
             openAccordion ? styles['sekai-icon-open'] : styles['sekai-icon-close']
-          ].join(' ')}
+          )}
           sekai={sekai}
           themeMode={themeMode}
           vector="up"

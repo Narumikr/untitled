@@ -20,11 +20,23 @@ const meta = {
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
+    id: {
+      description: 'Unique Id',
+      table: {
+        type: { summary: 'string' }
+      }
+    },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' }
+        type: { summary: 'string' }
+      },
+      control: false
+    },
+    style: {
+      description: 'Style object',
+      table: {
+        type: { summary: 'React.CSSProperties' }
       },
       control: false
     },
@@ -76,6 +88,7 @@ const TemplateStory = {
 export const DefaultLight: Story = {
   ...TemplateStory,
   args: {
+    id: 'card-default-light',
     sekai: 'Miku',
     themeMode: 'light',
     children: (
@@ -93,6 +106,7 @@ export const DefaultLight: Story = {
 export const DefaultDark: Story = {
   ...TemplateStory,
   args: {
+    id: 'card-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     children: (

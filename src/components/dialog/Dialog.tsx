@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
 import { ClearSvg } from '@/img/clear'
@@ -27,6 +28,9 @@ export interface DialogButton {
 }
 
 export interface DialogProps {
+  id?: string
+  className?: string
+  style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   open: boolean
   themeMode?: PaletteMode
@@ -41,6 +45,9 @@ export interface DialogProps {
 }
 
 export const Dialog = ({
+  id,
+  className,
+  style,
   sekai,
   open,
   themeMode,
@@ -79,13 +86,15 @@ export const Dialog = ({
     <div className={styles[displayDialog]}>
       <div className={globalStyles[`sekai-overlay-${modeTheme}`]}>
         <div
+          id={id}
           role="dialog"
-          className={[
+          className={clsx(
             globalStyles[`sekai-color-${modeTheme}`],
             globalStyles['sekai-absolute-center'],
-            styles[`sekai-container-${size}`]
-          ].join(' ')}
-          style={optionStyle as React.CSSProperties}
+            styles[`sekai-container-${size}`],
+            className
+          )}
+          style={{ ...(optionStyle as React.CSSProperties), ...style }}
           aria-label={title || 'Dialog'}>
           <div className={styles['sekai-content-wrap']}>
             <DialogTitleHeader {...headerProps} />
@@ -102,10 +111,12 @@ export const Dialog = ({
 export type DialogTitleHeaderProps = Pick<
   DialogProps,
   'sekai' | 'themeMode' | 'size' | 'onClose' | 'title' | 'showCloseIcon'
-> & { className?: string }
+> & { id?: string; className?: string; style?: React.CSSProperties }
 
 export const DialogTitleHeader = ({
-  className = '',
+  id,
+  className,
+  style,
   sekai,
   themeMode,
   size,
@@ -116,7 +127,10 @@ export const DialogTitleHeader = ({
   if (!title && !showCloseIcon) return null
 
   return (
-    <div className={[styles[`sekai-title-header-${size}`], className].join(' ')}>
+    <div
+      id={id}
+      className={clsx(styles[`sekai-title-header-${size}`], className)}
+      style={style}>
       <h2>{title}</h2>
       {showCloseIcon ? (
         <button type="button" className={styles['sekai-close-icon']} onClick={onClose}>
@@ -128,11 +142,15 @@ export const DialogTitleHeader = ({
 }
 
 export type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'buttons'> & {
+  id?: string
   className?: string
+  style?: React.CSSProperties
 }
 
 export const DialogButtons = ({
-  className = '',
+  id,
+  className,
+  style,
   sekai,
   themeMode,
   buttons
@@ -153,20 +171,21 @@ export const DialogButtons = ({
   }
 
   return (
-    <div className={[styles['sekai-buttons-area'], className].join(' ')}>
+    <div id={id} className={clsx(styles['sekai-buttons-area'], className)} style={style}>
       {[...buttons.slice(0, 2)].map((el, index) => (
         <button
+          id={`${id ? id : 'dialog-button'}-${index + 1}`}
           key={el.text}
           type="button"
           onClick={el.onClick}
           disabled={Boolean(el.disabled)}
           aria-label={el.ariaLabel || el.text}
-          className={[
+          className={clsx(
             globalStyles[`sekai-color-${modeTheme}`],
             styles[`sekai-dialog-${el.type || 'normal'}-button-${buttonLength}-${index}`],
             styles[`sekai-${modeTheme}`],
             el.buttonStyle || ''
-          ].join(' ')}
+          )}
           style={optionStyle as React.CSSProperties}>
           {el.text}
         </button>

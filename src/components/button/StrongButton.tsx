@@ -1,5 +1,7 @@
 import React from 'react'
 
+import clsx from 'clsx'
+
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
 
@@ -9,7 +11,9 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export type StrongButtonProps = {
+  id?: string
   className?: string
+  style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
   children?: React.ReactNode
@@ -18,7 +22,9 @@ export type StrongButtonProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const StrongButton = ({
-  className = '',
+  id,
+  className,
+  style,
   sekai,
   themeMode,
   children,
@@ -36,9 +42,10 @@ export const StrongButton = ({
 
   return (
     <button
+      id={id}
       type="button"
-      className={[styles[`sekai-strong-button-${modeTheme}`], className].join(' ')}
-      style={optionStyle as React.CSSProperties}
+      className={clsx(styles[`sekai-strong-button-${modeTheme}`], className)}
+      style={{ ...(optionStyle as React.CSSProperties), ...style }}
       disabled={disabled}
       {...buttonProps}>
       {children}
