@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { fn } from '@storybook/test'
 
 import { HamburgerButton } from '@/components/button/HamburgerButton'
@@ -11,13 +9,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta = {
   title: 'Untitled/HamburgerButton',
   component: HamburgerButton,
-  decorators: [
-    (Story) => (
-      <div style={{ width: 500, maxWidth: '80vw', height: 150 }}>
-        <Story />
-      </div>
-    )
-  ],
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
@@ -80,28 +71,26 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultLight: Story = {
   args: {
-    id: 'hamburger-light-light',
+    id: 'hamburger-default-light',
     sekai: 'Miku',
     themeMode: 'light',
     open: false
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light',
-    portal: true
+    background: 'light'
   }
 }
 
 export const DefaultDark: Story = {
   args: {
-    id: 'hamburger-dark-dark',
+    id: 'hamburger-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     open: false
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark',
-    portal: true
+    background: 'dark'
   }
 }

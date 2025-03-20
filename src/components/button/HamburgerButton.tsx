@@ -2,15 +2,13 @@ import React from 'react'
 
 import clsx from 'clsx'
 
+import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { convertHexToRgba } from '@/utils/converter'
+
 import styles from './HamburgerButton.module.scss'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgba } from '@/utils/converter'
-
-export type HamburgerButtonPos = 'right-up' | 'left-up'
 
 export interface HamburgerButtonProps {
   id?: string
