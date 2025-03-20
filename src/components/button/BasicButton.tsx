@@ -1,5 +1,7 @@
 import React from 'react'
 
+import clsx from 'clsx'
+
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
 
@@ -11,7 +13,9 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export type BasicButtonProps = {
+  id?: string
   className?: string
+  style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   withText?: boolean
   themeMode?: PaletteMode
@@ -21,7 +25,9 @@ export type BasicButtonProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const BasicButton = ({
-  className = '',
+  id,
+  className,
+  style,
   sekai,
   withText = false,
   themeMode,
@@ -41,13 +47,14 @@ export const BasicButton = ({
 
   return (
     <button
+      id={id}
       type="button"
-      className={[
+      className={clsx(
         styles[`sekai-basic-button-${modeTheme}`],
         globalStyles[`sekai-color-${modeTheme}`],
         className
-      ].join(' ')}
-      style={optionStyle as React.CSSProperties}
+      )}
+      style={{ ...(optionStyle as React.CSSProperties), ...style }}
       disabled={disabled}
       {...buttonProps}>
       {children}

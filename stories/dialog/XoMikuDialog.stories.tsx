@@ -16,6 +16,26 @@ const meta = {
       description: 'Dialog open',
       table: { types: 'boolean' }
     },
+    id: {
+      description: 'Unique Id',
+      table: {
+        type: { summary: 'string' }
+      }
+    },
+    className: {
+      description: 'Custom styles',
+      table: {
+        type: { summary: 'string' }
+      },
+      control: false
+    },
+    style: {
+      description: 'Style object',
+      table: {
+        type: { summary: 'React.CSSProperties' }
+      },
+      control: false
+    },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
@@ -33,7 +53,10 @@ const meta = {
     },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
-      table: { type: { summary: 'HTMLElement' } },
+      table: {
+        type: { summary: 'HTMLElement' },
+        defaultValue: { summary: 'document.body' }
+      },
       control: false
     },
     size: {
@@ -78,6 +101,7 @@ const commonArgs = {
 export const DefaultLight: Story = {
   args: {
     ...commonArgs,
+    id: 'xo-miku-dialog-default-light',
     themeMode: 'light',
     size: 'medium',
     buttons: [
@@ -109,6 +133,7 @@ export const DefaultLight: Story = {
 export const DefalutDark: Story = {
   args: {
     ...commonArgs,
+    id: 'xo-miku-dialog-default-dark',
     themeMode: 'dark',
     size: 'medium',
     buttons: [

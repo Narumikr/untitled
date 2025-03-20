@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
 
+import clsx from 'clsx'
+
 import { ConsoleWarning } from '@/internal/logging'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
@@ -13,7 +15,9 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export interface ListItemTextProps {
+  id?: string
   className?: string
+  style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
   children: React.ReactNode
@@ -22,7 +26,9 @@ export interface ListItemTextProps {
 }
 
 export const ListItemText = ({
-  className = '',
+  id,
+  className,
+  style,
   sekai,
   themeMode,
   children,
@@ -43,12 +49,13 @@ export const ListItemText = ({
 
   return (
     <li
-      className={[
+      id={id}
+      className={clsx(
         styles['sekai-list-item-text'],
         globalStyles[`sekai-color-${modeTheme}`],
         className
-      ].join(' ')}
-      style={optionStyle as React.CSSProperties}>
+      )}
+      style={{ ...(optionStyle as React.CSSProperties), ...style }}>
       {getImgComponent(icon)}
       {isChildrenElement ? children : <Component>{children}</Component>}
     </li>

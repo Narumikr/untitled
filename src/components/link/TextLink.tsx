@@ -1,5 +1,7 @@
 import React from 'react'
 
+import clsx from 'clsx'
+
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
 
@@ -9,7 +11,9 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export interface TextLinkProps {
+  id?: string
   className?: string
+  style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
   text: string
@@ -20,7 +24,9 @@ export interface TextLinkProps {
 }
 
 export const TextLink = ({
-  className = '',
+  id,
+  className,
+  style,
   sekai,
   themeMode,
   text,
@@ -40,12 +46,13 @@ export const TextLink = ({
 
   return (
     <a
-      className={[
+      id={id}
+      className={clsx(
         styles[`sekai-text-link-${modeTheme}`],
         disabled && styles['sekai-disabled'],
         className
-      ].join(' ')}
-      style={optionStyle as React.CSSProperties}
+      )}
+      style={{ ...(optionStyle as React.CSSProperties), ...style }}
       href={href}
       aria-label={ariaLabel}
       aria-disabled={disabled}

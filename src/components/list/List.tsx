@@ -1,5 +1,7 @@
 import React, { createContext } from 'react'
 
+import clsx from 'clsx'
+
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import globalStyles from '@/styles/global.module.scss'
@@ -12,7 +14,9 @@ import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 export const ListContext = createContext<boolean>(false)
 
 export interface ListProps {
+  id?: string
   className?: string
+  style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
   children: React.ReactNode
@@ -21,7 +25,9 @@ export interface ListProps {
 }
 
 export const List = ({
-  className = '',
+  id,
+  className,
+  style,
   sekai,
   themeMode,
   children,
@@ -40,15 +46,17 @@ export const List = ({
   return (
     <ListContext.Provider value={true}>
       <Component
-        className={[
+        id={id}
+        className={clsx(
           globalStyles[`sekai-color-${modeTheme}`],
           styles['sekai-list'],
           className
-        ].join(' ')}
+        )}
         style={{
           listStyleType: listStyleType,
           paddingLeft: paddingLeft,
-          ...(optionStyle as React.CSSProperties)
+          ...(optionStyle as React.CSSProperties),
+          ...style
         }}>
         {children}
       </Component>

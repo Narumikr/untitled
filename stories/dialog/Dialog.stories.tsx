@@ -14,6 +14,19 @@ const meta = {
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
+    id: {
+      description: 'Unique Id',
+      table: {
+        type: { summary: 'string' }
+      }
+    },
+    className: {
+      description: 'Custom styles',
+      table: {
+        type: { summary: 'string' }
+      },
+      control: false
+    },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
@@ -22,6 +35,13 @@ const meta = {
       },
       control: { type: 'select' },
       options: [...Object.keys(COLORS_SEKAI_KEYS)]
+    },
+    style: {
+      description: 'Style object',
+      table: {
+        type: { summary: 'React.CSSProperties' }
+      },
+      control: false
     },
     open: {
       description: 'Dialog open',
@@ -44,7 +64,10 @@ const meta = {
     },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
-      table: { type: { summary: 'HTMLElement' } },
+      table: {
+        type: { summary: 'HTMLElement' },
+        defaultValue: { summary: 'document.body' }
+      },
       control: false
     },
     size: {
@@ -100,6 +123,7 @@ const commonArgs = {
 export const LightMedium: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-light-medium',
     themeMode: 'light',
     size: 'medium',
     showCloseIcon: false,
@@ -115,6 +139,7 @@ export const LightMedium: Story = {
 export const DarkMedium: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-dark-medium',
     themeMode: 'dark',
     size: 'medium',
     showCloseIcon: false,
@@ -130,6 +155,7 @@ export const DarkMedium: Story = {
 export const LightNarrow: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-light-narrow',
     themeMode: 'light',
     size: 'narrow',
     showCloseIcon: false,
@@ -145,6 +171,7 @@ export const LightNarrow: Story = {
 export const DarkNarrow: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-dark-narrow',
     themeMode: 'dark',
     size: 'narrow',
     showCloseIcon: false,
@@ -160,6 +187,7 @@ export const DarkNarrow: Story = {
 export const LightWide: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-light-wide',
     themeMode: 'light',
     size: 'wide',
     showCloseIcon: false,
@@ -175,6 +203,7 @@ export const LightWide: Story = {
 export const DarkWide: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-dark-wide',
     themeMode: 'dark',
     size: 'wide',
     showCloseIcon: false,
@@ -190,6 +219,7 @@ export const DarkWide: Story = {
 export const CloseIconLight: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-light-close-icon',
     themeMode: 'light',
     size: 'medium',
     showCloseIcon: true,
@@ -205,6 +235,7 @@ export const CloseIconLight: Story = {
 export const CloseIconDark: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-dark-close-icon',
     themeMode: 'dark',
     size: 'medium',
     showCloseIcon: true,
@@ -246,6 +277,7 @@ const buttons: DialogButton[] = [
 export const OneButtonsLight: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-light-one-button',
     themeMode: 'light',
     buttons: [buttons[1]] as DialogButton[],
     size: 'medium',
@@ -261,6 +293,7 @@ export const OneButtonsLight: Story = {
 export const OneButtonsDark: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-dark-one-button',
     themeMode: 'dark',
     buttons: [buttons[1]] as DialogButton[],
     size: 'medium',
@@ -276,6 +309,7 @@ export const OneButtonsDark: Story = {
 export const DoubleButtonsLight: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-light-double-button',
     themeMode: 'light',
     buttons: [buttons[0], buttons[1]] as DialogButton[],
     size: 'medium',
@@ -291,6 +325,7 @@ export const DoubleButtonsLight: Story = {
 export const DoubleButtonsDark: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-dark-double-button',
     themeMode: 'dark',
     buttons: [buttons[0], buttons[1]] as DialogButton[],
     size: 'medium',
@@ -306,6 +341,7 @@ export const DoubleButtonsDark: Story = {
 export const StrongButtonsLight: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-light-strong-button',
     themeMode: 'light',
     buttons: [buttons[0], buttons[2]] as DialogButton[],
     size: 'medium',
@@ -321,6 +357,7 @@ export const StrongButtonsLight: Story = {
 export const StrongButtonsDark: Story = {
   args: {
     ...commonArgs,
+    id: 'dialog-dark-strong-button',
     themeMode: 'dark',
     buttons: [buttons[0], buttons[2]] as DialogButton[],
     size: 'medium',

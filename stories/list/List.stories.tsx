@@ -12,11 +12,23 @@ const meta = {
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
+    id: {
+      description: 'Unique Id',
+      table: {
+        type: { summary: 'string' }
+      }
+    },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' }
+        type: { summary: 'string' }
+      },
+      control: false
+    },
+    style: {
+      description: 'Style object',
+      table: {
+        type: { summary: 'React.CSSProperties' }
       },
       control: false
     },
@@ -72,6 +84,7 @@ const sample = ['Sample 1', 'Sample 2', 'Sample 3']
 
 export const BulletLight: Story = {
   args: {
+    id: 'list-bullet-light',
     sekai: 'Miku',
     themeMode: 'light',
     children: sample.map((el) => <li key={el}>{el}</li>),
@@ -86,6 +99,7 @@ export const BulletLight: Story = {
 
 export const BulletDark: Story = {
   args: {
+    id: 'list-bullet-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     children: sample.map((el) => <li key={el}>{el}</li>),
@@ -100,6 +114,7 @@ export const BulletDark: Story = {
 
 export const OrderLight: Story = {
   args: {
+    id: 'list-order-light',
     sekai: 'Miku',
     themeMode: 'light',
     children: sample.map((el) => <li key={el}>{el}</li>),
@@ -114,6 +129,7 @@ export const OrderLight: Story = {
 
 export const OrderDark: Story = {
   args: {
+    id: 'list-order-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     children: sample.map((el) => <li key={el}>{el}</li>),

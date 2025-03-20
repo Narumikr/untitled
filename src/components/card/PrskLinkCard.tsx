@@ -1,5 +1,7 @@
 import React from 'react'
 
+import clsx from 'clsx'
+
 import { NamePlate } from '@/components/text/NamePlate'
 
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
@@ -15,7 +17,9 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 export interface PrskLinkCardProps {
+  id?: string
   className?: string
+  style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
   height?: number
@@ -27,7 +31,9 @@ export interface PrskLinkCardProps {
 }
 
 export const PrskLinkCard = ({
-  className = '',
+  id,
+  className,
+  style,
   sekai,
   themeMode,
   height = 72,
@@ -49,24 +55,26 @@ export const PrskLinkCard = ({
   }
 
   return (
-    <Card className={className} sekai={sekai} themeMode={themeMode}>
+    <Card id={id} className={className} sekai={sekai} themeMode={themeMode} style={style}>
       <button
-        className={[
+        className={clsx(
           styles['sekai-prsk-link-card-button'],
           globalStyles[`sekai-color-${modeTheme}`]
-        ].join(' ')}
+        )}
         style={(optionStyle as React.CSSProperties, cardSizeStyle)}
         onClick={onClick}>
         <NamePlate
-          className={[
+          id={`${id ? id : 'prsk-link-card'}-title`}
+          className={clsx(
             styles['sekai-prsk-link-card-title'],
             styles[`sekai-title-effect-${modeTheme}`]
-          ].join(' ')}
+          )}
           sekai={sekai}
           themeMode={themeMode}
           text={title}
         />
         <OutlineText
+          id={`${id ? id : 'prsk-link-card'}-subtext`}
           className={styles['sekai-prsk-link-card-subtext']}
           sekai={sekai}
           themeMode={themeMode}
