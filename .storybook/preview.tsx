@@ -11,7 +11,6 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-import type { SekaiTheme } from '@/utils/createSekai'
 import type { DocsContextProps } from '@storybook/addon-docs'
 import type { Preview, StoryContext } from '@storybook/react'
 
@@ -86,7 +85,7 @@ const preview: Preview = {
       const isDocs = context.viewMode === 'docs'
       const isPortal: boolean = context.parameters.portal
 
-      const theme: SekaiTheme = createSekai({
+      const theme = createSekai({
         palette: {
           sekai: sekai,
           mode: isDark ? DARK_MODE : LIGHT_MODE
