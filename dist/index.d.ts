@@ -310,7 +310,7 @@ interface YourSekaiContextProps {
 declare const YourSekaiContext: React.Context<YourSekaiContextProps | null>;
 interface YourSekaiProviderProps {
     children: React.ReactNode;
-    sekaiTheme: SekaiTheme;
+    sekaiTheme: Required<SekaiTheme>;
 }
 declare const YourSekaiProvider: ({ children, sekaiTheme }: YourSekaiProviderProps) => React.JSX.Element;
 

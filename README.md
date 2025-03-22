@@ -104,22 +104,46 @@ export const TopPage = () => {
 _app.tsx
 
 ```ts
-import { YourSekaiProvider, COLORS_SEKAI_KEYS } from '@naru/untitled-library'
+import {
+  COLORS_SEKAI_KEYS,
+  LIGHT_MODE,
+  YourSekaiProvider,
+  createSekai
+} from '@naru/untitled-library'
+
 import type { SekaiTheme } from '@naru/untitled-library'
 
 const App = ({ Component, pageProps }: AppProps) => {
 
-  const theme: SekaiTheme = {
+  const theme = createSekai({
     palette: {
       sekai: COLORS_SEKAI_KEYS.Miku,
-      mode: 'light'
+      mode: LIGHT_MODE
     }
-  }
+  })
 
   return (
     <YourSekaiProvider sekaiTheme={theme}>
       <Component {...pageProps} />
     </YourSekaiProvider>
   )
+}
+```
+
+Providerに渡すthemeは`createSekai`関数を用いて生成したオブジェクトを渡してください
+
+createSekaiの引数に渡すオブジェクトの型は下記となっており、paletteのsekaiは必須ですが、それ以外は任意で大丈夫です
+
+デフォルト値はmodeが`light(ライトモード)`で、fontFamilyは`Montserrat, sans-serif`です
+
+```ts
+export type SekaiTheme = {
+  palette: {
+    sekai: ColorsSekaiKey
+    mode?: PaletteMode
+  }
+  typography?: {
+    fontFamily?: string
+  }
 }
 ```
