@@ -20,15 +20,7 @@ export interface HamburgerButtonProps {
   onClick?: () => void
 }
 
-export const HamburgerButton = ({
-  id,
-  className,
-  style,
-  sekai,
-  themeMode,
-  open,
-  onClick
-}: HamburgerButtonProps) => {
+export const HamburgerButton = ({ sekai, themeMode, open, ...rest }: HamburgerButtonProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
   const sekaiColorBg = convertHexToRgba(sekaiColor, 0.8)
 
@@ -36,32 +28,20 @@ export const HamburgerButton = ({
     '--sekai-color-bg': sekaiColorBg
   }
 
-  const handleClick = () => {
-    onClick?.()
-  }
-
   return (
     <button
-      id={id}
+      {...rest}
       type="button"
-      className={clsx(styles[`sekai-hamburger-button`], className)}
-      onClick={handleClick}
-      style={{ ...(optionStyle as React.CSSProperties), ...style }}>
-      <span
-        className={clsx(
-          styles[`sekai-hamburger-line-${modeTheme}`],
-          open && styles['sekai-open']
-        )}></span>
-      <span
-        className={clsx(
-          styles[`sekai-hamburger-line-${modeTheme}`],
-          open && styles['sekai-open']
-        )}></span>
-      <span
-        className={clsx(
-          styles[`sekai-hamburger-line-${modeTheme}`],
-          open && styles['sekai-open']
-        )}></span>
+      className={clsx(styles[`sekai-hamburger-button-${modeTheme}`], rest.className)}
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
+      aria-expanded={open}
+      aria-label={open ? 'Close menu' : 'Open menu'}>
+      {Array.from({ length: 3 }).map((_, index) => (
+        <span
+          key={`hamburger-line-${index}`}
+          className={clsx(styles['sekai-hamburger-line'], open && styles['sekai-open'])}
+        />
+      ))}
     </button>
   )
 }

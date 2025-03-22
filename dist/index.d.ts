@@ -113,7 +113,7 @@ interface HamburgerButtonProps {
     open: boolean;
     onClick?: () => void;
 }
-declare const HamburgerButton: ({ id, className, style, sekai, themeMode, open, onClick }: HamburgerButtonProps) => React.JSX.Element;
+declare const HamburgerButton: ({ sekai, themeMode, open, ...rest }: HamburgerButtonProps) => React.JSX.Element;
 
 type StrongButtonProps = {
     id?: string;

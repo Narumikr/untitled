@@ -56,3 +56,23 @@ $hamburger-line-height: 4px;
     }
   }
 }
+
+.sekai-hamburger-button-light {
+  @extend .sekai-hamburger-button;
+  &:focus-visible {
+    outline: 1px solid color.mix(white, global.$color-bg-dark, 25%);
+  }
+  .sekai-hamburger-line {
+    background-color: color.mix(white, global.$color-bg-dark, 25%);
+  }
+}
+
+.sekai-hamburger-button-dark {
+  @extend .sekai-hamburger-button;
+  &:focus-visible {
+    outline: 1px solid color.mix(black, global.$color-bg-light, 10%);
+  }
+  .sekai-hamburger-line {
+    background-color: color.mix(black, global.$color-bg-light, 10%);
+  }
+}
