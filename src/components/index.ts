@@ -16,6 +16,8 @@ export * from './dialog/XoMikuDialog'
 
 export * from './dialog/XxMikuDialog'
 
+export * from './drawer/Drawer'
+
 export * from './link/TextLink'
 
 export * from './list/List'

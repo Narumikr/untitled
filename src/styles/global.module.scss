@@ -12,7 +12,8 @@ $color-overlay-dark: #ffffff4d;
 
 /* Styles for z-index */
 $overlay-z-index: 1000;
-$modal-z-index: 1010;
+$drawer-z-index: 1200;
+$modal-z-index: 1300;
 
 .sekai-color-light {
   color: $color-text-light;

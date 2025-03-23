@@ -1,0 +1,75 @@
+@use '../../styles/global.module.scss' as global;
+
+$max-drawer-size: 390px;
+
+.sekai-drawer {
+  transition:
+    opacity 0.3s ease-out,
+    visibility 0s linear 0.3s;
+  overflow: hidden;
+
+  &.sekai-drawer-visible {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  &.sekai-drawer-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.sekai-drawer-contents-right,
+.sekai-drawer-contents-left {
+  position: absolute;
+  top: 0;
+  width: 80%;
+  height: 100%;
+  max-width: $max-drawer-size;
+  background-color: var(--sekai-color-bg);
+  z-index: global.$drawer-z-index;
+}
+.sekai-drawer-contents-right {
+  right: calc(-1 * $max-drawer-size);
+  transition: right 0.3s ease-out;
+
+  &.sekai-drawer-visible {
+    right: 0;
+  }
+}
+.sekai-drawer-contents-left {
+  left: calc(-1 * $max-drawer-size);
+  transition: left 0.3s ease-out;
+
+  &.sekai-drawer-visible {
+    left: 0;
+  }
+}
+
+.sekai-drawer-contents-top,
+.sekai-drawer-contents-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  max-height: $max-drawer-size;
+  background-color: var(--sekai-color-bg);
+  z-index: global.$drawer-z-index;
+}
+.sekai-drawer-contents-top {
+  top: calc(-1 * $max-drawer-size);
+  transition: top 0.3s ease-out;
+
+  &.sekai-drawer-visible {
+    top: 0;
+  }
+}
+.sekai-drawer-contents-bottom {
+  bottom: calc(-1 * $max-drawer-size);
+  transition: bottom 0.3s ease-out;
+
+  &.sekai-drawer-visible {
+    bottom: 0;
+  }
+}
