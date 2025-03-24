@@ -89,7 +89,7 @@ const TemplateStory = {
 export const StickyNoteButtonLight: Story = {
   ...TemplateStory,
   args: {
-    id: 'list-item-button-default-light',
+    id: 'sticky-note-button-light',
     sekai: 'Miku',
     children: <></>,
     as: 'button',
@@ -104,7 +104,7 @@ export const StickyNoteButtonLight: Story = {
 export const StickyNoteButtonDark: Story = {
   ...TemplateStory,
   args: {
-    id: 'list-item-button-default-dark',
+    id: 'sticky-note-button-dark',
     sekai: 'Miku',
     children: <></>,
     as: 'button',
@@ -119,7 +119,7 @@ export const StickyNoteButtonDark: Story = {
 export const StickyNoteTextLight: Story = {
   ...TemplateStory,
   args: {
-    id: 'list-item-button-default-light',
+    id: 'sticky-note-text-light',
     sekai: 'Miku',
     children: <></>,
     as: 'text'
@@ -133,7 +133,7 @@ export const StickyNoteTextLight: Story = {
 export const StickyNoteTextDark: Story = {
   ...TemplateStory,
   args: {
-    id: 'list-item-button-default-dark',
+    id: 'sticky-note-text-dark',
     sekai: 'Miku',
     children: <></>,
     as: 'text'
