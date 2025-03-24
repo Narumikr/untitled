@@ -1,0 +1,21 @@
+.sekai-sticky-note,
+.sekai-sticky-note > button {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sekai-sticky-note-parts {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--sekai-color-bg);
+  padding-right: 8px;
+
+  .sekai-sticky-note-design {
+    width: 15px;
+    height: 100%;
+    background-color: var(--sekai-color);
+    margin-right: 8px;
+  }
+}

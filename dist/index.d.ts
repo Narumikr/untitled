@@ -307,6 +307,18 @@ interface ListItemTextProps {
 }
 declare const ListItemText: ({ id, className, style, sekai, themeMode, children, as, icon }: ListItemTextProps) => React.JSX.Element;
 
+interface StickyNoteProps {
+    id?: string;
+    className?: string;
+    style?: React.CSSProperties;
+    sekai?: ColorsSekaiKey;
+    children: React.ReactNode;
+    as?: 'button' | 'text';
+    disabled?: boolean;
+    onClick?: () => void;
+}
+declare const StickyNote: ({ sekai, children, as, ...rest }: StickyNoteProps) => React.JSX.Element;
+
 type SekaiTheme = {
     palette: {
         sekai: ColorsSekaiKey;
@@ -359,4 +371,4 @@ declare const convertHexToRgbMixWithWhite: (hex: string, alpha: number) => strin
 declare const fireOnEnterKey: (eventHandler: (e: React.KeyboardEvent<HTMLDivElement>) => void) => (e: React.KeyboardEvent<HTMLDivElement>) => void;
 declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 
-export { Accordion, type AccordionProps, BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, Card, CardContent, type CardContentProps, type CardProps, CardTitle, type CardTitleProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, Drawer, type DrawerPosition, type DrawerProps, HamburgerButton, type HamburgerButtonProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, NamePlate, type NamePlateProps, OutlineText, type OutlineTextProps, type PaletteMode, PrskLinkCard, type PrskLinkCardProps, type SekaiTheme, StrongButton, type StrongButtonProps, TextLink, type TextLinkProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgbMixWithWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
+export { Accordion, type AccordionProps, BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, Card, CardContent, type CardContentProps, type CardProps, CardTitle, type CardTitleProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, Drawer, type DrawerPosition, type DrawerProps, HamburgerButton, type HamburgerButtonProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, NamePlate, type NamePlateProps, OutlineText, type OutlineTextProps, type PaletteMode, PrskLinkCard, type PrskLinkCardProps, type SekaiTheme, StickyNote, type StickyNoteProps, StrongButton, type StrongButtonProps, TextLink, type TextLinkProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgbMixWithWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
