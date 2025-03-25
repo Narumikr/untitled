@@ -26,6 +26,8 @@ export * from './list/ListItemButton'
 
 export * from './list/ListItemText'
 
+export * from './list/StickyNote'
+
 export * from './provider/YourSekaiProvider'
 
 export * from './text/NamePlate'
