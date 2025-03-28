@@ -131,7 +131,7 @@ const getContainerPortalRoot = (context: StoryContext, isDocs: boolean) => {
     ? nodeList.length > 1
       ? nodeList[isPrimary ? 0 : 1]?.querySelector('.docs-story')
       : document.getElementById(`anchor--${context.id}`)?.querySelector('.docs-story')
-    : document.getElementById('storybook-root')
+    : document.body
 }
 
 export default preview
