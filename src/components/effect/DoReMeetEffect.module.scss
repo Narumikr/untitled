@@ -1,0 +1,20 @@
+@use '../../styles/global.module.scss' as global;
+
+.sekai-doremeet-effect {
+  text-shadow:
+    0 0 5px var(--sekai-color),
+    0 0 10px var(--sekai-color),
+    0 0 20px var(--sekai-color),
+    0 0 40px var(--sekai-color);
+  transition: all 0.39s ease;
+}
+
+.sekai-doremeet-effect-light {
+  @extend .sekai-doremeet-effect;
+  color: global.$color-text-light;
+}
+
+.sekai-doremeet-effect-dark {
+  @extend .sekai-doremeet-effect;
+  color: global.$color-text-dark;
+}

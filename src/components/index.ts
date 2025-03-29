@@ -18,6 +18,8 @@ export * from './dialog/XxMikuDialog'
 
 export * from './drawer/Drawer'
 
+export * from './effect/DoReMeetEffect'
+
 export * from './link/TextLink'
 
 export * from './list/List'
