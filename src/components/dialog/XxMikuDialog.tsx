@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom'
 import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog'
 
 import { XxMikuSvg } from '@/img/xxmiku'
+import { DialogOverlay } from '@/internal/commonComponents'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { fireOnEscapeKey } from '@/utils/operation'
 
@@ -41,7 +42,6 @@ export const XxMikuDialog = ({
   buttons,
   ...rest
 }: XxMikuDialogProps) => {
-  const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
   const portalContainer = containerComponent || document.body
   const { modeTheme } = useOptionalSekai({ mode: themeMode })
 
@@ -69,38 +69,38 @@ export const XxMikuDialog = ({
       }),
     [buttons, modeTheme]
   )
+
+  const overlayProps = { open, themeMode, children, containerComponent }
   const buttonsProps = { themeMode, buttons: xxButtonProps }
 
   return createPortal(
-    <div className={styles[displayDialog]}>
-      <div className={globalStyles[`sekai-overlay-${modeTheme}`]}>
-        <div
-          {...rest}
-          role="dialog"
-          className={clsx(
-            globalStyles['sekai-absolute-center'],
-            styles[`sekai-container-${size}`],
-            styles[`sekai-${modeTheme}`],
-            rest.className
-          )}
-          aria-label={title || 'Dialog'}>
-          <XxMikuSvg className={styles[`sekai-xxmiku-svg-1-${size}`]} />
-          <XxMikuSvg className={styles[`sekai-xxmiku-svg-2-${size}`]} />
-          <XxMikuSvg className={styles[`sekai-xxmiku-svg-3-${size}`]} type={'type2'} />
-          <XxMikuSvg className={styles[`sekai-xxmiku-svg-4-${size}`]} type={'type2'} />
-          <XxMikuSvg className={styles[`sekai-xxmiku-svg-5-${size}`]} type={'type2'} />
-          <div className={styles['sekai-content-wrap']}>
-            <DialogTitleHeader id="xo-miku-dialog-header" {...headerProps} />
-            {children}
-            <DialogButtons
-              id="xo-miku-dialog-buttons"
-              className={styles['sekai-xxmiku-button']}
-              {...buttonsProps}
-            />
-          </div>
+    <DialogOverlay {...overlayProps}>
+      <div
+        {...rest}
+        role="dialog"
+        className={clsx(
+          globalStyles['sekai-absolute-center'],
+          styles[`sekai-container-${size}`],
+          styles[`sekai-${modeTheme}`],
+          rest.className
+        )}
+        aria-label={title || 'Dialog'}>
+        <XxMikuSvg className={styles[`sekai-xxmiku-svg-1-${size}`]} />
+        <XxMikuSvg className={styles[`sekai-xxmiku-svg-2-${size}`]} />
+        <XxMikuSvg className={styles[`sekai-xxmiku-svg-3-${size}`]} type={'type2'} />
+        <XxMikuSvg className={styles[`sekai-xxmiku-svg-4-${size}`]} type={'type2'} />
+        <XxMikuSvg className={styles[`sekai-xxmiku-svg-5-${size}`]} type={'type2'} />
+        <div className={styles['sekai-content-wrap']}>
+          <DialogTitleHeader id="xo-miku-dialog-header" {...headerProps} />
+          {children}
+          <DialogButtons
+            id="xo-miku-dialog-buttons"
+            className={styles['sekai-xxmiku-button']}
+            {...buttonsProps}
+          />
         </div>
       </div>
-    </div>,
+    </DialogOverlay>,
     portalContainer
   )
 }

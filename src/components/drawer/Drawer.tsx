@@ -47,6 +47,9 @@ export const Drawer = ({
   const optionStyle = {
     '--sekai-color-bg': sekaiColorBg
   }
+  const posAbsoluteStyle = {
+    ...(containerComponent && { position: 'absolute' })
+  }
 
   return createPortal(
     <div
@@ -55,6 +58,7 @@ export const Drawer = ({
         styles['sekai-drawer'],
         styles[displayDrawer]
       )}
+      style={posAbsoluteStyle as React.CSSProperties}
       aria-hidden="true"
       onClick={onClose}>
       <div

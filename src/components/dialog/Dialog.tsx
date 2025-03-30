@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
 import { ClearSvg } from '@/img/clear'
+import { DialogOverlay } from '@/internal/commonComponents'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
 import { fireOnEscapeKey } from '@/utils/operation'
@@ -58,7 +59,6 @@ export const Dialog = ({
   dialogButtons,
   ...rest
 }: DialogProps) => {
-  const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
   const portalContainer = containerComponent || document.body
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
@@ -77,31 +77,30 @@ export const Dialog = ({
     return () => document.removeEventListener('keydown', handleKeyDownEsc)
   }, [open])
 
+  const overlayProps = { open, themeMode, children, containerComponent }
   const headerProps = { sekai, themeMode, size, onClose, title, showCloseIcon }
   const buttonsProps = { sekai, themeMode, buttons }
 
   return createPortal(
-    <div className={styles[displayDialog]}>
-      <div className={globalStyles[`sekai-overlay-${modeTheme}`]}>
-        <div
-          {...rest}
-          role="dialog"
-          className={clsx(
-            globalStyles[`sekai-color-${modeTheme}`],
-            globalStyles['sekai-absolute-center'],
-            styles[`sekai-container-${size}`],
-            rest.className
-          )}
-          style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
-          aria-label={title || 'Dialog'}>
-          <div className={styles['sekai-content-wrap']}>
-            <DialogTitleHeader {...headerProps} />
-            {children}
-          </div>
-          {dialogButtons || <DialogButtons {...buttonsProps} />}
+    <DialogOverlay {...overlayProps}>
+      <div
+        {...rest}
+        role="dialog"
+        className={clsx(
+          globalStyles[`sekai-color-${modeTheme}`],
+          globalStyles['sekai-absolute-center'],
+          styles[`sekai-container-${size}`],
+          rest.className
+        )}
+        style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
+        aria-label={title || 'Dialog'}>
+        <div className={styles['sekai-content-wrap']}>
+          <DialogTitleHeader {...headerProps} />
+          {children}
         </div>
+        {dialogButtons || <DialogButtons {...buttonsProps} />}
       </div>
-    </div>,
+    </DialogOverlay>,
     portalContainer
   )
 }
