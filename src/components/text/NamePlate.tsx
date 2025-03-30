@@ -21,13 +21,11 @@ export interface NamePlateProps {
 }
 
 export const NamePlate = ({
-  id,
-  className,
-  style,
   sekai,
   themeMode,
   text,
-  colorCount = 1
+  colorCount = 1,
+  ...rest
 }: NamePlateProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
@@ -40,9 +38,9 @@ export const NamePlate = ({
 
   return (
     <div
-      id={id}
-      className={clsx(styles[`sekai-name-plate-${modeTheme}`], className)}
-      style={{ ...(optionStyle as CSSProperties), ...style }}>
+      {...rest}
+      className={clsx(styles[`sekai-name-plate-${modeTheme}`], rest.className)}
+      style={{ ...(optionStyle as CSSProperties), ...rest.style }}>
       <span className={styles['sekai-name-plate-color']}>{colorText}</span>
       <span>{normalText}</span>
     </div>

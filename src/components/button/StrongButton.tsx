@@ -22,14 +22,11 @@ export type StrongButtonProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const StrongButton = ({
-  id,
-  className,
-  style,
   sekai,
   themeMode,
   children,
   disabled = false,
-  ...buttonProps
+  ...rest
 }: StrongButtonProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
@@ -42,12 +39,11 @@ export const StrongButton = ({
 
   return (
     <button
-      id={id}
+      {...rest}
       type="button"
-      className={clsx(styles[`sekai-strong-button-${modeTheme}`], className)}
-      style={{ ...(optionStyle as React.CSSProperties), ...style }}
-      disabled={disabled}
-      {...buttonProps}>
+      className={clsx(styles[`sekai-strong-button-${modeTheme}`], rest.className)}
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
+      disabled={disabled}>
       {children}
     </button>
   )

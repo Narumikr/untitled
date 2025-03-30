@@ -25,15 +25,12 @@ export type BasicButtonProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const BasicButton = ({
-  id,
-  className,
-  style,
   sekai,
   withText = false,
   themeMode,
   children,
   disabled = false,
-  ...buttonProps
+  ...rest
 }: BasicButtonProps) => {
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
@@ -47,16 +44,15 @@ export const BasicButton = ({
 
   return (
     <button
-      id={id}
+      {...rest}
       type="button"
       className={clsx(
         styles[`sekai-basic-button-${modeTheme}`],
         globalStyles[`sekai-color-${modeTheme}`],
-        className
+        rest.className
       )}
-      style={{ ...(optionStyle as React.CSSProperties), ...style }}
-      disabled={disabled}
-      {...buttonProps}>
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
+      disabled={disabled}>
       {children}
     </button>
   )

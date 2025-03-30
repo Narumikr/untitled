@@ -45,9 +45,6 @@ export interface DialogProps {
 }
 
 export const Dialog = ({
-  id,
-  className,
-  style,
   sekai,
   open,
   themeMode,
@@ -58,7 +55,8 @@ export const Dialog = ({
   title,
   showCloseIcon = false,
   buttons,
-  dialogButtons
+  dialogButtons,
+  ...rest
 }: DialogProps) => {
   const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
   const portalContainer = containerComponent || document.body
@@ -86,15 +84,15 @@ export const Dialog = ({
     <div className={styles[displayDialog]}>
       <div className={globalStyles[`sekai-overlay-${modeTheme}`]}>
         <div
-          id={id}
+          {...rest}
           role="dialog"
           className={clsx(
             globalStyles[`sekai-color-${modeTheme}`],
             globalStyles['sekai-absolute-center'],
             styles[`sekai-container-${size}`],
-            className
+            rest.className
           )}
-          style={{ ...(optionStyle as React.CSSProperties), ...style }}
+          style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
           aria-label={title || 'Dialog'}>
           <div className={styles['sekai-content-wrap']}>
             <DialogTitleHeader {...headerProps} />
@@ -114,23 +112,18 @@ export type DialogTitleHeaderProps = Pick<
 > & { id?: string; className?: string; style?: React.CSSProperties }
 
 export const DialogTitleHeader = ({
-  id,
-  className,
-  style,
   sekai,
   themeMode,
   size,
   onClose,
   title,
-  showCloseIcon
+  showCloseIcon,
+  ...rest
 }: DialogTitleHeaderProps) => {
   if (!title && !showCloseIcon) return null
 
   return (
-    <div
-      id={id}
-      className={clsx(styles[`sekai-title-header-${size}`], className)}
-      style={style}>
+    <div {...rest} className={clsx(styles[`sekai-title-header-${size}`], rest.className)}>
       <h2>{title}</h2>
       {showCloseIcon ? (
         <button type="button" className={styles['sekai-close-icon']} onClick={onClose}>
@@ -147,14 +140,7 @@ export type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'butt
   style?: React.CSSProperties
 }
 
-export const DialogButtons = ({
-  id,
-  className,
-  style,
-  sekai,
-  themeMode,
-  buttons
-}: DialogButtonsProps) => {
+export const DialogButtons = ({ sekai, themeMode, buttons, ...rest }: DialogButtonsProps) => {
   if (!buttons || !buttons.length) return null
 
   const buttonLength = buttons.length
@@ -171,10 +157,10 @@ export const DialogButtons = ({
   }
 
   return (
-    <div id={id} className={clsx(styles['sekai-buttons-area'], className)} style={style}>
+    <div {...rest} className={clsx(styles['sekai-buttons-area'], rest.className)}>
       {[...buttons.slice(0, 2)].map((el, index) => (
         <button
-          id={`${id ? id : 'dialog-button'}-${index + 1}`}
+          id={`${rest.id ? rest.id : 'dialog-button'}-${index + 1}`}
           key={el.text}
           type="button"
           onClick={el.onClick}

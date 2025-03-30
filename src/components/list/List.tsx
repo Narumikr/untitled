@@ -25,14 +25,12 @@ export interface ListProps {
 }
 
 export const List = ({
-  id,
-  className,
-  style,
   sekai,
   themeMode,
   children,
   as = 'ul',
-  noBullet = true
+  noBullet = true,
+  ...rest
 }: ListProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
@@ -46,17 +44,17 @@ export const List = ({
   return (
     <ListContext.Provider value={true}>
       <Component
-        id={id}
+        {...rest}
         className={clsx(
           globalStyles[`sekai-color-${modeTheme}`],
           styles['sekai-list'],
-          className
+          rest.className
         )}
         style={{
           listStyleType: listStyleType,
           paddingLeft: paddingLeft,
           ...(optionStyle as React.CSSProperties),
-          ...style
+          ...rest.style
         }}>
         {children}
       </Component>

@@ -24,16 +24,14 @@ export interface TextLinkProps {
 }
 
 export const TextLink = ({
-  id,
-  className,
-  style,
   sekai,
   themeMode,
   text,
   href,
   isExternal = true,
   disabled = false,
-  ariaLabel
+  ariaLabel,
+  ...rest
 }: TextLinkProps) => {
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
@@ -46,13 +44,13 @@ export const TextLink = ({
 
   return (
     <a
-      id={id}
+      {...rest}
       className={clsx(
         styles[`sekai-text-link-${modeTheme}`],
         disabled && styles['sekai-disabled'],
-        className
+        rest.className
       )}
-      style={{ ...(optionStyle as React.CSSProperties), ...style }}
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
       href={href}
       aria-label={ariaLabel}
       aria-disabled={disabled}
