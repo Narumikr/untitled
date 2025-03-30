@@ -18,14 +18,7 @@ export interface OutlineTextProps {
   text: string
 }
 
-export const OutlineText = ({
-  id,
-  className,
-  style,
-  sekai,
-  themeMode,
-  text
-}: OutlineTextProps) => {
+export const OutlineText = ({ sekai, themeMode, text, ...rest }: OutlineTextProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
   const optionStyle = {
@@ -34,9 +27,9 @@ export const OutlineText = ({
 
   return (
     <span
-      id={id}
-      className={clsx(styles[`sekai-outline-text-${modeTheme}`], className)}
-      style={{ ...(optionStyle as React.CSSProperties), ...style }}
+      {...rest}
+      className={clsx(styles[`sekai-outline-text-${modeTheme}`], rest.className)}
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
       data-text={text}
       aria-label={text}>
       {text}

@@ -26,14 +26,12 @@ export interface ListItemTextProps {
 }
 
 export const ListItemText = ({
-  id,
-  className,
-  style,
   sekai,
   themeMode,
   children,
   as = 'p',
-  icon
+  icon,
+  ...rest
 }: ListItemTextProps) => {
   const isListWrap = useContext(ListContext)
   if (!isListWrap) ConsoleWarning('⚠ Warning: <ListItemText> should be used inside <List>')
@@ -49,13 +47,13 @@ export const ListItemText = ({
 
   return (
     <li
-      id={id}
+      {...rest}
       className={clsx(
         styles['sekai-list-item-text'],
         globalStyles[`sekai-color-${modeTheme}`],
-        className
+        rest.className
       )}
-      style={{ ...(optionStyle as React.CSSProperties), ...style }}>
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {getImgComponent(icon)}
       {isChildrenElement ? children : <Component>{children}</Component>}
     </li>

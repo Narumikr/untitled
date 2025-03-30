@@ -26,15 +26,13 @@ export interface AccordionProps {
 }
 
 export const Accordion = ({
-  id,
-  className,
-  style,
   sekai,
   themeMode,
   summary,
   summaryStyles,
   defaultOpen = false,
-  details
+  details,
+  ...rest
 }: AccordionProps) => {
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
@@ -49,9 +47,9 @@ export const Accordion = ({
 
   return (
     <div
-      id={id}
-      className={clsx(styles['sekai-accordion-container'], className)}
-      style={{ ...(optionStyle as React.CSSProperties), ...style }}>
+      {...rest}
+      className={clsx(styles['sekai-accordion-container'], rest.className)}
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       <button
         className={clsx(
           styles['sekai-accordion-summary'],

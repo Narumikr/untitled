@@ -89,7 +89,7 @@ interface AccordionProps {
     defaultOpen?: boolean;
     details: string | string[] | React.ReactNode;
 }
-declare const Accordion: ({ id, className, style, sekai, themeMode, summary, summaryStyles, defaultOpen, details }: AccordionProps) => React.JSX.Element;
+declare const Accordion: ({ sekai, themeMode, summary, summaryStyles, defaultOpen, details, ...rest }: AccordionProps) => React.JSX.Element;
 
 type BasicButtonProps = {
     id?: string;
@@ -102,7 +102,7 @@ type BasicButtonProps = {
     disabled?: boolean;
     onClick?: () => void;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
-declare const BasicButton: ({ id, className, style, sekai, withText, themeMode, children, disabled, ...buttonProps }: BasicButtonProps) => React.JSX.Element;
+declare const BasicButton: ({ sekai, withText, themeMode, children, disabled, ...rest }: BasicButtonProps) => React.JSX.Element;
 
 interface HamburgerButtonProps {
     id?: string;
@@ -125,7 +125,7 @@ type StrongButtonProps = {
     disabled?: boolean;
     onClick?: () => void;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
-declare const StrongButton: ({ id, className, style, sekai, themeMode, children, disabled, ...buttonProps }: StrongButtonProps) => React.JSX.Element;
+declare const StrongButton: ({ sekai, themeMode, children, disabled, ...rest }: StrongButtonProps) => React.JSX.Element;
 
 interface CardProps {
     id?: string;
@@ -135,7 +135,7 @@ interface CardProps {
     themeMode?: PaletteMode;
     children: React.ReactNode;
 }
-declare const Card: ({ id, className, style, sekai, themeMode, children }: CardProps) => React.JSX.Element;
+declare const Card: ({ sekai, themeMode, children, ...rest }: CardProps) => React.JSX.Element;
 interface CardContentProps {
     id?: string;
     className?: string;
@@ -143,7 +143,7 @@ interface CardContentProps {
     themeMode?: PaletteMode;
     children: React.ReactNode;
 }
-declare const CardContent: ({ id, className, style, themeMode, children }: CardContentProps) => React.JSX.Element;
+declare const CardContent: ({ themeMode, children, ...rest }: CardContentProps) => React.JSX.Element;
 interface CardTitleProps {
     id?: string;
     className?: string;
@@ -153,7 +153,7 @@ interface CardTitleProps {
     title: string;
     underline?: true;
 }
-declare const CardTitle: ({ id, className, style, sekai, themeMode, title, underline }: CardTitleProps) => React.JSX.Element;
+declare const CardTitle: ({ sekai, themeMode, title, underline, ...rest }: CardTitleProps) => React.JSX.Element;
 
 interface PrskLinkCardProps {
     id?: string;
@@ -168,7 +168,7 @@ interface PrskLinkCardProps {
     subText: string;
     icon: string | React.ReactNode;
 }
-declare const PrskLinkCard: ({ id, className, style, sekai, themeMode, height, width, onClick, title, subText, icon }: PrskLinkCardProps) => React.JSX.Element;
+declare const PrskLinkCard: ({ sekai, themeMode, height, width, onClick, title, subText, icon, ...rest }: PrskLinkCardProps) => React.JSX.Element;
 
 type DialogSize = 'narrow' | 'medium' | 'wide';
 type DialogButtonType = 'normal' | 'strong';
@@ -196,19 +196,19 @@ interface DialogProps {
     buttons?: DialogButton[];
     dialogButtons?: React.ReactNode;
 }
-declare const Dialog: ({ id, className, style, sekai, open, themeMode, children, containerComponent, size, onClose, title, showCloseIcon, buttons, dialogButtons }: DialogProps) => React.ReactPortal;
+declare const Dialog: ({ sekai, open, themeMode, children, containerComponent, size, onClose, title, showCloseIcon, buttons, dialogButtons, ...rest }: DialogProps) => React.ReactPortal;
 type DialogTitleHeaderProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'size' | 'onClose' | 'title' | 'showCloseIcon'> & {
     id?: string;
     className?: string;
     style?: React.CSSProperties;
 };
-declare const DialogTitleHeader: ({ id, className, style, sekai, themeMode, size, onClose, title, showCloseIcon }: DialogTitleHeaderProps) => React.JSX.Element | null;
+declare const DialogTitleHeader: ({ sekai, themeMode, size, onClose, title, showCloseIcon, ...rest }: DialogTitleHeaderProps) => React.JSX.Element | null;
 type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'buttons'> & {
     id?: string;
     className?: string;
     style?: React.CSSProperties;
 };
-declare const DialogButtons: ({ id, className, style, sekai, themeMode, buttons }: DialogButtonsProps) => React.JSX.Element | null;
+declare const DialogButtons: ({ sekai, themeMode, buttons, ...rest }: DialogButtonsProps) => React.JSX.Element | null;
 
 interface XoMikuDialogProps {
     open: boolean;
@@ -223,7 +223,7 @@ interface XoMikuDialogProps {
     title?: string;
     buttons?: DialogButton[];
 }
-declare const XoMikuDialog: ({ open, id, className, style, themeMode, children, size, containerComponent, onClose, title, buttons }: XoMikuDialogProps) => React.ReactPortal;
+declare const XoMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons, ...rest }: XoMikuDialogProps) => React.ReactPortal;
 
 interface XxMikuDialogProps {
     open: boolean;
@@ -238,7 +238,7 @@ interface XxMikuDialogProps {
     title?: string;
     buttons?: DialogButton[];
 }
-declare const XxMikuDialog: ({ open, id, className, style, themeMode, children, size, containerComponent, onClose, title, buttons }: XxMikuDialogProps) => React.ReactPortal;
+declare const XxMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons, ...rest }: XxMikuDialogProps) => React.ReactPortal;
 
 type DrawerPosition = 'top' | 'right' | 'bottom' | 'left';
 interface DrawerProps {
@@ -287,7 +287,7 @@ interface TextLinkProps {
     disabled?: boolean;
     ariaLabel?: string;
 }
-declare const TextLink: ({ id, className, style, sekai, themeMode, text, href, isExternal, disabled, ariaLabel }: TextLinkProps) => React.JSX.Element;
+declare const TextLink: ({ sekai, themeMode, text, href, isExternal, disabled, ariaLabel, ...rest }: TextLinkProps) => React.JSX.Element;
 
 declare const ListContext: React.Context<boolean>;
 interface ListProps {
@@ -300,7 +300,7 @@ interface ListProps {
     as?: 'ul' | 'ol';
     noBullet?: boolean;
 }
-declare const List: ({ id, className, style, sekai, themeMode, children, as, noBullet }: ListProps) => React.JSX.Element;
+declare const List: ({ sekai, themeMode, children, as, noBullet, ...rest }: ListProps) => React.JSX.Element;
 
 interface ListItemButtonProps {
     id?: string;
@@ -325,7 +325,7 @@ interface ListItemTextProps {
     as?: 'p' | 'span';
     icon?: 'string' | React.ReactNode;
 }
-declare const ListItemText: ({ id, className, style, sekai, themeMode, children, as, icon }: ListItemTextProps) => React.JSX.Element;
+declare const ListItemText: ({ sekai, themeMode, children, as, icon, ...rest }: ListItemTextProps) => React.JSX.Element;
 
 interface StickyNoteProps {
     id?: string;
@@ -370,7 +370,7 @@ interface NamePlateProps {
     text: string;
     colorCount?: number;
 }
-declare const NamePlate: ({ id, className, style, sekai, themeMode, text, colorCount }: NamePlateProps) => React.JSX.Element;
+declare const NamePlate: ({ sekai, themeMode, text, colorCount, ...rest }: NamePlateProps) => React.JSX.Element;
 
 interface OutlineTextProps {
     id?: string;
@@ -380,7 +380,7 @@ interface OutlineTextProps {
     themeMode?: PaletteMode;
     text: string;
 }
-declare const OutlineText: ({ id, className, style, sekai, themeMode, text }: OutlineTextProps) => React.JSX.Element;
+declare const OutlineText: ({ sekai, themeMode, text, ...rest }: OutlineTextProps) => React.JSX.Element;
 
 declare const useCreateSekai: () => YourSekaiContextProps;
 

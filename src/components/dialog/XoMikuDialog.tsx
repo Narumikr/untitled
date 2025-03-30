@@ -32,16 +32,14 @@ export interface XoMikuDialogProps {
 
 export const XoMikuDialog = ({
   open,
-  id,
-  className,
-  style,
   themeMode,
   children,
   size = 'medium',
   containerComponent,
   onClose,
   title,
-  buttons
+  buttons,
+  ...rest
 }: XoMikuDialogProps) => {
   const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
   const portalContainer = containerComponent || document.body
@@ -74,14 +72,13 @@ export const XoMikuDialog = ({
     <div className={styles[displayDialog]}>
       <div className={globalStyles[`sekai-overlay-${modeTheme}`]}>
         <div
-          id={id}
+          {...rest}
           role="dialog"
           className={clsx(
             globalStyles['sekai-absolute-center'],
             styles[`sekai-container-${size}`],
-            className
+            rest.className
           )}
-          style={style}
           aria-label={title || 'Dialog'}>
           <XoMikuSvg className={styles[`sekai-xomiku-svg-1-${size}`]} />
           <XoMikuSvg className={styles[`sekai-xomiku-svg-2-${size}`]} />

@@ -21,7 +21,7 @@ export interface CardProps {
   children: React.ReactNode
 }
 
-export const Card = ({ id, className, style, sekai, themeMode, children }: CardProps) => {
+export const Card = ({ sekai, themeMode, children, ...rest }: CardProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
   const sekaiColoShadow = convertHexToRgba(sekaiColor, 0.25)
@@ -33,13 +33,13 @@ export const Card = ({ id, className, style, sekai, themeMode, children }: CardP
 
   return (
     <div
-      id={id}
+      {...rest}
       className={clsx(
         styles['sekai-card'],
         globalStyles[`sekai-color-${modeTheme}`],
-        className
+        rest.className
       )}
-      style={{ ...(optionStyle as React.CSSProperties), ...style }}>
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {children}
     </div>
   )
@@ -53,24 +53,17 @@ export interface CardContentProps {
   children: React.ReactNode
 }
 
-export const CardContent = ({
-  id,
-  className,
-  style,
-  themeMode,
-  children
-}: CardContentProps) => {
+export const CardContent = ({ themeMode, children, ...rest }: CardContentProps) => {
   const { modeTheme } = useOptionalSekai({ mode: themeMode })
 
   return (
     <div
-      id={id}
+      {...rest}
       className={clsx(
         styles['sekai-card-content'],
         globalStyles[`sekai-color-${modeTheme}`],
-        className
-      )}
-      style={style}>
+        rest.className
+      )}>
       {children}
     </div>
   )
@@ -86,15 +79,7 @@ export interface CardTitleProps {
   underline?: true
 }
 
-export const CardTitle = ({
-  id,
-  className = '',
-  style,
-  sekai,
-  themeMode,
-  title,
-  underline
-}: CardTitleProps) => {
+export const CardTitle = ({ sekai, themeMode, title, underline, ...rest }: CardTitleProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
   const optionStyle = {
@@ -103,14 +88,14 @@ export const CardTitle = ({
 
   return (
     <h3
-      id={id}
-      className={[
+      {...rest}
+      className={clsx(
         styles['sekai-card-title'],
         globalStyles[`sekai-color-${modeTheme}`],
         underline && styles['sekai-underline'],
-        className
-      ].join(' ')}
-      style={{ ...(optionStyle as React.CSSProperties), ...style }}>
+        rest.className
+      )}
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {title}
     </h3>
   )
