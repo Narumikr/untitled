@@ -92,8 +92,6 @@ const preview: Preview = {
         }
       })
 
-      if (isPortal) setStylesFixedToAbsolute()
-
       return (
         <YourSekaiProvider sekaiTheme={theme}>
           <Story
@@ -113,15 +111,6 @@ const sortStories = (context: DocsContextProps, mode: PaletteMode) => {
     .map((el) => (mode === el.parameters.background ? el.id : -1))
     .filter((el) => -1 !== el)
   return storyIds
-}
-
-const setStylesFixedToAbsolute = () => {
-  setTimeout(() => {
-    const modals = document.querySelectorAll('[class*=sekai-overlay]')
-    modals.forEach((modal) => {
-      ;(modal as HTMLElement).style.position = 'absolute'
-    })
-  }, 0)
 }
 
 const getContainerPortalRoot = (context: StoryContext, isDocs: boolean) => {
