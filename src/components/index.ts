@@ -32,6 +32,13 @@ export * from './list/ListItemText'
 
 export * from './list/StickyNote'
 
+<<<<<<< Updated upstream
+=======
+export * from './loading/Loading'
+
+export * from './pagination/Pagination'
+
+>>>>>>> Stashed changes
 export * from './provider/YourSekaiProvider'
 
 export * from './text/NamePlate'
