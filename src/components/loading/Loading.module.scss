@@ -1,0 +1,41 @@
+@use 'sass:math';
+
+$circle-diameter: 10px;
+$circle-count: 8;
+$radius: 25px;
+
+.sekai-loading {
+  position: relative;
+  width: 2 * $radius + $circle-diameter;
+  height: 2 * $radius + $circle-diameter;
+}
+
+.sekai-loading-circle {
+  position: absolute;
+  width: $circle-diameter;
+  height: $circle-diameter;
+  background-color: var(--sekai-color);
+  border-radius: 50%;
+  animation: fade 1s infinite ease-in-out;
+  top: calc(50% - $circle-diameter / 2);
+  left: calc(50% - $circle-diameter / 2);
+  transform: translate(-50%, -50%);
+}
+
+@for $i from 0 through $circle-count - 1 {
+  $angle: math.div(360deg, $circle-count) * $i;
+  .sekai-circle-animation-#{$i} {
+    transform: rotate($angle) translate($radius) rotate(-$angle);
+    animation-delay: #{0.125s * $i};
+  }
+}
+
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
