@@ -1,0 +1,81 @@
+@use '../../styles/global.module.scss' as global;
+
+$pagination-small: 30px;
+$pagination-middle: 40px;
+$pagination-large: 50px;
+
+// Pagination container styles
+.sekai-pagination {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.sekai-pagination-small {
+  @extend .sekai-pagination;
+  height: $pagination-small;
+}
+.sekai-pagination-medium {
+  @extend .sekai-pagination;
+  height: $pagination-middle;
+}
+.sekai-pagination-large {
+  @extend .sekai-pagination;
+  height: $pagination-large;
+}
+
+// Pagination button styles
+.sekai-pagination-button {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+  border: none;
+
+  &:hover {
+    background-color: var(--sekai-color-hover);
+  }
+  &:focus-visible {
+    outline: 1px solid var(--sekai-color);
+  }
+}
+.sekai-pagination-arrow {
+  width: 60%;
+  height: 60%;
+}
+.sekai-pagination-button-small {
+  @extend .sekai-pagination-button;
+  width: $pagination-small;
+  height: $pagination-small;
+}
+.sekai-pagination-button-medium {
+  @extend .sekai-pagination-button;
+  font-size: 1rem;
+  width: $pagination-middle;
+  height: $pagination-middle;
+}
+.sekai-pagination-button-large {
+  @extend .sekai-pagination-button;
+  font-size: 1.25rem;
+  width: $pagination-large;
+  height: $pagination-large;
+}
+
+.sekai-color-light {
+  color: global.$color-text-light;
+}
+.sekai-color-dark {
+  color: global.$color-text-dark;
+}
+.sekai-pagination-selected {
+  font-weight: bold;
+  color: var(--sekai-color);
+}
+
+.sekai-pagination-ellipsis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  aspect-ratio: 1;
+}

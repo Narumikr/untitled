@@ -34,6 +34,8 @@ export * from './list/StickyNote'
 
 export * from './loading/Loading'
 
+export * from './pagination/Pagination'
+
 export * from './provider/YourSekaiProvider'
 
 export * from './text/NamePlate'

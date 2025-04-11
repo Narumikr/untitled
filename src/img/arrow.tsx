@@ -7,26 +7,26 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
-export type ChevronVector = 'up' | 'down'
+export type ArrowVector = 'left' | 'right'
 
-export interface ChevronSvgIconProps {
+export interface ArrowSvgIconProps {
   className?: string
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
-  vector?: ChevronVector
+  vector?: ArrowVector
 }
 
-export const ChevronSvg = ({
+export const ArrowSvg = ({
   className,
   sekai,
   themeMode,
-  vector = 'up'
-}: ChevronSvgIconProps) => {
+  vector = 'right'
+}: ArrowSvgIconProps) => {
   const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
   const color = isLight ? '#212121' : '#e0e0e0'
 
-  const getCoordinate = (y: number) => {
-    return 'up' === vector ? Math.abs(0 - y) : Math.abs(100 - y)
+  const getCoordinate = (x: number) => {
+    return 'left' === vector ? Math.abs(0 - x) : Math.abs(100 - x)
   }
 
   return (
@@ -39,19 +39,19 @@ export const ChevronSvg = ({
       {sekai ? (
         <>
           <line
-            x1="47.25"
-            y1={getCoordinate(30.5)}
-            x2="85"
-            y2={getCoordinate(67.5)}
+            x1={getCoordinate(30.5)}
+            y1="52.75"
+            x2={getCoordinate(67.5)}
+            y2="15"
             stroke={sekaiColor}
             strokeWidth="15"
             opacity="0.7"
           />
           <line
-            x1="52.75"
-            y1={getCoordinate(30.5)}
-            x2="15"
-            y2={getCoordinate(67.5)}
+            x1={getCoordinate(30.5)}
+            y1="47.25"
+            x2={getCoordinate(67.5)}
+            y2="85"
             stroke={sekaiColor}
             strokeWidth="15"
             opacity="0.7"
@@ -59,18 +59,18 @@ export const ChevronSvg = ({
         </>
       ) : null}
       <line
-        x1="47.25"
-        y1={getCoordinate(30.5)}
-        x2="85"
-        y2={getCoordinate(67.5)}
+        x1={getCoordinate(30.5)}
+        y1="52.75"
+        x2={getCoordinate(67.5)}
+        y2="15"
         stroke={color}
         strokeWidth="8"
       />
       <line
-        x1="52.75"
-        y1={getCoordinate(30.5)}
-        x2="15"
-        y2={getCoordinate(67.5)}
+        x1={getCoordinate(30.5)}
+        y1="47.25"
+        x2={getCoordinate(67.5)}
+        y2="85"
         stroke={color}
         strokeWidth="8"
       />
