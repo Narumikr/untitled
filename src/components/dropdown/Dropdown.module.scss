@@ -1,0 +1,89 @@
+@use '../../styles/global.module.scss' as global;
+
+$dropdown-height: 40px;
+$dropdown-item-height: 40px;
+$dropdown-item-max-count: 5;
+
+.sekai-dropdown {
+  position: relative;
+  // height: fit-content;
+}
+.sekai-dropdown-light {
+  @extend .sekai-dropdown;
+}
+.sekai-dropdown-dark {
+  @extend .sekai-dropdown;
+}
+
+.sekai-dropdown-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background-color: inherit;
+  height: $dropdown-height;
+  padding: 4px 16px;
+  border-radius: 5px;
+  outline: 1px solid var(--sekai-color);
+}
+.sekai-dropdown-trigger-light {
+  @extend .sekai-dropdown-trigger;
+  color: global.$color-text-light;
+  border: 1px solid global.$color-text-light;
+}
+.sekai-dropdown-trigger-dark {
+  @extend .sekai-dropdown-trigger;
+  color: global.$color-text-dark;
+  border: 1px solid global.$color-text-dark;
+}
+.sekai-dropdown-icon {
+  width: calc($dropdown-height / 2);
+  height: calc($dropdown-height / 2);
+}
+.sekai-placeholder {
+  opacity: 0.5;
+}
+.sekai-dropdown-icon-open {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease-in-out;
+}
+.sekai-dropdown-icon-close {
+  transform: rotate(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.sekai-dropdown-options-list {
+  position: absolute;
+  z-index: global.$dropdown-z-index;
+  list-style: none;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 4px 0;
+  box-shadow: 0px 4px 8px var(--sekai-color-shadow);
+  transition: opacity 0.2s ease-in-out;
+  max-height: calc($dropdown-item-height * $dropdown-item-max-count);
+  overflow-y: auto;
+
+  &.sekai-dropdown-options-open {
+    opacity: 1;
+  }
+  &.sekai-dropdown-options-close {
+    opacity: 0;
+  }
+}
+.sekai-dropdown-option-item > button {
+  width: 100%;
+  height: $dropdown-item-height;
+  border: none;
+  background-color: inherit;
+  padding: 8px 16px;
+  text-align: left;
+
+  &:hover {
+    background-color: var(--sekai-color-hover);
+  }
+  &:focus-visible {
+    outline: 1px solid var(--sekai-color-shadow);
+  }
+}

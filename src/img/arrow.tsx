@@ -39,22 +39,20 @@ export const ArrowSvg = ({
       {sekai ? (
         <>
           <line
-            x1={getCoordinate(30.5)}
-            y1="52.75"
+            x1={getCoordinate(27.5)}
+            y1="55.25"
             x2={getCoordinate(67.5)}
             y2="15"
             stroke={sekaiColor}
             strokeWidth="15"
-            opacity="0.7"
           />
           <line
-            x1={getCoordinate(30.5)}
-            y1="47.25"
+            x1={getCoordinate(27.5)}
+            y1="45"
             x2={getCoordinate(67.5)}
             y2="85"
             stroke={sekaiColor}
             strokeWidth="15"
-            opacity="0.7"
           />
         </>
       ) : null}

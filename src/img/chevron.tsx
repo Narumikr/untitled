@@ -39,22 +39,20 @@ export const ChevronSvg = ({
       {sekai ? (
         <>
           <line
-            x1="47.25"
-            y1={getCoordinate(30.5)}
+            x1="45"
+            y1={getCoordinate(27.5)}
             x2="85"
             y2={getCoordinate(67.5)}
             stroke={sekaiColor}
             strokeWidth="15"
-            opacity="0.7"
           />
           <line
-            x1="52.75"
-            y1={getCoordinate(30.5)}
+            x1="55.25"
+            y1={getCoordinate(27.5)}
             x2="15"
             y2={getCoordinate(67.5)}
             stroke={sekaiColor}
             strokeWidth="15"
-            opacity="0.7"
           />
         </>
       ) : null}
