@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { fn } from '@storybook/test'
 
 import { Dropdown } from '@/components/dropdown/Dropdown'
@@ -9,6 +11,20 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta = {
   title: 'Untitled/Dropdown',
   component: Dropdown,
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          width: 500,
+          maxWidth: '80vw',
+          height: 150,
+          display: 'flex',
+          justifyContent: 'center'
+        }}>
+        <Story />
+      </div>
+    )
+  ],
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
@@ -40,6 +56,42 @@ const meta = {
       },
       control: { type: 'select' },
       options: [...Object.keys(COLORS_SEKAI_KEYS)]
+    },
+    themeMode: {
+      description: 'Light or Dark mode',
+      table: {
+        type: { summary: 'PaletteMode' },
+        defaultValue: { summary: 'light' }
+      },
+      control: { type: 'select' },
+      options: ['light', 'dark']
+    },
+    options: {
+      description: 'Options to display in the dropdown',
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
+      table: {
+        type: { summary: 'DropdownOption[]' }
+      }
+    },
+    defaultValue: {
+      description: 'Default selected value, if no setting placeholder',
+      table: {
+        type: { summary: 'string' }
+      }
+    },
+    onSelect: {
+      description: 'Function to call when an option is selected',
+      table: {
+        type: { summary: '(value: string) => void' }
+      },
+      control: false
+    },
+    placeholder: {
+      description: 'Placeholder text when no option is selected',
+      table: {
+        type: { summary: 'string' }
+      }
     }
   },
   args: {
@@ -52,7 +104,7 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultLight: Story = {
   args: {
-    id: 'loading-default-light',
+    id: 'dropdown-default-light',
     sekai: 'Miku',
     themeMode: 'light',
     options: [
@@ -60,6 +112,7 @@ export const DefaultLight: Story = {
       { label: 'Option 2', value: 'option2' },
       { label: 'Option 3', value: 'option3' }
     ],
+    defaultValue: '',
     placeholder: 'Select an option'
   },
   parameters: {
@@ -70,7 +123,7 @@ export const DefaultLight: Story = {
 
 export const DefaultDark: Story = {
   args: {
-    id: 'loading-default-dark',
+    id: 'dropdown-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     options: [
@@ -78,6 +131,7 @@ export const DefaultDark: Story = {
       { label: 'Option 2', value: 'option2' },
       { label: 'Option 3', value: 'option3' }
     ],
+    defaultValue: '',
     placeholder: 'Select an option'
   },
   parameters: {

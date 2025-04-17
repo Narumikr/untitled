@@ -1544,6 +1544,7 @@ var DropdownContent = function DropdownContent(_ref2) {
     ref: triggerButtonRef,
     sekai: sekai,
     themeMode: themeMode,
+    options: options,
     placeholder: placeholder
   }), /*#__PURE__*/React.createElement(DropdownOptions, {
     style: _objectSpread$8(_objectSpread$8({}, optionStyle), dropdownPosStyle),
@@ -1556,6 +1557,7 @@ var DropdownContent = function DropdownContent(_ref2) {
 var DropdownTriggerButton = /*#__PURE__*/forwardRef(function (_ref4, ref) {
   var sekai = _ref4.sekai,
     themeMode = _ref4.themeMode,
+    options = _ref4.options,
     placeholder = _ref4.placeholder;
   var _useOptionalSekai2 = useOptionalSekai({
       sekai: sekai,
@@ -1570,7 +1572,15 @@ var DropdownTriggerButton = /*#__PURE__*/forwardRef(function (_ref4, ref) {
   var optionStyle = {
     '--sekai-color': sekaiColor
   };
-  var isDispPlaceholder = placeholder === selectedValue;
+  var displayText = useMemo(function () {
+    var selectedOption = options.find(function (option) {
+      return option.value === selectedValue;
+    });
+    return selectedOption ? selectedOption.label : placeholder;
+  }, [options, selectedValue, placeholder]);
+  var isDispPlaceholder = useMemo(function () {
+    return placeholder === displayText;
+  }, [placeholder, displayText]);
   var handleClick = function handleClick() {
     setOpenOptions === null || setOpenOptions === void 0 || setOpenOptions(!openOptions);
   };
@@ -1582,7 +1592,7 @@ var DropdownTriggerButton = /*#__PURE__*/forwardRef(function (_ref4, ref) {
     style: optionStyle
   }, /*#__PURE__*/React.createElement("span", {
     className: clsx(_defineProperty({}, styles$7['sekai-placeholder'], isDispPlaceholder))
-  }, selectedValue), /*#__PURE__*/React.createElement(ChevronSvg, {
+  }, displayText), /*#__PURE__*/React.createElement(ChevronSvg, {
     className: clsx(styles$7['sekai-dropdown-icon'], _defineProperty(_defineProperty({}, styles$7['sekai-dropdown-icon-open'], openOptions), styles$7["sekai-dropdown-icon-close"], !openOptions)),
     sekai: sekai,
     themeMode: themeMode,
@@ -1651,7 +1661,7 @@ var DropdownOptions = function DropdownOptions(_ref6) {
     style: _objectSpread$8(_objectSpread$8({}, optionStyle), style)
   }, options.map(function (option) {
     return /*#__PURE__*/React.createElement("li", {
-      key: option.label,
+      key: option.value,
       className: clsx(styles$7['sekai-dropdown-option-item'])
     }, /*#__PURE__*/React.createElement("button", {
       className: clsx(globalStyles["sekai-color-".concat(modeTheme)]),

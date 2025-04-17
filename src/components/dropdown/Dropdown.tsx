@@ -162,6 +162,7 @@ export const DropdownContent = ({
         ref={triggerButtonRef}
         sekai={sekai}
         themeMode={themeMode}
+        options={options}
         placeholder={placeholder}
       />
       <DropdownOptions
@@ -175,19 +176,32 @@ export const DropdownContent = ({
   )
 }
 
-type DropdownTriggerButtonProps = Pick<DropdownProps, 'sekai' | 'themeMode' | 'placeholder'> & {
+type DropdownTriggerButtonProps = Pick<
+  DropdownProps,
+  'sekai' | 'themeMode' | 'options' | 'placeholder'
+> & {
   ref?: React.Ref<HTMLButtonElement>
 }
 
 const DropdownTriggerButton = forwardRef<HTMLButtonElement, DropdownTriggerButtonProps>(
-  ({ sekai, themeMode, placeholder }, ref) => {
+  ({ sekai, themeMode, options, placeholder }, ref) => {
     const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
     const { selectedValue, openOptions, setOpenOptions } = useContext(DropdownContext) || {}
 
     const optionStyle = {
       '--sekai-color': sekaiColor
     }
-    const isDispPlaceholder = placeholder === selectedValue
+
+    const displayText = useMemo(() => {
+      const selectedOption = options.find((option) => option.value === selectedValue)
+      return selectedOption ? selectedOption.label : placeholder
+    }, [options, selectedValue, placeholder])
+
+    const isDispPlaceholder = useMemo(
+      () => placeholder === displayText,
+      [placeholder, displayText]
+    )
+
     const handleClick = () => {
       setOpenOptions?.(!openOptions)
     }
@@ -200,7 +214,7 @@ const DropdownTriggerButton = forwardRef<HTMLButtonElement, DropdownTriggerButto
         onClick={handleClick}
         style={optionStyle as React.CSSProperties}>
         <span className={clsx({ [styles['sekai-placeholder']]: isDispPlaceholder })}>
-          {selectedValue}
+          {displayText}
         </span>
         <ChevronSvg
           className={clsx(styles['sekai-dropdown-icon'], {
@@ -276,7 +290,7 @@ const DropdownOptions = ({
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...style }}>
       {options.map((option) => (
-        <li key={option.label} className={clsx(styles['sekai-dropdown-option-item'])}>
+        <li key={option.value} className={clsx(styles['sekai-dropdown-option-item'])}>
           <button
             className={clsx(globalStyles[`sekai-color-${modeTheme}`])}
             onClick={() => handleSelect(option.value)}>
