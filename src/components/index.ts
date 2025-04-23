@@ -18,6 +18,8 @@ export * from './dialog/XxMikuDialog'
 
 export * from './drawer/Drawer'
 
+export * from './dropdown/Dropdown'
+
 export * from './effect/DoReMeetEffect'
 
 export * from './effect/IntoTheSekai'
