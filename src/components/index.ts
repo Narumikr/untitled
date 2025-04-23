@@ -6,6 +6,8 @@ export * from './button/HamburgerButton'
 
 export * from './button/StrongButton'
 
+export * from './button/StylishButton'
+
 export * from './card/Card'
 
 export * from './card/PrskLinkCard'
