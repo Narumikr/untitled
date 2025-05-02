@@ -1,0 +1,54 @@
+@use '../../styles/global.module.scss' as global;
+
+$button-height: 40px;
+
+.sekai-stylish-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: inherit;
+  border: none;
+  padding: 5px 10px;
+  border: 2px solid var(--sekai-color);
+  height: $button-height;
+
+  &:focus-visible {
+    outline: 1px solid var(--sekai-color);
+  }
+  &:disabled {
+    opacity: 0.5;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  &:not(:disabled):hover .sekai-stylish-button-decoration {
+    top: 0;
+    left: 0;
+  }
+}
+
+.sekai-stylish-button-light {
+  @extend .sekai-stylish-button;
+  color: global.$color-text-light;
+}
+
+.sekai-stylish-button-dark {
+  @extend .sekai-stylish-button;
+  color: global.$color-text-dark;
+}
+
+.sekai-stylish-button-decoration {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--sekai-color-hover);
+  transition: all 0.2s ease-in-out;
+}
+
+.sekai-stylish-arrow-icon {
+  width: 16px;
+  height: 16px;
+}
