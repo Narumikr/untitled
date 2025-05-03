@@ -69,12 +69,13 @@ const preview: Preview = {
 
         useEffect(() => {
           if (!context.componentStories().length) return
-          if (context.componentStories()[0].parameters.visiblle) return
-          const target = document.querySelector('.css-1qq744x')
-          if (target) {
-            const p = document.createElement('p')
-            p.textContent = 'こちらのコンポーネントはDocsのプレビューはありません。'
-            target.appendChild(p)
+          if (context.componentStories()[0].parameters.invisible) {
+            const target = document.querySelector('.css-1qq744x')
+            if (target) {
+              const p = document.createElement('p')
+              p.textContent = 'こちらのコンポーネントはDocsのプレビューはありません。'
+              target.appendChild(p)
+            }
           }
         }, [])
 

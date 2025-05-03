@@ -24,7 +24,7 @@ const meta = {
     docs: {
       disable: true
     },
-    visible: false
+    invisible: true
   },
   tags: ['autodocs'],
   argTypes: {
