@@ -1,0 +1,40 @@
+@use '../../styles/global.module.scss' as global;
+
+.sekai-scroll-top-button {
+  position: fixed;
+  z-index: global.$scrolltop-z-index;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--sekai-color-bg);
+  opacity: 0.5;
+
+  &:focus-visible {
+    outline: 2px solid var(--sekai-color);
+    opacity: 1;
+  }
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.sekai-scroll-top-button-bottom-right {
+  @extend .sekai-scroll-top-button;
+  bottom: 20px;
+  right: 20px;
+}
+.sekai-scroll-top-button-bottom-left {
+  @extend .sekai-scroll-top-button;
+  bottom: 20px;
+  left: 20px;
+}
+
+.sekai-scroll-top-icon {
+  width: 25px;
+  height: 25px;
+}

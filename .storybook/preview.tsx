@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { DocsContainer } from '@storybook/addon-docs'
 
@@ -33,7 +33,7 @@ const preview: Preview = {
       }) => {
         const lightStoryIds = sortStories(context, LIGHT_MODE)
         const darkStoryIds = sortStories(context, DARK_MODE)
-        const llightStyles = lightStoryIds.reduce(
+        const lightStyles = lightStoryIds.reduce(
           (pre, el) =>
             pre +
             `
@@ -64,8 +64,18 @@ const preview: Preview = {
               background-color: #121212 !important;
             }
             `,
-          llightStyles
+          lightStyles
         )
+
+        useEffect(() => {
+          if (context.componentStories()[0].parameters.visiblle) return
+          const target = document.querySelector('.css-1qq744x')
+          if (target) {
+            const p = document.createElement('p')
+            p.textContent = 'こちらのコンポーネントはDocsのプレビューはありません。'
+            target.appendChild(p)
+          }
+        }, [])
 
         return (
           <DocsContainer context={context}>

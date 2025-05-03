@@ -4,6 +4,8 @@ export * from './button/BasicButton'
 
 export * from './button/HamburgerButton'
 
+export * from './button/ScrollTopButton'
+
 export * from './button/StrongButton'
 
 export * from './button/StylishButton'
