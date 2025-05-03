@@ -68,6 +68,7 @@ const preview: Preview = {
         )
 
         useEffect(() => {
+          if (!context.componentStories().length) return
           if (context.componentStories()[0].parameters.visiblle) return
           const target = document.querySelector('.css-1qq744x')
           if (target) {
