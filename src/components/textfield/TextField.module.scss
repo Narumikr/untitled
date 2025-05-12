@@ -1,0 +1,49 @@
+$input-height: 40px;
+
+.sekai-textfield-wrapper {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.sekai-textfield-clear-button {
+  position: absolute;
+  background-color: transparent;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 3px;
+  padding: 0;
+
+  .sekai-textfield-clear-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.sekai-textfield-input {
+  height: $input-height;
+  line-height: 2.5;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border: 2px solid var(--sekai-color);
+  border-radius: 3px;
+  &:focus-visible {
+    outline: 1px solid var(--sekai-color);
+  }
+
+  &.sekai-textfield-clear {
+    padding-right: 40px;
+  }
+}
+
+.sekai-textfield-input-light {
+  @extend .sekai-textfield-input;
+}
+.sekai-textfield-input-dark {
+  @extend .sekai-textfield-input;
+}
