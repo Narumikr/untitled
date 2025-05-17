@@ -449,6 +449,23 @@ declare const OutlineText: ({ sekai, themeMode, text, ...rest }: OutlineTextProp
 
 declare const useCreateSekai: () => YourSekaiContextProps;
 
+declare const ORIENTATION: {
+    readonly PORTRAIT: "PORTRAIT";
+    readonly LANDSCAPE: "LANDSCAPE";
+};
+type Orientation = (typeof ORIENTATION)[keyof typeof ORIENTATION];
+declare const useInnerSize: () => number;
+/**
+ * @description This hook is used to get the current window size and orientation.
+ * Return Portrait if the window size is 768px or less, otherwise return Landscape.
+ */
+declare const useOrientation: () => Orientation;
+/**
+ * @description This hook is used to get the current window size and check if it is in tablet size.
+ * Return true if the window size is between 768px and 1280px, otherwise return false.
+ */
+declare const useTabletSize: () => boolean;
+
 declare const convertHexToRgb: (hex: string) => string;
 declare const convertHexToRgba: (hex: string, alpha: number) => string;
 declare const convertHexToRgbMixWithWhite: (hex: string, alpha: number) => string;
@@ -456,4 +473,4 @@ declare const convertHexToRgbMixWithWhite: (hex: string, alpha: number) => strin
 declare const fireOnEnterKey: (eventHandler: (e: React.KeyboardEvent<HTMLDivElement>) => void) => (e: React.KeyboardEvent<HTMLDivElement>) => void;
 declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 
-export { Accordion, type AccordionProps, BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, Card, CardContent, type CardContentProps, type CardProps, CardTitle, type CardTitleProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, DoReMeetEffect, type DoReMeetEffectProps, Drawer, type DrawerPosition, type DrawerProps, Dropdown, DropdownContent, type DropdownOption, type DropdownProps, HamburgerButton, type HamburgerButtonProps, IntoTheSekai, type IntoTheSekaiProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, Loading, type LoadingProps, NamePlate, type NamePlateProps, OutlineText, type OutlineTextProps, Pagination, type PaginationProps, type PaginationSize, type PaletteMode, PrskLinkCard, type PrskLinkCardProps, ScrollTopButton, type ScrollTopButtonProps, type ScrollTopPos, type SekaiTheme, StickyNote, type StickyNoteProps, StrongButton, type StrongButtonProps, StylishButton, type StylishButtonProps, TextLink, type TextLinkProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgbMixWithWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useThemeMode };
+export { Accordion, type AccordionProps, BasicButton, type BasicButtonProps, COLORS_SEKAI_KEYS, Card, CardContent, type CardContentProps, type CardProps, CardTitle, type CardTitleProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, DoReMeetEffect, type DoReMeetEffectProps, Drawer, type DrawerPosition, type DrawerProps, Dropdown, DropdownContent, type DropdownOption, type DropdownProps, HamburgerButton, type HamburgerButtonProps, IntoTheSekai, type IntoTheSekaiProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, Loading, type LoadingProps, NamePlate, type NamePlateProps, ORIENTATION, type Orientation, OutlineText, type OutlineTextProps, Pagination, type PaginationProps, type PaginationSize, type PaletteMode, PrskLinkCard, type PrskLinkCardProps, ScrollTopButton, type ScrollTopButtonProps, type ScrollTopPos, type SekaiTheme, StickyNote, type StickyNoteProps, StrongButton, type StrongButtonProps, StylishButton, type StylishButtonProps, TextLink, type TextLinkProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgbMixWithWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useInnerSize, useOrientation, useTabletSize, useThemeMode };
