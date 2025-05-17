@@ -1,0 +1,10 @@
+@use '../../styles/global.module.scss' as global;
+
+.sekai-body-text-light {
+  color: global.$color-text-light;
+  margin: 0;
+}
+.sekai-body-text-dark {
+  color: global.$color-text-dark;
+  margin: 0;
+}
