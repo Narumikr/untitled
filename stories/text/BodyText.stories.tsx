@@ -54,7 +54,7 @@ export const DefaultLight: Story = {
   args: {
     id: 'body-text-default-light',
     themeMode: 'light',
-    children: 'Hello World'
+    children: 'Hello SEKAI'
   },
   parameters: {
     sekai: 'Miku',
@@ -64,9 +64,9 @@ export const DefaultLight: Story = {
 
 export const DefaultDark: Story = {
   args: {
-    id: 'bobdy-text-default-dark',
+    id: 'body-text-default-dark',
     themeMode: 'dark',
-    children: 'Hello World'
+    children: 'Hello SEKAI'
   },
   parameters: {
     sekai: 'Miku',
