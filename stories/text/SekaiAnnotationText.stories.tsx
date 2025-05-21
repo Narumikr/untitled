@@ -1,12 +1,12 @@
-import { SekaiBodyText } from '@/components/text/UtilText'
+import { SekaiAnnotationText } from '@/components/text/UtilText'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/SekaiBodyText',
-  component: SekaiBodyText,
+  title: 'Untitled/SekaiAnnotationText',
+  component: SekaiAnnotationText,
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
@@ -56,14 +56,14 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof SekaiBodyText>
+} satisfies Meta<typeof SekaiAnnotationText>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const DefaultLight: Story = {
   args: {
-    id: 'sekai-body-text-default-light',
+    id: 'sekai-annotation-text-default-light',
     sekai: 'Miku',
     themeMode: 'light',
     children: 'Hello SEKAI'
@@ -76,7 +76,7 @@ export const DefaultLight: Story = {
 
 export const DefaultDark: Story = {
   args: {
-    id: 'sekai-body-text-default-dark',
+    id: 'sekai-annotation-text-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     children: 'Hello SEKAI'

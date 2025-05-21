@@ -482,12 +482,12 @@ var AccordionDetailsContents = function AccordionDetailsContents(_ref2) {
     transition: 'max-height 0.3s ease-out, opacity 0.3s ease-out, margin 0.3s ease-out'
   });
   var renderDetails = function renderDetails(details) {
-    if (isString(details)) return /*#__PURE__*/React.createElement(DetailText, {
+    if (isString(details)) return /*#__PURE__*/React.createElement(DetailText$1, {
       text: details
     });
     if (isStringArray(details)) {
       return details.map(function (el) {
-        return /*#__PURE__*/React.createElement(DetailText, {
+        return /*#__PURE__*/React.createElement(DetailText$1, {
           key: el,
           text: el
         });
@@ -510,7 +510,7 @@ var isString = function isString(el) {
 var isStringArray = function isStringArray(el) {
   return Array.isArray(el) && el.every(isString);
 };
-var DetailText = function DetailText(_ref3) {
+var DetailText$1 = function DetailText(_ref3) {
   var text = _ref3.text;
   return /*#__PURE__*/React.createElement("p", {
     className: styles$n['sekai-detail-text']
@@ -784,7 +784,7 @@ styleInject(css_248z$h);
 
 var _excluded$g = ["sekai", "themeMode", "children"],
   _excluded2$3 = ["themeMode", "children"],
-  _excluded3$1 = ["sekai", "themeMode", "title", "underline"];
+  _excluded3$2 = ["sekai", "themeMode", "title", "underline"];
 function ownKeys$h(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread$h(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$h(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$h(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Card = function Card(_ref) {
@@ -825,7 +825,7 @@ var CardTitle = function CardTitle(_ref3) {
     themeMode = _ref3.themeMode,
     title = _ref3.title,
     underline = _ref3.underline,
-    rest = _objectWithoutProperties(_ref3, _excluded3$1);
+    rest = _objectWithoutProperties(_ref3, _excluded3$2);
   var _useOptionalSekai3 = useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -1080,7 +1080,7 @@ styleInject(css_248z$c);
 
 var _excluded$c = ["sekai", "open", "themeMode", "children", "containerComponent", "size", "onClose", "title", "showCloseIcon", "buttons", "dialogButtons"],
   _excluded2$2 = ["sekai", "themeMode", "size", "onClose", "title", "showCloseIcon"],
-  _excluded3 = ["sekai", "themeMode", "buttons"];
+  _excluded3$1 = ["sekai", "themeMode", "buttons"];
 function ownKeys$d(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread$d(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$d(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$d(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Dialog = function Dialog(_ref) {
@@ -1171,7 +1171,7 @@ var DialogButtons = function DialogButtons(_ref3) {
   var sekai = _ref3.sekai,
     themeMode = _ref3.themeMode,
     buttons = _ref3.buttons,
-    rest = _objectWithoutProperties(_ref3, _excluded3);
+    rest = _objectWithoutProperties(_ref3, _excluded3$1);
   if (!buttons || !buttons.length) return null;
   var buttonLength = buttons.length;
   var _useOptionalSekai2 = useOptionalSekai({
@@ -2592,12 +2592,16 @@ var useTabletSize = function useTabletSize() {
   return windowSize >= VIEW_BREAKPOINT_PORTRAIT && windowSize < VIEW_BREAKPOINT_TABLET;
 };
 
-var css_248z = "/* Styles for common color */\n/* Styles for z-index */\n.UtilText-module_sekai-color-light__kOblT {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.UtilText-module_sekai-color-dark__9z0-L {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n.UtilText-module_sekai-overlay__J-0r3, .UtilText-module_sekai-overlay-dark__qZNSo, .UtilText-module_sekai-overlay-light__gUPX1 {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1000;\n}\n\n.UtilText-module_sekai-overlay-light__gUPX1 {\n  background-color: rgba(0, 0, 0, 0.3882352941);\n}\n\n.UtilText-module_sekai-overlay-dark__qZNSo {\n  background-color: rgba(255, 255, 255, 0.3019607843);\n}\n\n/* Styles for positioning */\n.UtilText-module_sekai-flex-center__Et34J {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.UtilText-module_sekai-absolute-center__pli-P {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.UtilText-module_sekai-invisible-scroll__XLCVh {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.UtilText-module_sekai-invisible-scroll__XLCVh::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.UtilText-module_sekai-mb-8__j6MZ- {\n  margin-bottom: 8px;\n}\n\n.UtilText-module_sekai-mb-16__TAhcR {\n  margin-bottom: 16px;\n}\n\n.UtilText-module_sekai-mb-24__d5evw {\n  margin-bottom: 24px;\n}\n\n.UtilText-module_text-xs__nOnyD {\n  font-size: 12px;\n}\n\n.UtilText-module_text-sm__H2Zwm {\n  font-size: 14px;\n}\n\n.UtilText-module_text-base__-BHkB {\n  font-size: 16px;\n}\n\n.UtilText-module_text-lg__W6wBP {\n  font-size: 18px;\n}\n\n.UtilText-module_text-xl__5QzZ3 {\n  font-size: 20px;\n}\n\n.UtilText-module_text-2xl__ejmsR {\n  font-size: 24px;\n}\n\n.UtilText-module_text-base-bold__fA-rv {\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.UtilText-module_text-lg-bold__kCV40 {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n.UtilText-module_text-xl-bold__eYvR0 {\n  font-size: 20px;\n  font-weight: bold;\n}\n\n.UtilText-module_text-2xl-bold__p8VLk {\n  font-size: 24px;\n  font-weight: bold;\n}\n\n.UtilText-module_font-bold__fHjMq {\n  font-weight: bold;\n}\n\n.UtilText-module_sekai-body-text-light__nn8Wp {\n  color: #212121;\n  margin: 0;\n}\n\n.UtilText-module_sekai-body-text-dark__k0fk8 {\n  color: #e0e0e0;\n  margin: 0;\n}";
-var styles = {"sekai-color-light":"UtilText-module_sekai-color-light__kOblT","sekai-color-dark":"UtilText-module_sekai-color-dark__9z0-L","sekai-overlay":"UtilText-module_sekai-overlay__J-0r3","sekai-overlay-dark":"UtilText-module_sekai-overlay-dark__qZNSo","sekai-overlay-light":"UtilText-module_sekai-overlay-light__gUPX1","sekai-flex-center":"UtilText-module_sekai-flex-center__Et34J","sekai-absolute-center":"UtilText-module_sekai-absolute-center__pli-P","sekai-invisible-scroll":"UtilText-module_sekai-invisible-scroll__XLCVh","sekai-mb-8":"UtilText-module_sekai-mb-8__j6MZ-","sekai-mb-16":"UtilText-module_sekai-mb-16__TAhcR","sekai-mb-24":"UtilText-module_sekai-mb-24__d5evw","text-xs":"UtilText-module_text-xs__nOnyD","text-sm":"UtilText-module_text-sm__H2Zwm","text-base":"UtilText-module_text-base__-BHkB","text-lg":"UtilText-module_text-lg__W6wBP","text-xl":"UtilText-module_text-xl__5QzZ3","text-2xl":"UtilText-module_text-2xl__ejmsR","text-base-bold":"UtilText-module_text-base-bold__fA-rv","text-lg-bold":"UtilText-module_text-lg-bold__kCV40","text-xl-bold":"UtilText-module_text-xl-bold__eYvR0","text-2xl-bold":"UtilText-module_text-2xl-bold__p8VLk","font-bold":"UtilText-module_font-bold__fHjMq","sekai-body-text-light":"UtilText-module_sekai-body-text-light__nn8Wp","sekai-body-text-dark":"UtilText-module_sekai-body-text-dark__k0fk8"};
+var css_248z = "/* Styles for common color */\n/* Styles for z-index */\n.UtilText-module_sekai-color-light__kOblT {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.UtilText-module_sekai-color-dark__9z0-L {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n.UtilText-module_sekai-overlay__J-0r3, .UtilText-module_sekai-overlay-dark__qZNSo, .UtilText-module_sekai-overlay-light__gUPX1 {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1000;\n}\n\n.UtilText-module_sekai-overlay-light__gUPX1 {\n  background-color: rgba(0, 0, 0, 0.3882352941);\n}\n\n.UtilText-module_sekai-overlay-dark__qZNSo {\n  background-color: rgba(255, 255, 255, 0.3019607843);\n}\n\n/* Styles for positioning */\n.UtilText-module_sekai-flex-center__Et34J {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.UtilText-module_sekai-absolute-center__pli-P {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.UtilText-module_sekai-invisible-scroll__XLCVh {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.UtilText-module_sekai-invisible-scroll__XLCVh::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.UtilText-module_sekai-mb-8__j6MZ- {\n  margin-bottom: 8px;\n}\n\n.UtilText-module_sekai-mb-16__TAhcR {\n  margin-bottom: 16px;\n}\n\n.UtilText-module_sekai-mb-24__d5evw {\n  margin-bottom: 24px;\n}\n\n.UtilText-module_text-xs__nOnyD {\n  font-size: 12px;\n}\n\n.UtilText-module_text-sm__H2Zwm {\n  font-size: 14px;\n}\n\n.UtilText-module_text-base__-BHkB {\n  font-size: 16px;\n}\n\n.UtilText-module_text-lg__W6wBP {\n  font-size: 18px;\n}\n\n.UtilText-module_text-xl__5QzZ3 {\n  font-size: 20px;\n}\n\n.UtilText-module_text-2xl__ejmsR {\n  font-size: 24px;\n}\n\n.UtilText-module_text-base-bold__fA-rv {\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.UtilText-module_text-lg-bold__kCV40 {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n.UtilText-module_text-xl-bold__eYvR0 {\n  font-size: 20px;\n  font-weight: bold;\n}\n\n.UtilText-module_text-2xl-bold__p8VLk {\n  font-size: 24px;\n  font-weight: bold;\n}\n\n.UtilText-module_font-bold__fHjMq {\n  font-weight: bold;\n}\n\n.UtilText-module_sekai-body-text-light__nn8Wp {\n  color: #212121;\n  margin: 0;\n}\n\n.UtilText-module_sekai-body-text-dark__k0fk8 {\n  color: #e0e0e0;\n  margin: 0;\n}\n\n.UtilText-module_sekai-detail-text-light__IGmQu {\n  color: #212121;\n  margin: 0;\n}\n\n.UtilText-module_sekai-detail-text-dark__J5rXI {\n  color: #e0e0e0;\n  margin: 0;\n}\n\n.UtilText-module_sekai-annotation-text-light__XIbJl {\n  color: rgb(88.5, 88.5, 88.5);\n  margin: 0;\n}\n\n.UtilText-module_sekai-annotation-text-dark__a1inb {\n  color: #a8a8a8;\n  margin: 0;\n}";
+var styles = {"sekai-color-light":"UtilText-module_sekai-color-light__kOblT","sekai-color-dark":"UtilText-module_sekai-color-dark__9z0-L","sekai-overlay":"UtilText-module_sekai-overlay__J-0r3","sekai-overlay-dark":"UtilText-module_sekai-overlay-dark__qZNSo","sekai-overlay-light":"UtilText-module_sekai-overlay-light__gUPX1","sekai-flex-center":"UtilText-module_sekai-flex-center__Et34J","sekai-absolute-center":"UtilText-module_sekai-absolute-center__pli-P","sekai-invisible-scroll":"UtilText-module_sekai-invisible-scroll__XLCVh","sekai-mb-8":"UtilText-module_sekai-mb-8__j6MZ-","sekai-mb-16":"UtilText-module_sekai-mb-16__TAhcR","sekai-mb-24":"UtilText-module_sekai-mb-24__d5evw","text-xs":"UtilText-module_text-xs__nOnyD","text-sm":"UtilText-module_text-sm__H2Zwm","text-base":"UtilText-module_text-base__-BHkB","text-lg":"UtilText-module_text-lg__W6wBP","text-xl":"UtilText-module_text-xl__5QzZ3","text-2xl":"UtilText-module_text-2xl__ejmsR","text-base-bold":"UtilText-module_text-base-bold__fA-rv","text-lg-bold":"UtilText-module_text-lg-bold__kCV40","text-xl-bold":"UtilText-module_text-xl-bold__eYvR0","text-2xl-bold":"UtilText-module_text-2xl-bold__p8VLk","font-bold":"UtilText-module_font-bold__fHjMq","sekai-body-text-light":"UtilText-module_sekai-body-text-light__nn8Wp","sekai-body-text-dark":"UtilText-module_sekai-body-text-dark__k0fk8","sekai-detail-text-light":"UtilText-module_sekai-detail-text-light__IGmQu","sekai-detail-text-dark":"UtilText-module_sekai-detail-text-dark__J5rXI","sekai-annotation-text-light":"UtilText-module_sekai-annotation-text-light__XIbJl","sekai-annotation-text-dark":"UtilText-module_sekai-annotation-text-dark__a1inb"};
 styleInject(css_248z);
 
 var _excluded = ["themeMode", "children"],
-  _excluded2 = ["sekai", "children"];
+  _excluded2 = ["sekai", "children"],
+  _excluded3 = ["themeMode", "children"],
+  _excluded4 = ["sekai", "children"],
+  _excluded5 = ["themeMode", "children"],
+  _excluded6 = ["sekai", "children"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var BodyText = function BodyText(_ref) {
@@ -2629,8 +2633,64 @@ var SekaiBodyText = function SekaiBodyText(_ref2) {
     style: _objectSpread(_objectSpread({}, colorStyle), rest.style)
   }), children);
 };
+var DetailText = function DetailText(_ref3) {
+  var themeMode = _ref3.themeMode,
+    children = _ref3.children,
+    rest = _objectWithoutProperties(_ref3, _excluded3);
+  var _useOptionalSekai3 = useOptionalSekai({
+      mode: themeMode
+    }),
+    modeTheme = _useOptionalSekai3.modeTheme;
+  return /*#__PURE__*/React.createElement("p", _extends({}, rest, {
+    className: clsx(styles["sekai-detail-text-".concat(modeTheme)], globalStyles['text-xs'], rest.className)
+  }), children);
+};
+var SekaiDetailText = function SekaiDetailText(_ref4) {
+  var sekai = _ref4.sekai,
+    children = _ref4.children,
+    rest = _objectWithoutProperties(_ref4, _excluded4);
+  var _useOptionalSekai4 = useOptionalSekai({
+      sekai: sekai
+    }),
+    sekaiColor = _useOptionalSekai4.sekaiColor;
+  var colorStyle = {
+    color: sekaiColor
+  };
+  return /*#__PURE__*/React.createElement(DetailText, _extends({}, rest, {
+    style: _objectSpread(_objectSpread({}, colorStyle), rest.style)
+  }), children);
+};
+var AnnotationText = function AnnotationText(_ref5) {
+  var themeMode = _ref5.themeMode,
+    children = _ref5.children,
+    rest = _objectWithoutProperties(_ref5, _excluded5);
+  var _useOptionalSekai5 = useOptionalSekai({
+      mode: themeMode
+    }),
+    modeTheme = _useOptionalSekai5.modeTheme;
+  return /*#__PURE__*/React.createElement(DetailText, _extends({}, rest, {
+    className: clsx(styles["sekai-annotation-text-".concat(modeTheme)], rest.className)
+  }), children);
+};
+var SekaiAnnotationText = function SekaiAnnotationText(_ref6) {
+  var sekai = _ref6.sekai,
+    children = _ref6.children,
+    rest = _objectWithoutProperties(_ref6, _excluded6);
+  var _useOptionalSekai6 = useOptionalSekai({
+      sekai: sekai
+    }),
+    sekaiColor = _useOptionalSekai6.sekaiColor;
+  var annotationColor = convertHexToRgbMixWithWhite(sekaiColor, 0.7);
+  var colorStyle = {
+    color: annotationColor
+  };
+  return /*#__PURE__*/React.createElement(DetailText, _extends({}, rest, {
+    style: _objectSpread(_objectSpread({}, colorStyle), rest.style)
+  }), children);
+};
 
 exports.Accordion = Accordion;
+exports.AnnotationText = AnnotationText;
 exports.BasicButton = BasicButton;
 exports.BodyText = BodyText;
 exports.COLORS_SEKAI_KEYS = COLORS_SEKAI_KEYS;
@@ -2638,6 +2698,7 @@ exports.Card = Card;
 exports.CardContent = CardContent;
 exports.CardTitle = CardTitle;
 exports.DARK_MODE = DARK_MODE;
+exports.DetailText = DetailText;
 exports.Dialog = Dialog;
 exports.DialogButtons = DialogButtons;
 exports.DialogTitleHeader = DialogTitleHeader;
@@ -2659,7 +2720,9 @@ exports.OutlineText = OutlineText;
 exports.Pagination = Pagination;
 exports.PrskLinkCard = PrskLinkCard;
 exports.ScrollTopButton = ScrollTopButton;
+exports.SekaiAnnotationText = SekaiAnnotationText;
 exports.SekaiBodyText = SekaiBodyText;
+exports.SekaiDetailText = SekaiDetailText;
 exports.StickyNote = StickyNote;
 exports.StrongButton = StrongButton;
 exports.StylishButton = StylishButton;

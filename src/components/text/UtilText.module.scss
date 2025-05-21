@@ -1,4 +1,5 @@
 @use '../../styles/global.module.scss' as global;
+@use 'sass:color';
 
 .sekai-body-text-light {
   color: global.$color-text-light;
@@ -6,5 +7,23 @@
 }
 .sekai-body-text-dark {
   color: global.$color-text-dark;
+  margin: 0;
+}
+
+.sekai-detail-text-light {
+  color: global.$color-text-light;
+  margin: 0;
+}
+.sekai-detail-text-dark {
+  color: global.$color-text-dark;
+  margin: 0;
+}
+
+.sekai-annotation-text-light {
+  color: color.mix(white, global.$color-text-light, 25%);
+  margin: 0;
+}
+.sekai-annotation-text-dark {
+  color: color.mix(black, global.$color-text-dark, 25%);
   margin: 0;
 }
