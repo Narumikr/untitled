@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import clsx from 'clsx'
 
+import { AnnotationText } from '@/components/text/UtilText'
+
 import { ClearSvg } from '@/img/clear'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
@@ -84,6 +86,11 @@ export const TextField = ({
           </button>
         ) : null}
       </div>
+      {isError ? (
+        <AnnotationText className={clsx(styles['sekai-textfield-input-error'])}>
+          {errorMessage}
+        </AnnotationText>
+      ) : null}
     </div>
   )
 }

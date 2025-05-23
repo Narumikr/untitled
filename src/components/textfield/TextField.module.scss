@@ -1,3 +1,5 @@
+@use '../../styles/global.module.scss' as global;
+
 $input-height: 40px;
 
 .sekai-textfield-wrapper {
@@ -43,7 +45,16 @@ $input-height: 40px;
 
 .sekai-textfield-input-light {
   @extend .sekai-textfield-input;
+  color: global.$color-text-light;
+  background-color: global.$color-bg-light;
 }
 .sekai-textfield-input-dark {
   @extend .sekai-textfield-input;
+  color: global.$color-text-dark;
+  background-color: global.$color-bg-dark;
+}
+
+.sekai-textfield-input-error {
+  margin: 4px 0 4px 4px !important;
+  color: global.$color-error-text !important;
 }
