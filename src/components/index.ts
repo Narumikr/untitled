@@ -47,3 +47,5 @@ export * from './provider/YourSekaiProvider'
 export * from './text/NamePlate'
 
 export * from './text/OutlineText'
+
+export * from './text/UtilText'

@@ -1,31 +1,13 @@
-import React from 'react'
-
-import { ScrollTopButton } from '@/components/button/ScrollTopButton'
+import { SekaiDetailText } from '@/components/text/UtilText'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/ScrollTopButton',
-  component: ScrollTopButton,
-  decorators: [
-    (Story) => (
-      <div
-        style={{
-          width: 500,
-          height: 1000
-        }}>
-        <Story />
-      </div>
-    )
-  ],
-  parameters: {
-    docs: {
-      disable: true
-    },
-    invisible: true
-  },
+  title: 'Untitled/SekaiDetailText',
+  component: SekaiDetailText,
+  parameters: {},
   tags: ['autodocs'],
   argTypes: {
     id: {
@@ -66,27 +48,25 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark']
     },
-    pos: {
-      description: 'Position of the button',
+    children: {
+      description: 'Text to display',
       table: {
-        type: { summary: 'bottom-right | bottom-left' },
-        defaultValue: { summary: 'bottom-right' }
-      },
-      control: { type: 'select' },
-      options: ['bottom-right', 'bottom-left']
+        type: { summary: 'string' }
+      }
     }
   },
   args: {}
-} satisfies Meta<typeof ScrollTopButton>
+} satisfies Meta<typeof SekaiDetailText>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const DefaultLight: Story = {
   args: {
-    id: 'scroll-top-button-default-light',
+    id: 'sekai-detail-text-default-light',
     sekai: 'Miku',
-    themeMode: 'light'
+    themeMode: 'light',
+    children: 'Hello SEKAI'
   },
   parameters: {
     sekai: 'Miku',
@@ -96,9 +76,10 @@ export const DefaultLight: Story = {
 
 export const DefaultDark: Story = {
   args: {
-    id: 'scroll-top-button-default-dark',
+    id: 'sekai-detail-text-default-dark',
     sekai: 'Miku',
-    themeMode: 'dark'
+    themeMode: 'dark',
+    children: 'Hello SEKAI'
   },
   parameters: {
     sekai: 'Miku',
