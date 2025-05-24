@@ -60,10 +60,10 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultLight: Story = {
   args: {
-    id: 'basic-button-default-light',
+    id: 'textfield-default-light',
     sekai: 'Miku',
     themeMode: 'light',
-    clearButton: false,
+    clearButton: true,
     placeholder: 'Input text here',
     isError: false,
     errorMessage: ''
@@ -76,9 +76,45 @@ export const DefaultLight: Story = {
 
 export const DefaultDark: Story = {
   args: {
-    id: 'basic-button-default-dark',
+    id: 'textfield-default-dark',
     sekai: 'Miku',
-    themeMode: 'dark'
+    themeMode: 'dark',
+    clearButton: true,
+    placeholder: 'Input text here',
+    isError: false,
+    errorMessage: ''
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark'
+  }
+}
+
+export const ErrorLight: Story = {
+  args: {
+    id: 'textfield-default-light',
+    sekai: 'Miku',
+    themeMode: 'light',
+    clearButton: true,
+    placeholder: 'Input text here',
+    isError: true,
+    errorMessage: 'The value you entered is not valid'
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light'
+  }
+}
+
+export const ErrorDark: Story = {
+  args: {
+    id: 'textfield-default-dark',
+    sekai: 'Miku',
+    themeMode: 'dark',
+    clearButton: true,
+    placeholder: 'Input text here',
+    isError: true,
+    errorMessage: 'The value you entered is not valid'
   },
   parameters: {
     sekai: 'Miku',
