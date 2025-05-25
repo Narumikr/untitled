@@ -49,3 +49,5 @@ export * from './text/NamePlate'
 export * from './text/OutlineText'
 
 export * from './text/UtilText'
+
+export * from './textfield/TextField'
