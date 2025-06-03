@@ -1,0 +1,59 @@
+@use '../../styles/global.module.scss' as global;
+
+.sekai-tooltip {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.sekai-tooltip-light {
+  @extend .sekai-tooltip;
+}
+.sekai-tooltip-dark {
+  @extend .sekai-tooltip;
+}
+
+.sekai-tooltip-speech-bubble {
+  position: absolute;
+  overflow: visible;
+  width: max-content;
+  max-width: 300px;
+  background-color: var(--sekai-color-bg);
+  border: solid 1px var(--sekai-color);
+  margin: 5px;
+
+  &.sekai-tooltip-speech-bubble-left-over {
+    left: auto;
+  }
+  &.sekai-tooltip-speech-bubble-right-over {
+    right: auto;
+  }
+}
+
+.sekai-tooltip-speech-bubble-top {
+  @extend .sekai-tooltip-speech-bubble;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.sekai-tooltip-speech-bubble-bottom {
+  @extend .sekai-tooltip-speech-bubble;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sekai-tooltip-speech-bubble-text {
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+.sekai-tooltip-speech-bubble-text-light {
+  @extend .sekai-tooltip-speech-bubble-text;
+  color: global.$color-text-light;
+}
+.sekai-tooltip-speech-bubble-text-dark {
+  @extend .sekai-tooltip-speech-bubble-text;
+  color: global.$color-text-dark;
+}
