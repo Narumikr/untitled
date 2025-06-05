@@ -1869,15 +1869,17 @@ var defaultTheme = {
   }
 };
 var createSekai = function createSekai(option) {
-  var palette = option.palette;
-  var typography = option === null || option === void 0 ? void 0 : option.typography;
+  var _typography$fontFamil;
+  var palette = option.palette,
+    _option$typography = option.typography,
+    typography = _option$typography === void 0 ? {} : _option$typography;
   var sekaiTheme = {
     palette: {
       sekai: palette.sekai,
       mode: palette.mode || defaultTheme.palette.mode
     },
     typography: {
-      fontFamily: (typography === null || typography === void 0 ? void 0 : typography.fontFamily) || defaultTheme.typography.fontFamily
+      fontFamily: (_typography$fontFamil = typography.fontFamily) !== null && _typography$fontFamil !== void 0 ? _typography$fontFamil : defaultTheme.typography.fontFamily
     }
   };
   return sekaiTheme;

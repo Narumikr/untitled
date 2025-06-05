@@ -5,7 +5,7 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
-export type SekaiTheme = {
+export type SekaiThemeProps = {
   palette: {
     sekai: ColorsSekaiKey
     mode?: PaletteMode
@@ -15,7 +15,17 @@ export type SekaiTheme = {
   }
 }
 
-const defaultTheme: Required<SekaiTheme> = {
+export type SekaiTheme = {
+  palette: {
+    sekai: ColorsSekaiKey
+    mode: PaletteMode
+  }
+  typography: {
+    fontFamily: string
+  }
+}
+
+const defaultTheme: SekaiTheme = {
   palette: {
     sekai: COLORS_SEKAI_KEYS.Miku,
     mode: LIGHT_MODE
@@ -23,19 +33,18 @@ const defaultTheme: Required<SekaiTheme> = {
   typography: {
     fontFamily: 'Montserrat, sans-serif'
   }
-}
+} as const
 
-export const createSekai = (option: SekaiTheme) => {
-  const palette = option.palette
-  const typography = option?.typography
+export const createSekai = (option: SekaiThemeProps) => {
+  const { palette, typography = {} } = option
 
-  const sekaiTheme: Required<SekaiTheme> = {
+  const sekaiTheme: SekaiTheme = {
     palette: {
       sekai: palette.sekai,
       mode: palette.mode || defaultTheme.palette.mode
     },
     typography: {
-      fontFamily: typography?.fontFamily || defaultTheme.typography.fontFamily
+      fontFamily: typography.fontFamily ?? defaultTheme.typography.fontFamily
     }
   }
 
