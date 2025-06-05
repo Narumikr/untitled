@@ -404,7 +404,7 @@ interface PaginationProps {
 }
 declare const Pagination: ({ sekai, themeMode, count, page, onChangePage, siblingCount, size, ...rest }: PaginationProps) => React.JSX.Element;
 
-type SekaiTheme = {
+type SekaiThemeProps = {
     palette: {
         sekai: ColorsSekaiKey;
         mode?: PaletteMode;
@@ -413,7 +413,16 @@ type SekaiTheme = {
         fontFamily?: string;
     };
 };
-declare const createSekai: (option: SekaiTheme) => Required<SekaiTheme>;
+type SekaiTheme = {
+    palette: {
+        sekai: ColorsSekaiKey;
+        mode: PaletteMode;
+    };
+    typography: {
+        fontFamily: string;
+    };
+};
+declare const createSekai: (option: SekaiThemeProps) => SekaiTheme;
 
 interface YourSekaiContextProps {
     sekaiTheme: SekaiTheme;
@@ -422,7 +431,7 @@ interface YourSekaiContextProps {
 declare const YourSekaiContext: React.Context<YourSekaiContextProps | null>;
 interface YourSekaiProviderProps {
     children: React.ReactNode;
-    sekaiTheme: Required<SekaiTheme>;
+    sekaiTheme: SekaiTheme;
 }
 declare const YourSekaiProvider: ({ children, sekaiTheme }: YourSekaiProviderProps) => React.JSX.Element;
 
@@ -522,7 +531,31 @@ declare const convertHexToRgb: (hex: string) => string;
 declare const convertHexToRgba: (hex: string, alpha: number) => string;
 declare const convertHexToRgbMixWithWhite: (hex: string, alpha: number) => string;
 
+/**
+ * Returns a keyboard event handler that triggers the provided event handler only when the Enter key is pressed.
+ *
+ * @param eventHandler - The function to be called when the Enter key is pressed.
+ * @returns A new event handler that calls the provided handler on Enter key press and prevents the default action.
+ */
 declare const fireOnEnterKey: (eventHandler: (e: React.KeyboardEvent<HTMLDivElement>) => void) => (e: React.KeyboardEvent<HTMLDivElement>) => void;
+/**
+ * Returns a keyboard event handler that triggers the provided `eventHandler`
+ * only when the Escape key is pressed. The returned handler also calls
+ * `preventDefault()` on the event before checking the key.
+ *
+ * @param eventHandler - The function to be called when the Escape key is pressed.
+ * @returns A keyboard event handler function.
+ */
 declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
+/**
+ * Returns a new array with the elements of the input array shuffled in random order.
+ *
+ * Uses the Fisher-Yates (Knuth) shuffle algorithm to ensure an unbiased shuffle.
+ *
+ * @typeParam T - The type of elements in the array.
+ * @param array - The array to shuffle.
+ * @returns A new array containing the shuffled elements.
+ */
+declare const shuffleArray: <T>(array: T[]) => T[];
 
-export { Accordion, type AccordionProps, AnnotationText, type AnnotationTextProps, BasicButton, type BasicButtonProps, BodyText, type BodyTextProps, COLORS_SEKAI_KEYS, Card, CardContent, type CardContentProps, type CardProps, CardTitle, type CardTitleProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, DetailText, type DetailTextProps, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, DoReMeetEffect, type DoReMeetEffectProps, Drawer, type DrawerPosition, type DrawerProps, Dropdown, DropdownContent, type DropdownOption, type DropdownProps, HamburgerButton, type HamburgerButtonProps, IntoTheSekai, type IntoTheSekaiProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, Loading, type LoadingProps, NamePlate, type NamePlateProps, ORIENTATION, type Orientation, OutlineText, type OutlineTextProps, Pagination, type PaginationProps, type PaginationSize, type PaletteMode, PrskLinkCard, type PrskLinkCardProps, ScrollTopButton, type ScrollTopButtonProps, type ScrollTopPos, SekaiAnnotationText, type SekaiAnnotationTextProps, SekaiBodyText, type SekaiBodyTextProps, SekaiDetailText, type SekaiDetailTextProps, type SekaiTheme, StickyNote, type StickyNoteProps, StrongButton, type StrongButtonProps, StylishButton, type StylishButtonProps, TextField, type TextFieldProps, TextLink, type TextLinkProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgbMixWithWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, useCreateSekai, useInnerSize, useOrientation, useTabletSize, useThemeMode };
+export { Accordion, type AccordionProps, AnnotationText, type AnnotationTextProps, BasicButton, type BasicButtonProps, BodyText, type BodyTextProps, COLORS_SEKAI_KEYS, Card, CardContent, type CardContentProps, type CardProps, CardTitle, type CardTitleProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, DetailText, type DetailTextProps, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, DoReMeetEffect, type DoReMeetEffectProps, Drawer, type DrawerPosition, type DrawerProps, Dropdown, DropdownContent, type DropdownOption, type DropdownProps, HamburgerButton, type HamburgerButtonProps, IntoTheSekai, type IntoTheSekaiProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, Loading, type LoadingProps, NamePlate, type NamePlateProps, ORIENTATION, type Orientation, OutlineText, type OutlineTextProps, Pagination, type PaginationProps, type PaginationSize, type PaletteMode, PrskLinkCard, type PrskLinkCardProps, ScrollTopButton, type ScrollTopButtonProps, type ScrollTopPos, SekaiAnnotationText, type SekaiAnnotationTextProps, SekaiBodyText, type SekaiBodyTextProps, SekaiDetailText, type SekaiDetailTextProps, type SekaiTheme, type SekaiThemeProps, StickyNote, type StickyNoteProps, StrongButton, type StrongButtonProps, StylishButton, type StylishButtonProps, TextField, type TextFieldProps, TextLink, type TextLinkProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgbMixWithWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, shuffleArray, useCreateSekai, useInnerSize, useOrientation, useTabletSize, useThemeMode };

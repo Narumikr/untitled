@@ -111,8 +111,6 @@ import {
   createSekai
 } from '@naru/untitled-library'
 
-import type { SekaiTheme } from '@naru/untitled-library'
-
 const App = ({ Component, pageProps }: AppProps) => {
 
   const theme = createSekai({
@@ -137,7 +135,7 @@ createSekaiの引数に渡すオブジェクトの型は下記となっており
 デフォルト値はmodeが`light(ライトモード)`で、fontFamilyは`Montserrat, sans-serif`です
 
 ```ts
-export type SekaiTheme = {
+export type SekaiThemeProps = {
   palette: {
     sekai: ColorsSekaiKey
     mode?: PaletteMode
