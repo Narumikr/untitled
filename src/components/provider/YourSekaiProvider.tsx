@@ -14,10 +14,10 @@ export const YourSekaiContext = createContext<YourSekaiContextProps | null>(null
 
 export interface YourSekaiProviderProps {
   children: React.ReactNode
-  sekaiTheme: Required<SekaiTheme>
+  sekaiTheme: SekaiTheme
 }
 export const YourSekaiProvider = ({ children, sekaiTheme }: YourSekaiProviderProps) => {
-  const [currentSekaiTheme, setCurrentSekaiTheme] = useState<Required<SekaiTheme>>(sekaiTheme)
+  const [currentSekaiTheme, setCurrentSekaiTheme] = useState<SekaiTheme>(sekaiTheme)
 
   const onSwitchSekaiColor = (sekai: ColorsSekaiKey) => {
     setCurrentSekaiTheme((pre) => ({
