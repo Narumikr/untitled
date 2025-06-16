@@ -22,7 +22,11 @@ export const convertHexToRgba = (hex: string, alpha: number) => {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`
 }
 
-export const convertHexToRgbMixWithWhite = (hex: string, alpha: number) => {
+export const convertHexToRgbMixWithBlackOrWhite = (
+  hex: string,
+  alpha: number,
+  mixWhite: boolean
+) => {
   if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
     throw new Error('Invalid hex color format. Use #RRGGBB')
   }
@@ -32,9 +36,9 @@ export const convertHexToRgbMixWithWhite = (hex: string, alpha: number) => {
   const r = parseInt(hex.slice(1, 3), 16)
   const g = parseInt(hex.slice(3, 5), 16)
   const b = parseInt(hex.slice(5, 7), 16)
-  const white = 255
-  const mixR = Math.round(r * alpha + white * (1 - alpha))
-  const mixG = Math.round(g * alpha + white * (1 - alpha))
-  const mixB = Math.round(b * alpha + white * (1 - alpha))
+  const mixColor = mixWhite ? 255 : 0
+  const mixR = Math.round(r * alpha + mixColor * (1 - alpha))
+  const mixG = Math.round(g * alpha + mixColor * (1 - alpha))
+  const mixB = Math.round(b * alpha + mixColor * (1 - alpha))
   return `rgb(${mixR}, ${mixG}, ${mixB})`
 }

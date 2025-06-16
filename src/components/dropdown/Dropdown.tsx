@@ -12,7 +12,7 @@ import clsx from 'clsx'
 
 import { ChevronSvg } from '@/img/chevron'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgba, convertHexToRgbMixWithWhite } from '@/utils/converter'
+import { convertHexToRgba, convertHexToRgbMixWithBlackOrWhite } from '@/utils/converter'
 
 import globalStyles from '@/styles/global.module.scss'
 
@@ -246,7 +246,7 @@ const DropdownOptions = ({
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
   const { setSelectedValue, openOptions, setOpenOptions } = useContext(DropdownContext) || {}
 
-  const sekaiColorShadow = convertHexToRgbMixWithWhite(sekaiColor, isLight ? 0.4 : 0.9)
+  const sekaiColorShadow = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
   const optionStyle = {
     '--sekai-color': sekaiColor,

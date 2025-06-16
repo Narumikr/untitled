@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbMixWithWhite } from '@/utils/converter'
+import { convertHexToRgbMixWithBlackOrWhite } from '@/utils/converter'
 
 import globalStyles from '@/styles/global.module.scss'
 
@@ -40,9 +40,9 @@ export const Drawer = ({
 }: DrawerProps) => {
   const displayDrawer = open ? 'sekai-drawer-visible' : 'sekai-drawer-hidden'
   const portalContainer = containerComponent || document.body
-  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
-  const sekaiColorBg = convertHexToRgbMixWithWhite(sekaiColor, 0.1)
+  const sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
 
   const optionStyle = {
     '--sekai-color-bg': sekaiColorBg
