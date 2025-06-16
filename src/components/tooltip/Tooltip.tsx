@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgba } from '@/utils/converter'
+import { convertHexToRgbMixWithBlackOrWhite } from '@/utils/converter'
 
 import styles from './Tooltip.module.scss'
 
@@ -31,9 +31,9 @@ export const Tooltip = ({
   pos = 'top',
   ...rest
 }: TooltipProps) => {
-  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
-  const sekaiColorBg = convertHexToRgba(sekaiColor, 0.2)
+  const sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.2, isLight)
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-bg': sekaiColorBg
@@ -64,10 +64,11 @@ interface SpeechBubbleProps {
 }
 
 const SpeechBubble = ({ text, pos, themeMode }: SpeechBubbleProps) => {
+  const PADDING = 32
+  const MAX_WIDTH = 300
   const speechBubbleRef = useRef<HTMLDivElement>(null)
-  const [overflowRight, setOverflowRight] = useState(false)
-  const [overflowLeft, setOverflowLeft] = useState(false)
   const [calcPosition, setCalcPosition] = useState<TooltipPosition>(pos)
+  const [bubbleStyle, setBubbleStyle] = useState<React.CSSProperties>({})
 
   useEffect(() => {
     const bubble = speechBubbleRef.current
@@ -77,16 +78,22 @@ const SpeechBubble = ({ text, pos, themeMode }: SpeechBubbleProps) => {
     const viewInnerWidth = window.innerWidth
     const viewInnerHeight = window.innerHeight
 
-    if (bubbleRect.right > viewInnerWidth) {
-      setOverflowRight(true)
-      setOverflowLeft(false)
-    } else if (bubbleRect.left < 0) {
-      setOverflowLeft(true)
-      setOverflowRight(false)
-    } else {
-      setOverflowRight(false)
-      setOverflowLeft(false)
-    }
+    const isRightOverflow = bubbleRect.right > viewInnerWidth
+    const isLeftOverflow = bubbleRect.left < 0
+
+    setBubbleStyle({
+      ...(isRightOverflow && {
+        right: 0,
+        left: 'auto',
+        transform: 'none'
+      }),
+      ...(isLeftOverflow && {
+        left: 0,
+        right: 'auto',
+        transform: 'none'
+      }),
+      maxWidth: `${Math.min(viewInnerWidth - PADDING * 2, MAX_WIDTH)}px`
+    })
 
     if (bubbleRect.top < 0) {
       setCalcPosition('bottom')
@@ -100,10 +107,8 @@ const SpeechBubble = ({ text, pos, themeMode }: SpeechBubbleProps) => {
   return (
     <div
       ref={speechBubbleRef}
-      className={clsx(styles[`sekai-tooltip-speech-bubble-${calcPosition}`], {
-        [styles['sekai-tooltip-speech-bubble-left-over']]: overflowLeft,
-        [styles['sekai-tooltip-speech-bubble-right-over']]: overflowRight
-      })}>
+      className={clsx(styles[`sekai-tooltip-speech-bubble-${calcPosition}`])}
+      style={bubbleStyle}>
       <span className={styles[`sekai-tooltip-speech-bubble-text-${themeMode}`]}>{text}</span>
     </div>
   )

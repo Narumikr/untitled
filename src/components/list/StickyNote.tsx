@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { LIGHT_MODE } from '@/hooks/useThemeMode'
 import { ConsoleWarning } from '@/internal/logging'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbMixWithWhite } from '@/utils/converter'
+import { convertHexToRgbMixWithBlackOrWhite } from '@/utils/converter'
 
 import { ListContext } from './List'
 import { ListItemButton } from './ListItemButton'
@@ -56,9 +56,9 @@ interface StickyNoteContentsProps {
   children: React.ReactNode
 }
 const StickyNoteContents = ({ sekai, children }: StickyNoteContentsProps) => {
-  const { sekaiColor } = useOptionalSekai({ sekai })
+  const { sekaiColor, isLight } = useOptionalSekai({ sekai })
 
-  const sekaiColorBg = convertHexToRgbMixWithWhite(sekaiColor, 0.3)
+  const sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.6, isLight)
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-bg': sekaiColorBg

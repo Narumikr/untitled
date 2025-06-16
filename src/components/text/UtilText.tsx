@@ -4,7 +4,7 @@ import clsx from 'clsx'
 
 import { ORIENTATION, useOrientation } from '@/hooks/useWindowSize'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbMixWithWhite } from '@/utils/converter'
+import { convertHexToRgbMixWithBlackOrWhite } from '@/utils/converter'
 
 import globalStyles from '@/styles/global.module.scss'
 
@@ -124,8 +124,8 @@ export interface SekaiAnnotationTextProps extends AnnotationTextProps {
 }
 
 export const SekaiAnnotationText = ({ sekai, children, ...rest }: SekaiAnnotationTextProps) => {
-  const { sekaiColor } = useOptionalSekai({ sekai })
-  const annotationColor = convertHexToRgbMixWithWhite(sekaiColor, 0.7)
+  const { sekaiColor, isLight } = useOptionalSekai({ sekai })
+  const annotationColor = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.7, isLight)
 
   const colorStyle = {
     color: annotationColor

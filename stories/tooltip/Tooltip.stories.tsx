@@ -93,7 +93,7 @@ export const TopDark: Story = {
     id: 'Tooltip-top-dark',
     themeMode: 'dark',
     children: <SampleText />,
-    text: 'This is a tooltip',
+    text: 'This is a tooltip ttttttttttttttt',
     pos: 'top'
   },
   parameters: {

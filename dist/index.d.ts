@@ -508,6 +508,19 @@ interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 declare const TextField: ({ id, className, style, sekai, themeMode, clearButton, onChangeInput, isError, errorMessage, ...inputProps }: TextFieldProps) => React.JSX.Element;
 
+type TooltipPosition = 'top' | 'bottom';
+interface TooltipProps {
+    id?: string;
+    className?: string;
+    style?: React.CSSProperties;
+    sekai?: ColorsSekaiKey;
+    themeMode?: PaletteMode;
+    children: React.ReactNode;
+    text: string;
+    pos?: TooltipPosition;
+}
+declare const Tooltip: ({ sekai, themeMode, children, text, pos, ...rest }: TooltipProps) => React.JSX.Element;
+
 declare const useCreateSekai: () => YourSekaiContextProps;
 
 declare const ORIENTATION: {
@@ -529,7 +542,7 @@ declare const useTabletSize: () => boolean;
 
 declare const convertHexToRgb: (hex: string) => string;
 declare const convertHexToRgba: (hex: string, alpha: number) => string;
-declare const convertHexToRgbMixWithWhite: (hex: string, alpha: number) => string;
+declare const convertHexToRgbMixWithBlackOrWhite: (hex: string, alpha: number, mixWhite: boolean) => string;
 
 /**
  * Returns a keyboard event handler that triggers the provided event handler only when the Enter key is pressed.
@@ -558,4 +571,4 @@ declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e:
  */
 declare const shuffleArray: <T>(array: T[]) => T[];
 
-export { Accordion, type AccordionProps, AnnotationText, type AnnotationTextProps, BasicButton, type BasicButtonProps, BodyText, type BodyTextProps, COLORS_SEKAI_KEYS, Card, CardContent, type CardContentProps, type CardProps, CardTitle, type CardTitleProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, DetailText, type DetailTextProps, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, DoReMeetEffect, type DoReMeetEffectProps, Drawer, type DrawerPosition, type DrawerProps, Dropdown, DropdownContent, type DropdownOption, type DropdownProps, HamburgerButton, type HamburgerButtonProps, IntoTheSekai, type IntoTheSekaiProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, Loading, type LoadingProps, NamePlate, type NamePlateProps, ORIENTATION, type Orientation, OutlineText, type OutlineTextProps, Pagination, type PaginationProps, type PaginationSize, type PaletteMode, PrskLinkCard, type PrskLinkCardProps, ScrollTopButton, type ScrollTopButtonProps, type ScrollTopPos, SekaiAnnotationText, type SekaiAnnotationTextProps, SekaiBodyText, type SekaiBodyTextProps, SekaiDetailText, type SekaiDetailTextProps, type SekaiTheme, type SekaiThemeProps, StickyNote, type StickyNoteProps, StrongButton, type StrongButtonProps, StylishButton, type StylishButtonProps, TextField, type TextFieldProps, TextLink, type TextLinkProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgbMixWithWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, shuffleArray, useCreateSekai, useInnerSize, useOrientation, useTabletSize, useThemeMode };
+export { Accordion, type AccordionProps, AnnotationText, type AnnotationTextProps, BasicButton, type BasicButtonProps, BodyText, type BodyTextProps, COLORS_SEKAI_KEYS, Card, CardContent, type CardContentProps, type CardProps, CardTitle, type CardTitleProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, DetailText, type DetailTextProps, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, DoReMeetEffect, type DoReMeetEffectProps, Drawer, type DrawerPosition, type DrawerProps, Dropdown, DropdownContent, type DropdownOption, type DropdownProps, HamburgerButton, type HamburgerButtonProps, IntoTheSekai, type IntoTheSekaiProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, Loading, type LoadingProps, NamePlate, type NamePlateProps, ORIENTATION, type Orientation, OutlineText, type OutlineTextProps, Pagination, type PaginationProps, type PaginationSize, type PaletteMode, PrskLinkCard, type PrskLinkCardProps, ScrollTopButton, type ScrollTopButtonProps, type ScrollTopPos, SekaiAnnotationText, type SekaiAnnotationTextProps, SekaiBodyText, type SekaiBodyTextProps, SekaiDetailText, type SekaiDetailTextProps, type SekaiTheme, type SekaiThemeProps, StickyNote, type StickyNoteProps, StrongButton, type StrongButtonProps, StylishButton, type StylishButtonProps, TextField, type TextFieldProps, TextLink, type TextLinkProps, Tooltip, type TooltipPosition, type TooltipProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgbMixWithBlackOrWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, shuffleArray, useCreateSekai, useInnerSize, useOrientation, useTabletSize, useThemeMode };
