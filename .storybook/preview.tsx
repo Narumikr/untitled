@@ -96,6 +96,7 @@ const preview: Preview = {
       const isDark = DARK_MODE === context.parameters.background
       const isDocs = context.viewMode === 'docs'
       const isPortal: boolean = context.parameters.portal
+      const isPortalDocsPreview = isPortal && isDocs
 
       const theme = createSekai({
         palette: {
@@ -109,7 +110,9 @@ const preview: Preview = {
           <Story
             args={{
               ...context.args,
-              ...(isPortal && { containerComponent: getContainerPortalRoot(context, isDocs) })
+              ...(isPortalDocsPreview && {
+                containerComponent: getContainerPortalRoot(context, isDocs)
+              })
             }}
           />
         </YourSekaiProvider>

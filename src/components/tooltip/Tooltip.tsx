@@ -43,6 +43,7 @@ export const Tooltip = ({
 
   return (
     <div
+      {...rest}
       className={clsx(
         styles[`sekai-tooltip-${modeTheme}`],
         styles[`sekai-tooltip-${pos}`],

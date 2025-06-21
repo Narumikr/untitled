@@ -76,7 +76,8 @@ const SampleText = () => <p style={{ margin: 0 }}>This is sample text for check 
 
 export const TopLight: Story = {
   args: {
-    id: 'Tooltip-top-light',
+    id: 'tooltip-top-light',
+    sekai: 'Miku',
     themeMode: 'light',
     children: <SampleText />,
     text: 'This is a tooltip',
@@ -90,10 +91,11 @@ export const TopLight: Story = {
 
 export const TopDark: Story = {
   args: {
-    id: 'Tooltip-top-dark',
+    id: 'tooltip-top-dark',
+    sekai: 'Miku',
     themeMode: 'dark',
     children: <SampleText />,
-    text: 'This is a tooltip ttttttttttttttt',
+    text: 'This is a tooltip',
     pos: 'top'
   },
   parameters: {
@@ -104,7 +106,8 @@ export const TopDark: Story = {
 
 export const BottomLight: Story = {
   args: {
-    id: 'Tooltip-bottom-light',
+    id: 'tooltip-bottom-light',
+    sekai: 'Miku',
     themeMode: 'light',
     children: <SampleText />,
     text: 'This is a tooltip',
@@ -118,7 +121,8 @@ export const BottomLight: Story = {
 
 export const BottomDark: Story = {
   args: {
-    id: 'Tooltip-bottom-dark',
+    id: 'tooltip-bottom-dark',
+    sekai: 'Miku',
     themeMode: 'dark',
     children: <SampleText />,
     text: 'This is a tooltip',
