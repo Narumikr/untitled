@@ -2,6 +2,13 @@
 
 $header-height: 32px;
 
+.sekai-dialog-visible {
+  display: block;
+}
+.sekai-dialog-hidden {
+  display: none;
+}
+
 .sekai-window-dialog {
   position: fixed;
   box-sizing: border-box;
@@ -33,6 +40,12 @@ $header-height: 32px;
   @extend .sekai-window-dialog-size;
   width: 600px;
 }
+.sekai-window-dialog-fullscreen {
+  width: 100%;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
+}
 
 .sekai-window-dialog-container {
   padding: 16px;
@@ -41,6 +54,7 @@ $header-height: 32px;
 .sekai-window-dialog-header {
   display: flex;
   justify-content: end;
+  gap: 4px;
   height: $header-height;
   background-color: var(--sekai-color-header);
 
@@ -53,9 +67,17 @@ $header-height: 32px;
     align-items: center;
     justify-content: center;
 
+    &:hover {
+      background-color: var(--sekai-color);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--sekai-color);
+      outline-offset: -2px;
+    }
+
     .sekai-window-dialog-icon {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       background-size: contain;
       background-repeat: no-repeat;
     }

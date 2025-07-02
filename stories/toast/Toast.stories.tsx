@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { fn } from '@storybook/test'
 
 import { Toast } from '@/components/toast/Toast'
@@ -11,13 +9,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta = {
   title: 'Untitled/Toast',
   component: Toast,
-  decorators: [
-    (Story) => (
-      <div style={{ width: '100%', height: '100%', position: 'fixed', overflow: 'hidden' }}>
-        <Story />
-      </div>
-    )
-  ],
   parameters: {},
   tags: ['autodocs'],
   argTypes: {

@@ -62,10 +62,10 @@ export const SquareSvg = ({ className = '', sekai, themeMode }: SquareSvgIconPro
           />
         </>
       ) : null}
-      <line x1="15" y1="16" x2="85" y2="16" stroke={color} strokeWidth="10" />
-      <line x1="84" y1="15" x2="84" y2="85" stroke={color} strokeWidth="10" />
-      <line x1="85" y1="84" x2="15" y2="84" stroke={color} strokeWidth="10" />
-      <line x1="16" y1="85" x2="16" y2="15" stroke={color} strokeWidth="10" />
+      <line x1="15" y1="16" x2="85" y2="16" stroke={color} strokeWidth="8" />
+      <line x1="84" y1="15" x2="84" y2="85" stroke={color} strokeWidth="8" />
+      <line x1="85" y1="84" x2="15" y2="84" stroke={color} strokeWidth="8" />
+      <line x1="16" y1="85" x2="16" y2="15" stroke={color} strokeWidth="8" />
     </svg>
   )
 }

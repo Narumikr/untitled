@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
 import { ClearSvg } from '@/img/clear'
+import { RestoreSvg } from '@/img/restore'
 import { SquareSvg } from '@/img/square'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgbMixWithBlackOrWhite } from '@/utils/converter'
@@ -20,21 +21,26 @@ export interface WindowDialogProps {
   style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
+  open: boolean
   children: React.ReactNode
   containerComponent?: HTMLElement
   size?: DialogSize
+  onClose: () => void
 }
 
 export const WindowDialog = ({
   sekai,
   themeMode,
+  open,
   children,
   containerComponent,
   size = 'medium',
+  onClose,
   ...rest
 }: WindowDialogProps) => {
   const portalContainer = containerComponent || document.body
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
 
   const sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.3, isLight)
   const sekaiColorHeader = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
@@ -44,6 +50,8 @@ export const WindowDialog = ({
   const modalRef = useRef<HTMLDivElement>(null)
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
   const [dragging, setDragging] = useState(false)
+
+  const [isFullscreen, setIsFullscreen] = useState(false)
 
   const onMouseDown = (e: React.MouseEvent) => {
     const rect = modalRef.current?.getBoundingClientRect()
@@ -57,10 +65,12 @@ export const WindowDialog = ({
 
   const onMouseMove = (e: MouseEvent) => {
     if (!dragging) return
-    setPosition({
-      x: `${e.clientX - dragOffset.x}px`,
-      y: `${e.clientY - dragOffset.y}px`
-    })
+    const portalRect = portalContainer.getBoundingClientRect()
+
+    const x = e.clientX - portalRect.left - dragOffset.x
+    const y = e.clientY - portalRect.top - dragOffset.y
+
+    setPosition({ x: `${x}px`, y: `${y}px` })
   }
 
   const onMouseUp = () => setDragging(false)
@@ -78,6 +88,7 @@ export const WindowDialog = ({
     '--sekai-color': sekaiColor,
     '--sekai-color-bg': sekaiColorBg,
     '--sekai-color-header': sekaiColorHeader,
+    ...(containerComponent && { position: 'absolute' }),
     'left': position.x,
     'top': position.y,
     'transform': position.x === '50%' ? 'translate(-50%, -50%)' : 'none'
@@ -90,49 +101,57 @@ export const WindowDialog = ({
       role="dialog"
       className={clsx(
         styles[`sekai-window-dialog-${modeTheme}`],
-        styles[`sekai-window-dialog-size-${size}`],
+        {
+          [styles[`sekai-window-dialog-size-${size}`]]: !isFullscreen,
+          [styles['sekai-window-dialog-fullscreen']]: isFullscreen
+        },
+        styles[displayDialog],
         rest.className
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
-      <WindowHeader onMouseDown={onMouseDown} />
+      <WindowHeader
+        sekai={sekai}
+        themeMode={themeMode}
+        onClose={onClose}
+        onMouseDown={onMouseDown}
+        isFullscreen={isFullscreen}
+        setIsFullscreen={setIsFullscreen}
+      />
       <div className={clsx(styles['sekai-window-dialog-container'])}>{children}</div>
     </div>,
-
-    // <div
-    //   onMouseDown={onMouseDown}
-    //   style={{
-    //     position: 'fixed',
-    //     left: position.x,
-    //     top: position.y,
-    //     width: 100,
-    //     height: 100,
-    //     backgroundColor: 'skyblue',
-    //     cursor: 'grab',
-    //     userSelect: 'none',
-    //     overflow: 'hidden'
-    //   }}>
-    //   ドラッグして動かせます
-    // </div>,
     portalContainer
   )
 }
 
-interface WindowHeaderProps {
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
+type WindowHeaderProps = Pick<WindowDialogProps, 'sekai' | 'themeMode' | 'onClose'> & {
   onMouseDown: (e: React.MouseEvent) => void
+  isFullscreen: boolean
+  setIsFullscreen: (fullscreen: boolean) => void
 }
-const WindowHeader = ({ onMouseDown, ...rest }: WindowHeaderProps) => {
+const WindowHeader = ({
+  onMouseDown,
+  isFullscreen,
+  setIsFullscreen,
+  ...rest
+}: WindowHeaderProps) => {
+  const onClick = () => {
+    setIsFullscreen(!isFullscreen)
+  }
+
   return (
     <div
       role="button"
       tabIndex={0}
       className={styles['sekai-window-dialog-header']}
       onMouseDown={onMouseDown}>
-      <button className={styles['sekai-window-dialog-button']}>
-        <SquareSvg {...rest} className={clsx(styles['sekai-window-dialog-icon'])} />
+      <button className={styles['sekai-window-dialog-button']} onClick={onClick}>
+        {isFullscreen ? (
+          <RestoreSvg {...rest} className={clsx(styles['sekai-window-dialog-icon'])} />
+        ) : (
+          <SquareSvg {...rest} className={clsx(styles['sekai-window-dialog-icon'])} />
+        )}
       </button>
-      <button className={styles['sekai-window-dialog-button']}>
+      <button className={styles['sekai-window-dialog-button']} onClick={rest.onClose}>
         <ClearSvg {...rest} className={clsx(styles['sekai-window-dialog-icon'])} />
       </button>
     </div>

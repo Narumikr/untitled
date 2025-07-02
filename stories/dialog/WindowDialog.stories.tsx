@@ -1,4 +1,4 @@
-import React from 'react'
+import { fn } from '@storybook/test'
 
 import { WindowDialog } from '@/components/dialog/WindowDialog'
 
@@ -10,13 +10,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta = {
   title: 'Untitled/WindowDialog',
   component: WindowDialog,
-  decorators: [
-    (Story) => (
-      <div style={{ width: 500, maxWidth: '80vw', height: 150 }}>
-        <Story />
-      </div>
-    )
-  ],
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
@@ -49,10 +42,6 @@ const meta = {
       },
       control: false
     },
-    open: {
-      description: 'WindowDialog open',
-      table: { types: 'boolean' }
-    },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
@@ -62,9 +51,16 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark']
     },
+    open: {
+      description: 'WindowDialog open',
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
+      table: { types: 'boolean' }
+    },
     children: {
       description: 'WindowDialog contents',
-      // type: { required: true },
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
       table: { type: { summary: 'React.ReactNode' } }
     },
     containerComponent: {
@@ -86,11 +82,14 @@ const meta = {
     },
     onClose: {
       description: 'WindowDialog close method',
+      // @ts-expect-error Storybook's typing issue
       type: { required: true },
       table: { type: { summary: '() => void' } }
     }
   },
-  args: {}
+  args: {
+    onClose: fn()
+  }
 } satisfies Meta<typeof WindowDialog>
 
 export default meta
@@ -99,8 +98,7 @@ type Story = StoryObj<typeof meta>
 const commonArgs = {
   sekai: COLORS_SEKAI_KEYS.Miku as ColorsSekaiKey,
   open: true,
-  children: 'WindowDialog Contents',
-  title: 'WindowDialog Title'
+  children: 'WindowDialog Contents'
 }
 
 export const LightMedium: Story = {
