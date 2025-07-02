@@ -19,6 +19,14 @@ $drawer-z-index: 1200;
 $tooltip-z-index: 1250;
 $modal-z-index: 1300;
 
+/* Styles for common classes */
+.sekai-text-light {
+  color: $color-text-light;
+}
+.sekai-text-dark {
+  color: $color-text-dark;
+}
+
 .sekai-color-light {
   color: $color-text-light;
   background-color: $color-bg-light;
