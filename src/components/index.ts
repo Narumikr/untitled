@@ -16,6 +16,8 @@ export * from './card/PrskLinkCard'
 
 export * from './dialog/Dialog'
 
+export * from './dialog/WindowDialog'
+
 export * from './dialog/XoMikuDialog'
 
 export * from './dialog/XxMikuDialog'

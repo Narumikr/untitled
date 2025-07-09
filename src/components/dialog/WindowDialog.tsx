@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 import clsx from 'clsx'
 import { createPortal } from 'react-dom'
@@ -45,7 +45,12 @@ export const WindowDialog = ({
   const sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.3, isLight)
   const sekaiColorHeader = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
 
-  const [position, setPosition] = useState({ x: '50%', y: '50%' })
+  const windowInitCoordinate = () => {
+    return { x: '50%', y: '50%' }
+  }
+  const [position, setPosition] = useState<{ x: string; y: string }>(() =>
+    windowInitCoordinate()
+  )
 
   const modalRef = useRef<HTMLDivElement>(null)
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
@@ -61,6 +66,11 @@ export const WindowDialog = ({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top
     })
+  }
+  const closeWindow = () => {
+    onClose()
+    setPosition(windowInitCoordinate())
+    setIsFullscreen(false)
   }
 
   const onMouseMove = (e: MouseEvent) => {
@@ -84,15 +94,18 @@ export const WindowDialog = ({
     }
   }, [dragging])
 
-  const optionStyle = {
-    '--sekai-color': sekaiColor,
-    '--sekai-color-bg': sekaiColorBg,
-    '--sekai-color-header': sekaiColorHeader,
-    ...(containerComponent && { position: 'absolute' }),
-    'left': position.x,
-    'top': position.y,
-    'transform': position.x === '50%' ? 'translate(-50%, -50%)' : 'none'
-  }
+  const optionStyle = useMemo(
+    () => ({
+      '--sekai-color': sekaiColor,
+      '--sekai-color-bg': sekaiColorBg,
+      '--sekai-color-header': sekaiColorHeader,
+      ...(containerComponent && { position: 'absolute' }),
+      'left': position.x,
+      'top': position.y,
+      'transform': position.x === '50%' ? 'translate(-50%, -50%)' : 'none'
+    }),
+    [position.x, position.y]
+  )
 
   return createPortal(
     <div
@@ -112,7 +125,7 @@ export const WindowDialog = ({
       <WindowHeader
         sekai={sekai}
         themeMode={themeMode}
-        onClose={onClose}
+        onClose={closeWindow}
         onMouseDown={onMouseDown}
         isFullscreen={isFullscreen}
         setIsFullscreen={setIsFullscreen}
