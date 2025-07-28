@@ -2227,6 +2227,55 @@ var createSekai = function createSekai(option) {
   return sekaiTheme;
 };
 
+/**
+ * Returns the current time as a Date object.
+ * @returns {Date} The current Date object.
+ */
+var getCurrentTime = function getCurrentTime() {
+  return new Date();
+};
+/**
+ * Returns the current time as a string in the specified format.
+ * @param {Date} now - The current Date object.
+ * @param {string} format - Format type ('datetime', 'date', 'time', 'timestamp', 'iso')
+ * @param {string} locale - Locale (default: 'ja-JP')
+ * @returns {string} Formatted time string
+ */
+var getFormattedTime = function getFormattedTime(now) {
+  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'datetime';
+  var locale = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'ja-JP';
+  switch (format) {
+    case 'datetime':
+      return now.toLocaleString(locale);
+    case 'date':
+      return now.toLocaleDateString(locale);
+    case 'time':
+      return now.toLocaleTimeString(locale);
+    case 'timestamp':
+      return now.getTime().toString();
+    case 'iso':
+      return now.toISOString();
+    default:
+      return now.toLocaleString(locale);
+  }
+};
+/**
+ * Returns the current time in a custom format.
+ * @param {Date} now - The current Date object.
+ * @param {string} pattern - Format pattern (e.g., 'YYYY-MM-DD HH:mm:ss')
+ * @returns {string} Formatted time string
+ */
+var getCustomCurrentTime = function getCustomCurrentTime(now) {
+  var pattern = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'YYYY-MM-DD HH:mm:ss';
+  var year = String(now.getFullYear());
+  var month = String(now.getMonth() + 1).padStart(2, '0');
+  var day = String(now.getDate()).padStart(2, '0');
+  var hours = String(now.getHours()).padStart(2, '0');
+  var minutes = String(now.getMinutes()).padStart(2, '0');
+  var seconds = String(now.getSeconds()).padStart(2, '0');
+  return pattern.replace('YYYY', year).replace('MM', month).replace('DD', day).replace('HH', hours).replace('mm', minutes).replace('ss', seconds);
+};
+
 var css_248z$a = "/* Styles for common color */\n/* Styles for z-index */\n/* Styles for common classes */\n.DoReMeetEffect-module_sekai-text-light__XixDc {\n  color: #212121;\n}\n\n.DoReMeetEffect-module_sekai-text-dark__qsFKA {\n  color: #e0e0e0;\n}\n\n.DoReMeetEffect-module_sekai-color-light__JUXfY {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.DoReMeetEffect-module_sekai-color-dark__6TOjY {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n.DoReMeetEffect-module_sekai-overlay__hh5iR, .DoReMeetEffect-module_sekai-overlay-dark__T0nR-, .DoReMeetEffect-module_sekai-overlay-light__RVCmP {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1000;\n}\n\n.DoReMeetEffect-module_sekai-overlay-light__RVCmP {\n  background-color: rgba(0, 0, 0, 0.3882352941);\n}\n\n.DoReMeetEffect-module_sekai-overlay-dark__T0nR- {\n  background-color: rgba(255, 255, 255, 0.3019607843);\n}\n\n/* Styles for positioning */\n.DoReMeetEffect-module_sekai-flex-center__TNc8m {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.DoReMeetEffect-module_sekai-absolute-center__QLSWz {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.DoReMeetEffect-module_sekai-invisible-scroll__QRa6P {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.DoReMeetEffect-module_sekai-invisible-scroll__QRa6P::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.DoReMeetEffect-module_sekai-mb-8__FcpDO {\n  margin-bottom: 8px;\n}\n\n.DoReMeetEffect-module_sekai-mb-16__K-9ys {\n  margin-bottom: 16px;\n}\n\n.DoReMeetEffect-module_sekai-mb-24__HeCoa {\n  margin-bottom: 24px;\n}\n\n.DoReMeetEffect-module_text-xs__Vkc-k {\n  font-size: 12px;\n}\n\n.DoReMeetEffect-module_text-sm__49R41 {\n  font-size: 14px;\n}\n\n.DoReMeetEffect-module_text-base__pUhNu {\n  font-size: 16px;\n}\n\n.DoReMeetEffect-module_text-lg__1GHix {\n  font-size: 18px;\n}\n\n.DoReMeetEffect-module_text-xl__XDSa6 {\n  font-size: 20px;\n}\n\n.DoReMeetEffect-module_text-2xl__O-VPY {\n  font-size: 24px;\n}\n\n.DoReMeetEffect-module_text-base-bold__4DUH1 {\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.DoReMeetEffect-module_text-lg-bold__L9rBL {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n.DoReMeetEffect-module_text-xl-bold__RDWJN {\n  font-size: 20px;\n  font-weight: bold;\n}\n\n.DoReMeetEffect-module_text-2xl-bold__5KSmy {\n  font-size: 24px;\n  font-weight: bold;\n}\n\n.DoReMeetEffect-module_font-bold__n-NpY {\n  font-weight: bold;\n}\n\n.DoReMeetEffect-module_sekai-doremeet-effect__DwAmv, .DoReMeetEffect-module_sekai-doremeet-effect-dark__xJPnd, .DoReMeetEffect-module_sekai-doremeet-effect-light__TKqjA {\n  text-shadow: 0 0 5px var(--sekai-color), 0 0 10px var(--sekai-color), 0 0 20px var(--sekai-color), 0 0 40px var(--sekai-color);\n  transition: all 0.39s ease;\n}\n\n.DoReMeetEffect-module_sekai-doremeet-effect-light__TKqjA {\n  color: #212121;\n}\n\n.DoReMeetEffect-module_sekai-doremeet-effect-dark__xJPnd {\n  color: #e0e0e0;\n}";
 var styles$a = {"sekai-text-light":"DoReMeetEffect-module_sekai-text-light__XixDc","sekai-text-dark":"DoReMeetEffect-module_sekai-text-dark__qsFKA","sekai-color-light":"DoReMeetEffect-module_sekai-color-light__JUXfY","sekai-color-dark":"DoReMeetEffect-module_sekai-color-dark__6TOjY","sekai-overlay":"DoReMeetEffect-module_sekai-overlay__hh5iR","sekai-overlay-dark":"DoReMeetEffect-module_sekai-overlay-dark__T0nR-","sekai-overlay-light":"DoReMeetEffect-module_sekai-overlay-light__RVCmP","sekai-flex-center":"DoReMeetEffect-module_sekai-flex-center__TNc8m","sekai-absolute-center":"DoReMeetEffect-module_sekai-absolute-center__QLSWz","sekai-invisible-scroll":"DoReMeetEffect-module_sekai-invisible-scroll__QRa6P","sekai-mb-8":"DoReMeetEffect-module_sekai-mb-8__FcpDO","sekai-mb-16":"DoReMeetEffect-module_sekai-mb-16__K-9ys","sekai-mb-24":"DoReMeetEffect-module_sekai-mb-24__HeCoa","text-xs":"DoReMeetEffect-module_text-xs__Vkc-k","text-sm":"DoReMeetEffect-module_text-sm__49R41","text-base":"DoReMeetEffect-module_text-base__pUhNu","text-lg":"DoReMeetEffect-module_text-lg__1GHix","text-xl":"DoReMeetEffect-module_text-xl__XDSa6","text-2xl":"DoReMeetEffect-module_text-2xl__O-VPY","text-base-bold":"DoReMeetEffect-module_text-base-bold__4DUH1","text-lg-bold":"DoReMeetEffect-module_text-lg-bold__L9rBL","text-xl-bold":"DoReMeetEffect-module_text-xl-bold__RDWJN","text-2xl-bold":"DoReMeetEffect-module_text-2xl-bold__5KSmy","font-bold":"DoReMeetEffect-module_font-bold__n-NpY","sekai-doremeet-effect":"DoReMeetEffect-module_sekai-doremeet-effect__DwAmv","sekai-doremeet-effect-dark":"DoReMeetEffect-module_sekai-doremeet-effect-dark__xJPnd","sekai-doremeet-effect-light":"DoReMeetEffect-module_sekai-doremeet-effect-light__TKqjA"};
 styleInject(css_248z$a);
@@ -3298,4 +3347,20 @@ var SpeechBubble = function SpeechBubble(_ref2) {
   }, text));
 };
 
-export { Accordion, AnnotationText, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgbMixWithBlackOrWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, shuffleArray, useCreateSekai, useInnerSize, useOrientation, useTabletSize, useThemeMode };
+var useCurrentTime = function useCurrentTime() {
+  var _useState = useState(getCurrentTime()),
+    _useState2 = _slicedToArray(_useState, 2),
+    currentTime = _useState2[0],
+    setCurrentTime = _useState2[1];
+  useEffect(function () {
+    var timer = setInterval(function () {
+      setCurrentTime(getCurrentTime());
+    }, 1000);
+    return function () {
+      return clearInterval(timer);
+    };
+  }, []);
+  return currentTime;
+};
+
+export { Accordion, AnnotationText, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgbMixWithBlackOrWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };
