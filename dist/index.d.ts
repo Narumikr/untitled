@@ -554,6 +554,8 @@ declare const Tooltip: ({ sekai, themeMode, children, text, pos, ...rest }: Tool
 
 declare const useCreateSekai: () => YourSekaiContextProps;
 
+declare const useCurrentTime: () => Date;
+
 declare const ORIENTATION: {
     readonly PORTRAIT: "PORTRAIT";
     readonly LANDSCAPE: "LANDSCAPE";
@@ -602,4 +604,25 @@ declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e:
  */
 declare const shuffleArray: <T>(array: T[]) => T[];
 
-export { Accordion, type AccordionProps, AnnotationText, type AnnotationTextProps, BasicButton, type BasicButtonProps, BodyText, type BodyTextProps, COLORS_SEKAI_KEYS, Card, CardContent, type CardContentProps, type CardProps, CardTitle, type CardTitleProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, DetailText, type DetailTextProps, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, DoReMeetEffect, type DoReMeetEffectProps, Drawer, type DrawerPosition, type DrawerProps, Dropdown, DropdownContent, type DropdownOption, type DropdownProps, HamburgerButton, type HamburgerButtonProps, IntoTheSekai, type IntoTheSekaiProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, Loading, type LoadingProps, NamePlate, type NamePlateProps, ORIENTATION, type Orientation, OutlineText, type OutlineTextProps, Pagination, type PaginationProps, type PaginationSize, type PaletteMode, PrskLinkCard, type PrskLinkCardProps, ScrollTopButton, type ScrollTopButtonProps, type ScrollTopPos, SekaiAnnotationText, type SekaiAnnotationTextProps, SekaiBodyText, type SekaiBodyTextProps, SekaiDetailText, type SekaiDetailTextProps, type SekaiTheme, type SekaiThemeProps, StickyNote, type StickyNoteProps, StrongButton, type StrongButtonProps, StylishButton, type StylishButtonProps, TextField, type TextFieldProps, TextLink, type TextLinkProps, Toast, type ToastPosition, type ToastProps, Tooltip, type TooltipPosition, type TooltipProps, WindowDialog, type WindowDialogProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgbMixWithBlackOrWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, shuffleArray, useCreateSekai, useInnerSize, useOrientation, useTabletSize, useThemeMode };
+/**
+ * Returns the current time as a Date object.
+ * @returns {Date} The current Date object.
+ */
+declare const getCurrentTime: () => Date;
+/**
+ * Returns the current time as a string in the specified format.
+ * @param {Date} now - The current Date object.
+ * @param {string} format - Format type ('datetime', 'date', 'time', 'timestamp', 'iso')
+ * @param {string} locale - Locale (default: 'ja-JP')
+ * @returns {string} Formatted time string
+ */
+declare const getFormattedTime: (now: Date, format?: string, locale?: string) => string;
+/**
+ * Returns the current time in a custom format.
+ * @param {Date} now - The current Date object.
+ * @param {string} pattern - Format pattern (e.g., 'YYYY-MM-DD HH:mm:ss')
+ * @returns {string} Formatted time string
+ */
+declare const getCustomCurrentTime: (now: Date, pattern?: string) => string;
+
+export { Accordion, type AccordionProps, AnnotationText, type AnnotationTextProps, BasicButton, type BasicButtonProps, BodyText, type BodyTextProps, COLORS_SEKAI_KEYS, Card, CardContent, type CardContentProps, type CardProps, CardTitle, type CardTitleProps, type ColorsSekai, type ColorsSekaiKey, DARK_MODE, DetailText, type DetailTextProps, Dialog, type DialogButton, type DialogButtonType, DialogButtons, type DialogButtonsProps, type DialogProps, type DialogSize, DialogTitleHeader, type DialogTitleHeaderProps, DoReMeetEffect, type DoReMeetEffectProps, Drawer, type DrawerPosition, type DrawerProps, Dropdown, DropdownContent, type DropdownOption, type DropdownProps, HamburgerButton, type HamburgerButtonProps, IntoTheSekai, type IntoTheSekaiProps, LIGHT_MODE, List, ListContext, ListItemButton, type ListItemButtonProps, ListItemText, type ListItemTextProps, type ListProps, Loading, type LoadingProps, NamePlate, type NamePlateProps, ORIENTATION, type Orientation, OutlineText, type OutlineTextProps, Pagination, type PaginationProps, type PaginationSize, type PaletteMode, PrskLinkCard, type PrskLinkCardProps, ScrollTopButton, type ScrollTopButtonProps, type ScrollTopPos, SekaiAnnotationText, type SekaiAnnotationTextProps, SekaiBodyText, type SekaiBodyTextProps, SekaiDetailText, type SekaiDetailTextProps, type SekaiTheme, type SekaiThemeProps, StickyNote, type StickyNoteProps, StrongButton, type StrongButtonProps, StylishButton, type StylishButtonProps, TextField, type TextFieldProps, TextLink, type TextLinkProps, Toast, type ToastPosition, type ToastProps, Tooltip, type TooltipPosition, type TooltipProps, WindowDialog, type WindowDialogProps, XoMikuDialog, type XoMikuDialogProps, XxMikuDialog, type XxMikuDialogProps, YourSekaiContext, type YourSekaiContextProps, YourSekaiProvider, type YourSekaiProviderProps, colorsSekai, convertHexToRgb, convertHexToRgbMixWithBlackOrWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };
