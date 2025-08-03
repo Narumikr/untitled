@@ -2361,9 +2361,11 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
   var optionStyle = _objectSpread$a({}, containerComponent && {
     position: 'absolute'
   });
-  if (typeof window !== 'undefined') {
-    setPortalContainer(containerComponent || document.body);
-  }
+  useEffect(function () {
+    if (typeof document !== 'undefined') {
+      setPortalContainer(containerComponent || document.body);
+    }
+  }, [containerComponent]);
   useEffect(function () {
     var canvas = canvasRef.current;
     if (!canvas || !portalContainer) return;
