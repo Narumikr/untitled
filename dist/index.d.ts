@@ -329,7 +329,7 @@ interface IntoTheSekaiProps {
     execEvent?: () => void;
     containerComponent?: HTMLElement;
 }
-declare const IntoTheSekai: ({ execEvent, containerComponent, ...rest }: IntoTheSekaiProps) => React.ReactPortal;
+declare const IntoTheSekai: ({ execEvent, containerComponent, ...rest }: IntoTheSekaiProps) => React.ReactPortal | null;
 
 interface TextLinkProps {
     id?: string;

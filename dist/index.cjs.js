@@ -2350,19 +2350,25 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
   var execEvent = _ref.execEvent,
     containerComponent = _ref.containerComponent,
     rest = _objectWithoutProperties(_ref, _excluded$9);
-  var portalContainer = containerComponent || document.body;
-  var _useState = React.useState(false),
+  var _useState = React.useState(null),
     _useState2 = _slicedToArray(_useState, 2),
-    startAnimation = _useState2[0],
-    setStartAnimation = _useState2[1];
+    portalContainer = _useState2[0],
+    setPortalContainer = _useState2[1];
+  var _useState3 = React.useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    startAnimation = _useState4[0],
+    setStartAnimation = _useState4[1];
   var canvasRef = React.useRef(null);
   var sekaiPieceRef = React.useRef([]);
   var optionStyle = _objectSpread$a({}, containerComponent && {
     position: 'absolute'
   });
   React.useEffect(function () {
+    setPortalContainer(containerComponent || document.body);
+  }, []);
+  React.useEffect(function () {
     var canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || !portalContainer) return;
     var setCanvasSize = function setCanvasSize() {
       canvas.width = portalContainer.offsetWidth;
       canvas.height = portalContainer.offsetHeight;
@@ -2372,7 +2378,7 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
     return function () {
       window.removeEventListener('resize', setCanvasSize);
     };
-  }, []);
+  }, [portalContainer]);
   React.useEffect(function () {
     var canvas = canvasRef.current;
     var ctx = canvas === null || canvas === void 0 ? void 0 : canvas.getContext('2d');
@@ -2418,6 +2424,7 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
     };
   }, [startAnimation]);
   var handleClick = function handleClick(e) {
+    if (portalContainer === null) return;
     setStartAnimation(true);
     var rect = portalContainer.getBoundingClientRect();
     if (!rect) return;
@@ -2426,6 +2433,7 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
     var newPieceOfSekai = createSekaiPiece(effectX, effectY);
     sekaiPieceRef.current = [].concat(_toConsumableArray(sekaiPieceRef.current), _toConsumableArray(newPieceOfSekai));
   };
+  if (!portalContainer) return null;
   return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React.createElement("canvas", _extends({}, rest, {
     className: clsx(styles$9['into-the-sekai'], rest.className),
     style: _objectSpread$a(_objectSpread$a({}, optionStyle), rest.style),

@@ -28,7 +28,7 @@ const YELLOW = 'rgb(255, 247, 148, {0})'
 const AQUA = 'rgb(149, 253, 255, {0})'
 
 export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoTheSekaiProps) => {
-  const portalContainer = containerComponent || document.body
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null)
   const [startAnimation, setStartAnimation] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const sekaiPieceRef = useRef<PieceOfSekai[]>([])
@@ -38,8 +38,12 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
   }
 
   useEffect(() => {
+    setPortalContainer(containerComponent || document.body)
+  }, [])
+
+  useEffect(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas || !portalContainer) return
 
     const setCanvasSize = () => {
       canvas.width = portalContainer.offsetWidth
@@ -53,7 +57,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
     return () => {
       window.removeEventListener('resize', setCanvasSize)
     }
-  }, [])
+  }, [portalContainer])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -106,6 +110,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
   }, [startAnimation])
 
   const handleClick = (e: AnimationTrigger) => {
+    if (portalContainer === null) return
     setStartAnimation(true)
     const rect = portalContainer.getBoundingClientRect()
     if (!rect) return
@@ -116,6 +121,8 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
     const newPieceOfSekai = createSekaiPiece(effectX, effectY)
     sekaiPieceRef.current = [...sekaiPieceRef.current, ...newPieceOfSekai]
   }
+
+  if (!portalContainer) return null
 
   return createPortal(
     <canvas
