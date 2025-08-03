@@ -37,9 +37,9 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
     ...(containerComponent && { position: 'absolute' })
   }
 
-  useEffect(() => {
+  if (typeof window !== 'undefined') {
     setPortalContainer(containerComponent || document.body)
-  }, [])
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current
