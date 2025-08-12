@@ -8,7 +8,6 @@ import styles from './NamePlate.module.scss'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-import type { CSSProperties } from 'react'
 
 export interface NamePlateProps {
   id?: string
@@ -40,7 +39,7 @@ export const NamePlate = ({
     <div
       {...rest}
       className={clsx(styles[`sekai-name-plate-${modeTheme}`], rest.className)}
-      style={{ ...(optionStyle as CSSProperties), ...rest.style }}>
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       <span className={styles['sekai-name-plate-color']}>{colorText}</span>
       <span>{normalText}</span>
     </div>
