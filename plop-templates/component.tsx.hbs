@@ -1,0 +1,38 @@
+import React from 'react'
+
+import clsx from 'clsx'
+
+import { useOptionalSekai } from '@/internal/useOptionalSekai'
+
+import styles from './{{pascalCase component}}.module.scss'
+
+import type { PaletteMode } from '@/hooks/useThemeMode'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+
+export interface {{pascalCase component}}Props {
+  id?: string
+  className?: string
+  style?: React.CSSProperties
+  sekai?: ColorsSekaiKey
+  themeMode?: PaletteMode
+}
+
+export const {{pascalCase component}} = ({
+  sekai,
+  themeMode,
+  ...rest
+}: {{pascalCase component}}Props) => {
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+
+  const optionStyle = {
+    '--sekai-color': sekaiColor,
+  }
+
+  return (
+    <div
+      {...rest}
+      className={clsx(styles['{{pascalCase component}}'], rest.className)}
+      style=\{{ ...(optionStyle as React.CSSProperties), ...rest.style }}></div>
+  )
+
+}
