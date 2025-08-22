@@ -146,8 +146,8 @@ var useThemeMode = function useThemeMode() {
   return isDarkMode === null ? LIGHT_MODE : isDarkMode ? DARK_MODE : LIGHT_MODE;
 };
 
-function ownKeys$s(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$s(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$s(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$s(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$t(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$t(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$t(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$t(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var YourSekaiContext = /*#__PURE__*/createContext(null);
 var YourSekaiProvider = function YourSekaiProvider(_ref) {
   var children = _ref.children,
@@ -158,8 +158,8 @@ var YourSekaiProvider = function YourSekaiProvider(_ref) {
     setCurrentSekaiTheme = _useState2[1];
   var onSwitchSekaiColor = function onSwitchSekaiColor(sekai) {
     setCurrentSekaiTheme(function (pre) {
-      return _objectSpread$s(_objectSpread$s({}, pre), {}, {
-        palette: _objectSpread$s(_objectSpread$s({}, pre.palette), {}, {
+      return _objectSpread$t(_objectSpread$t({}, pre), {}, {
+        palette: _objectSpread$t(_objectSpread$t({}, pre.palette), {}, {
           sekai: sekai
         })
       });
@@ -348,21 +348,25 @@ var convertHexToRgba = function convertHexToRgba(hex, alpha) {
   var b = parseInt(hex.slice(5, 7), 16);
   return "rgba(".concat(r, ", ").concat(g, ", ").concat(b, ", ").concat(alpha, ")");
 };
-var convertHexToRgbMixWithBlackOrWhite = function convertHexToRgbMixWithBlackOrWhite(hex, alpha, mixWhite) {
+var convertHexToRgbaMixWithBlackOrWhite = function convertHexToRgbaMixWithBlackOrWhite(hex, mixRatio, mixWhite) {
+  var alpha = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
   if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
     throw new Error('Invalid hex color format. Use #RRGGBB');
   }
+  if (mixRatio < 0 || mixRatio > 1) {
+    throw new Error('mixRatio must be between 0 and 1');
+  }
   if (alpha < 0 || alpha > 1) {
-    throw new Error('Alpha must be between 0 and 1');
+    throw new Error('alpha must be between 0 and 1');
   }
   var r = parseInt(hex.slice(1, 3), 16);
   var g = parseInt(hex.slice(3, 5), 16);
   var b = parseInt(hex.slice(5, 7), 16);
   var mixColor = mixWhite ? 255 : 0;
-  var mixR = Math.round(r * alpha + mixColor * (1 - alpha));
-  var mixG = Math.round(g * alpha + mixColor * (1 - alpha));
-  var mixB = Math.round(b * alpha + mixColor * (1 - alpha));
-  return "rgb(".concat(mixR, ", ").concat(mixG, ", ").concat(mixB, ")");
+  var mixR = Math.round(r * mixRatio + mixColor * (1 - mixRatio));
+  var mixG = Math.round(g * mixRatio + mixColor * (1 - mixRatio));
+  var mixB = Math.round(b * mixRatio + mixColor * (1 - mixRatio));
+  return "rgb(".concat(mixR, ", ").concat(mixG, ", ").concat(mixB, ", ").concat(alpha, ")");
 };
 
 function styleInject(css, ref) {
@@ -392,17 +396,17 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$s = "/* Styles for common color */\n/* Styles for z-index */\n/* Styles for common classes */\n.global-module_sekai-text-light__dNCyr {\n  color: #212121;\n}\n\n.global-module_sekai-text-dark__mGqlR {\n  color: #e0e0e0;\n}\n\n.global-module_sekai-color-light__HfMHF {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.global-module_sekai-color-dark__6YhnV {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n.global-module_sekai-overlay__mmwzM, .global-module_sekai-overlay-dark__6yGpR, .global-module_sekai-overlay-light__HL9EZ {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1000;\n}\n\n.global-module_sekai-overlay-light__HL9EZ {\n  background-color: rgba(0, 0, 0, 0.3882352941);\n}\n\n.global-module_sekai-overlay-dark__6yGpR {\n  background-color: rgba(255, 255, 255, 0.3019607843);\n}\n\n/* Styles for positioning */\n.global-module_sekai-flex-center__g0QI6 {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.global-module_sekai-absolute-center__VTxH3 {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.global-module_sekai-invisible-scroll__hmrCH {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.global-module_sekai-invisible-scroll__hmrCH::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.global-module_sekai-mb-8__ktEHx {\n  margin-bottom: 8px;\n}\n\n.global-module_sekai-mb-16__6mRfr {\n  margin-bottom: 16px;\n}\n\n.global-module_sekai-mb-24__tgmAP {\n  margin-bottom: 24px;\n}\n\n.global-module_text-xs__8u--w {\n  font-size: 12px;\n}\n\n.global-module_text-sm__eBn36 {\n  font-size: 14px;\n}\n\n.global-module_text-base__MOoLg {\n  font-size: 16px;\n}\n\n.global-module_text-lg__2N5Oe {\n  font-size: 18px;\n}\n\n.global-module_text-xl__jBQ41 {\n  font-size: 20px;\n}\n\n.global-module_text-2xl__ToT7l {\n  font-size: 24px;\n}\n\n.global-module_text-base-bold__4P50L {\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.global-module_text-lg-bold__g6LH5 {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n.global-module_text-xl-bold__Gofsc {\n  font-size: 20px;\n  font-weight: bold;\n}\n\n.global-module_text-2xl-bold__PzJhq {\n  font-size: 24px;\n  font-weight: bold;\n}\n\n.global-module_font-bold__pxzrH {\n  font-weight: bold;\n}";
+var css_248z$t = "/* Styles for common color */\n/* Styles for z-index */\n/* Styles for common classes */\n.global-module_sekai-text-light__dNCyr {\n  color: #212121;\n}\n\n.global-module_sekai-text-dark__mGqlR {\n  color: #e0e0e0;\n}\n\n.global-module_sekai-color-light__HfMHF {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.global-module_sekai-color-dark__6YhnV {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n.global-module_sekai-overlay__mmwzM, .global-module_sekai-overlay-dark__6yGpR, .global-module_sekai-overlay-light__HL9EZ {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1000;\n}\n\n.global-module_sekai-overlay-light__HL9EZ {\n  background-color: rgba(0, 0, 0, 0.3882352941);\n}\n\n.global-module_sekai-overlay-dark__6yGpR {\n  background-color: rgba(255, 255, 255, 0.3019607843);\n}\n\n/* Styles for positioning */\n.global-module_sekai-flex-center__g0QI6 {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.global-module_sekai-absolute-center__VTxH3 {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.global-module_sekai-invisible-scroll__hmrCH {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.global-module_sekai-invisible-scroll__hmrCH::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.global-module_sekai-mb-8__ktEHx {\n  margin-bottom: 8px;\n}\n\n.global-module_sekai-mb-16__6mRfr {\n  margin-bottom: 16px;\n}\n\n.global-module_sekai-mb-24__tgmAP {\n  margin-bottom: 24px;\n}\n\n.global-module_text-xs__8u--w {\n  font-size: 12px;\n}\n\n.global-module_text-sm__eBn36 {\n  font-size: 14px;\n}\n\n.global-module_text-base__MOoLg {\n  font-size: 16px;\n}\n\n.global-module_text-lg__2N5Oe {\n  font-size: 18px;\n}\n\n.global-module_text-xl__jBQ41 {\n  font-size: 20px;\n}\n\n.global-module_text-2xl__ToT7l {\n  font-size: 24px;\n}\n\n.global-module_text-base-bold__4P50L {\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.global-module_text-lg-bold__g6LH5 {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n.global-module_text-xl-bold__Gofsc {\n  font-size: 20px;\n  font-weight: bold;\n}\n\n.global-module_text-2xl-bold__PzJhq {\n  font-size: 24px;\n  font-weight: bold;\n}\n\n.global-module_font-bold__pxzrH {\n  font-weight: bold;\n}";
 var globalStyles = {"sekai-text-light":"global-module_sekai-text-light__dNCyr","sekai-text-dark":"global-module_sekai-text-dark__mGqlR","sekai-color-light":"global-module_sekai-color-light__HfMHF","sekai-color-dark":"global-module_sekai-color-dark__6YhnV","sekai-overlay":"global-module_sekai-overlay__mmwzM","sekai-overlay-dark":"global-module_sekai-overlay-dark__6yGpR","sekai-overlay-light":"global-module_sekai-overlay-light__HL9EZ","sekai-flex-center":"global-module_sekai-flex-center__g0QI6","sekai-absolute-center":"global-module_sekai-absolute-center__VTxH3","sekai-invisible-scroll":"global-module_sekai-invisible-scroll__hmrCH","sekai-mb-8":"global-module_sekai-mb-8__ktEHx","sekai-mb-16":"global-module_sekai-mb-16__6mRfr","sekai-mb-24":"global-module_sekai-mb-24__tgmAP","text-xs":"global-module_text-xs__8u--w","text-sm":"global-module_text-sm__eBn36","text-base":"global-module_text-base__MOoLg","text-lg":"global-module_text-lg__2N5Oe","text-xl":"global-module_text-xl__jBQ41","text-2xl":"global-module_text-2xl__ToT7l","text-base-bold":"global-module_text-base-bold__4P50L","text-lg-bold":"global-module_text-lg-bold__g6LH5","text-xl-bold":"global-module_text-xl-bold__Gofsc","text-2xl-bold":"global-module_text-2xl-bold__PzJhq","font-bold":"global-module_font-bold__pxzrH"};
+styleInject(css_248z$t);
+
+var css_248z$s = ".Accordion-module_sekai-accordion-container__LCxry {\n  width: 100%;\n}\n\n.Accordion-module_sekai-accordion-summary__IkhFf {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  min-height: 40px;\n  font-weight: bold;\n  border: none;\n  padding: 4px 10px;\n}\n.Accordion-module_sekai-accordion-summary__IkhFf:focus-visible {\n  outline: 1px solid var(--sekai-color);\n  background-color: var(--sekai-color-hover);\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-text__EyeSy {\n  margin: 0;\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-icon__yDBmI {\n  width: 18px;\n  height: 18px;\n  transition: transform 0.3s ease-out;\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-icon__yDBmI.Accordion-module_sekai-icon-open__Tj6I0 {\n  transform: rotate(0);\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-icon__yDBmI.Accordion-module_sekai-icon-close__9yyDB {\n  transform: rotate(-180deg);\n}\n\n.Accordion-module_sekai-web-horizon__q2Dio {\n  margin: 0;\n  border: none;\n  width: 100%;\n  height: 1px;\n  background-color: var(--sekai-color);\n}\n\n.Accordion-module_sekai-accordion-details__92WkS {\n  overflow: hidden;\n  padding: 0 10px;\n}\n.Accordion-module_sekai-accordion-details__92WkS .Accordion-module_sekai-detail-text__oPWs- {\n  margin: 0 0 5px 0;\n}";
+var styles$s = {"sekai-accordion-container":"Accordion-module_sekai-accordion-container__LCxry","sekai-accordion-summary":"Accordion-module_sekai-accordion-summary__IkhFf","sekai-accordion-summary-text":"Accordion-module_sekai-accordion-summary-text__EyeSy","sekai-accordion-summary-icon":"Accordion-module_sekai-accordion-summary-icon__yDBmI","sekai-icon-open":"Accordion-module_sekai-icon-open__Tj6I0","sekai-icon-close":"Accordion-module_sekai-icon-close__9yyDB","sekai-web-horizon":"Accordion-module_sekai-web-horizon__q2Dio","sekai-accordion-details":"Accordion-module_sekai-accordion-details__92WkS","sekai-detail-text":"Accordion-module_sekai-detail-text__oPWs-"};
 styleInject(css_248z$s);
 
-var css_248z$r = ".Accordion-module_sekai-accordion-container__LCxry {\n  width: 100%;\n}\n\n.Accordion-module_sekai-accordion-summary__IkhFf {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  min-height: 40px;\n  font-weight: bold;\n  border: none;\n  padding: 4px 10px;\n}\n.Accordion-module_sekai-accordion-summary__IkhFf:focus-visible {\n  outline: 1px solid var(--sekai-color);\n  background-color: var(--sekai-color-hover);\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-text__EyeSy {\n  margin: 0;\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-icon__yDBmI {\n  width: 18px;\n  height: 18px;\n  transition: transform 0.3s ease-out;\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-icon__yDBmI.Accordion-module_sekai-icon-open__Tj6I0 {\n  transform: rotate(0);\n}\n.Accordion-module_sekai-accordion-summary__IkhFf .Accordion-module_sekai-accordion-summary-icon__yDBmI.Accordion-module_sekai-icon-close__9yyDB {\n  transform: rotate(-180deg);\n}\n\n.Accordion-module_sekai-web-horizon__q2Dio {\n  margin: 0;\n  border: none;\n  width: 100%;\n  height: 1px;\n  background-color: var(--sekai-color);\n}\n\n.Accordion-module_sekai-accordion-details__92WkS {\n  overflow: hidden;\n  padding: 0 10px;\n}\n.Accordion-module_sekai-accordion-details__92WkS .Accordion-module_sekai-detail-text__oPWs- {\n  margin: 0 0 5px 0;\n}";
-var styles$r = {"sekai-accordion-container":"Accordion-module_sekai-accordion-container__LCxry","sekai-accordion-summary":"Accordion-module_sekai-accordion-summary__IkhFf","sekai-accordion-summary-text":"Accordion-module_sekai-accordion-summary-text__EyeSy","sekai-accordion-summary-icon":"Accordion-module_sekai-accordion-summary-icon__yDBmI","sekai-icon-open":"Accordion-module_sekai-icon-open__Tj6I0","sekai-icon-close":"Accordion-module_sekai-icon-close__9yyDB","sekai-web-horizon":"Accordion-module_sekai-web-horizon__q2Dio","sekai-accordion-details":"Accordion-module_sekai-accordion-details__92WkS","sekai-detail-text":"Accordion-module_sekai-detail-text__oPWs-"};
-styleInject(css_248z$r);
-
-var _excluded$q = ["sekai", "themeMode", "summary", "summaryStyles", "defaultOpen", "details"];
-function ownKeys$r(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$r(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$r(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$r(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var _excluded$r = ["sekai", "themeMode", "summary", "summaryStyles", "defaultOpen", "details"];
+function ownKeys$s(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$s(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$s(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$s(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Accordion = function Accordion(_ref) {
   var sekai = _ref.sekai,
     themeMode = _ref.themeMode,
@@ -411,7 +415,7 @@ var Accordion = function Accordion(_ref) {
     _ref$defaultOpen = _ref.defaultOpen,
     defaultOpen = _ref$defaultOpen === void 0 ? false : _ref$defaultOpen,
     details = _ref.details,
-    rest = _objectWithoutProperties(_ref, _excluded$q);
+    rest = _objectWithoutProperties(_ref, _excluded$r);
   var _useOptionalSekai = useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -434,23 +438,23 @@ var Accordion = function Accordion(_ref) {
     });
   };
   return /*#__PURE__*/React.createElement("div", _extends({}, rest, {
-    className: clsx(styles$r['sekai-accordion-container'], rest.className),
-    style: _objectSpread$r(_objectSpread$r({}, optionStyle), rest.style)
+    className: clsx(styles$s['sekai-accordion-container'], rest.className),
+    style: _objectSpread$s(_objectSpread$s({}, optionStyle), rest.style)
   }), /*#__PURE__*/React.createElement("button", {
-    className: clsx(styles$r['sekai-accordion-summary'], globalStyles["sekai-color-".concat(modeTheme)], summaryStyles),
+    className: clsx(styles$s['sekai-accordion-summary'], globalStyles["sekai-color-".concat(modeTheme)], summaryStyles),
     onClick: handleOpenClose,
     id: "accordion-summary",
     "aria-expanded": openAccordion,
     "aria-controls": "details-contents"
   }, /*#__PURE__*/React.createElement("p", {
-    className: styles$r['sekai-accordion-summary-text']
+    className: styles$s['sekai-accordion-summary-text']
   }, summary), /*#__PURE__*/React.createElement(ChevronSvg, {
-    className: clsx(styles$r["sekai-accordion-summary-icon"], openAccordion ? styles$r['sekai-icon-open'] : styles$r['sekai-icon-close']),
+    className: clsx(styles$s["sekai-accordion-summary-icon"], openAccordion ? styles$s['sekai-icon-open'] : styles$s['sekai-icon-close']),
     sekai: sekai,
     themeMode: themeMode,
     vector: "up"
   })), /*#__PURE__*/React.createElement("hr", {
-    className: styles$r['sekai-web-horizon']
+    className: styles$s['sekai-web-horizon']
   }), /*#__PURE__*/React.createElement(AccordionDetailsContents, {
     open: openAccordion,
     details: details
@@ -471,7 +475,7 @@ var AccordionDetailsContents = function AccordionDetailsContents(_ref2) {
       });
     }
   }, []);
-  var animationDetailsStyles = _objectSpread$r(_objectSpread$r({
+  var animationDetailsStyles = _objectSpread$s(_objectSpread$s({
     maxHeight: open ? heightDetails ? "".concat(heightDetails, "px") : 'none' : '0px',
     opacity: open ? 1 : 0
   }, open && {
@@ -498,7 +502,7 @@ var AccordionDetailsContents = function AccordionDetailsContents(_ref2) {
     id: "details-contents",
     role: "region",
     "aria-labelledby": "accordion-summary",
-    className: styles$r['sekai-accordion-details'],
+    className: styles$s['sekai-accordion-details'],
     style: animationDetailsStyles
   }, renderDetails(details));
 };
@@ -511,8 +515,46 @@ var isStringArray = function isStringArray(el) {
 var DetailText$1 = function DetailText(_ref3) {
   var text = _ref3.text;
   return /*#__PURE__*/React.createElement("p", {
-    className: styles$r['sekai-detail-text']
+    className: styles$s['sekai-detail-text']
   }, text);
+};
+
+var css_248z$r = ".Backdrop-module_sekai-backdrop-visible__WBf2v {\n  display: block;\n}\n\n.Backdrop-module_sekai-backdrop-hidden__VY-ZG {\n  display: none;\n}\n\n.Backdrop-module_sekai-backdrop-bg__-4uxN {\n  background: var(--sekai-color-bg);\n}\n\n.Backdrop-module_sekai-backdrop-centered__KN6ki {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}";
+var styles$r = {"sekai-backdrop-visible":"Backdrop-module_sekai-backdrop-visible__WBf2v","sekai-backdrop-hidden":"Backdrop-module_sekai-backdrop-hidden__VY-ZG","sekai-backdrop-bg":"Backdrop-module_sekai-backdrop-bg__-4uxN","sekai-backdrop-centered":"Backdrop-module_sekai-backdrop-centered__KN6ki"};
+styleInject(css_248z$r);
+
+var _excluded$q = ["sekai", "themeMode", "open", "children", "containerComponent", "centered"];
+function ownKeys$r(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$r(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$r(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$r(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var Backdrop = function Backdrop(_ref) {
+  var sekai = _ref.sekai,
+    themeMode = _ref.themeMode,
+    open = _ref.open,
+    children = _ref.children,
+    containerComponent = _ref.containerComponent,
+    _ref$centered = _ref.centered,
+    centered = _ref$centered === void 0 ? true : _ref$centered,
+    rest = _objectWithoutProperties(_ref, _excluded$q);
+  var displayBackdrop = open ? 'sekai-backdrop-visible' : 'sekai-backdrop-hidden';
+  var portalContainer = containerComponent || document.body;
+  var _useOptionalSekai = useOptionalSekai({
+      sekai: sekai,
+      mode: themeMode
+    }),
+    sekaiColor = _useOptionalSekai.sekaiColor,
+    modeTheme = _useOptionalSekai.modeTheme;
+  var sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, false, 0.8);
+  var optionStyle = _objectSpread$r({
+    '--sekai-color-bg': sekaiColorBg
+  }, containerComponent && {
+    position: 'absolute'
+  });
+  return /*#__PURE__*/createPortal(/*#__PURE__*/React.createElement("div", {
+    className: clsx(styles$r[displayBackdrop])
+  }, /*#__PURE__*/React.createElement("div", _extends({}, rest, {
+    className: clsx(globalStyles["sekai-overlay-".concat(modeTheme)], _defineProperty(_defineProperty({}, styles$r['sekai-backdrop-bg'], sekai), styles$r['sekai-backdrop-centered'], centered), rest.className),
+    style: _objectSpread$r(_objectSpread$r({}, optionStyle), rest.style)
+  }), children)), portalContainer);
 };
 
 var css_248z$q = ".BasicButton-module_sekai-basic-button__VyCUN, .BasicButton-module_sekai-basic-button-dark__6gtPa, .BasicButton-module_sekai-basic-button-light__4e-cr {\n  padding: 5px 10px;\n  border-radius: 10px;\n  min-height: 40px;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled, .BasicButton-module_sekai-basic-button-dark__6gtPa:disabled, .BasicButton-module_sekai-basic-button-light__4e-cr:disabled {\n  opacity: 0.5;\n}\n.BasicButton-module_sekai-basic-button__VyCUN:disabled:hover, .BasicButton-module_sekai-basic-button-dark__6gtPa:disabled:hover, .BasicButton-module_sekai-basic-button-light__4e-cr:disabled:hover {\n  background-color: transparent;\n}\n\n.BasicButton-module_sekai-basic-button-light__4e-cr {\n  border: 2px solid var(--sekai-color);\n}\n.BasicButton-module_sekai-basic-button-light__4e-cr:hover {\n  background-color: var(--sekai-color-hover);\n}\n.BasicButton-module_sekai-basic-button-light__4e-cr:focus-visible {\n  outline: 1px solid var(--sekai-color);\n}\n\n.BasicButton-module_sekai-basic-button-dark__6gtPa {\n  border: 2px solid var(--sekai-color);\n}\n.BasicButton-module_sekai-basic-button-dark__6gtPa:hover {\n  background-color: var(--sekai-color-hover);\n}\n.BasicButton-module_sekai-basic-button-dark__6gtPa:focus-visible {\n  outline: 1px solid var(--sekai-color);\n}";
@@ -610,7 +652,7 @@ var ScrollTopButton = function ScrollTopButton(_ref) {
     }),
     sekaiColor = _useOptionalSekai.sekaiColor,
     isLight = _useOptionalSekai.isLight;
-  var sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
+  var sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   var optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-bg': sekaiColorBg
@@ -1457,8 +1499,8 @@ var WindowDialog = function WindowDialog(_ref) {
     modeTheme = _useOptionalSekai.modeTheme,
     isLight = _useOptionalSekai.isLight;
   var displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden';
-  var sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.3, isLight);
-  var sekaiColorHeader = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
+  var sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.3, isLight);
+  var sekaiColorHeader = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   var windowInitCoordinate = function windowInitCoordinate() {
     return {
       x: '50%',
@@ -1915,7 +1957,7 @@ var Drawer = function Drawer(_ref) {
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme,
     isLight = _useOptionalSekai.isLight;
-  var sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
+  var sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   var optionStyle = {
     '--sekai-color-bg': sekaiColorBg
   };
@@ -2146,7 +2188,7 @@ var DropdownOptions = function DropdownOptions(_ref6) {
     setSelectedValue = _ref7.setSelectedValue,
     openOptions = _ref7.openOptions,
     setOpenOptions = _ref7.setOpenOptions;
-  var sekaiColorShadow = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
+  var sekaiColorShadow = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
   var optionStyle = {
     '--sekai-color': sekaiColor,
@@ -2752,7 +2794,7 @@ var StickyNoteContents = function StickyNoteContents(_ref2) {
     }),
     sekaiColor = _useOptionalSekai.sekaiColor,
     isLight = _useOptionalSekai.isLight;
-  var sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.6, isLight);
+  var sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.6, isLight);
   var optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-bg': sekaiColorBg
@@ -3108,7 +3150,7 @@ var SekaiAnnotationText = function SekaiAnnotationText(_ref6) {
     }),
     sekaiColor = _useOptionalSekai6.sekaiColor,
     isLight = _useOptionalSekai6.isLight;
-  var annotationColor = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.7, isLight);
+  var annotationColor = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.7, isLight);
   var colorStyle = {
     color: annotationColor
   };
@@ -3213,7 +3255,7 @@ var Toast = function Toast(_ref) {
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme,
     isLight = _useOptionalSekai.isLight;
-  var sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
+  var sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   var optionStyle = _objectSpread$1({
     '--sekai-color-bg': sekaiColorBg
   }, containerComponent && {
@@ -3272,7 +3314,7 @@ var Tooltip = function Tooltip(_ref) {
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme,
     isLight = _useOptionalSekai.isLight;
-  var sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.2, isLight);
+  var sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.2, isLight);
   var optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-bg': sekaiColorBg
@@ -3363,4 +3405,4 @@ var useCurrentTime = function useCurrentTime() {
   return currentTime;
 };
 
-export { Accordion, AnnotationText, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgbMixWithBlackOrWhite, convertHexToRgba, createSekai, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };
+export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };

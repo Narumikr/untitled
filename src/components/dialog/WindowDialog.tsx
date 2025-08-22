@@ -7,7 +7,7 @@ import { ClearSvg } from '@/img/clear'
 import { RestoreSvg } from '@/img/restore'
 import { SquareSvg } from '@/img/square'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbMixWithBlackOrWhite } from '@/utils/converter'
+import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import styles from './WindowDialog.module.scss'
 
@@ -42,8 +42,8 @@ export const WindowDialog = ({
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
   const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
 
-  const sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.3, isLight)
-  const sekaiColorHeader = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
+  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.3, isLight)
+  const sekaiColorHeader = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
 
   const windowInitCoordinate = () => {
     return { x: '50%', y: '50%' }

@@ -1,5 +1,7 @@
 export * from './accordion/Accordion'
 
+export * from './backdrop/Backdrop'
+
 export * from './button/BasicButton'
 
 export * from './button/HamburgerButton'

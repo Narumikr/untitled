@@ -7,7 +7,7 @@ import { BodyText } from '@/components/text/UtilText'
 
 import { ClearSvg } from '@/img/clear'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbMixWithBlackOrWhite } from '@/utils/converter'
+import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import globalStyles from '@/styles/global.module.scss'
 
@@ -48,7 +48,7 @@ export const Toast = ({
   const portalContainer = containerComponent || document.body
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
-  const sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
+  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
   const optionStyle = {
     '--sekai-color-bg': sekaiColorBg,
     ...(containerComponent && { position: 'absolute' })

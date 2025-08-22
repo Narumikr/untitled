@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbMixWithBlackOrWhite } from '@/utils/converter'
+import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import styles from './Tooltip.module.scss'
 
@@ -33,7 +33,7 @@ export const Tooltip = ({
 }: TooltipProps) => {
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
-  const sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.2, isLight)
+  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.2, isLight)
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-bg': sekaiColorBg
