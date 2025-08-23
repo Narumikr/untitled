@@ -1,0 +1,24 @@
+@use '../../styles/global.module.scss' as global;
+
+.sekai-typewrite-text {
+  position: relative;
+}
+
+.sekai-cursor::after {
+  content: '|';
+  position: absolute;
+  animation: blink 1s step-start 0s infinite;
+  margin-left: 2px;
+  color: var(--sekai-color);
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

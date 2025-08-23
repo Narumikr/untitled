@@ -90,7 +90,7 @@ type Story = StoryObj<typeof meta>
 export const DefaultLight: Story = {
   args: {
     id: 'backdrop-default-light',
-    sekai: 'Miku',
+    sekai: undefined,
     themeMode: 'light',
     open: true,
     children: <Loading />,
@@ -106,6 +106,38 @@ export const DefaultLight: Story = {
 export const DefaultDark: Story = {
   args: {
     id: 'backdrop-default-dark',
+    sekai: undefined,
+    themeMode: 'dark',
+    open: true,
+    children: <Loading />,
+    centered: true
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark',
+    portal: true
+  }
+}
+
+export const SekaiColorLight: Story = {
+  args: {
+    id: 'backdrop-sekai-color-light',
+    sekai: 'Miku',
+    themeMode: 'light',
+    open: true,
+    children: <Loading />,
+    centered: true
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light',
+    portal: true
+  }
+}
+
+export const SekaiColorDark: Story = {
+  args: {
+    id: 'backdrop-sekai-color-dark',
     sekai: 'Miku',
     themeMode: 'dark',
     open: true,
