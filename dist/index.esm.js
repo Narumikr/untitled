@@ -3044,29 +3044,38 @@ var TypewriterText = function TypewriterText(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     displayText = _useState2[0],
     setDisplayText = _useState2[1];
+  var _useState3 = useState(0),
+    _useState4 = _slicedToArray(_useState3, 2),
+    currentIndex = _useState4[0],
+    setCurrentIndex = _useState4[1];
   var viewCursor = useMemo(function () {
     return options.cursor && displayText.length < text.length;
   }, [displayText, text, options.cursor]);
   useEffect(function () {
-    var currentIndex = 0;
+    setDisplayText('');
     var typewriteInterval = setInterval(function () {
-      setDisplayText(function (prev) {
-        var upd8Text = prev + text[currentIndex];
-        currentIndex++;
-        if (currentIndex > text.length && options.loop) {
-          currentIndex = 0;
-          return '';
+      setCurrentIndex(function (prevIndex) {
+        if (prevIndex >= text.length - 1) {
+          if (options.loop) {
+            setDisplayText('');
+            return 0;
+          } else {
+            clearInterval(typewriteInterval);
+            return prevIndex;
+          }
         }
-        if (currentIndex >= text.length && !options.loop) {
-          clearInterval(typewriteInterval);
-        }
-        return upd8Text;
+        return prevIndex + 1;
       });
     }, options.speed);
     return function () {
       return clearInterval(typewriteInterval);
     };
   }, []);
+  useEffect(function () {
+    setDisplayText(function (pre) {
+      return pre + text[currentIndex];
+    });
+  }, [currentIndex]);
   var optionStyle = {
     '--sekai-color': sekaiColor
   };

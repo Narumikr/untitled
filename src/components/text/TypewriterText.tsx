@@ -39,31 +39,34 @@ export const TypewriterText = ({
 }: TypewriterTextProps) => {
   const { sekaiColor } = useOptionalSekai({ sekai, mode: themeMode })
   const [displayText, setDisplayText] = useState('')
+  const [currentIndex, setCurrentIndex] = useState(0)
   const viewCursor = useMemo(() => {
     return options.cursor && displayText.length < text.length
   }, [displayText, text, options.cursor])
 
   useEffect(() => {
-    let currentIndex = 0
-
+    setDisplayText('')
     const typewriteInterval = setInterval(() => {
-      setDisplayText((prev) => {
-        const upd8Text = prev + text[currentIndex]
-        currentIndex++
-
-        if (currentIndex > text.length && options.loop) {
-          currentIndex = 0
-          return ''
+      setCurrentIndex((prevIndex) => {
+        if (prevIndex >= text.length - 1) {
+          if (options.loop) {
+            setDisplayText('')
+            return 0
+          } else {
+            clearInterval(typewriteInterval)
+            return prevIndex
+          }
         }
-        if (currentIndex >= text.length && !options.loop) {
-          clearInterval(typewriteInterval)
-        }
-        return upd8Text
+        return prevIndex + 1
       })
     }, options.speed)
 
     return () => clearInterval(typewriteInterval)
   }, [])
+
+  useEffect(() => {
+    setDisplayText((pre) => pre + text[currentIndex])
+  }, [currentIndex])
 
   const optionStyle = {
     '--sekai-color': sekaiColor
