@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom'
 
 import { ChevronSvg } from '@/img/chevron'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbMixWithBlackOrWhite } from '@/utils/converter'
+import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import styles from './ScrollTopButton.module.scss'
 
@@ -31,7 +31,7 @@ export const ScrollTopButton = ({
 }: ScrollTopButtonProps) => {
   const { sekaiColor, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
-  const sekaiColorBg = convertHexToRgbMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
+  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-bg': sekaiColorBg
