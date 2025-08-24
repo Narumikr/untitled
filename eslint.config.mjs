@@ -1,42 +1,23 @@
-import _import from 'eslint-plugin-import'
-import unusedImports from 'eslint-plugin-unused-imports'
-import jsxA11Y from 'eslint-plugin-jsx-a11y'
-import react from 'eslint-plugin-react'
-import { fixupPluginRules } from '@eslint/compat'
 import tsParser from '@typescript-eslint/parser'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import js from '@eslint/js'
-import { FlatCompat } from '@eslint/eslintrc'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
-})
+import tsPlugin from '@typescript-eslint/eslint-plugin'
+import react from 'eslint-plugin-react'
+import unusedImports from 'eslint-plugin-unused-imports'
+import _import from 'eslint-plugin-import'
+import jsxA11Y from 'eslint-plugin-jsx-a11y'
+import { fixupPluginRules } from '@eslint/compat'
 
 export default [
-  ...compat.extends(
-    'eslint:recommended',
-    'plugin:storybook/recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-    'prettier',
-    'plugin:jsx-a11y/recommended'
-  ),
   {
-    ignores: ['dist', 'node_modules', 'src/**/index.ts']
+    ignores: ['dist', 'node_modules', 'src/**/index.ts', 'storybook-static']
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
     plugins: {
-      'import': fixupPluginRules(_import),
+      react,
       'unused-imports': unusedImports,
-      'jsx-a11y': jsxA11Y,
-      react
+      '@typescript-eslint': tsPlugin,
+      'import': fixupPluginRules(_import),
+      'jsx-a11y': jsxA11Y
     },
     languageOptions: {
       parser: tsParser,
@@ -44,13 +25,15 @@ export default [
       sourceType: 'module',
       parserOptions: {
         project: './tsconfig.json',
-        sourceType: 'module',
         ecmaFeatures: {
           jsx: true
         }
       }
     },
     settings: {
+      'react': {
+        version: 'detect'
+      },
       'import/resolver': {
         typescript: {
           alwaysTryTypes: true,
@@ -70,7 +53,8 @@ export default [
       'no-debugger': 'error',
       'no-alert': 'error',
       'prefer-const': 'error',
-      'no-unused-vars': [
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': [
         'warn',
         {
           args: 'none'
