@@ -2198,13 +2198,13 @@ var DropdownOptions = function DropdownOptions(_ref6) {
     '--sekai-color-hover': sekaiColorHover
   };
   var _useState9 = React.useState(false),
-    _useState10 = _slicedToArray(_useState9, 2),
-    isVisible = _useState10[0],
-    setIsVisible = _useState10[1];
-  var _useState11 = React.useState(false),
-    _useState12 = _slicedToArray(_useState11, 2),
-    isRendered = _useState12[0],
-    setIsRendered = _useState12[1];
+    _useState0 = _slicedToArray(_useState9, 2),
+    isVisible = _useState0[0],
+    setIsVisible = _useState0[1];
+  var _useState1 = React.useState(false),
+    _useState10 = _slicedToArray(_useState1, 2),
+    isRendered = _useState10[0],
+    setIsRendered = _useState10[1];
   var open = function open() {
     setIsRendered(true);
     setTimeout(function () {
