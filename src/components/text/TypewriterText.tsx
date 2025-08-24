@@ -2,12 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react'
 
 import clsx from 'clsx'
 
+import { useOptionalSekai } from '@/internal/useOptionalSekai'
+
 import styles from './TypewriterText.module.scss'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 export interface TypewriterTextOptions {
   speed?: number
