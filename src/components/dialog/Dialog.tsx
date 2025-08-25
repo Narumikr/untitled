@@ -3,8 +3,9 @@ import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
+import { Backdrop } from '@/components/backdrop/Backdrop'
+
 import { ClearSvg } from '@/img/clear'
-import { DialogOverlay } from '@/internal/commonComponents'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgba } from '@/utils/converter'
 import { fireOnEscapeKey } from '@/utils/operation'
@@ -77,18 +78,17 @@ export const Dialog = ({
     return () => document.removeEventListener('keydown', handleKeyDownEsc)
   }, [open])
 
-  const overlayProps = { open, themeMode, children, containerComponent }
+  const overlayProps = { open, themeMode, containerComponent }
   const headerProps = { sekai, themeMode, size, onClose, title, showCloseIcon }
   const buttonsProps = { sekai, themeMode, buttons }
 
   return createPortal(
-    <DialogOverlay {...overlayProps}>
+    <Backdrop {...overlayProps} centered>
       <div
         {...rest}
         role="dialog"
         className={clsx(
           globalStyles[`sekai-color-${modeTheme}`],
-          globalStyles['sekai-absolute-center'],
           styles[`sekai-container-${size}`],
           rest.className
         )}
@@ -100,7 +100,7 @@ export const Dialog = ({
         </div>
         {dialogButtons || <DialogButtons {...buttonsProps} />}
       </div>
-    </DialogOverlay>,
+    </Backdrop>,
     portalContainer
   )
 }

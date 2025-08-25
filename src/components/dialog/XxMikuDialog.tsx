@@ -3,14 +3,12 @@ import React, { useEffect, useMemo } from 'react'
 import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
+import { Backdrop } from '@/components/backdrop/Backdrop'
 import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog'
 
 import { XxMikuSvg } from '@/img/xxmiku'
-import { DialogOverlay } from '@/internal/commonComponents'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { fireOnEscapeKey } from '@/utils/operation'
-
-import globalStyles from '@/styles/global.module.scss'
 
 import styles from './XxMikuDialog.module.scss'
 
@@ -70,16 +68,15 @@ export const XxMikuDialog = ({
     [buttons, modeTheme]
   )
 
-  const overlayProps = { open, themeMode, children, containerComponent }
+  const overlayProps = { id: 'xxmiku-dialog-overlay',open, themeMode, containerComponent, centered: true }
   const buttonsProps = { themeMode, buttons: xxButtonProps }
 
   return createPortal(
-    <DialogOverlay {...overlayProps}>
+    <Backdrop {...overlayProps}>
       <div
         {...rest}
         role="dialog"
         className={clsx(
-          globalStyles['sekai-absolute-center'],
           styles[`sekai-container-${size}`],
           styles[`sekai-${modeTheme}`],
           rest.className
@@ -100,7 +97,7 @@ export const XxMikuDialog = ({
           />
         </div>
       </div>
-    </DialogOverlay>,
+    </Backdrop>,
     portalContainer
   )
 }
