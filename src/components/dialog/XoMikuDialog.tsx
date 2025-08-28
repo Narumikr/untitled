@@ -3,15 +3,13 @@ import React, { useEffect, useMemo } from 'react'
 import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
+import { Backdrop } from '@/components/backdrop/Backdrop'
 import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog'
 
 import { LIGHT_MODE, type PaletteMode } from '@/hooks/useThemeMode'
 import { XoMikuSvg } from '@/img/xomiku'
-import { DialogOverlay } from '@/internal/commonComponents'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { fireOnEscapeKey } from '@/utils/operation'
-
-import globalStyles from '@/styles/global.module.scss'
 
 import styles from './XoMikuDialog.module.scss'
 
@@ -67,16 +65,15 @@ export const XoMikuDialog = ({
     [buttons, modeTheme]
   )
 
-  const overlayProps = { open, themeMode, children, containerComponent }
+  const overlayProps = { id: 'xomiku-dialog-overlay', open, themeMode, containerComponent, centered: true }
   const buttonsProps = { themeMode: LIGHT_MODE as PaletteMode, buttons: xoButtonProps }
 
   return createPortal(
-    <DialogOverlay {...overlayProps}>
+    <Backdrop {...overlayProps}>
       <div
         {...rest}
         role="dialog"
         className={clsx(
-          globalStyles['sekai-absolute-center'],
           styles[`sekai-container-${size}`],
           rest.className
         )}
@@ -96,7 +93,7 @@ export const XoMikuDialog = ({
           />
         </div>
       </div>
-    </DialogOverlay>,
+    </Backdrop>,
     portalContainer
   )
 }
