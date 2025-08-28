@@ -602,6 +602,14 @@ declare const useOrientation: () => Orientation;
  */
 declare const useTabletSize: () => boolean;
 
+/**
+ * @description Get localized character name by ColorsSekaiKey
+ * @param {string} name - ColorsSekaiKey
+ * @param {string} locale - Locale code (default: 'ja')
+ * @returns {string} - Localized character name
+ */
+declare const getSekaiCharacterName: (name: ColorsSekaiKey, locale?: string) => string;
+
 declare const convertHexToRgb: (hex: string) => string;
 declare const convertHexToRgba: (hex: string, alpha: number) => string;
 declare const convertHexToRgbaMixWithBlackOrWhite: (hex: string, mixRatio: number, mixWhite: boolean, alpha?: number) => string;
@@ -654,5 +662,5 @@ declare const getFormattedTime: (now: Date, format?: string, locale?: string) =>
  */
 declare const getCustomCurrentTime: (now: Date, pattern?: string) => string;
 
-export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };
+export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };
 export type { AccordionProps, AnnotationTextProps, BackdropProps, BasicButtonProps, BodyTextProps, CardContentProps, CardProps, CardTitleProps, ColorsSekai, ColorsSekaiKey, DetailTextProps, DialogButton, DialogButtonType, DialogButtonsProps, DialogProps, DialogSize, DialogTitleHeaderProps, DoReMeetEffectProps, DrawerPosition, DrawerProps, DropdownOption, DropdownProps, HamburgerButtonProps, IntoTheSekaiProps, ListItemButtonProps, ListItemTextProps, ListProps, LoadingProps, NamePlateProps, Orientation, OutlineTextProps, PaginationProps, PaginationSize, PaletteMode, PrskLinkCardProps, ScrollTopButtonProps, ScrollTopPos, SekaiAnnotationTextProps, SekaiBodyTextProps, SekaiDetailTextProps, SekaiTheme, SekaiThemeProps, StickyNoteProps, StrongButtonProps, StylishButtonProps, TextFieldProps, TextLinkProps, ToastPosition, ToastProps, TooltipPosition, TooltipProps, TypewriterTextOptions, TypewriterTextProps, WindowDialogProps, XoMikuDialogProps, XxMikuDialogProps, YourSekaiContextProps, YourSekaiProviderProps };
