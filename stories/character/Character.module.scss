@@ -1,0 +1,39 @@
+$apple-site-light-gray: #f5f5f7;
+
+.sekai-character {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', 'serif';
+  --font-en: 'minion-pro, serif';
+  --font-en2: 'interstate-condensed, sans-serif';
+
+  position: relative;
+  min-width: 250px;
+  background-color: $apple-site-light-gray;
+  padding: 16px 12px;
+  border-left: 2px solid black;
+
+  .sekai-character-label {
+    color: #6b7280;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .sekai-character-name {
+    color: var(--sekai-color);
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    padding-bottom: 4px;
+    display: inline-block;
+  }
+
+  .sekai-chracter-description {
+    margin: 8px 0;
+    font-size: 0.75rem;
+  }
+
+  * {
+    font-family: inherit;
+    caret-color: transparent;
+  }
+}

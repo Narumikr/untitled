@@ -1,12 +1,12 @@
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import { Color } from './Color'
+import { Character } from './Character'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/Color',
-  component: Color,
+  title: 'Untitled/Character',
+  component: Character,
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
@@ -17,30 +17,29 @@ const meta = {
       },
       control: { type: 'select' },
       options: [...Object.keys(COLORS_SEKAI_KEYS)]
+    },
+    locale: {
+      description: 'What language to use for character name',
+      table: {
+        type: { summary: 'string' }
+      },
+      control: { type: 'select' },
+      options: ['ja', 'en', 'zh-hant']
     }
   },
   args: {}
-} satisfies Meta<typeof Color>
+} satisfies Meta<typeof Character>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const SEKAIColor: Story = {
+export const SEKAICharacter: Story = {
   args: {
-    sekai: 'Miku'
+    sekai: 'Miku',
+    locale: 'ja'
   },
   parameters: {
     sekai: 'Miku',
     background: 'light'
-  }
-}
-
-export const SEKAIColorDark: Story = {
-  args: {
-    sekai: 'Miku'
-  },
-  parameters: {
-    sekai: 'Miku',
-    background: 'dark'
   }
 }
