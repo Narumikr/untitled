@@ -2455,6 +2455,14 @@ var createSekai = function createSekai(option) {
   return sekaiTheme;
 };
 
+/* eslint-disable no-console */
+var ConsoleWarning = function ConsoleWarning() {
+  if (process.env.NODE_ENV === 'development') {
+    var _console2;
+    (_console2 = console).warn.apply(_console2, arguments);
+  }
+};
+
 /**
  * @description Utility functions for serializing and deserializing data, including handling of Date objects.
  * @param {T} data - The data to serialize
@@ -2547,6 +2555,9 @@ var serializeArray = function serializeArray(obj, visited) {
 var serializeObject = function serializeObject(obj, visited) {
   if (visited.has(obj)) {
     throw new Error('Circular reference detected during deserialization');
+  }
+  if (obj instanceof Map || obj instanceof Set) {
+    ConsoleWarning('Map and Set are not supported for serialization. They will be converted to empty objects.');
   }
   if (isObject(obj)) {
     var serializedObj = {};
@@ -3028,14 +3039,6 @@ var List = function List(_ref) {
       paddingLeft: paddingLeft
     }, optionStyle), rest.style)
   }), children));
-};
-
-/* eslint-disable no-console */
-var ConsoleWarning = function ConsoleWarning() {
-  if (process.env.NODE_ENV === 'development') {
-    var _console2;
-    (_console2 = console).warn.apply(_console2, arguments);
-  }
 };
 
 function ownKeys$8(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }

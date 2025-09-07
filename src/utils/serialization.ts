@@ -1,3 +1,5 @@
+import { ConsoleWarning } from '@/internal/logging'
+
 /**
  * @description Utility functions for serializing and deserializing data, including handling of Date objects.
  * @param {T} data - The data to serialize
@@ -107,6 +109,12 @@ const serializeArray = <T>(obj: T, visited: WeakSet<object>): unknown => {
 const serializeObject = <T>(obj: T, visited: WeakSet<object>): unknown => {
   if (visited.has(obj as object)) {
     throw new Error('Circular reference detected during deserialization')
+  }
+
+  if (obj instanceof Map || obj instanceof Set) {
+    ConsoleWarning(
+      'Map and Set are not supported for serialization. They will be converted to empty objects.'
+    )
   }
 
   if (isObject(obj)) {
