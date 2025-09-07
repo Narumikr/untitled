@@ -6,4 +6,6 @@ export * from './createSekai'
 
 export * from './operation'
 
+export * from './serialization'
+
 export * from './timer'

@@ -1,3 +1,8 @@
+/**
+ * @description Convert hex color to rgb color
+ * @param {string} hex - Hex color string (e.g., #RRGGBB)
+ * @returns {string} RGB color string (e.g., rgb(255, 0, 0))
+ */
 export const convertHexToRgb = (hex: string) => {
   if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
     throw new Error('Invalid hex color format. Use #RRGGBB')
@@ -9,7 +14,13 @@ export const convertHexToRgb = (hex: string) => {
   return `rgb(${r}, ${g}, ${b})`
 }
 
-export const convertHexToRgba = (hex: string, alpha: number) => {
+/**
+ * @description Convert hex color to rgba color
+ * @param {string} hex - Hex color string (e.g., #RRGGBB)
+ * @param {number} alpha - Alpha value (0 to 1)
+ * @returns {string | undefined} RGBA color string (e.g., rgba(255, 0, 0, 0.5))
+ */
+export const convertHexToRgba = (hex: string, alpha = 1) => {
   if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
     throw new Error('Invalid hex color format. Use #RRGGBB')
   }
@@ -22,6 +33,14 @@ export const convertHexToRgba = (hex: string, alpha: number) => {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`
 }
 
+/**
+ * @description Convert hex color to rgba color mixed with black or white
+ * @param {string} hex - Hex color string (e.g., #RRGGBB)
+ * @param {number} mixRatio - Ratio to mix with black or white (0 to 1)
+ * @param {boolean} mixWhite - true to mix with white, false to mix with black
+ * @param {number | undefined} alpha - Alpha value (0 to 1), default is 1
+ * @returns {string} RGBA color string (e.g., rgba(255, 0, 0, 0.5))
+ */
 export const convertHexToRgbaMixWithBlackOrWhite = (
   hex: string,
   mixRatio: number,
