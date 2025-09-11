@@ -329,6 +329,11 @@ var ChevronSvg = function ChevronSvg(_ref) {
   }));
 };
 
+/**
+ * @description Convert hex color to rgb color
+ * @param {string} hex - Hex color string (e.g., #RRGGBB)
+ * @returns {string} RGB color string (e.g., rgb(255, 0, 0))
+ */
 var convertHexToRgb = function convertHexToRgb(hex) {
   if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
     throw new Error('Invalid hex color format. Use #RRGGBB');
@@ -338,7 +343,14 @@ var convertHexToRgb = function convertHexToRgb(hex) {
   var b = parseInt(hex.slice(5, 7), 16);
   return "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ")");
 };
-var convertHexToRgba = function convertHexToRgba(hex, alpha) {
+/**
+ * @description Convert hex color to rgba color
+ * @param {string} hex - Hex color string (e.g., #RRGGBB)
+ * @param {number} alpha - Alpha value (0 to 1)
+ * @returns {string | undefined} RGBA color string (e.g., rgba(255, 0, 0, 0.5))
+ */
+var convertHexToRgba = function convertHexToRgba(hex) {
+  var alpha = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
   if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
     throw new Error('Invalid hex color format. Use #RRGGBB');
   }
@@ -350,6 +362,14 @@ var convertHexToRgba = function convertHexToRgba(hex, alpha) {
   var b = parseInt(hex.slice(5, 7), 16);
   return "rgba(".concat(r, ", ").concat(g, ", ").concat(b, ", ").concat(alpha, ")");
 };
+/**
+ * @description Convert hex color to rgba color mixed with black or white
+ * @param {string} hex - Hex color string (e.g., #RRGGBB)
+ * @param {number} mixRatio - Ratio to mix with black or white (0 to 1)
+ * @param {boolean} mixWhite - true to mix with white, false to mix with black
+ * @param {number | undefined} alpha - Alpha value (0 to 1), default is 1
+ * @returns {string} RGBA color string (e.g., rgba(255, 0, 0, 0.5))
+ */
 var convertHexToRgbaMixWithBlackOrWhite = function convertHexToRgbaMixWithBlackOrWhite(hex, mixRatio, mixWhite) {
   var alpha = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
   if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
@@ -2435,6 +2455,257 @@ var createSekai = function createSekai(option) {
   return sekaiTheme;
 };
 
+/* eslint-disable no-console */
+var ConsoleWarning = function ConsoleWarning() {
+  if (process.env.NODE_ENV === 'development') {
+    var _console2;
+    (_console2 = console).warn.apply(_console2, arguments);
+  }
+};
+
+/**
+ * @description Utility functions for serializing and deserializing data, including handling of Date objects.
+ * @param {T} data - The data to serialize
+ * @param {WeakSet<object>} visited - A WeakSet to track visited objects for circular reference detection
+ * @returns {unknown} - The serialized data
+ */
+var serializeData = function serializeData(data) {
+  var visited = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new WeakSet();
+  // If data is Date instance, convert to ISO string
+  if (data instanceof Date) {
+    return data.toISOString();
+  }
+  // If data is an array, recursively serialize each element
+  if (Array.isArray(data)) {
+    return serializeArray(data, visited);
+  }
+  // If data is an object, recursively serialize each property
+  if (data && _typeof(data) === 'object') {
+    return serializeObject(data, visited);
+  }
+  // For other primitive types, return as is
+  return data;
+};
+/**
+ * @description Deserialize data, converting ISO date strings back to Date objects
+ * @param {unknown} data - data to deserialize
+ * @param {WeakSet<object>} visited - A WeakSet to track visited objects for circular reference detection
+ * @returns {unknown} - The deserialized data
+ */
+var deserializeData = function deserializeData(data) {
+  var visited = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new WeakSet();
+  // If data is a string and looks like an ISO date, convert to Date
+  if (typeof data === 'string') {
+    return deserializeDate(data);
+  }
+  // If data is an array, recursively deserialize each element
+  if (Array.isArray(data)) {
+    return deserializeArray(data, visited);
+  }
+  // If data is an object, recursively deserialize each property
+  if (data != null && _typeof(data) === 'object') {
+    return deserializeObject(data, visited);
+  }
+  // For other primitive types, return as is
+  return data;
+};
+var deserializeDataWithTemplate = function deserializeDataWithTemplate(obj, template) {
+  var visited = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new WeakSet();
+  // If template is Date instance, and obj is string, convert to Date
+  if (template instanceof Date && typeof obj === 'string') {
+    return deserializeDateWithTemplate(obj);
+  }
+  // If template is an array, recursively temp each element
+  if (Array.isArray(template)) {
+    return deserializeArrayWithTemplate(obj, template, visited);
+  }
+  // If template is an object, recursively deserialize each property
+  if (_typeof(template) === 'object') {
+    return deserializeObjectWithTemplate(obj, template, visited);
+  }
+  // For other primitive types, return obj if same type, else template
+  return obj;
+};
+/**
+ * @description Validates if a string is a valid date string (ISO 8601 or other formats recognized by Date.parse)
+ * @param dateStr - date string to validate
+ * @returns boolean - whether the string is a valid date string
+ */
+var isValidDateString = function isValidDateString(dateStr) {
+  var isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?$/;
+  return isoRegex.test(dateStr.trim()) || !isNaN(Date.parse(dateStr));
+};
+// For searializeData start
+// Helper function to searialize array
+var serializeArray = function serializeArray(obj, visited) {
+  if (Array.isArray(obj)) {
+    if (visited.has(obj)) {
+      throw new Error('Circular reference detected during serializeData');
+    }
+    visited.add(obj);
+    var result = obj.map(function (el) {
+      return serializeData(el, visited);
+    });
+    visited["delete"](obj);
+    return result;
+  }
+  return obj;
+};
+// Helper function to searialize object
+var serializeObject = function serializeObject(obj, visited) {
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization');
+  }
+  if (obj instanceof Map || obj instanceof Set) {
+    ConsoleWarning('Map and Set are not supported for serialization. They will be converted to empty objects.');
+  }
+  if (isObject(obj)) {
+    var serializedObj = {};
+    for (var _i = 0, _Object$entries = Object.entries(obj); _i < _Object$entries.length; _i++) {
+      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+        key = _Object$entries$_i[0],
+        value = _Object$entries$_i[1];
+      serializedObj[key] = serializeData(value);
+    }
+    return serializedObj;
+  }
+  return obj;
+};
+// For searializeData end
+// For deserualizeData start
+// Helper function to desearialize date
+var deserializeDate = function deserializeDate(obj) {
+  try {
+    var dateDeserialized = new Date(obj);
+    // Check if the date is valid
+    if (!isNaN(dateDeserialized.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
+      return dateDeserialized;
+    }
+    return obj;
+  } catch (err) {
+    throw new Error('Failed to parse date:' + err.message);
+  }
+};
+// Helper function to deserialize array
+var deserializeArray = function deserializeArray(obj, visited) {
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization');
+  }
+  if (!Array.isArray(obj)) {
+    return obj;
+  }
+  visited.add(obj);
+  for (var i = 0; i < obj.length; i++) {
+    var deserializedElement = deserializeData(obj[i], visited);
+    if (deserializedElement !== obj[i]) {
+      var result = obj.slice(0, i);
+      result[i] = deserializedElement;
+      for (var j = i + 1; j < obj.length; j++) {
+        result[j] = deserializeData(obj[j], visited);
+      }
+      visited["delete"](obj);
+      return result;
+    }
+  }
+  visited["delete"](obj);
+  return obj;
+};
+// Helper function to deserialize object
+var deserializeObject = function deserializeObject(obj, visited) {
+  if (!isObject(obj)) {
+    return obj;
+  }
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization');
+  }
+  visited.add(obj);
+  var entries = Object.entries(obj);
+  for (var i = 0; i < entries.length; i++) {
+    var _entries$i = _slicedToArray(entries[i], 2),
+      key = _entries$i[0],
+      value = _entries$i[1];
+    var deserializedValue = deserializeData(value, visited);
+    if (deserializedValue !== value) {
+      var deserializedObj = {};
+      for (var j = 0; j < i; j++) {
+        var _entries$j = _slicedToArray(entries[j], 2),
+          prevKey = _entries$j[0],
+          prevValue = _entries$j[1];
+        deserializedObj[prevKey] = prevValue;
+      }
+      deserializedObj[key] = deserializedValue;
+      for (var _j = i + 1; _j < entries.length; _j++) {
+        var _entries$_j = _slicedToArray(entries[_j], 2),
+          remainingKey = _entries$_j[0],
+          remainingValue = _entries$_j[1];
+        deserializedObj[remainingKey] = deserializeData(remainingValue, visited);
+      }
+      visited["delete"](obj);
+      return deserializedObj;
+    }
+  }
+  visited["delete"](obj);
+  return obj;
+};
+// For deserualizeData end
+// For deserializeDataWithTemplate start
+// Helper function to deserialize date with template
+var deserializeDateWithTemplate = function deserializeDateWithTemplate(obj) {
+  try {
+    var date = new Date(obj);
+    // Check if the date is valid
+    if (!isNaN(date.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
+      return date;
+    }
+    return obj;
+  } catch (err) {
+    throw new Error('Failed to parse date:' + err.message);
+  }
+};
+// Helper function to deserialize array with template
+var deserializeArrayWithTemplate = function deserializeArrayWithTemplate(obj, template, visited) {
+  var templateArray = template;
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization with template');
+  }
+  if (!Array.isArray(obj)) {
+    return obj;
+  }
+  if (templateArray.length === 0) {
+    return obj;
+  }
+  visited.add(obj);
+  var result = obj.map(function (el, index) {
+    var _templateArray$index;
+    var templateItem = (_templateArray$index = templateArray[index]) !== null && _templateArray$index !== void 0 ? _templateArray$index : templateArray[0];
+    return deserializeDataWithTemplate(el, templateItem, visited);
+  });
+  visited["delete"](obj);
+  return result;
+};
+// Helper function to deserialize object with template
+var deserializeObjectWithTemplate = function deserializeObjectWithTemplate(obj, template, visited) {
+  if (!isObject(obj)) {
+    return obj;
+  }
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization with template');
+  }
+  visited.add(obj);
+  var deserializedObj = {};
+  for (var key in template) {
+    if (key in template) {
+      deserializedObj[key] = deserializeDataWithTemplate(obj[key], template[key], visited);
+    }
+  }
+  visited["delete"](obj);
+  return deserializedObj;
+};
+// For deserializeDataWithTemplate end
+var isObject = function isObject(value) {
+  return value !== null && _typeof(value) === 'object' && !Array.isArray(value);
+};
+
 /**
  * Returns the current time as a Date object.
  * @returns {Date} The current Date object.
@@ -2768,14 +3039,6 @@ var List = function List(_ref) {
       paddingLeft: paddingLeft
     }, optionStyle), rest.style)
   }), children));
-};
-
-/* eslint-disable no-console */
-var ConsoleWarning = function ConsoleWarning() {
-  if (process.env.NODE_ENV === 'development') {
-    var _console2;
-    (_console2 = console).warn.apply(_console2, arguments);
-  }
 };
 
 function ownKeys$8(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -3640,4 +3903,4 @@ var useCurrentTime = function useCurrentTime() {
   return currentTime;
 };
 
-export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };
+export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, deserializeData, deserializeDataWithTemplate, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };

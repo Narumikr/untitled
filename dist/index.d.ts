@@ -610,8 +610,27 @@ declare const useTabletSize: () => boolean;
  */
 declare const getSekaiCharacterName: (name: ColorsSekaiKey, locale?: string) => string;
 
+/**
+ * @description Convert hex color to rgb color
+ * @param {string} hex - Hex color string (e.g., #RRGGBB)
+ * @returns {string} RGB color string (e.g., rgb(255, 0, 0))
+ */
 declare const convertHexToRgb: (hex: string) => string;
-declare const convertHexToRgba: (hex: string, alpha: number) => string;
+/**
+ * @description Convert hex color to rgba color
+ * @param {string} hex - Hex color string (e.g., #RRGGBB)
+ * @param {number} alpha - Alpha value (0 to 1)
+ * @returns {string | undefined} RGBA color string (e.g., rgba(255, 0, 0, 0.5))
+ */
+declare const convertHexToRgba: (hex: string, alpha?: number) => string;
+/**
+ * @description Convert hex color to rgba color mixed with black or white
+ * @param {string} hex - Hex color string (e.g., #RRGGBB)
+ * @param {number} mixRatio - Ratio to mix with black or white (0 to 1)
+ * @param {boolean} mixWhite - true to mix with white, false to mix with black
+ * @param {number | undefined} alpha - Alpha value (0 to 1), default is 1
+ * @returns {string} RGBA color string (e.g., rgba(255, 0, 0, 0.5))
+ */
 declare const convertHexToRgbaMixWithBlackOrWhite: (hex: string, mixRatio: number, mixWhite: boolean, alpha?: number) => string;
 
 /**
@@ -642,6 +661,28 @@ declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e:
 declare const shuffleArray: <T>(array: T[]) => T[];
 
 /**
+ * @description Utility functions for serializing and deserializing data, including handling of Date objects.
+ * @param {T} data - The data to serialize
+ * @param {WeakSet<object>} visited - A WeakSet to track visited objects for circular reference detection
+ * @returns {unknown} - The serialized data
+ */
+declare const serializeData: <T>(data: T, visited?: WeakSet<WeakKey>) => unknown;
+/**
+ * @description Deserialize data, converting ISO date strings back to Date objects
+ * @param {unknown} data - data to deserialize
+ * @param {WeakSet<object>} visited - A WeakSet to track visited objects for circular reference detection
+ * @returns {unknown} - The deserialized data
+ */
+declare const deserializeData: (data: unknown, visited?: WeakSet<WeakKey>) => unknown;
+declare const deserializeDataWithTemplate: <T>(obj: unknown, template: T, visited?: WeakSet<WeakKey>) => T;
+/**
+ * @description Validates if a string is a valid date string (ISO 8601 or other formats recognized by Date.parse)
+ * @param dateStr - date string to validate
+ * @returns boolean - whether the string is a valid date string
+ */
+declare const isValidDateString: (dateStr: string) => boolean;
+
+/**
  * Returns the current time as a Date object.
  * @returns {Date} The current Date object.
  */
@@ -662,5 +703,5 @@ declare const getFormattedTime: (now: Date, format?: string, locale?: string) =>
  */
 declare const getCustomCurrentTime: (now: Date, pattern?: string) => string;
 
-export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };
+export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, deserializeData, deserializeDataWithTemplate, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };
 export type { AccordionProps, AnnotationTextProps, BackdropProps, BasicButtonProps, BodyTextProps, CardContentProps, CardProps, CardTitleProps, ColorsSekai, ColorsSekaiKey, DetailTextProps, DialogButton, DialogButtonType, DialogButtonsProps, DialogProps, DialogSize, DialogTitleHeaderProps, DoReMeetEffectProps, DrawerPosition, DrawerProps, DropdownOption, DropdownProps, HamburgerButtonProps, IntoTheSekaiProps, ListItemButtonProps, ListItemTextProps, ListProps, LoadingProps, NamePlateProps, Orientation, OutlineTextProps, PaginationProps, PaginationSize, PaletteMode, PrskLinkCardProps, ScrollTopButtonProps, ScrollTopPos, SekaiAnnotationTextProps, SekaiBodyTextProps, SekaiDetailTextProps, SekaiTheme, SekaiThemeProps, StickyNoteProps, StrongButtonProps, StylishButtonProps, TextFieldProps, TextLinkProps, ToastPosition, ToastProps, TooltipPosition, TooltipProps, TypewriterTextOptions, TypewriterTextProps, WindowDialogProps, XoMikuDialogProps, XxMikuDialogProps, YourSekaiContextProps, YourSekaiProviderProps };
