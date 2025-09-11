@@ -48,6 +48,8 @@ export * from './pagination/Pagination'
 
 export * from './provider/YourSekaiProvider'
 
+export * from './select/Checkbox'
+
 export * from './text/NamePlate'
 
 export * from './text/OutlineText'

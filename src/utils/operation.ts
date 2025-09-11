@@ -1,15 +1,14 @@
 import type React from 'react'
 
 /**
- * Returns a keyboard event handler that triggers the provided event handler only when the Enter key is pressed.
- *
+ * @description Returns a keyboard event handler that triggers the provided event handler only when the Enter key is pressed.
  * @param eventHandler - The function to be called when the Enter key is pressed.
  * @returns A new event handler that calls the provided handler on Enter key press and prevents the default action.
  */
-export const fireOnEnterKey = (
-  eventHandler: (e: React.KeyboardEvent<HTMLDivElement>) => void
+export const fireOnEnterKey = <T extends HTMLElement>(
+  eventHandler: (e: React.KeyboardEvent<T>) => void
 ) => {
-  return (e: React.KeyboardEvent<HTMLDivElement>) => {
+  return (e: React.KeyboardEvent<T>) => {
     if (e.key === 'Enter') {
       eventHandler(e)
       e.preventDefault()
@@ -18,10 +17,7 @@ export const fireOnEnterKey = (
 }
 
 /**
- * Returns a keyboard event handler that triggers the provided `eventHandler`
- * only when the Escape key is pressed. The returned handler also calls
- * `preventDefault()` on the event before checking the key.
- *
+ * @description Returns a keyboard event handler that triggers the provided event handler only when the Escape key is pressed.
  * @param eventHandler - The function to be called when the Escape key is pressed.
  * @returns A keyboard event handler function.
  */
@@ -35,8 +31,23 @@ export const fireOnEscapeKey = (eventHandler: (e: KeyboardEvent) => void) => {
 }
 
 /**
- * Returns a new array with the elements of the input array shuffled in random order.
- *
+ * @description Returns a keyboard event handler that triggers the provided event handler only when the Space key is pressed.
+ * @param eventHandler - The function to be called when the Space key is pressed.
+ * @returns A keyboard event handler function.
+ */
+export const fireOnSpaceKey = <T extends HTMLElement>(
+  eventHandler: (e: React.KeyboardEvent<T>) => void
+) => {
+  return (e: React.KeyboardEvent<T>) => {
+    e.preventDefault()
+    if (e.key === 'Space') {
+      eventHandler(e)
+    }
+  }
+}
+
+/**
+ * @description Returns a new array with the elements of the input array shuffled in random order.
  * Uses the Fisher-Yates (Knuth) shuffle algorithm to ensure an unbiased shuffle.
  *
  * @typeParam T - The type of elements in the array.

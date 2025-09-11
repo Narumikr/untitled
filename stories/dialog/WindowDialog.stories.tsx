@@ -55,7 +55,9 @@ const meta = {
       description: 'WindowDialog open',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { types: 'boolean' }
+      table: { 
+        type: { summary: 'boolean'}
+      }
     },
     children: {
       description: 'WindowDialog contents',

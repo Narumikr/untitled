@@ -1,3 +1,5 @@
+import { fn } from '@storybook/test'
+
 import { Checkbox } from '@/components/select/Checkbox'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
@@ -48,9 +50,29 @@ const meta = {
       },
       control: { type: 'select' },
       options: ['light', 'dark']
+    },
+    checked: {
+      description: 'Controls whether the checkbox is checked',
+      table: {
+        type: { summary: 'boolean' }
+      }
+    },
+    disabled: {
+      description: 'Controls whether the checkbox is disabled',
+      table: {
+        type: { summary: 'boolean' }
+      }
+    },
+    onChange: {
+      description: 'Callback fired when the checkbox state changes',
+      table: {
+        type: { summary: '(value: boolean) => void' }
+      }
     }
   },
-  args: {}
+  args: {
+    onChange: fn()
+  }
 } satisfies Meta<typeof Checkbox>
 
 export default meta
@@ -61,6 +83,9 @@ export const DefaultLight: Story = {
     id: 'checkbox-default-light',
     sekai: 'Miku',
     themeMode: 'light',
+    checked: true,
+    disabled: false,
+    filling: false
   },
   parameters: {
     sekai: 'Miku',
@@ -73,6 +98,39 @@ export const DefaultDark: Story = {
     id: 'checkbox-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
+    checked: true,
+    disabled: false,
+    filling: false
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'dark'
+  }
+}
+
+export const FillingLight: Story = {
+  args: {
+    id: 'checkbox-default-light',
+    sekai: 'Miku',
+    themeMode: 'light',
+    checked: true,
+    disabled: false,
+    filling: true
+  },
+  parameters: {
+    sekai: 'Miku',
+    background: 'light'
+  }
+}
+
+export const FiilingDark: Story = {
+  args: {
+    id: 'checkbox-default-dark',
+    sekai: 'Miku',
+    themeMode: 'dark',
+    checked: true,
+    disabled: false,
+    filling: true
   },
   parameters: {
     sekai: 'Miku',

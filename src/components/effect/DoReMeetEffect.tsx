@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react'
 import clsx from 'clsx'
 
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { fireOnEnterKey } from '@/utils'
+import { fireOnEnterKey } from '@/utils/operation'
 
 import { colorsSekai } from '@/styles/sekai-colors'
 
@@ -63,7 +63,7 @@ export const DoReMeetEffect = ({
       role="button"
       tabIndex={-1}
       onClick={handleDeReMeetEffect}
-      onKeyDown={fireOnEnterKey(handleDeReMeetEffect)}
+      onKeyDown={fireOnEnterKey<HTMLSpanElement>(handleDeReMeetEffect)}
       {...rest}
       className={clsx(styles[`sekai-doremeet-effect-${modeTheme}`], rest.className)}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
