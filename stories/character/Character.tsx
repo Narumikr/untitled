@@ -18,10 +18,10 @@ interface CharacterProps {
 export const Character = ({ sekai, locale = 'ja' }: CharacterProps) => {
   const colorCode = colorsSekai[sekai]
   const optionStyle = {
-    '--sekai-color': colorCode,
+    '--sekai-color': colorCode
   }
   const getLocaleLanguage = (locale: string) => {
-    if(locale === 'ja') {
+    if (locale === 'ja') {
       return '日本語'
     } else if (locale === 'en') {
       return 'English'
@@ -35,14 +35,14 @@ export const Character = ({ sekai, locale = 'ja' }: CharacterProps) => {
 
   return (
     <div className={clsx(styles['sekai-character'])} style={optionStyle as React.CSSProperties}>
-      <div className={clsx(styles['sekai-character-label'])}>
-        {getLocaleLanguage(locale)}
-      </div>
-      <div className={clsx(styles['sekai-character-name'])}>
-        {characterName}
-      </div>
-      <p className={clsx(styles['sekai-chracter-description'])}>You can get prsk character name</p>
-      <p className={clsx(styles['sekai-chracter-description'])}>using "getSekaiCharacterName" function.</p>
+      <div className={clsx(styles['sekai-character-label'])}>{getLocaleLanguage(locale)}</div>
+      <p className={clsx(styles['sekai-character-name'])}>{characterName}</p>
+      <p className={clsx(styles['sekai-chracter-description'])}>
+        You can get prsk character name
+      </p>
+      <p className={clsx(styles['sekai-chracter-description'])}>
+        using "getSekaiCharacterName" function.
+      </p>
     </div>
   )
 }
