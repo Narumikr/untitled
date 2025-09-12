@@ -27,7 +27,7 @@
     "build": "rm -rf dist && npm run generate-index && rollup -c && tsc --noEmit && sh scripts/build_local.sh",
     "lint": "npx eslint .  --no-cache --fix --max-warnings=0",
     "plop": "npx plop component",
-    "storybook": "storybook dev -p 6006",
+    "dev": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "jest"
   },
