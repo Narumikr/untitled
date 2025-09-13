@@ -435,11 +435,11 @@ declare const Pagination: ({ sekai, themeMode, count, page, onChangePage, siblin
 interface SharedValueProviderProps<T> {
     children: React__default.ReactNode;
     sessionStorageKey: string;
-    defaultValue?: T;
+    defaultValue: T;
 }
 interface SharedValueContextProps<T> {
-    sharedValue: T | undefined;
-    setSharedValue: React__default.Dispatch<React__default.SetStateAction<T | undefined>>;
+    sharedValue: T;
+    setSharedValue: React__default.Dispatch<React__default.SetStateAction<T>>;
     deleteSharedValue: () => void;
 }
 declare const createSharedValueProvider: <T>() => {
@@ -616,11 +616,11 @@ declare const useCurrentTime: () => Date;
 
 interface SessionStorageStoreProps<T> {
     sessionStorageKey: string;
-    initialValue?: T;
+    initialValue: T;
 }
 declare const useSessionStorage: <T>({ sessionStorageKey, initialValue }: SessionStorageStoreProps<T>) => {
-    storedValue: T | undefined;
-    setStoredValue: React.Dispatch<React.SetStateAction<T | undefined>>;
+    storedValue: T;
+    setStoredValue: React.Dispatch<React.SetStateAction<T>>;
     deleteSessionStorage: () => void;
 };
 

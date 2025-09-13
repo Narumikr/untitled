@@ -3203,7 +3203,7 @@ var useSessionStorage = function useSessionStorage(_ref) {
     initialValue = _ref.initialValue;
   var isClient = React.useRef(typeof window !== 'undefined');
   var _useState = React.useState(function () {
-      if (!isClient) return initialValue;
+      if (!isClient.current) return initialValue;
       try {
         var items = sessionStorage.getItem(sessionStorageKey);
         if (items) {
@@ -3218,7 +3218,7 @@ var useSessionStorage = function useSessionStorage(_ref) {
     storedValue = _useState2[0],
     setStoredValue = _useState2[1];
   React.useEffect(function () {
-    if (!isClient) return;
+    if (!isClient.current) return;
     try {
       var serialized = JSON.stringify(serializeData(storedValue));
       sessionStorage.setItem(sessionStorageKey, serialized);

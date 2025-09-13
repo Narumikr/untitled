@@ -5,12 +5,12 @@ import { useSessionStorage } from '@/hooks/useSessionStorage'
 export interface SharedValueProviderProps<T> {
   children: React.ReactNode
   sessionStorageKey: string
-  defaultValue?: T
+  defaultValue: T
 }
 
 export interface SharedValueContextProps<T> {
-  sharedValue: T | undefined
-  setSharedValue: React.Dispatch<React.SetStateAction<T | undefined>>
+  sharedValue: T
+  setSharedValue: React.Dispatch<React.SetStateAction<T>>
   deleteSharedValue: () => void
 }
 

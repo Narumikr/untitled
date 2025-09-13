@@ -5,7 +5,7 @@ import { deserializeDataWithTemplate, serializeData } from '@/utils/serializatio
 
 export interface SessionStorageStoreProps<T> {
   sessionStorageKey: string
-  initialValue?: T
+  initialValue: T
 }
 
 export const useSessionStorage = <T>({
@@ -13,8 +13,8 @@ export const useSessionStorage = <T>({
   initialValue
 }: SessionStorageStoreProps<T>) => {
   const isClient = useRef(typeof window !== 'undefined')
-  const [storedValue, setStoredValue] = useState<T | undefined>(() => {
-    if (!isClient) return initialValue
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    if (!isClient.current) return initialValue
     try {
       const items = sessionStorage.getItem(sessionStorageKey)
       if (items) {
@@ -27,7 +27,7 @@ export const useSessionStorage = <T>({
   })
 
   useEffect(() => {
-    if (!isClient) return
+    if (!isClient.current) return
     try {
       const serialized = JSON.stringify(serializeData(storedValue))
       sessionStorage.setItem(sessionStorageKey, serialized)

@@ -3201,7 +3201,7 @@ var useSessionStorage = function useSessionStorage(_ref) {
     initialValue = _ref.initialValue;
   var isClient = useRef(typeof window !== 'undefined');
   var _useState = useState(function () {
-      if (!isClient) return initialValue;
+      if (!isClient.current) return initialValue;
       try {
         var items = sessionStorage.getItem(sessionStorageKey);
         if (items) {
@@ -3216,7 +3216,7 @@ var useSessionStorage = function useSessionStorage(_ref) {
     storedValue = _useState2[0],
     setStoredValue = _useState2[1];
   useEffect(function () {
-    if (!isClient) return;
+    if (!isClient.current) return;
     try {
       var serialized = JSON.stringify(serializeData(storedValue));
       sessionStorage.setItem(sessionStorageKey, serialized);
