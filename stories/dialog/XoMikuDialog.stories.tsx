@@ -14,7 +14,9 @@ const meta = {
   argTypes: {
     open: {
       description: 'Dialog open',
-      table: { types: 'boolean' }
+      table: {
+        type: { summary: 'boolean' }
+      }
     },
     id: {
       description: 'Unique Id',

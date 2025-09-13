@@ -462,6 +462,19 @@ interface YourSekaiProviderProps {
 }
 declare const YourSekaiProvider: ({ children, sekaiTheme }: YourSekaiProviderProps) => React.JSX.Element;
 
+type CheckboxProps = {
+    id?: string;
+    className?: string;
+    style?: React.CSSProperties;
+    sekai?: ColorsSekaiKey;
+    themeMode?: PaletteMode;
+    checked?: boolean;
+    disabled?: boolean;
+    onChange?: (value: boolean) => void;
+    filling?: boolean;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'checked' | 'disabled'>;
+declare const Checkbox: ({ sekai, themeMode, checked, disabled, onChange, filling, ...rest }: CheckboxProps) => React.JSX.Element;
+
 interface NamePlateProps {
     id?: string;
     className?: string;
@@ -634,24 +647,25 @@ declare const convertHexToRgba: (hex: string, alpha?: number) => string;
 declare const convertHexToRgbaMixWithBlackOrWhite: (hex: string, mixRatio: number, mixWhite: boolean, alpha?: number) => string;
 
 /**
- * Returns a keyboard event handler that triggers the provided event handler only when the Enter key is pressed.
- *
+ * @description Returns a keyboard event handler that triggers the provided event handler only when the Enter key is pressed.
  * @param eventHandler - The function to be called when the Enter key is pressed.
  * @returns A new event handler that calls the provided handler on Enter key press and prevents the default action.
  */
-declare const fireOnEnterKey: (eventHandler: (e: React.KeyboardEvent<HTMLDivElement>) => void) => (e: React.KeyboardEvent<HTMLDivElement>) => void;
+declare const fireOnEnterKey: <T extends HTMLElement>(eventHandler: (e: React.KeyboardEvent<T>) => void) => (e: React.KeyboardEvent<T>) => void;
 /**
- * Returns a keyboard event handler that triggers the provided `eventHandler`
- * only when the Escape key is pressed. The returned handler also calls
- * `preventDefault()` on the event before checking the key.
- *
+ * @description Returns a keyboard event handler that triggers the provided event handler only when the Escape key is pressed.
  * @param eventHandler - The function to be called when the Escape key is pressed.
  * @returns A keyboard event handler function.
  */
 declare const fireOnEscapeKey: (eventHandler: (e: KeyboardEvent) => void) => (e: KeyboardEvent) => void;
 /**
- * Returns a new array with the elements of the input array shuffled in random order.
- *
+ * @description Returns a keyboard event handler that triggers the provided event handler only when the Space key is pressed.
+ * @param eventHandler - The function to be called when the Space key is pressed.
+ * @returns A keyboard event handler function.
+ */
+declare const fireOnSpaceKey: <T extends HTMLElement>(eventHandler: (e: React.KeyboardEvent<T>) => void) => (e: React.KeyboardEvent<T>) => void;
+/**
+ * @description Returns a new array with the elements of the input array shuffled in random order.
  * Uses the Fisher-Yates (Knuth) shuffle algorithm to ensure an unbiased shuffle.
  *
  * @typeParam T - The type of elements in the array.
@@ -703,5 +717,5 @@ declare const getFormattedTime: (now: Date, format?: string, locale?: string) =>
  */
 declare const getCustomCurrentTime: (now: Date, pattern?: string) => string;
 
-export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, deserializeData, deserializeDataWithTemplate, fireOnEnterKey, fireOnEscapeKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };
-export type { AccordionProps, AnnotationTextProps, BackdropProps, BasicButtonProps, BodyTextProps, CardContentProps, CardProps, CardTitleProps, ColorsSekai, ColorsSekaiKey, DetailTextProps, DialogButton, DialogButtonType, DialogButtonsProps, DialogProps, DialogSize, DialogTitleHeaderProps, DoReMeetEffectProps, DrawerPosition, DrawerProps, DropdownOption, DropdownProps, HamburgerButtonProps, IntoTheSekaiProps, ListItemButtonProps, ListItemTextProps, ListProps, LoadingProps, NamePlateProps, Orientation, OutlineTextProps, PaginationProps, PaginationSize, PaletteMode, PrskLinkCardProps, ScrollTopButtonProps, ScrollTopPos, SekaiAnnotationTextProps, SekaiBodyTextProps, SekaiDetailTextProps, SekaiTheme, SekaiThemeProps, StickyNoteProps, StrongButtonProps, StylishButtonProps, TextFieldProps, TextLinkProps, ToastPosition, ToastProps, TooltipPosition, TooltipProps, TypewriterTextOptions, TypewriterTextProps, WindowDialogProps, XoMikuDialogProps, XxMikuDialogProps, YourSekaiContextProps, YourSekaiProviderProps };
+export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, Checkbox, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, deserializeData, deserializeDataWithTemplate, fireOnEnterKey, fireOnEscapeKey, fireOnSpaceKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useTabletSize, useThemeMode };
+export type { AccordionProps, AnnotationTextProps, BackdropProps, BasicButtonProps, BodyTextProps, CardContentProps, CardProps, CardTitleProps, CheckboxProps, ColorsSekai, ColorsSekaiKey, DetailTextProps, DialogButton, DialogButtonType, DialogButtonsProps, DialogProps, DialogSize, DialogTitleHeaderProps, DoReMeetEffectProps, DrawerPosition, DrawerProps, DropdownOption, DropdownProps, HamburgerButtonProps, IntoTheSekaiProps, ListItemButtonProps, ListItemTextProps, ListProps, LoadingProps, NamePlateProps, Orientation, OutlineTextProps, PaginationProps, PaginationSize, PaletteMode, PrskLinkCardProps, ScrollTopButtonProps, ScrollTopPos, SekaiAnnotationTextProps, SekaiBodyTextProps, SekaiDetailTextProps, SekaiTheme, SekaiThemeProps, StickyNoteProps, StrongButtonProps, StylishButtonProps, TextFieldProps, TextLinkProps, ToastPosition, ToastProps, TooltipPosition, TooltipProps, TypewriterTextOptions, TypewriterTextProps, WindowDialogProps, XoMikuDialogProps, XxMikuDialogProps, YourSekaiContextProps, YourSekaiProviderProps };

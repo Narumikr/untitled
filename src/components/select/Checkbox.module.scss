@@ -1,0 +1,61 @@
+@use '../../styles/global.module.scss' as global;
+
+@mixin sekai-checkmark-style($color) {
+  content: '';
+  position: absolute;
+  box-sizing: content-box;
+  top: 0px;
+  left: 3px;
+  width: 4px;
+  height: 9px;
+  border-right: 2px solid $color;
+  border-bottom: 2px solid $color;
+  transform: rotate(45deg);
+}
+
+.sekai-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    appearance: none;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    border: 2px solid black;
+    border-radius: 0.25rem;
+    position: relative;
+    margin: 6px;
+    cursor: pointer;
+    border-color: var(--sekai-color);
+
+    &.sekai-checkbox-filling:checked {
+      background-color: var(--sekai-color);
+      &.sekai-checkbox-light::after {
+        @include sekai-checkmark-style(global.$color-bg-light);
+      }
+      &.sekai-checkbox-dark::after {
+        @include sekai-checkmark-style(global.$color-bg-dark);
+      }
+    }
+
+    &:checked:not(.sekai-checkbox-filling) {
+      &::after {
+        @include sekai-checkmark-style(var(--sekai-color));
+      }
+    }
+
+    &:disabled {
+      opacity: 0.4;
+    }
+
+    &:hover:not(:disabled):not(:checked) {
+      background-color: var(--sekai-color-hover);
+    }
+
+    &:focus:not(:disabled) {
+      outline: 1px solid var(--sekai-color);
+    }
+  }
+}
