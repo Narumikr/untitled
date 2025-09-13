@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { ConsoleError } from '@/internal/logging'
 import { deserializeDataWithTemplate, serializeData } from '@/utils/serialization'
@@ -12,7 +12,9 @@ export const useSessionStorage = <T>({
   sessionStorageKey,
   initialValue
 }: SessionStorageStoreProps<T>) => {
+  const isClient = useRef(typeof window !== 'undefined')
   const [storedValue, setStoredValue] = useState<T | undefined>(() => {
+    if (!isClient) return initialValue
     try {
       const items = sessionStorage.getItem(sessionStorageKey)
       if (items) {
@@ -25,6 +27,7 @@ export const useSessionStorage = <T>({
   })
 
   useEffect(() => {
+    if (!isClient) return
     try {
       const serialized = JSON.stringify(serializeData(storedValue))
       sessionStorage.setItem(sessionStorageKey, serialized)
@@ -34,6 +37,7 @@ export const useSessionStorage = <T>({
   }, [storedValue])
 
   const deleteSessionStorage = () => {
+    setStoredValue(initialValue)
     sessionStorage.removeItem(sessionStorageKey)
   }
 
