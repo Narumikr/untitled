@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import clsx from 'clsx'
 import { createPortal } from 'react-dom'
@@ -73,15 +73,18 @@ export const WindowDialog = ({
     setIsFullscreen(false)
   }
 
-  const onMouseMove = (e: MouseEvent) => {
-    if (!dragging) return
-    const portalRect = portalContainer.getBoundingClientRect()
+  const onMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (!dragging || isFullscreen) return
+      const portalRect = portalContainer.getBoundingClientRect()
 
-    const x = e.clientX - portalRect.left - dragOffset.x
-    const y = e.clientY - portalRect.top - dragOffset.y
+      const x = e.clientX - portalRect.left - dragOffset.x
+      const y = e.clientY - portalRect.top - dragOffset.y
 
-    setPosition({ x: `${x}px`, y: `${y}px` })
-  }
+      setPosition({ x: `${x}px`, y: `${y}px` })
+    },
+    [dragOffset.x, dragOffset.y, dragging, isFullscreen, portalContainer]
+  )
 
   const onMouseUp = () => setDragging(false)
 
@@ -92,7 +95,7 @@ export const WindowDialog = ({
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mouseup', onMouseUp)
     }
-  }, [dragging])
+  }, [dragging, onMouseMove])
 
   const optionStyle = useMemo(
     () => ({
@@ -104,7 +107,7 @@ export const WindowDialog = ({
       'top': position.y,
       'transform': position.x === '50%' ? 'translate(-50%, -50%)' : 'none'
     }),
-    [position.x, position.y]
+    [containerComponent, position.x, position.y, sekaiColor, sekaiColorBg, sekaiColorHeader]
   )
 
   return createPortal(

@@ -76,6 +76,7 @@ export const Dialog = ({
     document.addEventListener('keydown', handleKeyDownEsc)
 
     return () => document.removeEventListener('keydown', handleKeyDownEsc)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
 
   const overlayProps = { open, themeMode, containerComponent }
@@ -140,11 +141,11 @@ export type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'butt
 }
 
 export const DialogButtons = ({ sekai, themeMode, buttons, ...rest }: DialogButtonsProps) => {
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+
   if (!buttons || !buttons.length) return null
 
   const buttonLength = buttons.length
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
-
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
   const sekaiColorStrongHover = convertHexToRgba(sekaiColor, 0.8)
   const sekaiColorStrongDisabled = convertHexToRgba(sekaiColor, 0.5)

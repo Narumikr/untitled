@@ -103,7 +103,7 @@ const SpeechBubble = ({ text, pos, themeMode }: SpeechBubbleProps) => {
     } else {
       setCalcPosition(pos)
     }
-  }, [])
+  }, [pos])
 
   return (
     <div

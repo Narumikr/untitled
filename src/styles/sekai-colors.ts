@@ -75,3 +75,6 @@ export const colorsSekai = {
 } as const
 
 export type ColorsSekai = typeof colorsSekai
+
+type ValueOf<T> = T[keyof T]
+export type ColorsSekaiCode = ValueOf<typeof colorsSekai>
