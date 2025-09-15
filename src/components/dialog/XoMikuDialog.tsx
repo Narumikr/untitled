@@ -8,7 +8,6 @@ import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/
 
 import { LIGHT_MODE, type PaletteMode } from '@/hooks/useThemeMode'
 import { XoMikuSvg } from '@/img/xomiku'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { fireOnEscapeKey } from '@/utils/operation'
 
 import styles from './XoMikuDialog.module.scss'
@@ -41,7 +40,6 @@ export const XoMikuDialog = ({
   ...rest
 }: XoMikuDialogProps) => {
   const portalContainer = containerComponent || document.body
-  const { modeTheme } = useOptionalSekai({ mode: themeMode })
 
   useEffect(() => {
     if (!open) return
@@ -50,6 +48,7 @@ export const XoMikuDialog = ({
     document.addEventListener('keydown', handleKeyDownEsc)
 
     return () => document.removeEventListener('keydown', handleKeyDownEsc)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
 
   const headerProps = { size, onClose, title }
@@ -59,13 +58,19 @@ export const XoMikuDialog = ({
         const type = button.type ? button.type : 'normal'
         return {
           ...button,
-          buttonStyle: [styles[`sekai-xomiku-${type}-button`]].join(' ')
+          buttonStyle: clsx(styles[`sekai-xomiku-${type}-button`])
         }
       }),
-    [buttons, modeTheme]
+    [buttons]
   )
 
-  const overlayProps = { id: 'xomiku-dialog-overlay', open, themeMode, containerComponent, centered: true }
+  const overlayProps = {
+    id: 'xomiku-dialog-overlay',
+    open,
+    themeMode,
+    containerComponent,
+    centered: true
+  }
   const buttonsProps = { themeMode: LIGHT_MODE as PaletteMode, buttons: xoButtonProps }
 
   return createPortal(
@@ -73,10 +78,7 @@ export const XoMikuDialog = ({
       <div
         {...rest}
         role="dialog"
-        className={clsx(
-          styles[`sekai-container-${size}`],
-          rest.className
-        )}
+        className={clsx(styles[`sekai-container-${size}`], rest.className)}
         aria-label={title || 'Dialog'}>
         <XoMikuSvg className={styles[`sekai-xomiku-svg-1-${size}`]} />
         <XoMikuSvg className={styles[`sekai-xomiku-svg-2-${size}`]} />

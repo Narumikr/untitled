@@ -62,10 +62,12 @@ export const TypewriterText = ({
     }, options.speed)
 
     return () => clearInterval(typewriteInterval)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     setDisplayText((pre) => pre + text[currentIndex])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex])
 
   const optionStyle = {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useMemo, useContext, useRef, forwardRef, useCallback } from 'react';
+import React, { useState, useEffect, createContext, useMemo, useContext, useRef, useCallback, forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 
 function _extends() {
@@ -178,14 +178,6 @@ var YourSekaiProvider = function YourSekaiProvider(_ref) {
   }, /*#__PURE__*/React.createElement("style", null, globalStyle), children);
 };
 
-var useCreateSekai = function useCreateSekai() {
-  var context = useContext(YourSekaiContext);
-  if (!context) {
-    throw new Error('useCreateSekai must be used within a YourSekaiProvider');
-  }
-  return context;
-};
-
 // prettier-ignore
 var COLORS_SEKAI_KEYS = {
   Miku: 'Miku',
@@ -266,8 +258,8 @@ var defaultTheme$1 = {
   }};
 var useOptionalSekai = function useOptionalSekai(option) {
   var context = useContext(YourSekaiContext);
-  var sekaiColor = context ? colorsSekai[option.sekai || useCreateSekai().sekaiTheme.palette.sekai] : colorsSekai[defaultTheme$1.palette.sekai];
-  var modeTheme = context ? option.mode || useCreateSekai().sekaiTheme.palette.mode : defaultTheme$1.palette.mode;
+  var sekaiColor = context ? colorsSekai[option.sekai || context.sekaiTheme.palette.sekai] : colorsSekai[defaultTheme$1.palette.sekai];
+  var modeTheme = context ? option.mode || context.sekaiTheme.palette.mode : defaultTheme$1.palette.mode;
   var isLight = LIGHT_MODE === modeTheme;
   return {
     sekaiColor: sekaiColor,
@@ -1195,6 +1187,7 @@ var Dialog = function Dialog(_ref) {
     return function () {
       return document.removeEventListener('keydown', handleKeyDownEsc);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
   var overlayProps = {
     open: open,
@@ -1250,8 +1243,6 @@ var DialogButtons = function DialogButtons(_ref3) {
     themeMode = _ref3.themeMode,
     buttons = _ref3.buttons,
     rest = _objectWithoutProperties(_ref3, _excluded3$1);
-  if (!buttons || !buttons.length) return null;
-  var buttonLength = buttons.length;
   var _useOptionalSekai2 = useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -1259,6 +1250,8 @@ var DialogButtons = function DialogButtons(_ref3) {
     sekaiColor = _useOptionalSekai2.sekaiColor,
     modeTheme = _useOptionalSekai2.modeTheme,
     isLight = _useOptionalSekai2.isLight;
+  if (!buttons || !buttons.length) return null;
+  var buttonLength = buttons.length;
   var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
   var sekaiColorStrongHover = convertHexToRgba(sekaiColor, 0.8);
   var sekaiColorStrongDisabled = convertHexToRgba(sekaiColor, 0.5);
@@ -1548,8 +1541,8 @@ var WindowDialog = function WindowDialog(_ref) {
     setPosition(windowInitCoordinate());
     setIsFullscreen(false);
   };
-  var onMouseMove = function onMouseMove(e) {
-    if (!dragging) return;
+  var onMouseMove = useCallback(function (e) {
+    if (!dragging || isFullscreen) return;
     var portalRect = portalContainer.getBoundingClientRect();
     var x = e.clientX - portalRect.left - dragOffset.x;
     var y = e.clientY - portalRect.top - dragOffset.y;
@@ -1557,7 +1550,7 @@ var WindowDialog = function WindowDialog(_ref) {
       x: "".concat(x, "px"),
       y: "".concat(y, "px")
     });
-  };
+  }, [dragOffset.x, dragOffset.y, dragging, isFullscreen, portalContainer]);
   var onMouseUp = function onMouseUp() {
     return setDragging(false);
   };
@@ -1568,7 +1561,7 @@ var WindowDialog = function WindowDialog(_ref) {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
     };
-  }, [dragging]);
+  }, [dragging, onMouseMove]);
   var optionStyle = useMemo(function () {
     return _objectSpread$i(_objectSpread$i({
       '--sekai-color': sekaiColor,
@@ -1581,7 +1574,7 @@ var WindowDialog = function WindowDialog(_ref) {
       'top': position.y,
       'transform': position.x === '50%' ? 'translate(-50%, -50%)' : 'none'
     });
-  }, [position.x, position.y]);
+  }, [containerComponent, position.x, position.y, sekaiColor, sekaiColorBg, sekaiColorHeader]);
   return /*#__PURE__*/createPortal(/*#__PURE__*/React.createElement("div", _extends({}, rest, {
     ref: modalRef,
     role: "dialog",
@@ -1732,10 +1725,6 @@ var XoMikuDialog = function XoMikuDialog(_ref) {
     buttons = _ref.buttons,
     rest = _objectWithoutProperties(_ref, _excluded$g);
   var portalContainer = containerComponent || document.body;
-  var _useOptionalSekai = useOptionalSekai({
-      mode: themeMode
-    }),
-    modeTheme = _useOptionalSekai.modeTheme;
   useEffect(function () {
     if (!open) return;
     var handleKeyDownEsc = fireOnEscapeKey(onClose);
@@ -1743,6 +1732,7 @@ var XoMikuDialog = function XoMikuDialog(_ref) {
     return function () {
       return document.removeEventListener('keydown', handleKeyDownEsc);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
   var headerProps = {
     size: size,
@@ -1753,10 +1743,10 @@ var XoMikuDialog = function XoMikuDialog(_ref) {
     return buttons === null || buttons === void 0 ? void 0 : buttons.map(function (button) {
       var type = button.type ? button.type : 'normal';
       return _objectSpread$h(_objectSpread$h({}, button), {}, {
-        buttonStyle: [styles$g["sekai-xomiku-".concat(type, "-button")]].join(' ')
+        buttonStyle: clsx(styles$g["sekai-xomiku-".concat(type, "-button")])
       });
     });
-  }, [buttons, modeTheme]);
+  }, [buttons]);
   var overlayProps = {
     id: 'xomiku-dialog-overlay',
     open: open,
@@ -1884,6 +1874,7 @@ var XxMikuDialog = function XxMikuDialog(_ref) {
     return function () {
       return document.removeEventListener('keydown', handleKeyDownEsc);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
   var headerProps = {
     themeMode: themeMode,
@@ -1895,7 +1886,7 @@ var XxMikuDialog = function XxMikuDialog(_ref) {
     return buttons === null || buttons === void 0 ? void 0 : buttons.map(function (button) {
       var type = button.type ? button.type : 'normal';
       return _objectSpread$g(_objectSpread$g({}, button), {}, {
-        buttonStyle: [styles$f["sekai-xxmiku-".concat(type, "-button")], styles$f["sekai-".concat(modeTheme)]].join(' ')
+        buttonStyle: clsx(styles$f["sekai-xxmiku-".concat(type, "-button")], styles$f["sekai-".concat(modeTheme)])
       });
     });
   }, [buttons, modeTheme]);
@@ -2076,6 +2067,7 @@ var DropdownContent = function DropdownContent(_ref2) {
       document.removeEventListener('mousedown', clickOutside);
       document.removeEventListener('touchstart', clickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // Set the width of the trigger button to match the options list
   var _useState7 = useState(0),
@@ -2281,7 +2273,7 @@ var DoReMeetEffect = function DoReMeetEffect(_ref) {
     return {
       '--sekai-color': colorsSekai[sekaiKeys[currentSekaiIndex]]
     };
-  }, [currentSekaiIndex]);
+  }, [currentSekaiIndex, sekaiKeys]);
   var handleDeReMeetEffect = function handleDeReMeetEffect() {
     if (isPlaying) return;
     setIsPlaying(true);
@@ -2343,6 +2335,7 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
     return function () {
       window.removeEventListener('resize', setCanvasSize);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(function () {
     var canvas = canvasRef.current;
@@ -2387,7 +2380,7 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
     return function () {
       return cancelAnimationFrame(animationFrameId);
     };
-  }, [startAnimation]);
+  }, [execEvent, startAnimation]);
   var handleClick = function handleClick(e) {
     setStartAnimation(true);
     var rect = portalContainer.getBoundingClientRect();
@@ -3045,11 +3038,13 @@ var TypewriterText = function TypewriterText(_ref) {
     return function () {
       return clearInterval(typewriteInterval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(function () {
     setDisplayText(function (pre) {
       return pre + text[currentIndex];
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex]);
   var optionStyle = {
     '--sekai-color': sekaiColor
@@ -3079,7 +3074,7 @@ var useInnerSize = function useInnerSize() {
     setWindowSize(Math.min(document.documentElement.clientWidth, window.innerWidth));
   };
   useEffect(function () {
-    if (!isClient) return;
+    // useEffect is guaranteed to run only on the client side. So u need check isClient
     handlerResize();
     window.addEventListener('resize', handlerResize);
     return function () {
@@ -3423,7 +3418,7 @@ var SpeechBubble = function SpeechBubble(_ref2) {
     } else {
       setCalcPosition(pos);
     }
-  }, []);
+  }, [pos]);
   return /*#__PURE__*/React.createElement("div", {
     ref: speechBubbleRef,
     className: clsx(styles["sekai-tooltip-speech-bubble-".concat(calcPosition)]),
@@ -3431,6 +3426,14 @@ var SpeechBubble = function SpeechBubble(_ref2) {
   }, /*#__PURE__*/React.createElement("span", {
     className: styles["sekai-tooltip-speech-bubble-text-".concat(themeMode)]
   }, text));
+};
+
+var useCreateSekai = function useCreateSekai() {
+  var context = useContext(YourSekaiContext);
+  if (!context) {
+    throw new Error('useCreateSekai must be used within a YourSekaiProvider');
+  }
+  return context;
 };
 
 /**

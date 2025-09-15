@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react'
-
-import { DocsContainer } from '@storybook/addon-docs'
+import React from 'react'
 
 import { YourSekaiProvider } from '@/components/provider/YourSekaiProvider'
 
@@ -9,10 +7,10 @@ import { createSekai } from '@/utils/createSekai'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
+import { CustomDocsContainer } from './CustomDocsContainer'
+
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-import type { DocsContextProps } from '@storybook/addon-docs'
-import type { Preview, StoryContext } from '@storybook/react'
+import type { Preview, StoryContext, StoryFn } from '@storybook/react'
 
 const preview: Preview = {
   parameters: {
@@ -24,108 +22,38 @@ const preview: Preview = {
     },
     layout: 'centered',
     docs: {
-      container: ({
-        children,
-        context
-      }: {
-        children: React.ReactNode
-        context: DocsContextProps
-      }) => {
-        const lightStoryIds = sortStories(context, LIGHT_MODE)
-        const darkStoryIds = sortStories(context, DARK_MODE)
-        const lightStyles = lightStoryIds.reduce(
-          (pre, el) =>
-            pre +
-            `
-            #anchor--${el} .docs-story {
-              color: #212121 !important;
-              background-color: #ffffff !important;
-            }
-            `,
-          `
-          .docs-story {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            max-width: 100%;
-            min-height: 250px;
-          }
-          .css-11xgcgt {
-            z-index: 10000;
-          }
-          `
-        )
-        const styles = darkStoryIds.reduce(
-          (pre, el) =>
-            pre +
-            `
-            #anchor--${el} .docs-story {
-              color: #e0e0e0 !important;
-              background-color: #121212 !important;
-            }
-            `,
-          lightStyles
-        )
+      container: CustomDocsContainer
+    },
+    decorators: [
+      (Story: StoryFn, context: StoryContext) => {
+        const sekai: ColorsSekaiKey = context.parameters.sekai || COLORS_SEKAI_KEYS.Miku
+        const isDark = DARK_MODE === context.parameters.background
+        const isDocs = context.viewMode === 'docs'
+        const isPortal: boolean = context.parameters.portal
+        const isPortalDocsPreview = isPortal && isDocs
 
-        useEffect(() => {
-          if (!context.componentStories().length) return
-          if (context.componentStories()[0].parameters.invisible) {
-            const target = document.querySelector('.css-1qq744x')
-            if (target) {
-              const p = document.createElement('p')
-              p.textContent = 'こちらのコンポーネントはDocsのプレビューはありません。'
-              target.appendChild(p)
-            }
+        const theme = createSekai({
+          palette: {
+            sekai: sekai,
+            mode: isDark ? DARK_MODE : LIGHT_MODE
           }
-        }, [])
+        })
 
         return (
-          <DocsContainer context={context}>
-            <div>
-              <style>{styles}</style>
-              {children}
-            </div>
-          </DocsContainer>
+          <YourSekaiProvider sekaiTheme={theme}>
+            <Story
+              args={{
+                ...context.args,
+                ...(isPortalDocsPreview && {
+                  containerComponent: getContainerPortalRoot(context, isDocs)
+                })
+              }}
+            />
+          </YourSekaiProvider>
         )
       }
-    }
-  },
-  decorators: [
-    (Story, context) => {
-      const sekai: ColorsSekaiKey = context.parameters.sekai || COLORS_SEKAI_KEYS.Miku
-      const isDark = DARK_MODE === context.parameters.background
-      const isDocs = context.viewMode === 'docs'
-      const isPortal: boolean = context.parameters.portal
-      const isPortalDocsPreview = isPortal && isDocs
-
-      const theme = createSekai({
-        palette: {
-          sekai: sekai,
-          mode: isDark ? DARK_MODE : LIGHT_MODE
-        }
-      })
-
-      return (
-        <YourSekaiProvider sekaiTheme={theme}>
-          <Story
-            args={{
-              ...context.args,
-              ...(isPortalDocsPreview && {
-                containerComponent: getContainerPortalRoot(context, isDocs)
-              })
-            }}
-          />
-        </YourSekaiProvider>
-      )
-    }
-  ]
-}
-
-const sortStories = (context: DocsContextProps, mode: PaletteMode) => {
-  const storyIds = Array.from(context.componentStories())
-    .map((el) => (mode === el.parameters.background ? el.id : -1))
-    .filter((el) => -1 !== el)
-  return storyIds
+    ]
+  }
 }
 
 const getContainerPortalRoot = (context: StoryContext, isDocs: boolean) => {

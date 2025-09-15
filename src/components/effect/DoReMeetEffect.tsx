@@ -40,7 +40,7 @@ export const DoReMeetEffect = ({
     return {
       '--sekai-color': colorsSekai[sekaiKeys[currentSekaiIndex]]
     }
-  }, [currentSekaiIndex])
+  }, [currentSekaiIndex, sekaiKeys])
 
   const handleDeReMeetEffect = () => {
     if (isPlaying) return

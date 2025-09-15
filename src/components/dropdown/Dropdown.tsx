@@ -124,6 +124,7 @@ export const DropdownContent = ({
       document.removeEventListener('mousedown', clickOutside)
       document.removeEventListener('touchstart', clickOutside)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Set the width of the trigger button to match the options list
