@@ -34,7 +34,7 @@ export const useSessionStorage = <T>({
     } catch (err) {
       ConsoleError('Failed to set session storage : ', err)
     }
-  }, [storedValue])
+  }, [sessionStorageKey, storedValue])
 
   const deleteSessionStorage = () => {
     setStoredValue(initialValue)

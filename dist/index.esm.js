@@ -3216,7 +3216,7 @@ var useSessionStorage = function useSessionStorage(_ref) {
     } catch (err) {
       ConsoleError('Failed to set session storage : ', err);
     }
-  }, [storedValue]);
+  }, [sessionStorageKey, storedValue]);
   var deleteSessionStorage = function deleteSessionStorage() {
     setStoredValue(initialValue);
     sessionStorage.removeItem(sessionStorageKey);
