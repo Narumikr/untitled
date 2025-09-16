@@ -53,6 +53,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
     return () => {
       window.removeEventListener('resize', setCanvasSize)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -103,7 +104,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
     render()
 
     return () => cancelAnimationFrame(animationFrameId)
-  }, [startAnimation])
+  }, [execEvent, startAnimation])
 
   const handleClick = (e: AnimationTrigger) => {
     setStartAnimation(true)

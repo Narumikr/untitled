@@ -22,8 +22,7 @@ export const useInnerSize = () => {
   }
 
   useEffect(() => {
-    if (!isClient) return
-
+    // useEffect is guaranteed to run only on the client side. So u need check isClient
     handlerResize()
     window.addEventListener('resize', handlerResize)
 

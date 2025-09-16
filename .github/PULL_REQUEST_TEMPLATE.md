@@ -21,6 +21,14 @@
   - [ ] 指摘事項の修正
   - [ ] 再レビューの実施
 
+#### 🎸 AI指摘事項 🎹
+<Details><Summary>Review by ClaudeAI and ChatGPT</Summary>
+
+```ts
+本PRでは指摘事項なし
+```
+</Details>
+
 ### 💻 評価項目 🆚
 
 <!-- 行った動作確認を箇条書きでも -->

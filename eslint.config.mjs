@@ -1,6 +1,7 @@
 import tsParser from '@typescript-eslint/parser'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import react from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
 import unusedImports from 'eslint-plugin-unused-imports'
 import _import from 'eslint-plugin-import'
 import jsxA11Y from 'eslint-plugin-jsx-a11y'
@@ -15,6 +16,7 @@ export default [
     plugins: {
       react,
       'unused-imports': unusedImports,
+      'react-hooks': reactHooks,
       '@typescript-eslint': tsPlugin,
       'import': fixupPluginRules(_import),
       'jsx-a11y': jsxA11Y
@@ -66,6 +68,8 @@ export default [
           max: 1
         }
       ],
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'error',
       'react/react-in-jsx-scope': 'off',
       'react/jsx-no-leaked-render': [
         'error',

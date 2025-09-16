@@ -50,6 +50,7 @@ export const XxMikuDialog = ({
     document.addEventListener('keydown', handleKeyDownEsc)
 
     return () => document.removeEventListener('keydown', handleKeyDownEsc)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
 
   const headerProps = { themeMode, size, onClose, title }
@@ -59,16 +60,19 @@ export const XxMikuDialog = ({
         const type = button.type ? button.type : 'normal'
         return {
           ...button,
-          buttonStyle: [
-            styles[`sekai-xxmiku-${type}-button`],
-            styles[`sekai-${modeTheme}`]
-          ].join(' ')
+          buttonStyle: clsx(styles[`sekai-xxmiku-${type}-button`], styles[`sekai-${modeTheme}`])
         }
       }),
     [buttons, modeTheme]
   )
 
-  const overlayProps = { id: 'xxmiku-dialog-overlay',open, themeMode, containerComponent, centered: true }
+  const overlayProps = {
+    id: 'xxmiku-dialog-overlay',
+    open,
+    themeMode,
+    containerComponent,
+    centered: true
+  }
   const buttonsProps = { themeMode, buttons: xxButtonProps }
 
   return createPortal(
