@@ -46,6 +46,8 @@ export * from './loading/Loading'
 
 export * from './pagination/Pagination'
 
+export * from './provider/StoreValueContext'
+
 export * from './provider/YourSekaiProvider'
 
 export * from './select/Checkbox'
