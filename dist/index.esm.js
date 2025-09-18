@@ -3189,9 +3189,7 @@ var isObject = function isObject(value) {
   return value !== null && _typeof(value) === 'object' && !Array.isArray(value);
 };
 
-var useSessionStorage = function useSessionStorage(_ref) {
-  var sessionStorageKey = _ref.sessionStorageKey,
-    initialValue = _ref.initialValue;
+var useSessionStorage = function useSessionStorage(sessionStorageKey, initialValue) {
   var isClient = useRef(typeof window !== 'undefined');
   var _useState = useState(function () {
       if (!isClient.current) return initialValue;
@@ -3241,10 +3239,7 @@ var createSharedValueProvider = function createSharedValueProvider() {
     var children = _ref.children,
       sessionStorageKey = _ref.sessionStorageKey,
       defaultValue = _ref.defaultValue;
-    var _useSessionStorage = useSessionStorage({
-        sessionStorageKey: sessionStorageKey,
-        initialValue: defaultValue
-      }),
+    var _useSessionStorage = useSessionStorage(sessionStorageKey, defaultValue),
       sharedValue = _useSessionStorage.storedValue,
       setSharedValue = _useSessionStorage.setStoredValue,
       deleteSharedValue = _useSessionStorage.deleteSessionStorage;

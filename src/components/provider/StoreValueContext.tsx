@@ -34,10 +34,7 @@ export const createSharedValueProvider = <T,>() => {
       storedValue: sharedValue,
       setStoredValue: setSharedValue,
       deleteSessionStorage: deleteSharedValue
-    } = useSessionStorage<T>({
-      sessionStorageKey,
-      initialValue: defaultValue
-    })
+    } = useSessionStorage<T>(sessionStorageKey, defaultValue)
 
     return (
       <SharedValueContext.Provider value={{ sharedValue, setSharedValue, deleteSharedValue }}>

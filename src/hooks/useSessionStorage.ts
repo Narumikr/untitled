@@ -3,15 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ConsoleError } from '@/internal/logging'
 import { deserializeDataWithTemplate, serializeData } from '@/utils/serialization'
 
-export interface SessionStorageStoreProps<T> {
-  sessionStorageKey: string
-  initialValue: T
-}
-
-export const useSessionStorage = <T>({
-  sessionStorageKey,
-  initialValue
-}: SessionStorageStoreProps<T>) => {
+export const useSessionStorage = <T>(sessionStorageKey: string, initialValue: T) => {
   const isClient = useRef(typeof window !== 'undefined')
   const [storedValue, setStoredValue] = useState<T>(() => {
     if (!isClient.current) return initialValue
