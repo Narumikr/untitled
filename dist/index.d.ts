@@ -472,21 +472,15 @@ declare const createSekai: (option: SekaiThemeProps) => SekaiTheme;
 declare const YOUR_COLOR_THEME = "your_color_theme";
 interface YourSekaiContextProps {
     sekaiTheme: SekaiTheme;
-    onSwitchSekaiColor: (sekai: ColorsSekaiKey) => void;
-    onSwitchColorTheme: (color: PaletteMode) => void;
+    switchSekaiColor: (sekai: ColorsSekaiKey) => void;
+    switchColorTheme: (color: PaletteMode) => void;
 }
 declare const YourSekaiContext: React__default.Context<YourSekaiContextProps | null>;
 interface YourSekaiProviderProps {
     children: React__default.ReactNode;
     sekaiTheme: SekaiTheme;
-    settingOptions?: {
-        /**
-         * Whether to store the color theme setting in LocalStorage
-         */
-        colorTheme?: boolean;
-    };
 }
-declare const YourSekaiProvider: ({ children, sekaiTheme, settingOptions }: YourSekaiProviderProps) => React__default.JSX.Element;
+declare const YourSekaiProvider: ({ children, sekaiTheme }: YourSekaiProviderProps) => React__default.JSX.Element;
 
 type CheckboxProps = {
     id?: string;
@@ -625,7 +619,7 @@ declare const useCreateSekai: () => YourSekaiContextProps;
 declare const useCurrentTime: () => Date;
 
 declare const useLocalStorage: <T>(localStorageKey: string, initialValue: T) => {
-    storedvalue: T;
+    storedValue: T;
     setStoredValue: React.Dispatch<React.SetStateAction<T>>;
     deleteLocalStorage: () => void;
 };

@@ -398,17 +398,17 @@ var useLocalStorage = function useLocalStorage(localStorageKey, initialValue) {
       return initialValue;
     }),
     _useState2 = _slicedToArray(_useState, 2),
-    storedvalue = _useState2[0],
+    storedValue = _useState2[0],
     setStoredValue = _useState2[1];
   React.useEffect(function () {
     if (!isClient.current) return;
     try {
-      var serialized = JSON.stringify(serializeData(storedvalue));
+      var serialized = JSON.stringify(serializeData(storedValue));
       localStorage.setItem(localStorageKey, serialized);
     } catch (err) {
       ConsoleError('Failed to set local storage : ', err);
     }
-  }, [localStorageKey, storedvalue]);
+  }, [localStorageKey, storedValue]);
   React.useEffect(function () {
     if (!isClient.current) return;
     var updateLocalStorage = function updateLocalStorage(e) {
@@ -435,7 +435,7 @@ var useLocalStorage = function useLocalStorage(localStorageKey, initialValue) {
     localStorage.removeItem(localStorageKey);
   };
   return {
-    storedvalue: storedvalue,
+    storedValue: storedValue,
     setStoredValue: setStoredValue,
     deleteLocalStorage: deleteLocalStorage
   };
@@ -469,67 +469,57 @@ var YOUR_COLOR_THEME = 'your_color_theme';
 var YourSekaiContext = /*#__PURE__*/React.createContext(null);
 var YourSekaiProvider = function YourSekaiProvider(_ref) {
   var children = _ref.children,
-    sekaiTheme = _ref.sekaiTheme,
-    settingOptions = _ref.settingOptions;
-  var _useState = React.useState(sekaiTheme),
-    _useState2 = _slicedToArray(_useState, 2),
-    currentSekaiTheme = _useState2[0],
-    setCurrentSekaiTheme = _useState2[1];
+    sekaiTheme = _ref.sekaiTheme;
   var _useLocalStorage = useLocalStorage(YOUR_COLOR_THEME, sekaiTheme.palette.mode),
-    colorTheme = _useLocalStorage.storedvalue,
-    setColorTheme = _useLocalStorage.setStoredValue,
-    deleteLocalStorage = _useLocalStorage.deleteLocalStorage;
-  var onSwitchSekaiColor = function onSwitchSekaiColor(sekai) {
-    setCurrentSekaiTheme(function (pre) {
-      return _objectSpread$u(_objectSpread$u({}, pre), {}, {
-        palette: _objectSpread$u(_objectSpread$u({}, pre.palette), {}, {
-          sekai: sekai
-        })
-      });
-    });
-  };
-  var onSwitchColorTheme = function onSwitchColorTheme(color) {
-    setColorTheme(color);
-    setCurrentSekaiTheme(function (pre) {
-      return _objectSpread$u(_objectSpread$u({}, pre), {}, {
-        palette: _objectSpread$u(_objectSpread$u({}, pre.palette), {}, {
-          palette: {
-            mode: color
-          }
-        })
-      });
-    });
-  };
-  React.useEffect(function () {
-    setCurrentSekaiTheme(function (pre) {
-      return _objectSpread$u(_objectSpread$u({}, pre), {}, {
-        palette: _objectSpread$u(_objectSpread$u({}, pre.palette), {}, {
-          mode: colorTheme
-        })
-      });
-    });
-  }, [colorTheme]);
-  React.useEffect(function () {
-    return function () {
-      // Delete colorTheme store value, if setting option is not available
-      if (!(settingOptions !== null && settingOptions !== void 0 && settingOptions.colorTheme)) {
-        deleteLocalStorage();
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    colorTheme = _useLocalStorage.storedValue,
+    setColorTheme = _useLocalStorage.setStoredValue;
+  var _useState = React.useState(sekaiTheme.palette.sekai),
+    _useState2 = _slicedToArray(_useState, 2),
+    sekaiColor = _useState2[0],
+    setSekaiColor = _useState2[1];
+  var switchSekaiColor = React.useCallback(function (sekai) {
+    setSekaiColor(sekai);
   }, []);
-  var provideValue = {
-    sekaiTheme: currentSekaiTheme,
-    onSwitchSekaiColor: onSwitchSekaiColor,
-    onSwitchColorTheme: onSwitchColorTheme
-  };
-  var globalStyle = React.useMemo(function () {
-    return "\n    * {\n      font-family: ".concat(sekaiTheme.typography.fontFamily, ";\n    }\n    body {\n      color: ").concat(sekaiTheme.palette.mode === DARK_MODE ? '#e0e0e0' : '#212121', ";\n      background: ").concat(sekaiTheme.palette.mode === DARK_MODE ? '#121212' : '#ffffff', ";\n    }\n  ");
-  }, [sekaiTheme]);
+  var switchColorTheme = React.useCallback(function (color) {
+    setColorTheme(color);
+  }, [setColorTheme]);
+  var currentSekaiTheme = React.useMemo(function () {
+    return _objectSpread$u(_objectSpread$u({}, sekaiTheme), {}, {
+      palette: _objectSpread$u(_objectSpread$u({}, sekaiTheme.palette), {}, {
+        sekai: sekaiColor,
+        mode: colorTheme
+      })
+    });
+  }, [colorTheme, sekaiColor, sekaiTheme]);
+  var contextValue = React.useMemo(function () {
+    return {
+      sekaiTheme: currentSekaiTheme,
+      switchSekaiColor: switchSekaiColor,
+      switchColorTheme: switchColorTheme
+    };
+  }, [currentSekaiTheme, switchColorTheme, switchSekaiColor]);
   return /*#__PURE__*/React.createElement(YourSekaiContext.Provider, {
-    value: provideValue
-  }, /*#__PURE__*/React.createElement("style", null, globalStyle), children);
+    value: contextValue
+  }, /*#__PURE__*/React.createElement(GlobalStyle, {
+    theme: currentSekaiTheme
+  }), children);
 };
+var GlobalStyle = /*#__PURE__*/React.memo(function (_ref2) {
+  var theme = _ref2.theme;
+  var _useState3 = React.useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isClient = _useState4[0],
+    setIsClient = _useState4[1];
+  React.useEffect(function () {
+    setIsClient(true);
+  }, []);
+  var style = React.useMemo(function () {
+    return "\n    * {\n      font-family: ".concat(theme.typography.fontFamily, ";\n    }\n    body {\n      color: ").concat(theme.palette.mode === DARK_MODE ? '#e0e0e0' : '#212121', ";\n      background: ").concat(theme.palette.mode === DARK_MODE ? '#121212' : '#ffffff', ";\n    }\n  ");
+  }, [theme.palette.mode, theme.typography.fontFamily]);
+  if (!isClient) return null;
+  return /*#__PURE__*/React.createElement("style", null, style);
+});
+GlobalStyle.displayName = 'GlobalStyle';
 
 // prettier-ignore
 var COLORS_SEKAI_KEYS = {

@@ -5,7 +5,7 @@ import { deserializeDataWithTemplate, serializeData } from '@/utils/serializatio
 
 export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => {
   const isClient = useRef(typeof window !== 'undefined')
-  const [storedvalue, setStoredValue] = useState<T>(() => {
+  const [storedValue, setStoredValue] = useState<T>(() => {
     if (!isClient.current) return initialValue
     try {
       const items = localStorage.getItem(localStorageKey)
@@ -21,12 +21,12 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => 
   useEffect(() => {
     if (!isClient.current) return
     try {
-      const serialized = JSON.stringify(serializeData(storedvalue))
+      const serialized = JSON.stringify(serializeData(storedValue))
       localStorage.setItem(localStorageKey, serialized)
     } catch (err) {
       ConsoleError('Failed to set local storage : ', err)
     }
-  }, [localStorageKey, storedvalue])
+  }, [localStorageKey, storedValue])
 
   useEffect(() => {
     if (!isClient.current) return
@@ -58,7 +58,7 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => 
   }
 
   return {
-    storedvalue,
+    storedValue,
     setStoredValue,
     deleteLocalStorage
   }
