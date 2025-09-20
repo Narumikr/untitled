@@ -23,37 +23,37 @@ const preview: Preview = {
     layout: 'centered',
     docs: {
       container: CustomDocsContainer
-    },
-    decorators: [
-      (Story: StoryFn, context: StoryContext) => {
-        const sekai: ColorsSekaiKey = context.parameters.sekai || COLORS_SEKAI_KEYS.Miku
-        const isDark = DARK_MODE === context.parameters.background
-        const isDocs = context.viewMode === 'docs'
-        const isPortal: boolean = context.parameters.portal
-        const isPortalDocsPreview = isPortal && isDocs
+    }
+  },
+  decorators: [
+    (Story: StoryFn, context: StoryContext) => {
+      const sekai: ColorsSekaiKey = context.parameters.sekai || COLORS_SEKAI_KEYS.Miku
+      const isDark = DARK_MODE === context.parameters.background
+      const isDocs = context.viewMode === 'docs'
+      const isPortal: boolean = context.parameters.portal
+      const isPortalDocsPreview = isPortal && isDocs
 
-        const theme = createSekai({
-          palette: {
-            sekai: sekai,
-            mode: isDark ? DARK_MODE : LIGHT_MODE
-          }
-        })
+      const theme = createSekai({
+        palette: {
+          sekai: sekai,
+          mode: isDark ? DARK_MODE : LIGHT_MODE
+        }
+      })
 
-        return (
-          <YourSekaiProvider sekaiTheme={theme}>
-            <Story
-              args={{
-                ...context.args,
-                ...(isPortalDocsPreview && {
-                  containerComponent: getContainerPortalRoot(context, isDocs)
-                })
-              }}
-            />
-          </YourSekaiProvider>
-        )
-      }
-    ]
-  }
+      return (
+        <YourSekaiProvider sekaiTheme={theme}>
+          <Story
+            args={{
+              ...context.args,
+              ...(isPortalDocsPreview && {
+                containerComponent: getContainerPortalRoot(context, isDocs) ?? undefined
+              })
+            }}
+          />
+        </YourSekaiProvider>
+      )
+    }
+  ]
 }
 
 const getContainerPortalRoot = (context: StoryContext, isDocs: boolean) => {
