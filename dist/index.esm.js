@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useMemo, useContext, useRef, useCallback, forwardRef } from 'react';
+import React, { useRef, useState, useEffect, memo, useMemo, createContext, useCallback, useContext, forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 
 function _extends() {
@@ -124,6 +124,321 @@ function _objectWithoutProperties(e, t) {
 
 function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f);}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}
 
+/* eslint-disable no-console */
+var ConsoleWarning = function ConsoleWarning() {
+  if (process.env.NODE_ENV === 'development') {
+    var _console2;
+    (_console2 = console).warn.apply(_console2, arguments);
+  }
+};
+var ConsoleError = function ConsoleError() {
+  if (process.env.NODE_ENV === 'development') {
+    var _console3;
+    (_console3 = console).error.apply(_console3, arguments);
+  }
+};
+
+/**
+ * @description Utility functions for serializing and deserializing data, including handling of Date objects.
+ * @param {T} data - The data to serialize
+ * @param {WeakSet<object>} visited - A WeakSet to track visited objects for circular reference detection
+ * @returns {unknown} - The serialized data
+ */
+var serializeData = function serializeData(data) {
+  var visited = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new WeakSet();
+  // If data is Date instance, convert to ISO string
+  if (data instanceof Date) {
+    return data.toISOString();
+  }
+  // If data is an array, recursively serialize each element
+  if (Array.isArray(data)) {
+    return serializeArray(data, visited);
+  }
+  // If data is an object, recursively serialize each property
+  if (data && _typeof(data) === 'object') {
+    return serializeObject(data, visited);
+  }
+  // For other primitive types, return as is
+  return data;
+};
+/**
+ * @description Deserialize data, converting ISO date strings back to Date objects
+ * @param {unknown} data - data to deserialize
+ * @param {WeakSet<object>} visited - A WeakSet to track visited objects for circular reference detection
+ * @returns {unknown} - The deserialized data
+ */
+var deserializeData = function deserializeData(data) {
+  var visited = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new WeakSet();
+  // If data is a string and looks like an ISO date, convert to Date
+  if (typeof data === 'string') {
+    return deserializeDate(data);
+  }
+  // If data is an array, recursively deserialize each element
+  if (Array.isArray(data)) {
+    return deserializeArray(data, visited);
+  }
+  // If data is an object, recursively deserialize each property
+  if (data != null && _typeof(data) === 'object') {
+    return deserializeObject(data, visited);
+  }
+  // For other primitive types, return as is
+  return data;
+};
+var deserializeDataWithTemplate = function deserializeDataWithTemplate(obj, template) {
+  var visited = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new WeakSet();
+  // If template is Date instance, and obj is string, convert to Date
+  if (template instanceof Date && typeof obj === 'string') {
+    return deserializeDateWithTemplate(obj);
+  }
+  // If template is an array, recursively temp each element
+  if (Array.isArray(template)) {
+    return deserializeArrayWithTemplate(obj, template, visited);
+  }
+  // If template is an object, recursively deserialize each property
+  if (_typeof(template) === 'object') {
+    return deserializeObjectWithTemplate(obj, template, visited);
+  }
+  // For other primitive types, return obj if same type, else template
+  return obj;
+};
+/**
+ * @description Validates if a string is a valid date string (ISO 8601 or other formats recognized by Date.parse)
+ * @param dateStr - date string to validate
+ * @returns boolean - whether the string is a valid date string
+ */
+var isValidDateString = function isValidDateString(dateStr) {
+  var isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?$/;
+  return isoRegex.test(dateStr.trim()) || !isNaN(Date.parse(dateStr));
+};
+// For searializeData start
+// Helper function to searialize array
+var serializeArray = function serializeArray(obj, visited) {
+  if (Array.isArray(obj)) {
+    if (visited.has(obj)) {
+      throw new Error('Circular reference detected during serializeData');
+    }
+    visited.add(obj);
+    var result = obj.map(function (el) {
+      return serializeData(el, visited);
+    });
+    visited["delete"](obj);
+    return result;
+  }
+  return obj;
+};
+// Helper function to searialize object
+var serializeObject = function serializeObject(obj, visited) {
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization');
+  }
+  if (obj instanceof Map || obj instanceof Set) {
+    ConsoleWarning('Map and Set are not supported for serialization. They will be converted to empty objects.');
+  }
+  if (isObject(obj)) {
+    var serializedObj = {};
+    for (var _i = 0, _Object$entries = Object.entries(obj); _i < _Object$entries.length; _i++) {
+      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+        key = _Object$entries$_i[0],
+        value = _Object$entries$_i[1];
+      serializedObj[key] = serializeData(value);
+    }
+    return serializedObj;
+  }
+  return obj;
+};
+// For searializeData end
+// For deserualizeData start
+// Helper function to desearialize date
+var deserializeDate = function deserializeDate(obj) {
+  try {
+    var dateDeserialized = new Date(obj);
+    // Check if the date is valid
+    if (!isNaN(dateDeserialized.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
+      return dateDeserialized;
+    }
+    return obj;
+  } catch (err) {
+    throw new Error('Failed to parse date:' + err.message);
+  }
+};
+// Helper function to deserialize array
+var deserializeArray = function deserializeArray(obj, visited) {
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization');
+  }
+  if (!Array.isArray(obj)) {
+    return obj;
+  }
+  visited.add(obj);
+  for (var i = 0; i < obj.length; i++) {
+    var deserializedElement = deserializeData(obj[i], visited);
+    if (deserializedElement !== obj[i]) {
+      var result = obj.slice(0, i);
+      result[i] = deserializedElement;
+      for (var j = i + 1; j < obj.length; j++) {
+        result[j] = deserializeData(obj[j], visited);
+      }
+      visited["delete"](obj);
+      return result;
+    }
+  }
+  visited["delete"](obj);
+  return obj;
+};
+// Helper function to deserialize object
+var deserializeObject = function deserializeObject(obj, visited) {
+  if (!isObject(obj)) {
+    return obj;
+  }
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization');
+  }
+  visited.add(obj);
+  var entries = Object.entries(obj);
+  for (var i = 0; i < entries.length; i++) {
+    var _entries$i = _slicedToArray(entries[i], 2),
+      key = _entries$i[0],
+      value = _entries$i[1];
+    var deserializedValue = deserializeData(value, visited);
+    if (deserializedValue !== value) {
+      var deserializedObj = {};
+      for (var j = 0; j < i; j++) {
+        var _entries$j = _slicedToArray(entries[j], 2),
+          prevKey = _entries$j[0],
+          prevValue = _entries$j[1];
+        deserializedObj[prevKey] = prevValue;
+      }
+      deserializedObj[key] = deserializedValue;
+      for (var _j = i + 1; _j < entries.length; _j++) {
+        var _entries$_j = _slicedToArray(entries[_j], 2),
+          remainingKey = _entries$_j[0],
+          remainingValue = _entries$_j[1];
+        deserializedObj[remainingKey] = deserializeData(remainingValue, visited);
+      }
+      visited["delete"](obj);
+      return deserializedObj;
+    }
+  }
+  visited["delete"](obj);
+  return obj;
+};
+// For deserualizeData end
+// For deserializeDataWithTemplate start
+// Helper function to deserialize date with template
+var deserializeDateWithTemplate = function deserializeDateWithTemplate(obj) {
+  try {
+    var date = new Date(obj);
+    // Check if the date is valid
+    if (!isNaN(date.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
+      return date;
+    }
+    return obj;
+  } catch (err) {
+    throw new Error('Failed to parse date:' + err.message);
+  }
+};
+// Helper function to deserialize array with template
+var deserializeArrayWithTemplate = function deserializeArrayWithTemplate(obj, template, visited) {
+  var templateArray = template;
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization with template');
+  }
+  if (!Array.isArray(obj)) {
+    return obj;
+  }
+  if (templateArray.length === 0) {
+    return obj;
+  }
+  visited.add(obj);
+  var result = obj.map(function (el, index) {
+    var _templateArray$index;
+    var templateItem = (_templateArray$index = templateArray[index]) !== null && _templateArray$index !== void 0 ? _templateArray$index : templateArray[0];
+    return deserializeDataWithTemplate(el, templateItem, visited);
+  });
+  visited["delete"](obj);
+  return result;
+};
+// Helper function to deserialize object with template
+var deserializeObjectWithTemplate = function deserializeObjectWithTemplate(obj, template, visited) {
+  if (!isObject(obj)) {
+    return obj;
+  }
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization with template');
+  }
+  visited.add(obj);
+  var deserializedObj = {};
+  for (var key in template) {
+    if (key in template) {
+      deserializedObj[key] = deserializeDataWithTemplate(obj[key], template[key], visited);
+    }
+  }
+  visited["delete"](obj);
+  return deserializedObj;
+};
+// For deserializeDataWithTemplate end
+var isObject = function isObject(value) {
+  return value !== null && _typeof(value) === 'object' && !Array.isArray(value);
+};
+
+var useLocalStorage = function useLocalStorage(localStorageKey, initialValue) {
+  var isClient = useRef(typeof window !== 'undefined');
+  var _useState = useState(function () {
+      if (!isClient.current) return initialValue;
+      try {
+        var items = localStorage.getItem(localStorageKey);
+        if (items) {
+          return deserializeDataWithTemplate(JSON.parse(items), initialValue);
+        }
+      } catch (err) {
+        ConsoleError('Failed to get local storage value : ', err);
+      }
+      return initialValue;
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    storedValue = _useState2[0],
+    setStoredValue = _useState2[1];
+  useEffect(function () {
+    if (!isClient.current) return;
+    try {
+      var serialized = JSON.stringify(serializeData(storedValue));
+      localStorage.setItem(localStorageKey, serialized);
+    } catch (err) {
+      ConsoleError('Failed to set local storage : ', err);
+    }
+  }, [localStorageKey, storedValue]);
+  useEffect(function () {
+    if (!isClient.current) return;
+    var updateLocalStorage = function updateLocalStorage(e) {
+      try {
+        if (e.key !== localStorageKey) return;
+        if (e.newValue === null) {
+          setStoredValue(initialValue);
+        } else {
+          var parsed = JSON.parse(e.newValue);
+          setStoredValue(deserializeDataWithTemplate(parsed, initialValue));
+        }
+      } catch (err) {
+        ConsoleError('Failed to set local storage : ', err);
+      }
+    };
+    window.addEventListener('storage', updateLocalStorage);
+    return function () {
+      return window.removeEventListener('storage', updateLocalStorage);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  var deleteLocalStorage = function deleteLocalStorage() {
+    setStoredValue(initialValue);
+    localStorage.removeItem(localStorageKey);
+  };
+  return {
+    storedValue: storedValue,
+    setStoredValue: setStoredValue,
+    deleteLocalStorage: deleteLocalStorage
+  };
+};
+
 var LIGHT_MODE = 'light';
 var DARK_MODE = 'dark';
 var useThemeMode = function useThemeMode() {
@@ -148,35 +463,61 @@ var useThemeMode = function useThemeMode() {
 
 function ownKeys$u(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread$u(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$u(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$u(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var YOUR_COLOR_THEME = 'your_color_theme';
 var YourSekaiContext = /*#__PURE__*/createContext(null);
 var YourSekaiProvider = function YourSekaiProvider(_ref) {
   var children = _ref.children,
     sekaiTheme = _ref.sekaiTheme;
-  var _useState = useState(sekaiTheme),
+  var _useLocalStorage = useLocalStorage(YOUR_COLOR_THEME, sekaiTheme.palette.mode),
+    colorTheme = _useLocalStorage.storedValue,
+    setColorTheme = _useLocalStorage.setStoredValue;
+  var _useState = useState(sekaiTheme.palette.sekai),
     _useState2 = _slicedToArray(_useState, 2),
-    currentSekaiTheme = _useState2[0],
-    setCurrentSekaiTheme = _useState2[1];
-  var onSwitchSekaiColor = function onSwitchSekaiColor(sekai) {
-    setCurrentSekaiTheme(function (pre) {
-      return _objectSpread$u(_objectSpread$u({}, pre), {}, {
-        palette: _objectSpread$u(_objectSpread$u({}, pre.palette), {}, {
-          sekai: sekai
-        })
-      });
+    sekaiColor = _useState2[0],
+    setSekaiColor = _useState2[1];
+  var switchSekaiColor = useCallback(function (sekai) {
+    setSekaiColor(sekai);
+  }, []);
+  var switchColorTheme = useCallback(function (color) {
+    setColorTheme(color);
+  }, [setColorTheme]);
+  var currentSekaiTheme = useMemo(function () {
+    return _objectSpread$u(_objectSpread$u({}, sekaiTheme), {}, {
+      palette: _objectSpread$u(_objectSpread$u({}, sekaiTheme.palette), {}, {
+        sekai: sekaiColor,
+        mode: colorTheme
+      })
     });
-  };
-  var provideValue = {
-    sekaiTheme: currentSekaiTheme,
-    onSwitchSekaiColor: onSwitchSekaiColor
-  };
-  var globalStyle = useMemo(function () {
-    var _sekaiTheme$typograph, _sekaiTheme$palette, _sekaiTheme$palette2;
-    return "\n    * {\n      font-family: ".concat((_sekaiTheme$typograph = sekaiTheme.typography) === null || _sekaiTheme$typograph === void 0 ? void 0 : _sekaiTheme$typograph.fontFamily, ";\n    }\n    body {\n      color: ").concat(((_sekaiTheme$palette = sekaiTheme.palette) === null || _sekaiTheme$palette === void 0 ? void 0 : _sekaiTheme$palette.mode) === DARK_MODE ? '#e0e0e0' : '#212121', ";\n      background: ").concat(((_sekaiTheme$palette2 = sekaiTheme.palette) === null || _sekaiTheme$palette2 === void 0 ? void 0 : _sekaiTheme$palette2.mode) === DARK_MODE ? '#121212' : '#ffffff', ";\n    }\n  ");
-  }, [sekaiTheme]);
+  }, [colorTheme, sekaiColor, sekaiTheme]);
+  var contextValue = useMemo(function () {
+    return {
+      sekaiTheme: currentSekaiTheme,
+      switchSekaiColor: switchSekaiColor,
+      switchColorTheme: switchColorTheme
+    };
+  }, [currentSekaiTheme, switchColorTheme, switchSekaiColor]);
   return /*#__PURE__*/React.createElement(YourSekaiContext.Provider, {
-    value: provideValue
-  }, /*#__PURE__*/React.createElement("style", null, globalStyle), children);
+    value: contextValue
+  }, /*#__PURE__*/React.createElement(GlobalStyle, {
+    theme: currentSekaiTheme
+  }), children);
 };
+var GlobalStyle = /*#__PURE__*/memo(function (_ref2) {
+  var theme = _ref2.theme;
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isClient = _useState4[0],
+    setIsClient = _useState4[1];
+  useEffect(function () {
+    setIsClient(true);
+  }, []);
+  var style = useMemo(function () {
+    return "\n    * {\n      font-family: ".concat(theme.typography.fontFamily, ";\n    }\n    body {\n      color: ").concat(theme.palette.mode === DARK_MODE ? '#e0e0e0' : '#212121', ";\n      background: ").concat(theme.palette.mode === DARK_MODE ? '#121212' : '#ffffff', ";\n    }\n  ");
+  }, [theme.palette.mode, theme.typography.fontFamily]);
+  if (!isClient) return null;
+  return /*#__PURE__*/React.createElement("style", null, style);
+});
+GlobalStyle.displayName = 'GlobalStyle';
 
 // prettier-ignore
 var COLORS_SEKAI_KEYS = {
@@ -2528,20 +2869,6 @@ var List = function List(_ref) {
   }), children));
 };
 
-/* eslint-disable no-console */
-var ConsoleWarning = function ConsoleWarning() {
-  if (process.env.NODE_ENV === 'development') {
-    var _console2;
-    (_console2 = console).warn.apply(_console2, arguments);
-  }
-};
-var ConsoleError = function ConsoleError() {
-  if (process.env.NODE_ENV === 'development') {
-    var _console3;
-    (_console3 = console).error.apply(_console3, arguments);
-  }
-};
-
 function ownKeys$9(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread$9(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$9(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$9(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var rippleEffectClassName = 'sekai-ripple';
@@ -2944,249 +3271,6 @@ var usePaginagion = function usePaginagion(_ref3) {
     handleNextPage: handleNextPage,
     rangePagination: rangePagination
   };
-};
-
-/**
- * @description Utility functions for serializing and deserializing data, including handling of Date objects.
- * @param {T} data - The data to serialize
- * @param {WeakSet<object>} visited - A WeakSet to track visited objects for circular reference detection
- * @returns {unknown} - The serialized data
- */
-var serializeData = function serializeData(data) {
-  var visited = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new WeakSet();
-  // If data is Date instance, convert to ISO string
-  if (data instanceof Date) {
-    return data.toISOString();
-  }
-  // If data is an array, recursively serialize each element
-  if (Array.isArray(data)) {
-    return serializeArray(data, visited);
-  }
-  // If data is an object, recursively serialize each property
-  if (data && _typeof(data) === 'object') {
-    return serializeObject(data, visited);
-  }
-  // For other primitive types, return as is
-  return data;
-};
-/**
- * @description Deserialize data, converting ISO date strings back to Date objects
- * @param {unknown} data - data to deserialize
- * @param {WeakSet<object>} visited - A WeakSet to track visited objects for circular reference detection
- * @returns {unknown} - The deserialized data
- */
-var deserializeData = function deserializeData(data) {
-  var visited = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new WeakSet();
-  // If data is a string and looks like an ISO date, convert to Date
-  if (typeof data === 'string') {
-    return deserializeDate(data);
-  }
-  // If data is an array, recursively deserialize each element
-  if (Array.isArray(data)) {
-    return deserializeArray(data, visited);
-  }
-  // If data is an object, recursively deserialize each property
-  if (data != null && _typeof(data) === 'object') {
-    return deserializeObject(data, visited);
-  }
-  // For other primitive types, return as is
-  return data;
-};
-var deserializeDataWithTemplate = function deserializeDataWithTemplate(obj, template) {
-  var visited = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new WeakSet();
-  // If template is Date instance, and obj is string, convert to Date
-  if (template instanceof Date && typeof obj === 'string') {
-    return deserializeDateWithTemplate(obj);
-  }
-  // If template is an array, recursively temp each element
-  if (Array.isArray(template)) {
-    return deserializeArrayWithTemplate(obj, template, visited);
-  }
-  // If template is an object, recursively deserialize each property
-  if (_typeof(template) === 'object') {
-    return deserializeObjectWithTemplate(obj, template, visited);
-  }
-  // For other primitive types, return obj if same type, else template
-  return obj;
-};
-/**
- * @description Validates if a string is a valid date string (ISO 8601 or other formats recognized by Date.parse)
- * @param dateStr - date string to validate
- * @returns boolean - whether the string is a valid date string
- */
-var isValidDateString = function isValidDateString(dateStr) {
-  var isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?$/;
-  return isoRegex.test(dateStr.trim()) || !isNaN(Date.parse(dateStr));
-};
-// For searializeData start
-// Helper function to searialize array
-var serializeArray = function serializeArray(obj, visited) {
-  if (Array.isArray(obj)) {
-    if (visited.has(obj)) {
-      throw new Error('Circular reference detected during serializeData');
-    }
-    visited.add(obj);
-    var result = obj.map(function (el) {
-      return serializeData(el, visited);
-    });
-    visited["delete"](obj);
-    return result;
-  }
-  return obj;
-};
-// Helper function to searialize object
-var serializeObject = function serializeObject(obj, visited) {
-  if (visited.has(obj)) {
-    throw new Error('Circular reference detected during deserialization');
-  }
-  if (obj instanceof Map || obj instanceof Set) {
-    ConsoleWarning('Map and Set are not supported for serialization. They will be converted to empty objects.');
-  }
-  if (isObject(obj)) {
-    var serializedObj = {};
-    for (var _i = 0, _Object$entries = Object.entries(obj); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-        key = _Object$entries$_i[0],
-        value = _Object$entries$_i[1];
-      serializedObj[key] = serializeData(value);
-    }
-    return serializedObj;
-  }
-  return obj;
-};
-// For searializeData end
-// For deserualizeData start
-// Helper function to desearialize date
-var deserializeDate = function deserializeDate(obj) {
-  try {
-    var dateDeserialized = new Date(obj);
-    // Check if the date is valid
-    if (!isNaN(dateDeserialized.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
-      return dateDeserialized;
-    }
-    return obj;
-  } catch (err) {
-    throw new Error('Failed to parse date:' + err.message);
-  }
-};
-// Helper function to deserialize array
-var deserializeArray = function deserializeArray(obj, visited) {
-  if (visited.has(obj)) {
-    throw new Error('Circular reference detected during deserialization');
-  }
-  if (!Array.isArray(obj)) {
-    return obj;
-  }
-  visited.add(obj);
-  for (var i = 0; i < obj.length; i++) {
-    var deserializedElement = deserializeData(obj[i], visited);
-    if (deserializedElement !== obj[i]) {
-      var result = obj.slice(0, i);
-      result[i] = deserializedElement;
-      for (var j = i + 1; j < obj.length; j++) {
-        result[j] = deserializeData(obj[j], visited);
-      }
-      visited["delete"](obj);
-      return result;
-    }
-  }
-  visited["delete"](obj);
-  return obj;
-};
-// Helper function to deserialize object
-var deserializeObject = function deserializeObject(obj, visited) {
-  if (!isObject(obj)) {
-    return obj;
-  }
-  if (visited.has(obj)) {
-    throw new Error('Circular reference detected during deserialization');
-  }
-  visited.add(obj);
-  var entries = Object.entries(obj);
-  for (var i = 0; i < entries.length; i++) {
-    var _entries$i = _slicedToArray(entries[i], 2),
-      key = _entries$i[0],
-      value = _entries$i[1];
-    var deserializedValue = deserializeData(value, visited);
-    if (deserializedValue !== value) {
-      var deserializedObj = {};
-      for (var j = 0; j < i; j++) {
-        var _entries$j = _slicedToArray(entries[j], 2),
-          prevKey = _entries$j[0],
-          prevValue = _entries$j[1];
-        deserializedObj[prevKey] = prevValue;
-      }
-      deserializedObj[key] = deserializedValue;
-      for (var _j = i + 1; _j < entries.length; _j++) {
-        var _entries$_j = _slicedToArray(entries[_j], 2),
-          remainingKey = _entries$_j[0],
-          remainingValue = _entries$_j[1];
-        deserializedObj[remainingKey] = deserializeData(remainingValue, visited);
-      }
-      visited["delete"](obj);
-      return deserializedObj;
-    }
-  }
-  visited["delete"](obj);
-  return obj;
-};
-// For deserualizeData end
-// For deserializeDataWithTemplate start
-// Helper function to deserialize date with template
-var deserializeDateWithTemplate = function deserializeDateWithTemplate(obj) {
-  try {
-    var date = new Date(obj);
-    // Check if the date is valid
-    if (!isNaN(date.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
-      return date;
-    }
-    return obj;
-  } catch (err) {
-    throw new Error('Failed to parse date:' + err.message);
-  }
-};
-// Helper function to deserialize array with template
-var deserializeArrayWithTemplate = function deserializeArrayWithTemplate(obj, template, visited) {
-  var templateArray = template;
-  if (visited.has(obj)) {
-    throw new Error('Circular reference detected during deserialization with template');
-  }
-  if (!Array.isArray(obj)) {
-    return obj;
-  }
-  if (templateArray.length === 0) {
-    return obj;
-  }
-  visited.add(obj);
-  var result = obj.map(function (el, index) {
-    var _templateArray$index;
-    var templateItem = (_templateArray$index = templateArray[index]) !== null && _templateArray$index !== void 0 ? _templateArray$index : templateArray[0];
-    return deserializeDataWithTemplate(el, templateItem, visited);
-  });
-  visited["delete"](obj);
-  return result;
-};
-// Helper function to deserialize object with template
-var deserializeObjectWithTemplate = function deserializeObjectWithTemplate(obj, template, visited) {
-  if (!isObject(obj)) {
-    return obj;
-  }
-  if (visited.has(obj)) {
-    throw new Error('Circular reference detected during deserialization with template');
-  }
-  visited.add(obj);
-  var deserializedObj = {};
-  for (var key in template) {
-    if (key in template) {
-      deserializedObj[key] = deserializeDataWithTemplate(obj[key], template[key], visited);
-    }
-  }
-  visited["delete"](obj);
-  return deserializedObj;
-};
-// For deserializeDataWithTemplate end
-var isObject = function isObject(value) {
-  return value !== null && _typeof(value) === 'object' && !Array.isArray(value);
 };
 
 var useSessionStorage = function useSessionStorage(sessionStorageKey, initialValue) {
@@ -4032,4 +4116,4 @@ var createSekai = function createSekai(option) {
   return sekaiTheme;
 };
 
-export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, Checkbox, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, createSharedValueProvider, deserializeData, deserializeDataWithTemplate, fireOnEnterKey, fireOnEscapeKey, fireOnSpaceKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useOrientation, useSessionStorage, useTabletSize, useThemeMode };
+export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, Checkbox, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YOUR_COLOR_THEME, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, createSharedValueProvider, deserializeData, deserializeDataWithTemplate, fireOnEnterKey, fireOnEscapeKey, fireOnSpaceKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useLocalStorage, useOrientation, useSessionStorage, useTabletSize, useThemeMode };
