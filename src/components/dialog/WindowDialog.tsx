@@ -105,9 +105,17 @@ export const WindowDialog = ({
       ...(containerComponent && { position: 'absolute' }),
       'left': position.x,
       'top': position.y,
-      'transform': position.x === '50%' ? 'translate(-50%, -50%)' : 'none'
+      'transform': position.x === '50%' && !isFullscreen ? 'translate(-50%, -50%)' : 'none'
     }),
-    [containerComponent, position.x, position.y, sekaiColor, sekaiColorBg, sekaiColorHeader]
+    [
+      containerComponent,
+      isFullscreen,
+      position.x,
+      position.y,
+      sekaiColor,
+      sekaiColorBg,
+      sekaiColorHeader
+    ]
   )
 
   return createPortal(
