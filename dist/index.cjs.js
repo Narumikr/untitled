@@ -465,21 +465,21 @@ var useThemeMode = function useThemeMode() {
 
 function ownKeys$u(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread$u(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$u(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$u(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var YOUR_SEKAI_COLOR = 'your_sekai_color';
 var YOUR_COLOR_THEME = 'your_color_theme';
 var YourSekaiContext = /*#__PURE__*/React.createContext(null);
 var YourSekaiProvider = function YourSekaiProvider(_ref) {
   var children = _ref.children,
     sekaiTheme = _ref.sekaiTheme;
-  var _useLocalStorage = useLocalStorage(YOUR_COLOR_THEME, sekaiTheme.palette.mode),
-    colorTheme = _useLocalStorage.storedValue,
-    setColorTheme = _useLocalStorage.setStoredValue;
-  var _useState = React.useState(sekaiTheme.palette.sekai),
-    _useState2 = _slicedToArray(_useState, 2),
-    sekaiColor = _useState2[0],
-    setSekaiColor = _useState2[1];
+  var _useLocalStorage = useLocalStorage(YOUR_SEKAI_COLOR, sekaiTheme.palette.sekai),
+    sekaiColor = _useLocalStorage.storedValue,
+    setSekaiColor = _useLocalStorage.setStoredValue;
+  var _useLocalStorage2 = useLocalStorage(YOUR_COLOR_THEME, sekaiTheme.palette.mode),
+    colorTheme = _useLocalStorage2.storedValue,
+    setColorTheme = _useLocalStorage2.setStoredValue;
   var switchSekaiColor = React.useCallback(function (sekai) {
     setSekaiColor(sekai);
-  }, []);
+  }, [setSekaiColor]);
   var switchColorTheme = React.useCallback(function (color) {
     setColorTheme(color);
   }, [setColorTheme]);
@@ -506,10 +506,10 @@ var YourSekaiProvider = function YourSekaiProvider(_ref) {
 };
 var GlobalStyle = /*#__PURE__*/React.memo(function (_ref2) {
   var theme = _ref2.theme;
-  var _useState3 = React.useState(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    isClient = _useState4[0],
-    setIsClient = _useState4[1];
+  var _useState = React.useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isClient = _useState2[0],
+    setIsClient = _useState2[1];
   React.useEffect(function () {
     setIsClient(true);
   }, []);
@@ -4166,6 +4166,7 @@ exports.WindowDialog = WindowDialog;
 exports.XoMikuDialog = XoMikuDialog;
 exports.XxMikuDialog = XxMikuDialog;
 exports.YOUR_COLOR_THEME = YOUR_COLOR_THEME;
+exports.YOUR_SEKAI_COLOR = YOUR_SEKAI_COLOR;
 exports.YourSekaiContext = YourSekaiContext;
 exports.YourSekaiProvider = YourSekaiProvider;
 exports.colorsSekai = colorsSekai;
