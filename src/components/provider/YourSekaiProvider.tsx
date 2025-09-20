@@ -7,7 +7,9 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 import type { SekaiTheme } from '@/utils/createSekai'
 
+export const YOUR_SEKAI_COLOR = 'your_sekai_color'
 export const YOUR_COLOR_THEME = 'your_color_theme'
+
 export interface YourSekaiContextProps {
   sekaiTheme: SekaiTheme
   switchSekaiColor: (sekai: ColorsSekaiKey) => void
@@ -21,13 +23,17 @@ export interface YourSekaiProviderProps {
   sekaiTheme: SekaiTheme
 }
 export const YourSekaiProvider = ({ children, sekaiTheme }: YourSekaiProviderProps) => {
+  const { storedValue: sekaiColor, setStoredValue: setSekaiColor } =
+    useLocalStorage<ColorsSekaiKey>(YOUR_SEKAI_COLOR, sekaiTheme.palette.sekai)
   const { storedValue: colorTheme, setStoredValue: setColorTheme } =
     useLocalStorage<PaletteMode>(YOUR_COLOR_THEME, sekaiTheme.palette.mode)
-  const [sekaiColor, setSekaiColor] = useState<ColorsSekaiKey>(sekaiTheme.palette.sekai)
 
-  const switchSekaiColor = useCallback((sekai: ColorsSekaiKey) => {
-    setSekaiColor(sekai)
-  }, [])
+  const switchSekaiColor = useCallback(
+    (sekai: ColorsSekaiKey) => {
+      setSekaiColor(sekai)
+    },
+    [setSekaiColor]
+  )
 
   const switchColorTheme = useCallback(
     (color: PaletteMode) => {
