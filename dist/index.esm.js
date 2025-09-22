@@ -1748,9 +1748,9 @@ var SquareSvg = function SquareSvg(_ref) {
     height: "100%",
     xmlns: "http://www.w3.org/2000/svg"
   }, sekai ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("line", {
-    x1: "15",
+    x1: "8",
     y1: "16",
-    x2: "85",
+    x2: "92",
     y2: "16",
     stroke: sekaiColor,
     strokeWidth: "17",
@@ -1764,9 +1764,9 @@ var SquareSvg = function SquareSvg(_ref) {
     strokeWidth: "17",
     opacity: "0.7"
   }), /*#__PURE__*/React.createElement("line", {
-    x1: "85",
+    x1: "92",
     y1: "84",
-    x2: "15",
+    x2: "8",
     y2: "84",
     stroke: sekaiColor,
     strokeWidth: "17",
@@ -1780,9 +1780,9 @@ var SquareSvg = function SquareSvg(_ref) {
     strokeWidth: "17",
     opacity: "0.7"
   })) : null, /*#__PURE__*/React.createElement("line", {
-    x1: "15",
+    x1: "12",
     y1: "16",
-    x2: "85",
+    x2: "88",
     y2: "16",
     stroke: color,
     strokeWidth: "8"
@@ -1794,9 +1794,9 @@ var SquareSvg = function SquareSvg(_ref) {
     stroke: color,
     strokeWidth: "8"
   }), /*#__PURE__*/React.createElement("line", {
-    x1: "85",
+    x1: "88",
     y1: "84",
-    x2: "15",
+    x2: "12",
     y2: "84",
     stroke: color,
     strokeWidth: "8"
