@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
 import clsx from 'clsx'
 
@@ -11,7 +11,7 @@ import styles from './Divider.module.scss'
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
-const LIGHTHEIGHT = '2px'
+const DEFAULT_LINE_HEIGHT = '2px'
 
 export interface DividerProps {
   id?: string
@@ -21,7 +21,7 @@ export interface DividerProps {
   themeMode?: PaletteMode
   children?: React.ReactNode
   pairColor?: ColorsSekaiKey
-  lineheight?: number
+  lineHeight?: number | string
   variant?: 'fullWidth' | 'inset' | 'middle'
   textAlign?: 'left' | 'center' | 'right'
   shadow?: boolean
@@ -32,7 +32,7 @@ export const Divider = ({
   themeMode,
   children,
   pairColor,
-  lineheight,
+  lineHeight,
   variant = 'fullWidth',
   textAlign = 'center',
   shadow,
@@ -42,14 +42,11 @@ export const Divider = ({
   const gradientColor = pairColor ? colorsSekai[pairColor] : 'transparent'
   const shadowStyle = Boolean(shadow) ? styles[`sekai-divider-shadow-${modeTheme}`] : ''
 
-  const optionStyle = useMemo(
-    () => ({
-      '--sekai-color': sekaiColor,
-      '--sekai-pair-color': gradientColor,
-      '--divider-line-height': lineheight ? `${lineheight}px` : LIGHTHEIGHT
-    }),
-    [sekaiColor, gradientColor, lineheight]
-  )
+  const optionStyle = {
+    '--sekai-color': sekaiColor,
+    '--sekai-pair-color': gradientColor,
+    '--divider-line-height': getLineHeightStyle(lineHeight)
+  }
 
   return (
     <div
@@ -57,12 +54,25 @@ export const Divider = ({
       className={clsx(styles[`sekai-divider-${variant}`], rest.className)}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {children ? (
-        <div className={clsx(styles[`sekai-divider-with-item-${textAlign}`], shadowStyle)}>
+        <div
+          role="separator"
+          aria-orientation="horizontal"
+          className={clsx(styles[`sekai-divider-with-item-${textAlign}`], shadowStyle)}>
           {children}
         </div>
       ) : (
-        <hr className={clsx(styles['sekai-divider-line'], shadowStyle)} />
+        <hr
+          role="separator"
+          aria-orientation="horizontal"
+          className={clsx(styles['sekai-divider-line'], shadowStyle)}
+        />
       )}
     </div>
   )
+}
+
+const getLineHeightStyle = (lineHeight?: number | string): string => {
+  if (typeof lineHeight === 'number' && lineHeight >= 0) return `${lineHeight}px`
+  if (typeof lineHeight === 'string') return lineHeight
+  return DEFAULT_LINE_HEIGHT
 }

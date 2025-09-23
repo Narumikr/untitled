@@ -24,6 +24,8 @@ export * from './dialog/XoMikuDialog'
 
 export * from './dialog/XxMikuDialog'
 
+export * from './divider/Divider'
+
 export * from './drawer/Drawer'
 
 export * from './dropdown/Dropdown'

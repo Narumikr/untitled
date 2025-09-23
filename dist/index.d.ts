@@ -302,12 +302,12 @@ interface DividerProps {
     themeMode?: PaletteMode;
     children?: React__default.ReactNode;
     pairColor?: ColorsSekaiKey;
-    lineheight?: number;
+    lineHeight?: number | string;
     variant?: 'fullWidth' | 'inset' | 'middle';
     textAlign?: 'left' | 'center' | 'right';
     shadow?: boolean;
 }
-declare const Divider: ({ sekai, themeMode, children, pairColor, lineheight, variant, textAlign, shadow, ...rest }: DividerProps) => React__default.JSX.Element;
+declare const Divider: ({ sekai, themeMode, children, pairColor, lineHeight, variant, textAlign, shadow, ...rest }: DividerProps) => React__default.JSX.Element;
 
 type DrawerPosition = 'top' | 'right' | 'bottom' | 'left';
 interface DrawerProps {

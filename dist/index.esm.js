@@ -2273,16 +2273,16 @@ var css_248z$f = "/* Styles for common color */\n/* Styles for z-index */\n/* St
 var styles$f = {"sekai-text-light":"Divider-module_sekai-text-light__fX6m0","sekai-text-dark":"Divider-module_sekai-text-dark__ShgnF","sekai-color-light":"Divider-module_sekai-color-light__SBhSN","sekai-color-dark":"Divider-module_sekai-color-dark__lgNYk","sekai-overlay":"Divider-module_sekai-overlay__FH2-I","sekai-overlay-dark":"Divider-module_sekai-overlay-dark__Y-rLo","sekai-overlay-light":"Divider-module_sekai-overlay-light__zt2H7","sekai-flex-center":"Divider-module_sekai-flex-center__3sHhG","sekai-absolute-center":"Divider-module_sekai-absolute-center__mvluV","sekai-invisible-scroll":"Divider-module_sekai-invisible-scroll__A4gYt","sekai-mb-8":"Divider-module_sekai-mb-8__-zEju","sekai-mb-16":"Divider-module_sekai-mb-16__XaEz-","sekai-mb-24":"Divider-module_sekai-mb-24__LGL4b","text-xs":"Divider-module_text-xs__txjJQ","text-sm":"Divider-module_text-sm__MWJcV","text-base":"Divider-module_text-base__oj6jJ","text-lg":"Divider-module_text-lg__3Xmhf","text-xl":"Divider-module_text-xl__2Fp4U","text-2xl":"Divider-module_text-2xl__GHP87","text-base-bold":"Divider-module_text-base-bold__g10Fk","text-lg-bold":"Divider-module_text-lg-bold__2eHgl","text-xl-bold":"Divider-module_text-xl-bold__0YNqp","text-2xl-bold":"Divider-module_text-2xl-bold__PERb-","font-bold":"Divider-module_font-bold__V5D3J","sekai-divider":"Divider-module_sekai-divider__qfuz6","sekai-divider-middle":"Divider-module_sekai-divider-middle__f2HkC","sekai-divider-inset":"Divider-module_sekai-divider-inset__JKixd","sekai-divider-fullWidth":"Divider-module_sekai-divider-fullWidth__mAV3d","sekai-divider-line":"Divider-module_sekai-divider-line__t5gpU","sekai-divider-shadow-light":"Divider-module_sekai-divider-shadow-light__AraMc","sekai-divider-shadow-dark":"Divider-module_sekai-divider-shadow-dark__oP-AJ","sekai-divider-with-item":"Divider-module_sekai-divider-with-item__o9ObD","sekai-divider-with-item-right":"Divider-module_sekai-divider-with-item-right__ZjNOp","sekai-divider-with-item-left":"Divider-module_sekai-divider-with-item-left__Vdz9q","sekai-divider-with-item-center":"Divider-module_sekai-divider-with-item-center__da8-R"};
 styleInject(css_248z$f);
 
-var _excluded$f = ["sekai", "themeMode", "children", "pairColor", "lineheight", "variant", "textAlign", "shadow"];
+var _excluded$f = ["sekai", "themeMode", "children", "pairColor", "lineHeight", "variant", "textAlign", "shadow"];
 function ownKeys$g(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread$g(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$g(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$g(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-var LIGHTHEIGHT = '2px';
+var DEFAULT_LINE_HEIGHT = '2px';
 var Divider = function Divider(_ref) {
   var sekai = _ref.sekai,
     themeMode = _ref.themeMode,
     children = _ref.children,
     pairColor = _ref.pairColor,
-    lineheight = _ref.lineheight,
+    lineHeight = _ref.lineHeight,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'fullWidth' : _ref$variant,
     _ref$textAlign = _ref.textAlign,
@@ -2297,21 +2297,28 @@ var Divider = function Divider(_ref) {
     modeTheme = _useOptionalSekai.modeTheme;
   var gradientColor = pairColor ? colorsSekai[pairColor] : 'transparent';
   var shadowStyle = Boolean(shadow) ? styles$f["sekai-divider-shadow-".concat(modeTheme)] : '';
-  var optionStyle = useMemo(function () {
-    return {
-      '--sekai-color': sekaiColor,
-      '--sekai-pair-color': gradientColor,
-      '--divider-line-height': lineheight ? "".concat(lineheight, "px") : LIGHTHEIGHT
-    };
-  }, [sekaiColor, gradientColor, lineheight]);
+  var optionStyle = {
+    '--sekai-color': sekaiColor,
+    '--sekai-pair-color': gradientColor,
+    '--divider-line-height': getLineHeightStyle(lineHeight)
+  };
   return /*#__PURE__*/React.createElement("div", _extends({}, rest, {
     className: clsx(styles$f["sekai-divider-".concat(variant)], rest.className),
     style: _objectSpread$g(_objectSpread$g({}, optionStyle), rest.style)
   }), children ? /*#__PURE__*/React.createElement("div", {
+    role: "separator",
+    "aria-orientation": "horizontal",
     className: clsx(styles$f["sekai-divider-with-item-".concat(textAlign)], shadowStyle)
   }, children) : /*#__PURE__*/React.createElement("hr", {
+    role: "separator",
+    "aria-orientation": "horizontal",
     className: clsx(styles$f['sekai-divider-line'], shadowStyle)
   }));
+};
+var getLineHeightStyle = function getLineHeightStyle(lineHeight) {
+  if (typeof lineHeight === 'number' && lineHeight >= 0) return "".concat(lineHeight, "px");
+  if (typeof lineHeight === 'string') return lineHeight;
+  return DEFAULT_LINE_HEIGHT;
 };
 
 var css_248z$e = "/* Styles for common color */\n/* Styles for z-index */\n/* Styles for common classes */\n.Drawer-module_sekai-text-light__5n55H {\n  color: #212121;\n}\n\n.Drawer-module_sekai-text-dark__f-Lpq {\n  color: #e0e0e0;\n}\n\n.Drawer-module_sekai-color-light__a7Lp9 {\n  color: #212121;\n  background-color: #ffffff;\n}\n\n.Drawer-module_sekai-color-dark__UI-kJ {\n  color: #e0e0e0;\n  background-color: #121212;\n}\n\n.Drawer-module_sekai-overlay__aFac-, .Drawer-module_sekai-overlay-dark__g-gV4, .Drawer-module_sekai-overlay-light__l5VEp {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1000;\n}\n\n.Drawer-module_sekai-overlay-light__l5VEp {\n  background-color: rgba(0, 0, 0, 0.3882352941);\n}\n\n.Drawer-module_sekai-overlay-dark__g-gV4 {\n  background-color: rgba(255, 255, 255, 0.3019607843);\n}\n\n/* Styles for positioning */\n.Drawer-module_sekai-flex-center__J7DKS {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.Drawer-module_sekai-absolute-center__t5u-h {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n/* Styles for scroll */\n.Drawer-module_sekai-invisible-scroll__X0sg3 {\n  overflow-y: scroll;\n  scrollbar-width: none;\n}\n.Drawer-module_sekai-invisible-scroll__X0sg3::-webkit-scrollbar {\n  display: none;\n}\n\n/* Styles for margin space */\n.Drawer-module_sekai-mb-8__V83iF {\n  margin-bottom: 8px;\n}\n\n.Drawer-module_sekai-mb-16__ZZKlv {\n  margin-bottom: 16px;\n}\n\n.Drawer-module_sekai-mb-24__ca52J {\n  margin-bottom: 24px;\n}\n\n.Drawer-module_text-xs__Per8j {\n  font-size: 12px;\n}\n\n.Drawer-module_text-sm__kM0Wk {\n  font-size: 14px;\n}\n\n.Drawer-module_text-base__zCe4G {\n  font-size: 16px;\n}\n\n.Drawer-module_text-lg__6SWBX {\n  font-size: 18px;\n}\n\n.Drawer-module_text-xl__z9nLE {\n  font-size: 20px;\n}\n\n.Drawer-module_text-2xl__TrNF6 {\n  font-size: 24px;\n}\n\n.Drawer-module_text-base-bold__XawEE {\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.Drawer-module_text-lg-bold__Fa4aK {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n.Drawer-module_text-xl-bold__R890w {\n  font-size: 20px;\n  font-weight: bold;\n}\n\n.Drawer-module_text-2xl-bold__k8uow {\n  font-size: 24px;\n  font-weight: bold;\n}\n\n.Drawer-module_font-bold__SDab1 {\n  font-weight: bold;\n}\n\n.Drawer-module_sekai-drawer__4Xpz7 {\n  transition: opacity 0.3s ease-out, visibility 0s linear 0.3s;\n  overflow: hidden;\n}\n.Drawer-module_sekai-drawer__4Xpz7.Drawer-module_sekai-drawer-visible__EXq-x {\n  opacity: 1;\n  visibility: visible;\n  transition-delay: 0s;\n}\n.Drawer-module_sekai-drawer__4Xpz7.Drawer-module_sekai-drawer-hidden__ewqPI {\n  opacity: 0;\n  visibility: hidden;\n}\n\n.Drawer-module_sekai-drawer-contents-right__zkrgA,\n.Drawer-module_sekai-drawer-contents-left__6-kG3 {\n  position: absolute;\n  top: 0;\n  width: 80%;\n  height: 100%;\n  max-width: 390px;\n  background-color: var(--sekai-color-bg);\n  z-index: 1200;\n}\n\n.Drawer-module_sekai-drawer-contents-right__zkrgA {\n  right: -390px;\n  transition: right 0.3s ease-out;\n}\n.Drawer-module_sekai-drawer-contents-right__zkrgA.Drawer-module_sekai-drawer-visible__EXq-x {\n  right: 0;\n}\n\n.Drawer-module_sekai-drawer-contents-left__6-kG3 {\n  left: -390px;\n  transition: left 0.3s ease-out;\n}\n.Drawer-module_sekai-drawer-contents-left__6-kG3.Drawer-module_sekai-drawer-visible__EXq-x {\n  left: 0;\n}\n\n.Drawer-module_sekai-drawer-contents-top__tvkQO,\n.Drawer-module_sekai-drawer-contents-bottom__ql1ot {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  height: 80%;\n  max-height: 390px;\n  background-color: var(--sekai-color-bg);\n  z-index: 1200;\n}\n\n.Drawer-module_sekai-drawer-contents-top__tvkQO {\n  top: -390px;\n  transition: top 0.3s ease-out;\n}\n.Drawer-module_sekai-drawer-contents-top__tvkQO.Drawer-module_sekai-drawer-visible__EXq-x {\n  top: 0;\n}\n\n.Drawer-module_sekai-drawer-contents-bottom__ql1ot {\n  bottom: -390px;\n  transition: bottom 0.3s ease-out;\n}\n.Drawer-module_sekai-drawer-contents-bottom__ql1ot.Drawer-module_sekai-drawer-visible__EXq-x {\n  bottom: 0;\n}";

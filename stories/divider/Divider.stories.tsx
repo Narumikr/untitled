@@ -81,11 +81,11 @@ const meta = {
       control: { type: 'select' },
       options: [undefined, ...Object.keys(COLORS_SEKAI_KEYS)]
     },
-    lineheight: {
+    lineHeight: {
       description: 'Divider line height in px',
       table: {
-        type: { summary: 'number' },
-        defaultValue: { summary: '2' }
+        type: { summary: 'number | string' },
+        defaultValue: { summary: '2px' }
       }
     },
     variant: {
@@ -130,7 +130,7 @@ export const DefaultLight: Story = {
     themeMode: 'light',
     children: undefined,
     pairColor: undefined,
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
     shadow: false
@@ -148,7 +148,7 @@ export const DefaultDark: Story = {
     themeMode: 'dark',
     children: undefined,
     pairColor: undefined,
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
     shadow: false
@@ -166,7 +166,7 @@ export const PairColorLight: Story = {
     themeMode: 'light',
     children: undefined,
     pairColor: 'Saki',
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
     shadow: false
@@ -184,7 +184,7 @@ export const PairColorDark: Story = {
     themeMode: 'dark',
     children: undefined,
     pairColor: 'Saki',
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
     shadow: false
@@ -202,7 +202,7 @@ export const InsetLight: Story = {
     themeMode: 'light',
     children: undefined,
     pairColor: 'Minori',
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'inset',
     textAlign: 'center',
     shadow: false
@@ -220,7 +220,7 @@ export const MiddleLight: Story = {
     themeMode: 'light',
     children: undefined,
     pairColor: 'Kohane',
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'middle',
     textAlign: 'center',
     shadow: false
@@ -238,7 +238,7 @@ export const TextCenterLight: Story = {
     themeMode: 'light',
     children: <ViewStoryText />,
     pairColor: 'Mafuyu',
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
     shadow: false
@@ -256,7 +256,7 @@ export const TextCenterDark: Story = {
     themeMode: 'dark',
     children: <ViewStoryText />,
     pairColor: 'Mafuyu',
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
     shadow: false
@@ -274,7 +274,7 @@ export const TextLeftLight: Story = {
     themeMode: 'light',
     children: <ViewStoryText />,
     pairColor: 'Emu',
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'left',
     shadow: false
@@ -292,7 +292,7 @@ export const TextRightLight: Story = {
     themeMode: 'light',
     children: <ViewStoryText />,
     pairColor: 'Toya',
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'right',
     shadow: false
@@ -310,7 +310,7 @@ export const ShadowLight: Story = {
     themeMode: 'light',
     children: <ViewStoryText />,
     pairColor: 'Luka',
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
     shadow: true
@@ -328,7 +328,7 @@ export const ShadowDark: Story = {
     themeMode: 'dark',
     children: <ViewStoryText />,
     pairColor: 'Shizuku',
-    lineheight: 2,
+    lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
     shadow: true
