@@ -6,6 +6,57 @@ declare const DARK_MODE = "dark";
 type PaletteMode = typeof LIGHT_MODE | typeof DARK_MODE;
 declare const useThemeMode: () => PaletteMode;
 
+/**
+ * Get the union type of the values of an object type
+ * @example
+ * const COLORS = { Miku: '#33ccba', Ichika: '#33aaee' } as const
+ * type Color = ValueOf<typeof COLORS> // '#33ccba' | '#33aaee'
+ */
+type ValueOf<T> = T[keyof T];
+/**
+ * Get the element type of an array type
+ * @example
+ * type Languages = ['ja', 'en'] as const
+ * type Validlanguage = ArrayElement<typeof Languages> // 'ja' | 'en'
+ */
+type ArrayElement<T extends readonly unknown[]> = T[number];
+/**
+ * Make all properties in T optional, and if a property is an object, make its properties optional recursively
+ * @example
+ * interface User { id: string; profile: { name: string; age: number } }
+ * type PartialUser = DeepPartial<User>
+ * // Result: { id?: string; profile?: { name?: string; age?: number } }
+ */
+type DeepPartial<T> = {
+    [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+};
+/**
+ * Make all properties in T required, and if a property is an object, make its properties required recursively
+ * @example
+ * interface User { id?: string; profile?: { name?: string; age?: number } }
+ * type RequiredUser = DeepRequired<User>
+ * // Result: { id: string; profile: { name: string; age: number } }
+ */
+type DeepRequired<T> = {
+    [P in keyof T]-?: T[P] extends object ? DeepRequired<T[P]> : T[P];
+};
+/**
+ * Make properties K in T optional
+ * @example
+ * interface User { id: string; name: string; age: number }
+ * type PartialAgeUser = PartialBy<User, 'age'>
+ * // Result: { id: string; name: string; age?: number }
+ */
+type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+/**
+ * Make properties K in T required
+ * @example
+ * interface User { id?: string; name?: string; age?: number }
+ * type RequiredIdNameUser = RequiredBy<User, 'id' | 'name>
+ * // Result: { id: string; name: string; age?: number }
+ */
+type RequiredBy<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
+
 declare const COLORS_SEKAI_KEYS: {
     readonly Miku: "Miku";
     readonly Rin: "Rin";
@@ -78,7 +129,6 @@ declare const colorsSekai: {
     readonly Nightcode: "#884499";
 };
 type ColorsSekai = typeof colorsSekai;
-type ValueOf<T> = T[keyof T];
 type ColorsSekaiCode = ValueOf<typeof colorsSekai>;
 
 interface AccordionProps {
@@ -751,4 +801,4 @@ declare const getFormattedTime: (now: Date, format?: string, locale?: string) =>
 declare const getCustomCurrentTime: (now: Date, pattern?: string) => string;
 
 export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, Checkbox, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, NamePlate, ORIENTATION, OutlineText, Pagination, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBodyText, SekaiDetailText, StickyNote, StrongButton, StylishButton, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YOUR_COLOR_THEME, YOUR_SEKAI_COLOR, YourSekaiContext, YourSekaiProvider, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, createSharedValueProvider, deserializeData, deserializeDataWithTemplate, fireOnEnterKey, fireOnEscapeKey, fireOnSpaceKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useLocalStorage, useOrientation, useSessionStorage, useTabletSize, useThemeMode };
-export type { AccordionProps, AnnotationTextProps, BackdropProps, BasicButtonProps, BodyTextProps, CardContentProps, CardProps, CardTitleProps, CheckboxProps, ColorsSekai, ColorsSekaiCode, ColorsSekaiKey, DetailTextProps, DialogButton, DialogButtonType, DialogButtonsProps, DialogProps, DialogSize, DialogTitleHeaderProps, DoReMeetEffectProps, DrawerPosition, DrawerProps, DropdownOption, DropdownProps, HamburgerButtonProps, IntoTheSekaiProps, ListItemButtonProps, ListItemTextProps, ListProps, LoadingProps, NamePlateProps, Orientation, OutlineTextProps, PaginationProps, PaginationSize, PaletteMode, PrskLinkCardProps, ScrollTopButtonProps, ScrollTopPos, SekaiAnnotationTextProps, SekaiBodyTextProps, SekaiDetailTextProps, SekaiTheme, SekaiThemeProps, SharedValueContextProps, SharedValueProviderProps, StickyNoteProps, StrongButtonProps, StylishButtonProps, TextFieldProps, TextLinkProps, ToastPosition, ToastProps, TooltipPosition, TooltipProps, TypewriterTextOptions, TypewriterTextProps, WindowDialogProps, XoMikuDialogProps, XxMikuDialogProps, YourSekaiContextProps, YourSekaiProviderProps };
+export type { AccordionProps, AnnotationTextProps, ArrayElement, BackdropProps, BasicButtonProps, BodyTextProps, CardContentProps, CardProps, CardTitleProps, CheckboxProps, ColorsSekai, ColorsSekaiCode, ColorsSekaiKey, DeepPartial, DeepRequired, DetailTextProps, DialogButton, DialogButtonType, DialogButtonsProps, DialogProps, DialogSize, DialogTitleHeaderProps, DoReMeetEffectProps, DrawerPosition, DrawerProps, DropdownOption, DropdownProps, HamburgerButtonProps, IntoTheSekaiProps, ListItemButtonProps, ListItemTextProps, ListProps, LoadingProps, NamePlateProps, Orientation, OutlineTextProps, PaginationProps, PaginationSize, PaletteMode, PartialBy, PrskLinkCardProps, RequiredBy, ScrollTopButtonProps, ScrollTopPos, SekaiAnnotationTextProps, SekaiBodyTextProps, SekaiDetailTextProps, SekaiTheme, SekaiThemeProps, SharedValueContextProps, SharedValueProviderProps, StickyNoteProps, StrongButtonProps, StylishButtonProps, TextFieldProps, TextLinkProps, ToastPosition, ToastProps, TooltipPosition, TooltipProps, TypewriterTextOptions, TypewriterTextProps, ValueOf, WindowDialogProps, XoMikuDialogProps, XxMikuDialogProps, YourSekaiContextProps, YourSekaiProviderProps };

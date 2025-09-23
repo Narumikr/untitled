@@ -1,3 +1,5 @@
+import type { ValueOf } from '@/utils/type'
+
 // prettier-ignore
 export const COLORS_SEKAI_KEYS = {
   Miku:                  'Miku',
@@ -76,5 +78,4 @@ export const colorsSekai = {
 
 export type ColorsSekai = typeof colorsSekai
 
-type ValueOf<T> = T[keyof T]
 export type ColorsSekaiCode = ValueOf<typeof colorsSekai>
