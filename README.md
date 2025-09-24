@@ -1,36 +1,39 @@
-# untitled
+<img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:33aaee,100:ffc800&text=Hello%20SEKAI&section=header&fontAlign=39&fontAlignY=45&fontSize=50&textBg=false&reversal=false&animation=fadeIn&desc=React%20prsk%20theme%20UI%20Library&descAlign=50&descSize=-1&descAlignY=55&fontColor=f5f5f7" />
 
-きっと...
+# **_untitled_**
 
-## 💫 *What we provide* 💫
+![welcome comment](https://readme-typing-svg.herokuapp.com?color=%2333ccba&lines=Welcome+to+untitled+library!;きっと...;)
 
-- プロセカキャラやユニットのカラーコードTsファイル(*.js,*.tsファイル内用)
+### 💫 **_What we provide_** 💫![Leo/need-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:3367cc,100:f5f5f7)
+
+- プロセカキャラやユニットのカラーコードTsファイル(_.js,_.tsファイル内用)
 - プロセカキャラやユニットのカラーコードCSSファイル(全体共通CSSカスタムプロパティ用)
 - Web コンポーネント(Buttonなど)
 - SEKAIテーマプロバイダー
 
-## 🍀 *Installation* 🍀
+### 🍀 **_Installation_** 🍀![MOREMORE-JUMP-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:88dd44,100:f5f5f7)
 
 ```bash
 npm install github:Narumikr/untitled
 ```
 
 yarnを使う場合：
+
 ```bash
 yarn add github:Narumikr/untitled
 ```
 
-## 💻 *How to use* 💻
+### 💻 **_How to use_** 💻![Nightcord-at25-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:884499,100:f5f5f7)
 
 ### colorsSekai
 
 colorsSekaiをimportしてもらうことで、TsJsファイル内でカラーコードを利用することができる
 
-カラーコードはhex形式(#FFFFFF)で提供される
+カラーコードはhex形式(e.g. #FFFFFF)で提供される
 
 RGBAなどで使用したい場合は`convertHexToRgb`,`convertHexToRgba`のコンバーター関数も用意があるので変換して使ってください
 
-#### *.tsx
+#### \*.tsx
 
 ```ts
 import { colorsSekai } from '@naru/untitled-library'
@@ -50,7 +53,7 @@ export const TopPage = () => {
 
 ルートコンポーネントにimportすることでグローバルなカスタムプロパティとして利用することができる
 
-#### _app.tsx
+#### \_app.tsx
 
 ```ts
 import type { AppProps } from 'next/app'
@@ -59,11 +62,11 @@ import '@naru/untitled-library/color/sekai-colors.css'
 ...
 ```
 
-#### *.module.scss
+#### \*.module.scss
 
 ```css
 .container {
-  background-color: var(--sekai-miku)
+  background-color: var(--sekai-miku);
 }
 ```
 
@@ -75,7 +78,7 @@ SEKAIカラーでデザインされたButtonなどを始めWebコンポーネン
 
 [Storybook](https://untitled-theta-sage.vercel.app/)
 
-#### *.tsx
+#### \*.tsx
 
 ```ts
 import { BasicButton, COLORS_SEKAI_KEYS } from '@naru/untitled-library'
@@ -101,7 +104,7 @@ export const TopPage = () => {
 
 ※Providerでのラップは必須ではないので、Webコンポーネント単体でも使えます
 
-_app.tsx
+\_app.tsx
 
 ```ts
 import {
@@ -137,11 +140,33 @@ createSekaiの引数に渡すオブジェクトの型は下記となっており
 ```ts
 export type SekaiThemeProps = {
   palette: {
-    sekai: ColorsSekaiKey
-    mode?: PaletteMode
-  }
+    sekai: ColorsSekaiKey;
+    mode?: PaletteMode;
+  };
   typography?: {
-    fontFamily?: string
-  }
-}
+    fontFamily?: string;
+  };
+};
 ```
+
+### switchSekaiColor
+
+セカイのカラーを動的に変えたい場合、`YourSekaiProvider`はセカイの持ち主を変える関数を用意しています
+
+このswitchSekaiColorはカスタムフックの`useCreateSekai`を通してアクセスできます
+
+#### \*.tsx
+
+```ts
+const { switchSekaiColor } = useCreateSekai()
+
+const handleChangeSekaiColor = () => {
+  switchSekaiColor(COLORS_SEKAI_KEYS.Ichika)
+}
+
+return (
+  <button onClick={handleChangeSekaiColor}>SEKAI Change</button>
+)
+```
+
+useCreateSekaiは他にも現在のSekaiThemeのオブジェクト`sekaiTheme`やライト/ダークモードのカラーテーマを変更する`switchColorTheme`も提供しています
