@@ -6,76 +6,76 @@ import React, {
   useMemo,
   useRef,
   useState
-} from 'react'
+} from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { ChevronSvg } from '@/img/chevron'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
+import { ChevronSvg } from '@/img/chevron';
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter';
 
-import globalStyles from '@/styles/global.module.scss'
+import globalStyles from '@/styles/global.module.scss';
 
-import styles from './Dropdown.module.scss'
+import styles from './Dropdown.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
-const MAX_OPTION_LENGTH = 5
-const OPTION_ITEM_HEIGHT = 40
-const BUTTON_BORDER_WIDTH = 2
+const MAX_OPTION_LENGTH = 5;
+const OPTION_ITEM_HEIGHT = 40;
+const BUTTON_BORDER_WIDTH = 2;
 
 export interface DropdownOption {
-  label: string
-  value: string
+  label: string;
+  value: string;
 }
 
 export interface DropdownProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  options: DropdownOption[]
-  defaultValue?: string
-  onSelect: (value: string) => void
-  placeholder?: string
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  options: DropdownOption[];
+  defaultValue?: string;
+  onSelect: (value: string) => void;
+  placeholder?: string;
 }
 
 export const Dropdown = (props: DropdownProps) => {
-  const displayText = props.placeholder || props.defaultValue || ''
+  const displayText = props.placeholder || props.defaultValue || '';
   return (
     <DropdownProvider displayText={displayText}>
       <DropdownContent {...props} />
     </DropdownProvider>
-  )
-}
+  );
+};
 
 interface DropdownContextProps {
-  openOptions: boolean
-  setOpenOptions: (open: boolean) => void
-  selectedValue: string
-  setSelectedValue: (value: string) => void
+  openOptions: boolean;
+  setOpenOptions: (open: boolean) => void;
+  selectedValue: string;
+  setSelectedValue: (value: string) => void;
 }
 
-const DropdownContext = createContext<DropdownContextProps | null>(null)
+const DropdownContext = createContext<DropdownContextProps | null>(null);
 
 interface DropdownProviderProps {
-  children: React.ReactNode
-  displayText?: string
+  children: React.ReactNode;
+  displayText?: string;
 }
 
 const DropdownProvider = ({ children, displayText }: DropdownProviderProps) => {
-  const [openOptions, setOpenOptions] = useState(false)
-  const [selectedValue, setSelectedValue] = useState(displayText || '')
+  const [openOptions, setOpenOptions] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(displayText || '');
 
   return (
     <DropdownContext.Provider
       value={{ openOptions, setOpenOptions, selectedValue, setSelectedValue }}>
       {children}
     </DropdownContext.Provider>
-  )
-}
+  );
+};
 
 export const DropdownContent = ({
   sekai,
@@ -85,73 +85,73 @@ export const DropdownContent = ({
   placeholder,
   ...rest
 }: DropdownProps) => {
-  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
-  const wrapDropdownRef = useRef<HTMLDivElement>(null)
-  const triggerButtonRef = useRef<HTMLButtonElement>(null)
-  const { openOptions, setOpenOptions } = useContext(DropdownContext) || {}
+  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode });
+  const wrapDropdownRef = useRef<HTMLDivElement>(null);
+  const triggerButtonRef = useRef<HTMLButtonElement>(null);
+  const { openOptions, setOpenOptions } = useContext(DropdownContext) || {};
 
-  const [dropdownPosStyle, setDropdownPosStyle] = useState<React.CSSProperties>()
+  const [dropdownPosStyle, setDropdownPosStyle] = useState<React.CSSProperties>();
   useEffect(() => {
-    const refTriggerButton = triggerButtonRef.current
+    const refTriggerButton = triggerButtonRef.current;
     if (openOptions && refTriggerButton) {
-      const triggerButtonRect = refTriggerButton.getBoundingClientRect()
+      const triggerButtonRect = refTriggerButton.getBoundingClientRect();
       const optionLength =
-        options.length > MAX_OPTION_LENGTH ? MAX_OPTION_LENGTH : options.length
-      const optionsHeight = OPTION_ITEM_HEIGHT * optionLength
-      const dropdownBottom = triggerButtonRect.bottom + optionsHeight
-      const overflow = dropdownBottom - window.innerHeight
-      const offSetY = overflow > 0 ? overflow + 20 : -1 * BUTTON_BORDER_WIDTH
+        options.length > MAX_OPTION_LENGTH ? MAX_OPTION_LENGTH : options.length;
+      const optionsHeight = OPTION_ITEM_HEIGHT * optionLength;
+      const dropdownBottom = triggerButtonRect.bottom + optionsHeight;
+      const overflow = dropdownBottom - window.innerHeight;
+      const offSetY = overflow > 0 ? overflow + 20 : -1 * BUTTON_BORDER_WIDTH;
 
       setDropdownPosStyle({
         top: `calc(${OPTION_ITEM_HEIGHT}px - ${offSetY}px)`
-      })
+      });
     }
-  }, [openOptions, options.length])
+  }, [openOptions, options.length]);
 
   // Close the dropdown when clicking outside of it
   useEffect(() => {
     const clickOutside = (event: MouseEvent | TouchEvent) => {
-      const refWrapDropdown = wrapDropdownRef.current
+      const refWrapDropdown = wrapDropdownRef.current;
       if (refWrapDropdown && !refWrapDropdown.contains(event.target as Node)) {
-        setOpenOptions?.(false)
+        setOpenOptions?.(false);
       }
-    }
+    };
 
-    document.addEventListener('mousedown', clickOutside)
-    document.addEventListener('touchstart', clickOutside)
+    document.addEventListener('mousedown', clickOutside);
+    document.addEventListener('touchstart', clickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', clickOutside)
-      document.removeEventListener('touchstart', clickOutside)
-    }
+      document.removeEventListener('mousedown', clickOutside);
+      document.removeEventListener('touchstart', clickOutside);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   // Set the width of the trigger button to match the options list
-  const [triggerWidth, setTriggerWidth] = useState(0)
+  const [triggerWidth, setTriggerWidth] = useState(0);
   useEffect(() => {
-    const button = triggerButtonRef.current
-    if (!button) return
+    const button = triggerButtonRef.current;
+    if (!button) return;
 
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
-        const contentWidth = entry.contentRect.width
-        const contentPosX = entry.contentRect.x
-        setTriggerWidth(contentWidth + contentPosX * 2 + BUTTON_BORDER_WIDTH * 2)
+        const contentWidth = entry.contentRect.width;
+        const contentPosX = entry.contentRect.x;
+        setTriggerWidth(contentWidth + contentPosX * 2 + BUTTON_BORDER_WIDTH * 2);
       }
-    })
+    });
 
-    observer.observe(button)
+    observer.observe(button);
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   const optionStyle = useMemo(
     () => ({
       width: `${triggerWidth}px`
     }),
     [triggerWidth]
-  )
+  );
 
   return (
     <div
@@ -174,38 +174,38 @@ export const DropdownContent = ({
         onSelect={onSelect}
       />
     </div>
-  )
-}
+  );
+};
 
 type DropdownTriggerButtonProps = Pick<
   DropdownProps,
   'sekai' | 'themeMode' | 'options' | 'placeholder'
 > & {
-  ref?: React.Ref<HTMLButtonElement>
-}
+  ref?: React.Ref<HTMLButtonElement>;
+};
 
 const DropdownTriggerButton = forwardRef<HTMLButtonElement, DropdownTriggerButtonProps>(
   ({ sekai, themeMode, options, placeholder }, ref) => {
-    const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
-    const { selectedValue, openOptions, setOpenOptions } = useContext(DropdownContext) || {}
+    const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode });
+    const { selectedValue, openOptions, setOpenOptions } = useContext(DropdownContext) || {};
 
     const optionStyle = {
       '--sekai-color': sekaiColor
-    }
+    };
 
     const displayText = useMemo(() => {
-      const selectedOption = options.find((option) => option.value === selectedValue)
-      return selectedOption ? selectedOption.label : placeholder
-    }, [options, selectedValue, placeholder])
+      const selectedOption = options.find((option) => option.value === selectedValue);
+      return selectedOption ? selectedOption.label : placeholder;
+    }, [options, selectedValue, placeholder]);
 
     const isDispPlaceholder = useMemo(
       () => placeholder === displayText,
       [placeholder, displayText]
-    )
+    );
 
     const handleClick = () => {
-      setOpenOptions?.(!openOptions)
-    }
+      setOpenOptions?.(!openOptions);
+    };
 
     return (
       <button
@@ -227,15 +227,15 @@ const DropdownTriggerButton = forwardRef<HTMLButtonElement, DropdownTriggerButto
           vector="down"
         />
       </button>
-    )
+    );
   }
-)
-DropdownTriggerButton.displayName = 'DropdownTriggerButton'
+);
+DropdownTriggerButton.displayName = 'DropdownTriggerButton';
 
 type DropdownOptionsProps = Pick<
   DropdownProps,
   'style' | 'sekai' | 'themeMode' | 'options' | 'onSelect'
->
+>;
 
 const DropdownOptions = ({
   style,
@@ -244,40 +244,40 @@ const DropdownOptions = ({
   options,
   onSelect
 }: DropdownOptionsProps) => {
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
-  const { setSelectedValue, openOptions, setOpenOptions } = useContext(DropdownContext) || {}
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode });
+  const { setSelectedValue, openOptions, setOpenOptions } = useContext(DropdownContext) || {};
 
-  const sekaiColorShadow = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
-  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
+  const sekaiColorShadow = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
+  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-shadow': sekaiColorShadow,
     '--sekai-color-hover': sekaiColorHover
-  }
+  };
 
-  const [isVisible, setIsVisible] = useState(false)
-  const [isRendered, setIsRendered] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
+  const [isRendered, setIsRendered] = useState(false);
   const open = () => {
-    setIsRendered(true)
-    setTimeout(() => setIsVisible(true), 10)
-  }
+    setIsRendered(true);
+    setTimeout(() => setIsVisible(true), 10);
+  };
   const close = () => {
-    setIsVisible(false)
-    setTimeout(() => setIsRendered(false), 200)
-  }
+    setIsVisible(false);
+    setTimeout(() => setIsRendered(false), 200);
+  };
   useEffect(() => {
     if (openOptions) {
-      open()
+      open();
     } else {
-      close()
+      close();
     }
-  }, [openOptions])
+  }, [openOptions]);
 
   const handleSelect = (value: string) => {
-    onSelect(value)
-    setSelectedValue?.(value)
-    setOpenOptions?.(false)
-  }
+    onSelect(value);
+    setSelectedValue?.(value);
+    setOpenOptions?.(false);
+  };
 
   return isRendered ? (
     <ul
@@ -300,5 +300,5 @@ const DropdownOptions = ({
         </li>
       ))}
     </ul>
-  ) : null
-}
+  ) : null;
+};

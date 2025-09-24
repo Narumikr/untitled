@@ -3,8 +3,8 @@
  * @returns {Date} The current Date object.
  */
 export const getCurrentTime = () => {
-  return new Date()
-}
+  return new Date();
+};
 
 /**
  * Returns the current time as a string in the specified format.
@@ -16,19 +16,19 @@ export const getCurrentTime = () => {
 export const getFormattedTime = (now: Date, format = 'datetime', locale = 'ja-JP') => {
   switch (format) {
     case 'datetime':
-      return now.toLocaleString(locale)
+      return now.toLocaleString(locale);
     case 'date':
-      return now.toLocaleDateString(locale)
+      return now.toLocaleDateString(locale);
     case 'time':
-      return now.toLocaleTimeString(locale)
+      return now.toLocaleTimeString(locale);
     case 'timestamp':
-      return now.getTime().toString()
+      return now.getTime().toString();
     case 'iso':
-      return now.toISOString()
+      return now.toISOString();
     default:
-      return now.toLocaleString(locale)
+      return now.toLocaleString(locale);
   }
-}
+};
 
 /**
  * Returns the current time in a custom format.
@@ -37,12 +37,12 @@ export const getFormattedTime = (now: Date, format = 'datetime', locale = 'ja-JP
  * @returns {string} Formatted time string
  */
 export const getCustomCurrentTime = (now: Date, pattern = 'YYYY-MM-DD HH:mm:ss') => {
-  const year = String(now.getFullYear())
-  const month = String(now.getMonth() + 1).padStart(2, '0')
-  const day = String(now.getDate()).padStart(2, '0')
-  const hours = String(now.getHours()).padStart(2, '0')
-  const minutes = String(now.getMinutes()).padStart(2, '0')
-  const seconds = String(now.getSeconds()).padStart(2, '0')
+  const year = String(now.getFullYear());
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
 
   return pattern
     .replace('YYYY', year)
@@ -50,5 +50,5 @@ export const getCustomCurrentTime = (now: Date, pattern = 'YYYY-MM-DD HH:mm:ss')
     .replace('DD', day)
     .replace('HH', hours)
     .replace('mm', minutes)
-    .replace('ss', seconds)
-}
+    .replace('ss', seconds);
+};

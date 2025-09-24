@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { Tooltip } from '@/components/tooltip/Tooltip'
+import { Tooltip } from '@/components/tooltip/Tooltip';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Tooltip',
@@ -67,12 +67,12 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof Tooltip>
+} satisfies Meta<typeof Tooltip>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const SampleText = () => <p style={{ margin: 0 }}>This is sample text for check tooltip</p>
+const SampleText = () => <p style={{ margin: 0 }}>This is sample text for check tooltip</p>;
 
 export const TopLight: Story = {
   args: {
@@ -87,7 +87,7 @@ export const TopLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const TopDark: Story = {
   args: {
@@ -102,7 +102,7 @@ export const TopDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const BottomLight: Story = {
   args: {
@@ -117,7 +117,7 @@ export const BottomLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const BottomDark: Story = {
   args: {
@@ -132,4 +132,4 @@ export const BottomDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

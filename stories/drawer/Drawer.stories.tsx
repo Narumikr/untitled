@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { Drawer } from '@/components/drawer/Drawer'
+import { Drawer } from '@/components/drawer/Drawer';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Drawer',
@@ -93,10 +93,10 @@ const meta = {
   args: {
     onClose: fn()
   }
-} satisfies Meta<typeof Drawer>
+} satisfies Meta<typeof Drawer>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -111,7 +111,7 @@ export const DefaultLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -126,7 +126,7 @@ export const DefaultDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 export const PositionLeft: Story = {
   args: {
@@ -141,7 +141,7 @@ export const PositionLeft: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const PositionTop: Story = {
   args: {
@@ -156,7 +156,7 @@ export const PositionTop: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const PositionBottom: Story = {
   args: {
@@ -171,4 +171,4 @@ export const PositionBottom: Story = {
     background: 'light',
     portal: true
   }
-}
+};

@@ -1,32 +1,32 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react';
 
-import clsx from 'clsx'
-import { createPortal } from 'react-dom'
+import clsx from 'clsx';
+import { createPortal } from 'react-dom';
 
-import { Backdrop } from '@/components/backdrop/Backdrop'
-import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog'
+import { Backdrop } from '@/components/backdrop/Backdrop';
+import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog';
 
-import { XxMikuSvg } from '@/img/xxmiku'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { fireOnEscapeKey } from '@/utils/operation'
+import { XxMikuSvg } from '@/img/xxmiku';
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { fireOnEscapeKey } from '@/utils/operation';
 
-import styles from './XxMikuDialog.module.scss'
+import styles from './XxMikuDialog.module.scss';
 
-import type { DialogButton } from '@/components/dialog/Dialog'
-import type { PaletteMode } from '@/hooks/useThemeMode'
+import type { DialogButton } from '@/components/dialog/Dialog';
+import type { PaletteMode } from '@/hooks/useThemeMode';
 
 export interface XxMikuDialogProps {
-  open: boolean
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  themeMode?: PaletteMode
-  children: React.ReactNode
-  size?: DialogSize
-  containerComponent?: HTMLElement
-  onClose: () => void
-  title?: string
-  buttons?: DialogButton[]
+  open: boolean;
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  themeMode?: PaletteMode;
+  children: React.ReactNode;
+  size?: DialogSize;
+  containerComponent?: HTMLElement;
+  onClose: () => void;
+  title?: string;
+  buttons?: DialogButton[];
 }
 
 export const XxMikuDialog = ({
@@ -40,31 +40,31 @@ export const XxMikuDialog = ({
   buttons,
   ...rest
 }: XxMikuDialogProps) => {
-  const portalContainer = containerComponent || document.body
-  const { modeTheme } = useOptionalSekai({ mode: themeMode })
+  const portalContainer = containerComponent || document.body;
+  const { modeTheme } = useOptionalSekai({ mode: themeMode });
 
   useEffect(() => {
-    if (!open) return
-    const handleKeyDownEsc = fireOnEscapeKey(onClose)
+    if (!open) return;
+    const handleKeyDownEsc = fireOnEscapeKey(onClose);
 
-    document.addEventListener('keydown', handleKeyDownEsc)
+    document.addEventListener('keydown', handleKeyDownEsc);
 
-    return () => document.removeEventListener('keydown', handleKeyDownEsc)
+    return () => document.removeEventListener('keydown', handleKeyDownEsc);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open])
+  }, [open]);
 
-  const headerProps = { themeMode, size, onClose, title }
+  const headerProps = { themeMode, size, onClose, title };
   const xxButtonProps = useMemo(
     () =>
       buttons?.map((button) => {
-        const type = button.type ? button.type : 'normal'
+        const type = button.type ? button.type : 'normal';
         return {
           ...button,
           buttonStyle: clsx(styles[`sekai-xxmiku-${type}-button`], styles[`sekai-${modeTheme}`])
-        }
+        };
       }),
     [buttons, modeTheme]
-  )
+  );
 
   const overlayProps = {
     id: 'xxmiku-dialog-overlay',
@@ -72,8 +72,8 @@ export const XxMikuDialog = ({
     themeMode,
     containerComponent,
     centered: true
-  }
-  const buttonsProps = { themeMode, buttons: xxButtonProps }
+  };
+  const buttonsProps = { themeMode, buttons: xxButtonProps };
 
   return createPortal(
     <Backdrop {...overlayProps}>
@@ -103,5 +103,5 @@ export const XxMikuDialog = ({
       </div>
     </Backdrop>,
     portalContainer
-  )
-}
+  );
+};

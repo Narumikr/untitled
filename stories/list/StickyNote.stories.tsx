@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { List } from '@/components/list/List'
-import { StickyNote } from '@/components/list/StickyNote'
+import { List } from '@/components/list/List';
+import { StickyNote } from '@/components/list/StickyNote';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { StickyNoteProps } from '@/components/list/StickyNote'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { StickyNoteProps } from '@/components/list/StickyNote';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/StickyNote',
@@ -68,10 +68,10 @@ const meta = {
     }
   },
   args: { onClick: fn() }
-} satisfies Meta<typeof StickyNote>
+} satisfies Meta<typeof StickyNote>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const TemplateStory = {
   render: (args: StickyNoteProps) => {
@@ -82,9 +82,9 @@ const TemplateStory = {
         </StickyNote>
         <StickyNote {...args}>Sample 2</StickyNote>
       </List>
-    )
+    );
   }
-}
+};
 
 export const StickyNoteButtonLight: Story = {
   ...TemplateStory,
@@ -99,7 +99,7 @@ export const StickyNoteButtonLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const StickyNoteButtonDark: Story = {
   ...TemplateStory,
@@ -114,7 +114,7 @@ export const StickyNoteButtonDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const StickyNoteTextLight: Story = {
   ...TemplateStory,
@@ -128,7 +128,7 @@ export const StickyNoteTextLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const StickyNoteTextDark: Story = {
   ...TemplateStory,
@@ -142,4 +142,4 @@ export const StickyNoteTextDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

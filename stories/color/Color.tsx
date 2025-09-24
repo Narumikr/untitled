@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import { colorsSekai } from '@/styles/sekai-colors'
+import { colorsSekai } from '@/styles/sekai-colors';
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 interface ColorProps {
-  sekai: ColorsSekaiKey
+  sekai: ColorsSekaiKey;
 }
 
 export const Color = ({ sekai }: ColorProps) => {
-  const colorCode = colorsSekai[sekai]
+  const colorCode = colorsSekai[sekai];
 
   return (
     <>
@@ -19,5 +19,5 @@ export const Color = ({ sekai }: ColorProps) => {
         <span style={{ fontWeight: 'bold' }}>{colorCode}</span>
       </div>
     </>
-  )
-}
+  );
+};

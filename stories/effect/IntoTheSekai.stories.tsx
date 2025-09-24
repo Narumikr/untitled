@@ -1,8 +1,8 @@
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { IntoTheSekai } from '@/components/effect/IntoTheSekai'
+import { IntoTheSekai } from '@/components/effect/IntoTheSekai';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/IntoTheSekai',
@@ -49,10 +49,10 @@ const meta = {
   args: {
     execEvent: fn()
   }
-} satisfies Meta<typeof IntoTheSekai>
+} satisfies Meta<typeof IntoTheSekai>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -63,7 +63,7 @@ export const DefaultLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -74,4 +74,4 @@ export const DefaultDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};

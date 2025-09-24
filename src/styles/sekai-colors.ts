@@ -1,4 +1,4 @@
-import type { ValueOf } from '@/utils/type'
+import type { ValueOf } from '@/utils/type';
 
 // prettier-ignore
 export const COLORS_SEKAI_KEYS = {
@@ -36,7 +36,7 @@ export const COLORS_SEKAI_KEYS = {
   Nightcode:             'Nightcode'
 } as const
 
-export type ColorsSekaiKey = keyof typeof COLORS_SEKAI_KEYS
+export type ColorsSekaiKey = keyof typeof COLORS_SEKAI_KEYS;
 
 // prettier-ignore
 export const colorsSekai = {
@@ -76,6 +76,6 @@ export const colorsSekai = {
   Nightcode:             '#884499'
 } as const
 
-export type ColorsSekai = typeof colorsSekai
+export type ColorsSekai = typeof colorsSekai;
 
-export type ColorsSekaiCode = ValueOf<typeof colorsSekai>
+export type ColorsSekaiCode = ValueOf<typeof colorsSekai>;

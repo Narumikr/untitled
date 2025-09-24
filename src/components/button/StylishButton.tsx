@@ -1,26 +1,26 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { ArrowSvg } from '@/img/arrow'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgba } from '@/utils/converter'
+import { ArrowSvg } from '@/img/arrow';
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgba } from '@/utils/converter';
 
-import styles from './StylishButton.module.scss'
+import styles from './StylishButton.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface StylishButtonProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children?: React.ReactNode
-  disabled?: boolean
-  onClick?: () => void
-  arrowIcon?: boolean
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  children?: React.ReactNode;
+  disabled?: boolean;
+  onClick?: () => void;
+  arrowIcon?: boolean;
 }
 
 export const StylishButton = ({
@@ -31,14 +31,14 @@ export const StylishButton = ({
   arrowIcon = true,
   ...rest
 }: StylishButtonProps) => {
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode });
 
-  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.3 : 0.5)
+  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.3 : 0.5);
 
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-hover': sekaiColorHover
-  }
+  };
 
   return (
     <button
@@ -53,5 +53,5 @@ export const StylishButton = ({
         <ArrowSvg className={styles['sekai-stylish-arrow-icon']} vector="right" />
       ) : null}
     </button>
-  )
-}
+  );
+};

@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { List } from '@/components/list/List'
-import { ListItemButton } from '@/components/list/ListItemButton'
+import { List } from '@/components/list/List';
+import { ListItemButton } from '@/components/list/ListItemButton';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { ListItemButtonProps } from '@/components/list/ListItemButton'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { ListItemButtonProps } from '@/components/list/ListItemButton';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/ListItemButton',
@@ -77,10 +77,10 @@ const meta = {
     }
   },
   args: { onClick: fn() }
-} satisfies Meta<typeof ListItemButton>
+} satisfies Meta<typeof ListItemButton>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const TemplateStory = {
   render: (args: ListItemButtonProps) => {
@@ -89,9 +89,9 @@ const TemplateStory = {
         <ListItemButton {...args}>Sample 1</ListItemButton>
         <ListItemButton {...args}>Sample 2</ListItemButton>
       </List>
-    )
+    );
   }
-}
+};
 
 export const DefaultLight: Story = {
   ...TemplateStory,
@@ -107,7 +107,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   ...TemplateStory,
@@ -123,7 +123,7 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const IconLight: Story = {
   ...TemplateStory,
@@ -139,7 +139,7 @@ export const IconLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const IconDark: Story = {
   ...TemplateStory,
@@ -155,7 +155,7 @@ export const IconDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const DisabledLight: Story = {
   ...TemplateStory,
@@ -171,7 +171,7 @@ export const DisabledLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DisabledDark: Story = {
   ...TemplateStory,
@@ -187,4 +187,4 @@ export const DisabledDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

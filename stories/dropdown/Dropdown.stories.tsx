@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { Dropdown } from '@/components/dropdown/Dropdown'
+import { Dropdown } from '@/components/dropdown/Dropdown';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Dropdown',
@@ -97,10 +97,10 @@ const meta = {
   args: {
     onSelect: fn()
   }
-} satisfies Meta<typeof Dropdown>
+} satisfies Meta<typeof Dropdown>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -119,7 +119,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -138,4 +138,4 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

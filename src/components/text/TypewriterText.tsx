@@ -1,33 +1,33 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import styles from './TypewriterText.module.scss'
+import styles from './TypewriterText.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface TypewriterTextOptions {
-  speed?: number
-  loop?: boolean
-  cursor?: boolean
+  speed?: number;
+  loop?: boolean;
+  cursor?: boolean;
 }
 const defaultOptions: TypewriterTextOptions = {
   speed: 100,
   loop: false,
   cursor: true
-}
+};
 
 export interface TypewriterTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  text: string
-  options?: TypewriterTextOptions
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  text: string;
+  options?: TypewriterTextOptions;
 }
 
 export const TypewriterText = ({
@@ -37,42 +37,42 @@ export const TypewriterText = ({
   options = defaultOptions,
   ...rest
 }: TypewriterTextProps) => {
-  const { sekaiColor } = useOptionalSekai({ sekai, mode: themeMode })
-  const [displayText, setDisplayText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const { sekaiColor } = useOptionalSekai({ sekai, mode: themeMode });
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
   const viewCursor = useMemo(() => {
-    return options.cursor && displayText.length < text.length
-  }, [displayText, text, options.cursor])
+    return options.cursor && displayText.length < text.length;
+  }, [displayText, text, options.cursor]);
 
   useEffect(() => {
-    setDisplayText('')
+    setDisplayText('');
     const typewriteInterval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
         if (prevIndex >= text.length - 1) {
           if (options.loop) {
-            setDisplayText('')
-            return 0
+            setDisplayText('');
+            return 0;
           } else {
-            clearInterval(typewriteInterval)
-            return prevIndex
+            clearInterval(typewriteInterval);
+            return prevIndex;
           }
         }
-        return prevIndex + 1
-      })
-    }, options.speed)
+        return prevIndex + 1;
+      });
+    }, options.speed);
 
-    return () => clearInterval(typewriteInterval)
+    return () => clearInterval(typewriteInterval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   useEffect(() => {
-    setDisplayText((pre) => pre + text[currentIndex])
+    setDisplayText((pre) => pre + text[currentIndex]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentIndex])
+  }, [currentIndex]);
 
   const optionStyle = {
     '--sekai-color': sekaiColor
-  }
+  };
 
   return (
     <div
@@ -87,5 +87,5 @@ export const TypewriterText = ({
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {displayText}
     </div>
-  )
-}
+  );
+};

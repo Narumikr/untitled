@@ -1,33 +1,33 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { NamePlate } from '@/components/text/NamePlate'
+import { NamePlate } from '@/components/text/NamePlate';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import globalStyles from '@/styles/global.module.scss'
+import globalStyles from '@/styles/global.module.scss';
 
-import { Card } from './Card'
-import { OutlineText } from '../text/OutlineText'
+import { Card } from './Card';
+import { OutlineText } from '../text/OutlineText';
 
-import styles from './PrskLinkCard.module.scss'
+import styles from './PrskLinkCard.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface PrskLinkCardProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  height?: number
-  width?: number
-  onClick?: () => void
-  title: string
-  subText: string
-  icon: string | React.ReactNode
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  height?: number;
+  width?: number;
+  onClick?: () => void;
+  title: string;
+  subText: string;
+  icon: string | React.ReactNode;
 }
 
 export const PrskLinkCard = ({
@@ -41,16 +41,16 @@ export const PrskLinkCard = ({
   icon,
   ...rest
 }: PrskLinkCardProps) => {
-  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode });
 
   const optionStyle = {
     '--sekai-color': sekaiColor
-  }
+  };
 
   const cardSizeStyle = {
     height: `${height}px`,
     width: `${width}px`
-  }
+  };
 
   return (
     <Card {...rest} sekai={sekai} themeMode={themeMode}>
@@ -81,13 +81,13 @@ export const PrskLinkCard = ({
         <div className={styles['sekai-prsk-link-card-icon']}>{getImgComponent(icon)}</div>
       </button>
     </Card>
-  )
-}
+  );
+};
 
 const getImgComponent = (icon: string | React.ReactNode) => {
   if (typeof icon === 'string') {
-    return <img src={icon} alt="" />
+    return <img src={icon} alt="" />;
   } else {
-    return icon
+    return icon;
   }
-}
+};

@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
-import { DocsContainer } from '@storybook/blocks'
+import { DocsContainer } from '@storybook/blocks';
 
-import { DARK_MODE, LIGHT_MODE } from '@/hooks/useThemeMode'
+import { DARK_MODE, LIGHT_MODE } from '@/hooks/useThemeMode';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { DocsContextProps } from '@storybook/blocks'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { DocsContextProps } from '@storybook/blocks';
 
 interface CustomDocsContainerProps {
-  children: React.ReactNode
-  context: DocsContextProps
+  children: React.ReactNode;
+  context: DocsContextProps;
 }
 
 export const CustomDocsContainer = ({ children, context }: CustomDocsContainerProps) => {
-  const lightStoryIds = sortStories(context, LIGHT_MODE)
-  const darkStoryIds = sortStories(context, DARK_MODE)
+  const lightStoryIds = sortStories(context, LIGHT_MODE);
+  const darkStoryIds = sortStories(context, DARK_MODE);
   const lightStyles = lightStoryIds.reduce(
     (pre, el) =>
       pre +
@@ -36,7 +36,7 @@ export const CustomDocsContainer = ({ children, context }: CustomDocsContainerPr
         z-index: 10000;
       }
     `
-  )
+  );
   const styles = darkStoryIds.reduce(
     (pre, el) =>
       pre +
@@ -47,19 +47,19 @@ export const CustomDocsContainer = ({ children, context }: CustomDocsContainerPr
       }
       `,
     lightStyles
-  )
+  );
 
   useEffect(() => {
-    if (!context.componentStories().length) return
+    if (!context.componentStories().length) return;
     if (context.componentStories()[0].parameters.invisible) {
-      const target = document.querySelector('.css-1qq744x')
+      const target = document.querySelector('.css-1qq744x');
       if (target) {
-        const p = document.createElement('p')
-        p.textContent = 'こちらのコンポーネントはDocsのプレビューはありません。'
-        target.appendChild(p)
+        const p = document.createElement('p');
+        p.textContent = 'こちらのコンポーネントはDocsのプレビューはありません。';
+        target.appendChild(p);
       }
     }
-  }, [context])
+  }, [context]);
 
   return (
     <DocsContainer context={context}>
@@ -68,12 +68,12 @@ export const CustomDocsContainer = ({ children, context }: CustomDocsContainerPr
         {children}
       </div>
     </DocsContainer>
-  )
-}
+  );
+};
 
 const sortStories = (context: DocsContextProps, mode: PaletteMode) => {
   const storyIds = Array.from(context.componentStories())
     .map((el) => (mode === el.parameters.background ? el.id : -1))
-    .filter((el) => -1 !== el)
-  return storyIds
-}
+    .filter((el) => -1 !== el);
+  return storyIds;
+};

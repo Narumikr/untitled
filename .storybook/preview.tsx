@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import { CustomDocsContainer } from './CustomDocsContainer'
-import { CustomDocsDecorators } from './CustomDocsDecorators'
+import { CustomDocsContainer } from './CustomDocsContainer';
+import { CustomDocsDecorators } from './CustomDocsDecorators';
 
-import type { Preview, StoryContext, StoryFn } from '@storybook/react'
+import type { Preview, StoryContext, StoryFn } from '@storybook/react';
 
 const preview: Preview = {
   parameters: {
@@ -20,9 +20,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story: StoryFn, context: StoryContext) => {
-      return <CustomDocsDecorators story={Story} context={context} />
+      return <CustomDocsDecorators story={Story} context={context} />;
     }
   ]
-}
+};
 
-export default preview
+export default preview;

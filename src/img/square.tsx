@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface SquareSvgIconProps {
-  className?: string
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
+  className?: string;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
 }
 
 export const SquareSvg = ({ className = '', sekai, themeMode }: SquareSvgIconProps) => {
-  const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
-  const color = isLight ? '#212121' : '#e0e0e0'
+  const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode });
+  const color = isLight ? '#212121' : '#e0e0e0';
 
   return (
     <svg
@@ -67,5 +67,5 @@ export const SquareSvg = ({ className = '', sekai, themeMode }: SquareSvgIconPro
       <line x1="88" y1="84" x2="12" y2="84" stroke={color} strokeWidth="8" />
       <line x1="16" y1="85" x2="16" y2="15" stroke={color} strokeWidth="8" />
     </svg>
-  )
-}
+  );
+};

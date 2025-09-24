@@ -1,10 +1,10 @@
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { Toast } from '@/components/toast/Toast'
+import { Toast } from '@/components/toast/Toast';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Toast',
@@ -78,10 +78,10 @@ const meta = {
   args: {
     onClose: fn()
   }
-} satisfies Meta<typeof Toast>
+} satisfies Meta<typeof Toast>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -99,7 +99,7 @@ export const DefaultLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -117,7 +117,7 @@ export const DefaultDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 export const TopLight: Story = {
   args: {
@@ -135,7 +135,7 @@ export const TopLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const TopDark: Story = {
   args: {
@@ -153,7 +153,7 @@ export const TopDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 export const MultilineLight: Story = {
   args: {
@@ -171,7 +171,7 @@ export const MultilineLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const MultilineDark: Story = {
   args: {
@@ -189,7 +189,7 @@ export const MultilineDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 export const ErrorLight: Story = {
   args: {
@@ -207,7 +207,7 @@ export const ErrorLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const ErrorDark: Story = {
   args: {
@@ -225,4 +225,4 @@ export const ErrorDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};

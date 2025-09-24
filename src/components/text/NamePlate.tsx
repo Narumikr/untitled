@@ -1,22 +1,22 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import styles from './NamePlate.module.scss'
+import styles from './NamePlate.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface NamePlateProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  text: string
-  colorCount?: number
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  text: string;
+  colorCount?: number;
 }
 
 export const NamePlate = ({
@@ -26,14 +26,14 @@ export const NamePlate = ({
   colorCount = 1,
   ...rest
 }: NamePlateProps) => {
-  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode });
 
   const optionStyle = {
     '--sekai-color': sekaiColor
-  }
+  };
 
-  const colorText = text.slice(0, colorCount)
-  const normalText = text.slice(colorCount)
+  const colorText = text.slice(0, colorCount);
+  const normalText = text.slice(colorCount);
 
   return (
     <div
@@ -43,5 +43,5 @@ export const NamePlate = ({
       <span className={styles['sekai-name-plate-color']}>{colorText}</span>
       <span>{normalText}</span>
     </div>
-  )
-}
+  );
+};

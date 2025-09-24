@@ -1,10 +1,10 @@
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { StrongButton } from '@/components/button/StrongButton'
+import { StrongButton } from '@/components/button/StrongButton';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/StrongButton',
@@ -64,10 +64,10 @@ const meta = {
     }
   },
   args: { onClick: fn() }
-} satisfies Meta<typeof StrongButton>
+} satisfies Meta<typeof StrongButton>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -81,7 +81,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -95,7 +95,7 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const DisabledLight: Story = {
   args: {
@@ -109,7 +109,7 @@ export const DisabledLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DisabledtDark: Story = {
   args: {
@@ -123,4 +123,4 @@ export const DisabledtDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

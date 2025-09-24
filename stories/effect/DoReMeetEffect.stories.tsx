@@ -1,6 +1,6 @@
-import { DoReMeetEffect } from '@/components/effect/DoReMeetEffect'
+import { DoReMeetEffect } from '@/components/effect/DoReMeetEffect';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/DoReMeetEffect',
@@ -60,10 +60,10 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof DoReMeetEffect>
+} satisfies Meta<typeof DoReMeetEffect>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -77,7 +77,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -91,4 +91,4 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

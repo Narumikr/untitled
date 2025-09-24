@@ -1,29 +1,29 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import styles from './OutlineText.module.scss'
+import styles from './OutlineText.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface OutlineTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  text: string
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  text: string;
 }
 
 export const OutlineText = ({ sekai, themeMode, text, ...rest }: OutlineTextProps) => {
-  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode });
 
   const optionStyle = {
     '--sekai-color': sekaiColor
-  }
+  };
 
   return (
     <span
@@ -34,5 +34,5 @@ export const OutlineText = ({ sekai, themeMode, text, ...rest }: OutlineTextProp
       aria-label={text}>
       {text}
     </span>
-  )
-}
+  );
+};

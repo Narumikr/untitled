@@ -1,10 +1,10 @@
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { HamburgerButton } from '@/components/button/HamburgerButton'
+import { HamburgerButton } from '@/components/button/HamburgerButton';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/HamburgerButton',
@@ -64,10 +64,10 @@ const meta = {
     }
   },
   args: { onClick: fn() }
-} satisfies Meta<typeof HamburgerButton>
+} satisfies Meta<typeof HamburgerButton>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -80,7 +80,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -93,4 +93,4 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

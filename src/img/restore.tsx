@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface RestoreSvgIconProps {
-  className?: string
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
+  className?: string;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
 }
 
 export const RestoreSvg = ({ className = '', sekai, themeMode }: RestoreSvgIconProps) => {
-  const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
-  const color = isLight ? '#212121' : '#e0e0e0'
+  const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode });
+  const color = isLight ? '#212121' : '#e0e0e0';
 
   return (
     <svg
@@ -87,5 +87,5 @@ export const RestoreSvg = ({ className = '', sekai, themeMode }: RestoreSvgIconP
       <line x1="26" y1="10" x2="91" y2="10" stroke={color} strokeWidth="8" />
       <line x1="92" y1="10" x2="92" y2="72" stroke={color} strokeWidth="8" />
     </svg>
-  )
-}
+  );
+};

@@ -1,32 +1,32 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgba } from '@/utils/converter'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgba } from '@/utils/converter';
 
-import styles from './HamburgerButton.module.scss'
+import styles from './HamburgerButton.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface HamburgerButtonProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  open: boolean
-  onClick?: () => void
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  open: boolean;
+  onClick?: () => void;
 }
 
 export const HamburgerButton = ({ sekai, themeMode, open, ...rest }: HamburgerButtonProps) => {
-  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
-  const sekaiColorBg = convertHexToRgba(sekaiColor, 0.8)
+  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode });
+  const sekaiColorBg = convertHexToRgba(sekaiColor, 0.8);
 
   const optionStyle = {
     '--sekai-color-bg': sekaiColorBg
-  }
+  };
 
   return (
     <button
@@ -43,5 +43,5 @@ export const HamburgerButton = ({ sekai, themeMode, open, ...rest }: HamburgerBu
         />
       ))}
     </button>
-  )
-}
+  );
+};

@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface ClearSvgIconProps {
-  className?: string
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
+  className?: string;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
 }
 
 export const ClearSvg = ({ className = '', sekai, themeMode }: ClearSvgIconProps) => {
-  const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
-  const color = isLight ? '#212121' : '#e0e0e0'
+  const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode });
+  const color = isLight ? '#212121' : '#e0e0e0';
 
   return (
     <svg
@@ -47,5 +47,5 @@ export const ClearSvg = ({ className = '', sekai, themeMode }: ClearSvgIconProps
       <line x1="15" y1="15" x2="85" y2="85" stroke={color} strokeWidth="10" />
       <line x1="85" y1="15" x2="15" y2="85" stroke={color} strokeWidth="10" />
     </svg>
-  )
-}
+  );
+};

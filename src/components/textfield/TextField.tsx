@@ -1,29 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { AnnotationText } from '@/components/text/UtilText'
+import { AnnotationText } from '@/components/text/UtilText';
 
-import { ClearSvg } from '@/img/clear'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { ClearSvg } from '@/img/clear';
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import styles from './TextField.module.scss'
+import styles from './TextField.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  placeholder?: string
-  clearButton?: boolean
-  onChangeInput?: (value: string) => void
-  isError?: boolean
-  errorMessage?: string
-  maxLength?: number
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  placeholder?: string;
+  clearButton?: boolean;
+  onChangeInput?: (value: string) => void;
+  isError?: boolean;
+  errorMessage?: string;
+  maxLength?: number;
 }
 
 export const TextField = ({
@@ -38,24 +38,24 @@ export const TextField = ({
   errorMessage,
   ...inputProps
 }: TextFieldProps) => {
-  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode });
 
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState('');
 
   const optionStyle = {
     '--sekai-color': sekaiColor
-  }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setInputValue(value)
-    onChangeInput?.(value)
-  }
+    const value = e.target.value;
+    setInputValue(value);
+    onChangeInput?.(value);
+  };
 
   const handleClearInput = () => {
-    setInputValue('')
-    onChangeInput?.('')
-  }
+    setInputValue('');
+    onChangeInput?.('');
+  };
 
   return (
     <div
@@ -92,5 +92,5 @@ export const TextField = ({
         </AnnotationText>
       ) : null}
     </div>
-  )
-}
+  );
+};

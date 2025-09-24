@@ -1,37 +1,37 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { getSekaiCharacterName } from '@/utils/connectSekai'
+import { getSekaiCharacterName } from '@/utils/connectSekai';
 
-import { colorsSekai } from '@/styles/sekai-colors'
+import { colorsSekai } from '@/styles/sekai-colors';
 
-import styles from './Character.module.scss'
+import styles from './Character.module.scss';
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 interface CharacterProps {
-  sekai: ColorsSekaiKey
-  locale?: 'ja' | 'en' | 'zh-hant'
+  sekai: ColorsSekaiKey;
+  locale?: 'ja' | 'en' | 'zh-hant';
 }
 
 export const Character = ({ sekai, locale = 'ja' }: CharacterProps) => {
-  const colorCode = colorsSekai[sekai]
+  const colorCode = colorsSekai[sekai];
   const optionStyle = {
     '--sekai-color': colorCode
-  }
+  };
   const getLocaleLanguage = (locale: string) => {
     if (locale === 'ja') {
-      return '日本語'
+      return '日本語';
     } else if (locale === 'en') {
-      return 'English'
+      return 'English';
     } else if (locale === 'zh-hant') {
-      return '繁體中文'
+      return '繁體中文';
     }
-    return '日本語'
-  }
+    return '日本語';
+  };
 
-  const characterName = getSekaiCharacterName(sekai, locale)
+  const characterName = getSekaiCharacterName(sekai, locale);
 
   return (
     <div className={clsx(styles['sekai-character'])} style={optionStyle as React.CSSProperties}>
@@ -44,5 +44,5 @@ export const Character = ({ sekai, locale = 'ja' }: CharacterProps) => {
         using "getSekaiCharacterName" function.
       </p>
     </div>
-  )
-}
+  );
+};

@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
-export type ArrowVector = 'left' | 'right'
+export type ArrowVector = 'left' | 'right';
 
 export interface ArrowSvgIconProps {
-  className?: string
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  vector?: ArrowVector
+  className?: string;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  vector?: ArrowVector;
 }
 
 export const ArrowSvg = ({
@@ -22,12 +22,12 @@ export const ArrowSvg = ({
   themeMode,
   vector = 'right'
 }: ArrowSvgIconProps) => {
-  const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
-  const color = isLight ? '#212121' : '#e0e0e0'
+  const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode });
+  const color = isLight ? '#212121' : '#e0e0e0';
 
   const getCoordinate = (x: number) => {
-    return 'left' === vector ? Math.abs(0 - x) : Math.abs(100 - x)
-  }
+    return 'left' === vector ? Math.abs(0 - x) : Math.abs(100 - x);
+  };
 
   return (
     <svg
@@ -73,5 +73,5 @@ export const ArrowSvg = ({
         strokeWidth="8"
       />
     </svg>
-  )
-}
+  );
+};

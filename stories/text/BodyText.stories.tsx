@@ -1,6 +1,6 @@
-import { BodyText } from '@/components/text/UtilText'
+import { BodyText } from '@/components/text/UtilText';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/BodyText',
@@ -45,10 +45,10 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof BodyText>
+} satisfies Meta<typeof BodyText>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -60,7 +60,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -72,4 +72,4 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

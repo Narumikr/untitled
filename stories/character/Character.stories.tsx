@@ -1,8 +1,8 @@
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import { Character } from './Character'
+import { Character } from './Character';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Character',
@@ -28,10 +28,10 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof Character>
+} satisfies Meta<typeof Character>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const SEKAICharacter: Story = {
   args: {
@@ -42,4 +42,4 @@ export const SEKAICharacter: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};

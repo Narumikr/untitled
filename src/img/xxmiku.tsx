@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 export interface XxMikuSvgIconProps {
-  className?: string
-  type?: 'type1' | 'type2'
+  className?: string;
+  type?: 'type1' | 'type2';
 }
 
-const BLACK = '#3f3f3f'
-const RED = '#cc3f73'
+const BLACK = '#3f3f3f';
+const RED = '#cc3f73';
 
 export const XxMikuSvg = ({ className = '', type = 'type1' }: XxMikuSvgIconProps) => {
-  const isType1 = type === 'type1'
+  const isType1 = type === 'type1';
 
   return (
     <svg
@@ -26,8 +26,8 @@ export const XxMikuSvg = ({ className = '', type = 'type1' }: XxMikuSvgIconProps
         <line x1="15" y1="15" x2="85" y2="85" stroke={RED} strokeWidth="30" />
       )}
     </svg>
-  )
-}
+  );
+};
 
 const ThreeDimensionalParts = () => (
   <>
@@ -38,4 +38,4 @@ const ThreeDimensionalParts = () => (
       <line x1="20" y1="20" x2="87" y2="85" stroke={RED} strokeWidth="30" />
     </g>
   </>
-)
+);

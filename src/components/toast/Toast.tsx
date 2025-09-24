@@ -1,36 +1,36 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
-import clsx from 'clsx'
-import { createPortal } from 'react-dom'
+import clsx from 'clsx';
+import { createPortal } from 'react-dom';
 
-import { BodyText } from '@/components/text/UtilText'
+import { BodyText } from '@/components/text/UtilText';
 
-import { ClearSvg } from '@/img/clear'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
+import { ClearSvg } from '@/img/clear';
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter';
 
-import globalStyles from '@/styles/global.module.scss'
+import globalStyles from '@/styles/global.module.scss';
 
-import styles from './Toast.module.scss'
+import styles from './Toast.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
-export type ToastPosition = 'top' | 'bottom'
+export type ToastPosition = 'top' | 'bottom';
 
 export interface ToastProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  open: boolean
-  onClose: () => void
-  pos?: ToastPosition
-  message: string[] | string
-  isError?: boolean
-  duration?: number
-  containerComponent?: HTMLElement
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  open: boolean;
+  onClose: () => void;
+  pos?: ToastPosition;
+  message: string[] | string;
+  isError?: boolean;
+  duration?: number;
+  containerComponent?: HTMLElement;
 }
 
 export const Toast = ({
@@ -45,30 +45,30 @@ export const Toast = ({
   containerComponent,
   ...rest
 }: ToastProps) => {
-  const portalContainer = containerComponent || document.body
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const portalContainer = containerComponent || document.body;
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode });
 
-  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
+  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   const optionStyle = {
     '--sekai-color-bg': sekaiColorBg,
     ...(containerComponent && { position: 'absolute' })
-  }
+  };
 
-  const displayMsg = Array.isArray(message) ? message : [message]
+  const displayMsg = Array.isArray(message) ? message : [message];
 
   useEffect(() => {
     const timer = open
       ? setTimeout(() => {
-          onClose()
+          onClose();
         }, duration)
-      : undefined
+      : undefined;
 
     return () => {
       if (timer !== undefined) {
-        clearTimeout(timer)
+        clearTimeout(timer);
       }
-    }
-  })
+    };
+  });
 
   return createPortal(
     <div
@@ -97,5 +97,5 @@ export const Toast = ({
       </button>
     </div>,
     portalContainer
-  )
-}
+  );
+};

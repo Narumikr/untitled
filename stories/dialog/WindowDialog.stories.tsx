@@ -1,11 +1,11 @@
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { WindowDialog } from '@/components/dialog/WindowDialog'
+import { WindowDialog } from '@/components/dialog/WindowDialog';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/WindowDialog',
@@ -55,8 +55,8 @@ const meta = {
       description: 'WindowDialog open',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { 
-        type: { summary: 'boolean'}
+      table: {
+        type: { summary: 'boolean' }
       }
     },
     children: {
@@ -92,16 +92,16 @@ const meta = {
   args: {
     onClose: fn()
   }
-} satisfies Meta<typeof WindowDialog>
+} satisfies Meta<typeof WindowDialog>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const commonArgs = {
   sekai: COLORS_SEKAI_KEYS.Miku as ColorsSekaiKey,
   open: true,
   children: 'WindowDialog Contents'
-}
+};
 
 export const LightMedium: Story = {
   args: {
@@ -115,7 +115,7 @@ export const LightMedium: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const DarkMedium: Story = {
   args: {
@@ -129,4 +129,4 @@ export const DarkMedium: Story = {
     background: 'dark',
     portal: true
   }
-}
+};

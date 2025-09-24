@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { Accordion } from '@/components/accordion/Accordion'
+import { Accordion } from '@/components/accordion/Accordion';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Accordion',
@@ -89,10 +89,10 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof Accordion>
+} satisfies Meta<typeof Accordion>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -107,7 +107,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -122,4 +122,4 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

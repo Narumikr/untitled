@@ -1,12 +1,12 @@
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { Dialog } from '@/components/dialog/Dialog'
+import { Dialog } from '@/components/dialog/Dialog';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { DialogButton } from '@/components/dialog/Dialog'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { DialogButton } from '@/components/dialog/Dialog';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Dialog',
@@ -47,8 +47,8 @@ const meta = {
       description: 'Dialog open',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { 
-        type: { summary: 'boolean'}
+      table: {
+        type: { summary: 'boolean' }
       }
     },
     themeMode: {
@@ -112,17 +112,17 @@ const meta = {
   args: {
     onClose: fn()
   }
-} satisfies Meta<typeof Dialog>
+} satisfies Meta<typeof Dialog>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const commonArgs = {
   sekai: COLORS_SEKAI_KEYS.Miku as ColorsSekaiKey,
   open: true,
   children: 'Dialog Contents',
   title: 'Dialog Title'
-}
+};
 
 export const LightMedium: Story = {
   args: {
@@ -138,7 +138,7 @@ export const LightMedium: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const DarkMedium: Story = {
   args: {
@@ -154,7 +154,7 @@ export const DarkMedium: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 export const LightNarrow: Story = {
   args: {
@@ -170,7 +170,7 @@ export const LightNarrow: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const DarkNarrow: Story = {
   args: {
@@ -186,7 +186,7 @@ export const DarkNarrow: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 export const LightWide: Story = {
   args: {
@@ -202,7 +202,7 @@ export const LightWide: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const DarkWide: Story = {
   args: {
@@ -218,7 +218,7 @@ export const DarkWide: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 export const CloseIconLight: Story = {
   args: {
@@ -234,7 +234,7 @@ export const CloseIconLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const CloseIconDark: Story = {
   args: {
@@ -250,7 +250,7 @@ export const CloseIconDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 const buttons: DialogButton[] = [
   {
@@ -277,7 +277,7 @@ const buttons: DialogButton[] = [
     ariaLabel: 'OK',
     buttonStyle: ''
   }
-]
+];
 export const OneButtonsLight: Story = {
   args: {
     ...commonArgs,
@@ -292,7 +292,7 @@ export const OneButtonsLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const OneButtonsDark: Story = {
   args: {
@@ -308,7 +308,7 @@ export const OneButtonsDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 export const DoubleButtonsLight: Story = {
   args: {
@@ -324,7 +324,7 @@ export const DoubleButtonsLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const DoubleButtonsDark: Story = {
   args: {
@@ -340,7 +340,7 @@ export const DoubleButtonsDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 export const StrongButtonsLight: Story = {
   args: {
@@ -356,7 +356,7 @@ export const StrongButtonsLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const StrongButtonsDark: Story = {
   args: {
@@ -372,4 +372,4 @@ export const StrongButtonsDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};

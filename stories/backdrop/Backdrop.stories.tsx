@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import { Backdrop } from '@/components/backdrop/Backdrop'
-import { Loading } from '@/components/loading/Loading'
+import { Backdrop } from '@/components/backdrop/Backdrop';
+import { Loading } from '@/components/loading/Loading';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Backdrop',
@@ -56,8 +56,8 @@ const meta = {
       description: 'Dialog open',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { 
-        type: { summary: 'boolean'}
+      table: {
+        type: { summary: 'boolean' }
       }
     },
     children: {
@@ -84,10 +84,10 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof Backdrop>
+} satisfies Meta<typeof Backdrop>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -103,7 +103,7 @@ export const DefaultLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -119,7 +119,7 @@ export const DefaultDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};
 
 export const SekaiColorLight: Story = {
   args: {
@@ -135,7 +135,7 @@ export const SekaiColorLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const SekaiColorDark: Story = {
   args: {
@@ -151,4 +151,4 @@ export const SekaiColorDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};

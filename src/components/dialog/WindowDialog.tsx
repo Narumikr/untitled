@@ -1,31 +1,31 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import clsx from 'clsx'
-import { createPortal } from 'react-dom'
+import clsx from 'clsx';
+import { createPortal } from 'react-dom';
 
-import { ClearSvg } from '@/img/clear'
-import { RestoreSvg } from '@/img/restore'
-import { SquareSvg } from '@/img/square'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
+import { ClearSvg } from '@/img/clear';
+import { RestoreSvg } from '@/img/restore';
+import { SquareSvg } from '@/img/square';
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter';
 
-import styles from './WindowDialog.module.scss'
+import styles from './WindowDialog.module.scss';
 
-import type { DialogSize } from './Dialog'
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { DialogSize } from './Dialog';
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface WindowDialogProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  open: boolean
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  size?: DialogSize
-  onClose: () => void
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  open: boolean;
+  children: React.ReactNode;
+  containerComponent?: HTMLElement;
+  size?: DialogSize;
+  onClose: () => void;
 }
 
 export const WindowDialog = ({
@@ -38,64 +38,64 @@ export const WindowDialog = ({
   onClose,
   ...rest
 }: WindowDialogProps) => {
-  const portalContainer = containerComponent || document.body
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
-  const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
+  const portalContainer = containerComponent || document.body;
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode });
+  const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden';
 
-  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.3, isLight)
-  const sekaiColorHeader = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
+  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.3, isLight);
+  const sekaiColorHeader = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
 
   const windowInitCoordinate = () => {
-    return { x: '50%', y: '50%' }
-  }
+    return { x: '50%', y: '50%' };
+  };
   const [position, setPosition] = useState<{ x: string; y: string }>(() =>
     windowInitCoordinate()
-  )
+  );
 
-  const modalRef = useRef<HTMLDivElement>(null)
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
-  const [dragging, setDragging] = useState(false)
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
 
-  const [isFullscreen, setIsFullscreen] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const onMouseDown = (e: React.MouseEvent) => {
-    const rect = modalRef.current?.getBoundingClientRect()
-    if (!rect) return
-    setDragging(true)
+    const rect = modalRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setDragging(true);
     setDragOffset({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top
-    })
-  }
+    });
+  };
   const closeWindow = () => {
-    onClose()
-    setPosition(windowInitCoordinate())
-    setIsFullscreen(false)
-  }
+    onClose();
+    setPosition(windowInitCoordinate());
+    setIsFullscreen(false);
+  };
 
   const onMouseMove = useCallback(
     (e: MouseEvent) => {
-      if (!dragging || isFullscreen) return
-      const portalRect = portalContainer.getBoundingClientRect()
+      if (!dragging || isFullscreen) return;
+      const portalRect = portalContainer.getBoundingClientRect();
 
-      const x = e.clientX - portalRect.left - dragOffset.x
-      const y = e.clientY - portalRect.top - dragOffset.y
+      const x = e.clientX - portalRect.left - dragOffset.x;
+      const y = e.clientY - portalRect.top - dragOffset.y;
 
-      setPosition({ x: `${x}px`, y: `${y}px` })
+      setPosition({ x: `${x}px`, y: `${y}px` });
     },
     [dragOffset.x, dragOffset.y, dragging, isFullscreen, portalContainer]
-  )
+  );
 
-  const onMouseUp = () => setDragging(false)
+  const onMouseUp = () => setDragging(false);
 
   useEffect(() => {
-    window.addEventListener('mousemove', onMouseMove)
-    window.addEventListener('mouseup', onMouseUp)
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
     return () => {
-      window.removeEventListener('mousemove', onMouseMove)
-      window.removeEventListener('mouseup', onMouseUp)
-    }
-  }, [dragging, onMouseMove])
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+  }, [dragging, onMouseMove]);
 
   const optionStyle = useMemo(
     () => ({
@@ -116,7 +116,7 @@ export const WindowDialog = ({
       sekaiColorBg,
       sekaiColorHeader
     ]
-  )
+  );
 
   return createPortal(
     <div
@@ -144,14 +144,14 @@ export const WindowDialog = ({
       <div className={clsx(styles['sekai-window-dialog-container'])}>{children}</div>
     </div>,
     portalContainer
-  )
-}
+  );
+};
 
 type WindowHeaderProps = Pick<WindowDialogProps, 'sekai' | 'themeMode' | 'onClose'> & {
-  onMouseDown: (e: React.MouseEvent) => void
-  isFullscreen: boolean
-  setIsFullscreen: (fullscreen: boolean) => void
-}
+  onMouseDown: (e: React.MouseEvent) => void;
+  isFullscreen: boolean;
+  setIsFullscreen: (fullscreen: boolean) => void;
+};
 const WindowHeader = ({
   onMouseDown,
   isFullscreen,
@@ -159,8 +159,8 @@ const WindowHeader = ({
   ...rest
 }: WindowHeaderProps) => {
   const onClick = () => {
-    setIsFullscreen(!isFullscreen)
-  }
+    setIsFullscreen(!isFullscreen);
+  };
 
   return (
     <div
@@ -179,5 +179,5 @@ const WindowHeader = ({
         <ClearSvg {...rest} className={clsx(styles['sekai-window-dialog-icon'])} />
       </button>
     </div>
-  )
-}
+  );
+};

@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { List } from '@/components/list/List'
+import { List } from '@/components/list/List';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/List',
@@ -75,12 +75,12 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof List>
+} satisfies Meta<typeof List>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const sample = ['Sample 1', 'Sample 2', 'Sample 3']
+const sample = ['Sample 1', 'Sample 2', 'Sample 3'];
 
 export const BulletLight: Story = {
   args: {
@@ -95,7 +95,7 @@ export const BulletLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const BulletDark: Story = {
   args: {
@@ -110,7 +110,7 @@ export const BulletDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const OrderLight: Story = {
   args: {
@@ -125,7 +125,7 @@ export const OrderLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const OrderDark: Story = {
   args: {
@@ -140,4 +140,4 @@ export const OrderDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

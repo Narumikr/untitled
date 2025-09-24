@@ -1,29 +1,29 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext } from 'react';
 
-import { useSessionStorage } from '@/hooks/useSessionStorage'
+import { useSessionStorage } from '@/hooks/useSessionStorage';
 
 export interface SharedValueProviderProps<T> {
-  children: React.ReactNode
-  sessionStorageKey: string
-  defaultValue: T
+  children: React.ReactNode;
+  sessionStorageKey: string;
+  defaultValue: T;
 }
 
 export interface SharedValueContextProps<T> {
-  sharedValue: T
-  setSharedValue: React.Dispatch<React.SetStateAction<T>>
-  deleteSharedValue: () => void
+  sharedValue: T;
+  setSharedValue: React.Dispatch<React.SetStateAction<T>>;
+  deleteSharedValue: () => void;
 }
 
 export const createSharedValueProvider = <T,>() => {
-  const SharedValueContext = createContext<SharedValueContextProps<T> | null>(null)
+  const SharedValueContext = createContext<SharedValueContextProps<T> | null>(null);
 
   const useSharedValueContext = () => {
-    const context = useContext(SharedValueContext)
+    const context = useContext(SharedValueContext);
     if (!context) {
-      throw new Error('useSharedValueContext must be used within a SharedValueProvider.')
+      throw new Error('useSharedValueContext must be used within a SharedValueProvider.');
     }
-    return context
-  }
+    return context;
+  };
 
   const SharedValueProvider = ({
     children,
@@ -34,17 +34,17 @@ export const createSharedValueProvider = <T,>() => {
       storedValue: sharedValue,
       setStoredValue: setSharedValue,
       deleteSessionStorage: deleteSharedValue
-    } = useSessionStorage<T>(sessionStorageKey, defaultValue)
+    } = useSessionStorage<T>(sessionStorageKey, defaultValue);
 
     return (
       <SharedValueContext.Provider value={{ sharedValue, setSharedValue, deleteSharedValue }}>
         {children}
       </SharedValueContext.Provider>
-    )
-  }
+    );
+  };
 
   return {
     useSharedValueContext,
     SharedValueProvider
-  }
-}
+  };
+};

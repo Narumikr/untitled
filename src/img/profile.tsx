@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
+import type { PaletteMode } from '@/hooks/useThemeMode';
 
 export interface ProfileSvgIconProps {
-  className?: string
-  themeMode?: PaletteMode
+  className?: string;
+  themeMode?: PaletteMode;
 }
 
 export const ProfileSvg = ({ className = '', themeMode = 'light' }: ProfileSvgIconProps) => {
-  const color = 'light' === themeMode ? 'black' : 'white'
+  const color = 'light' === themeMode ? 'black' : 'white';
   return (
     <svg
       className={className}
@@ -64,5 +64,5 @@ export const ProfileSvg = ({ className = '', themeMode = 'light' }: ProfileSvgIc
         />
       </g>
     </svg>
-  )
-}
+  );
+};

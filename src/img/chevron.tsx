@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
-export type ChevronVector = 'up' | 'down'
+export type ChevronVector = 'up' | 'down';
 
 export interface ChevronSvgIconProps {
-  className?: string
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  vector?: ChevronVector
+  className?: string;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  vector?: ChevronVector;
 }
 
 export const ChevronSvg = ({
@@ -22,12 +22,12 @@ export const ChevronSvg = ({
   themeMode,
   vector = 'up'
 }: ChevronSvgIconProps) => {
-  const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
-  const color = isLight ? '#212121' : '#e0e0e0'
+  const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode });
+  const color = isLight ? '#212121' : '#e0e0e0';
 
   const getCoordinate = (y: number) => {
-    return 'up' === vector ? Math.abs(0 - y) : Math.abs(100 - y)
-  }
+    return 'up' === vector ? Math.abs(0 - y) : Math.abs(100 - y);
+  };
 
   return (
     <svg
@@ -73,5 +73,5 @@ export const ChevronSvg = ({
         strokeWidth="8"
       />
     </svg>
-  )
-}
+  );
+};

@@ -1,27 +1,27 @@
-import React, { createContext } from 'react'
+import React, { createContext } from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import globalStyles from '@/styles/global.module.scss'
+import globalStyles from '@/styles/global.module.scss';
 
-import styles from './List.module.scss'
+import styles from './List.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
-export const ListContext = createContext<boolean>(false)
+export const ListContext = createContext<boolean>(false);
 
 export interface ListProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children: React.ReactNode
-  as?: 'ul' | 'ol'
-  noBullet?: boolean
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  children: React.ReactNode;
+  as?: 'ul' | 'ol';
+  noBullet?: boolean;
 }
 
 export const List = ({
@@ -32,14 +32,14 @@ export const List = ({
   noBullet = true,
   ...rest
 }: ListProps) => {
-  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode });
 
-  const Component = as
+  const Component = as;
   const optionStyle = {
     '--sekai-color': sekaiColor
-  }
-  const listStyleType = noBullet ? 'none' : undefined
-  const paddingLeft = noBullet ? '16px' : '36px'
+  };
+  const listStyleType = noBullet ? 'none' : undefined;
+  const paddingLeft = noBullet ? '16px' : '36px';
 
   return (
     <ListContext.Provider value={true}>
@@ -59,5 +59,5 @@ export const List = ({
         {children}
       </Component>
     </ListContext.Provider>
-  )
-}
+  );
+};

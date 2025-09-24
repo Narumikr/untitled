@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { Divider } from '@/components/divider/Divider'
+import { Divider } from '@/components/divider/Divider';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Divider',
@@ -116,12 +116,12 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof Divider>
+} satisfies Meta<typeof Divider>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const ViewStoryText = () => <span>Sample Text</span>
+const ViewStoryText = () => <span>Sample Text</span>;
 
 export const DefaultLight: Story = {
   args: {
@@ -139,7 +139,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -157,7 +157,7 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const PairColorLight: Story = {
   args: {
@@ -175,7 +175,7 @@ export const PairColorLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const PairColorDark: Story = {
   args: {
@@ -193,7 +193,7 @@ export const PairColorDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const InsetLight: Story = {
   args: {
@@ -211,7 +211,7 @@ export const InsetLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const MiddleLight: Story = {
   args: {
@@ -229,7 +229,7 @@ export const MiddleLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const TextCenterLight: Story = {
   args: {
@@ -247,7 +247,7 @@ export const TextCenterLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const TextCenterDark: Story = {
   args: {
@@ -265,7 +265,7 @@ export const TextCenterDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const TextLeftLight: Story = {
   args: {
@@ -283,7 +283,7 @@ export const TextLeftLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const TextRightLight: Story = {
   args: {
@@ -301,7 +301,7 @@ export const TextRightLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const ShadowLight: Story = {
   args: {
@@ -319,7 +319,7 @@ export const ShadowLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const ShadowDark: Story = {
   args: {
@@ -337,4 +337,4 @@ export const ShadowDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

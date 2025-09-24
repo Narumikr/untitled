@@ -1,7 +1,7 @@
-import path from 'path'
-import { fileURLToPath } from 'url'
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-import type { StorybookConfig } from '@storybook/react-vite'
+import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -16,15 +16,15 @@ const config: StorybookConfig = {
     options: {}
   },
   viteFinal: async (config) => {
-    const __dirname = path.dirname(fileURLToPath(import.meta.url))
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
         '@': path.resolve(__dirname, '../src')
-      }
+      };
     }
-    return config
+    return config;
   }
-}
+};
 
-export default config
+export default config;

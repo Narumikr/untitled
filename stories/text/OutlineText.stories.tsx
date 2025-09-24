@@ -1,8 +1,8 @@
-import { OutlineText } from '@/components/text/OutlineText'
+import { OutlineText } from '@/components/text/OutlineText';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/OutlineText',
@@ -56,10 +56,10 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof OutlineText>
+} satisfies Meta<typeof OutlineText>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -72,7 +72,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -85,4 +85,4 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

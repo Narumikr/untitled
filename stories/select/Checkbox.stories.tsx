@@ -1,10 +1,10 @@
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { Checkbox } from '@/components/select/Checkbox'
+import { Checkbox } from '@/components/select/Checkbox';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Checkbox',
@@ -73,10 +73,10 @@ const meta = {
   args: {
     onChange: fn()
   }
-} satisfies Meta<typeof Checkbox>
+} satisfies Meta<typeof Checkbox>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -91,7 +91,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -106,7 +106,7 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const FillingLight: Story = {
   args: {
@@ -121,7 +121,7 @@ export const FillingLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const FiilingDark: Story = {
   args: {
@@ -136,4 +136,4 @@ export const FiilingDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

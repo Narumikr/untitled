@@ -1,30 +1,30 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { ORIENTATION, useOrientation } from '@/hooks/useWindowSize'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
+import { ORIENTATION, useOrientation } from '@/hooks/useWindowSize';
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter';
 
-import globalStyles from '@/styles/global.module.scss'
+import globalStyles from '@/styles/global.module.scss';
 
-import styles from './UtilText.module.scss'
+import styles from './UtilText.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface BodyTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  themeMode?: PaletteMode
-  children?: React.ReactNode
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  themeMode?: PaletteMode;
+  children?: React.ReactNode;
 }
 
 export const BodyText = ({ themeMode, children, ...rest }: BodyTextProps) => {
-  const { modeTheme } = useOptionalSekai({ mode: themeMode })
-  const orientation = useOrientation()
-  const isPortrait = ORIENTATION.PORTRAIT === orientation
+  const { modeTheme } = useOptionalSekai({ mode: themeMode });
+  const orientation = useOrientation();
+  const isPortrait = ORIENTATION.PORTRAIT === orientation;
 
   return (
     <p
@@ -36,37 +36,37 @@ export const BodyText = ({ themeMode, children, ...rest }: BodyTextProps) => {
       )}>
       {children}
     </p>
-  )
-}
+  );
+};
 
 export interface SekaiBodyTextProps extends BodyTextProps {
-  sekai?: ColorsSekaiKey
+  sekai?: ColorsSekaiKey;
 }
 
 export const SekaiBodyText = ({ sekai, children, ...rest }: SekaiBodyTextProps) => {
-  const { sekaiColor } = useOptionalSekai({ sekai })
+  const { sekaiColor } = useOptionalSekai({ sekai });
 
   const colorStyle = {
     color: sekaiColor
-  }
+  };
 
   return (
     <BodyText {...rest} style={{ ...(colorStyle as React.CSSProperties), ...rest.style }}>
       {children}
     </BodyText>
-  )
-}
+  );
+};
 
 export interface DetailTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  themeMode?: PaletteMode
-  children?: React.ReactNode
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  themeMode?: PaletteMode;
+  children?: React.ReactNode;
 }
 
 export const DetailText = ({ themeMode, children, ...rest }: DetailTextProps) => {
-  const { modeTheme } = useOptionalSekai({ mode: themeMode })
+  const { modeTheme } = useOptionalSekai({ mode: themeMode });
 
   return (
     <p
@@ -78,37 +78,37 @@ export const DetailText = ({ themeMode, children, ...rest }: DetailTextProps) =>
       )}>
       {children}
     </p>
-  )
-}
+  );
+};
 
 export interface SekaiDetailTextProps extends DetailTextProps {
-  sekai?: ColorsSekaiKey
+  sekai?: ColorsSekaiKey;
 }
 
 export const SekaiDetailText = ({ sekai, children, ...rest }: SekaiDetailTextProps) => {
-  const { sekaiColor } = useOptionalSekai({ sekai })
+  const { sekaiColor } = useOptionalSekai({ sekai });
 
   const colorStyle = {
     color: sekaiColor
-  }
+  };
 
   return (
     <DetailText {...rest} style={{ ...(colorStyle as React.CSSProperties), ...rest.style }}>
       {children}
     </DetailText>
-  )
-}
+  );
+};
 
 export interface AnnotationTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  themeMode?: PaletteMode
-  children?: React.ReactNode
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  themeMode?: PaletteMode;
+  children?: React.ReactNode;
 }
 
 export const AnnotationText = ({ themeMode, children, ...rest }: AnnotationTextProps) => {
-  const { modeTheme } = useOptionalSekai({ mode: themeMode })
+  const { modeTheme } = useOptionalSekai({ mode: themeMode });
 
   return (
     <DetailText
@@ -116,24 +116,24 @@ export const AnnotationText = ({ themeMode, children, ...rest }: AnnotationTextP
       className={clsx(styles[`sekai-annotation-text-${modeTheme}`], rest.className)}>
       {children}
     </DetailText>
-  )
-}
+  );
+};
 
 export interface SekaiAnnotationTextProps extends AnnotationTextProps {
-  sekai?: ColorsSekaiKey
+  sekai?: ColorsSekaiKey;
 }
 
 export const SekaiAnnotationText = ({ sekai, children, ...rest }: SekaiAnnotationTextProps) => {
-  const { sekaiColor, isLight } = useOptionalSekai({ sekai })
-  const annotationColor = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.7, isLight)
+  const { sekaiColor, isLight } = useOptionalSekai({ sekai });
+  const annotationColor = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.7, isLight);
 
   const colorStyle = {
     color: annotationColor
-  }
+  };
 
   return (
     <DetailText {...rest} style={{ ...(colorStyle as React.CSSProperties), ...rest.style }}>
       {children}
     </DetailText>
-  )
-}
+  );
+};

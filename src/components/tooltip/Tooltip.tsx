@@ -1,26 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter';
 
-import styles from './Tooltip.module.scss'
+import styles from './Tooltip.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
-export type TooltipPosition = 'top' | 'bottom'
+export type TooltipPosition = 'top' | 'bottom';
 
 export interface TooltipProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children: React.ReactNode
-  text: string
-  pos?: TooltipPosition
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  children: React.ReactNode;
+  text: string;
+  pos?: TooltipPosition;
 }
 
 export const Tooltip = ({
@@ -31,15 +31,15 @@ export const Tooltip = ({
   pos = 'top',
   ...rest
 }: TooltipProps) => {
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode });
 
-  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.2, isLight)
+  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.2, isLight);
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-bg': sekaiColorBg
-  }
+  };
 
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   return (
     <div
@@ -55,32 +55,32 @@ export const Tooltip = ({
       {children}
       {visible ? <SpeechBubble text={text} pos={pos} themeMode={modeTheme} /> : null}
     </div>
-  )
-}
+  );
+};
 
 interface SpeechBubbleProps {
-  text: string
-  pos: TooltipPosition
-  themeMode: PaletteMode
+  text: string;
+  pos: TooltipPosition;
+  themeMode: PaletteMode;
 }
 
 const SpeechBubble = ({ text, pos, themeMode }: SpeechBubbleProps) => {
-  const PADDING = 32
-  const MAX_WIDTH = 300
-  const speechBubbleRef = useRef<HTMLDivElement>(null)
-  const [calcPosition, setCalcPosition] = useState<TooltipPosition>(pos)
-  const [bubbleStyle, setBubbleStyle] = useState<React.CSSProperties>({})
+  const PADDING = 32;
+  const MAX_WIDTH = 300;
+  const speechBubbleRef = useRef<HTMLDivElement>(null);
+  const [calcPosition, setCalcPosition] = useState<TooltipPosition>(pos);
+  const [bubbleStyle, setBubbleStyle] = useState<React.CSSProperties>({});
 
   useEffect(() => {
-    const bubble = speechBubbleRef.current
-    if (!bubble) return
+    const bubble = speechBubbleRef.current;
+    if (!bubble) return;
 
-    const bubbleRect = bubble.getBoundingClientRect()
-    const viewInnerWidth = window.innerWidth
-    const viewInnerHeight = window.innerHeight
+    const bubbleRect = bubble.getBoundingClientRect();
+    const viewInnerWidth = window.innerWidth;
+    const viewInnerHeight = window.innerHeight;
 
-    const isRightOverflow = bubbleRect.right > viewInnerWidth
-    const isLeftOverflow = bubbleRect.left < 0
+    const isRightOverflow = bubbleRect.right > viewInnerWidth;
+    const isLeftOverflow = bubbleRect.left < 0;
 
     setBubbleStyle({
       ...(isRightOverflow && {
@@ -94,16 +94,16 @@ const SpeechBubble = ({ text, pos, themeMode }: SpeechBubbleProps) => {
         transform: 'none'
       }),
       maxWidth: `${Math.min(viewInnerWidth - PADDING * 2, MAX_WIDTH)}px`
-    })
+    });
 
     if (bubbleRect.top < 0) {
-      setCalcPosition('bottom')
+      setCalcPosition('bottom');
     } else if (bubbleRect.bottom > viewInnerHeight) {
-      setCalcPosition('top')
+      setCalcPosition('top');
     } else {
-      setCalcPosition(pos)
+      setCalcPosition(pos);
     }
-  }, [pos])
+  }, [pos]);
 
   return (
     <div
@@ -112,5 +112,5 @@ const SpeechBubble = ({ text, pos, themeMode }: SpeechBubbleProps) => {
       style={bubbleStyle}>
       <span className={styles[`sekai-tooltip-speech-bubble-text-${themeMode}`]}>{text}</span>
     </div>
-  )
-}
+  );
+};

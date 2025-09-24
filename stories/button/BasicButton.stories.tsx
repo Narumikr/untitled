@@ -1,10 +1,10 @@
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { BasicButton } from '@/components/button/BasicButton'
+import { BasicButton } from '@/components/button/BasicButton';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/BasicButton',
@@ -71,10 +71,10 @@ const meta = {
     }
   },
   args: { onClick: fn() }
-} satisfies Meta<typeof BasicButton>
+} satisfies Meta<typeof BasicButton>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -89,7 +89,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -104,7 +104,7 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const WithTextLight: Story = {
   args: {
@@ -119,7 +119,7 @@ export const WithTextLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const WithTextDark: Story = {
   args: {
@@ -134,7 +134,7 @@ export const WithTextDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const DisabledLight: Story = {
   args: {
@@ -149,7 +149,7 @@ export const DisabledLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DisabledtDark: Story = {
   args: {
@@ -164,4 +164,4 @@ export const DisabledtDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

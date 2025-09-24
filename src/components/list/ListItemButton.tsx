@@ -1,31 +1,31 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef } from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { ConsoleWarning } from '@/internal/logging'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgba } from '@/utils/converter'
+import { ConsoleWarning } from '@/internal/logging';
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgba } from '@/utils/converter';
 
-import { ListContext } from './List'
+import { ListContext } from './List';
 
-import styles from './List.module.scss'
+import styles from './List.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface ListItemButtonProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children: React.ReactNode
-  icon?: 'string' | React.ReactNode
-  disabled?: boolean
-  onClick?: () => void
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  children: React.ReactNode;
+  icon?: 'string' | React.ReactNode;
+  disabled?: boolean;
+  onClick?: () => void;
 }
 
-const rippleEffectClassName = 'sekai-ripple'
+const rippleEffectClassName = 'sekai-ripple';
 
 export const ListItemButton = ({
   id,
@@ -38,48 +38,48 @@ export const ListItemButton = ({
   disabled = false,
   onClick
 }: ListItemButtonProps) => {
-  const isListWrap = useContext(ListContext)
-  if (!isListWrap) ConsoleWarning('⚠ Warning: <ListItemButton> should be used inside <List>')
+  const isListWrap = useContext(ListContext);
+  if (!isListWrap) ConsoleWarning('⚠ Warning: <ListItemButton> should be used inside <List>');
 
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode });
 
-  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
+  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-hover': sekaiColorHover
-  }
+  };
 
-  const listItemButtonRef = useRef<HTMLButtonElement | null>(null)
+  const listItemButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const createRipple = (
     event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>
   ) => {
-    const listItemButton = listItemButtonRef.current
-    if (!listItemButton) return
+    const listItemButton = listItemButtonRef.current;
+    if (!listItemButton) return;
 
-    const rect = listItemButton.getBoundingClientRect() as DOMRect
-    const size = Math.max(listItemButton.clientWidth, listItemButton.clientHeight)
-    const { clientX, clientY } = getClientCoordinates(event)
-    const x = clientX - rect.left - size / 2
-    const y = clientY - rect.top - size / 2
+    const rect = listItemButton.getBoundingClientRect() as DOMRect;
+    const size = Math.max(listItemButton.clientWidth, listItemButton.clientHeight);
+    const { clientX, clientY } = getClientCoordinates(event);
+    const x = clientX - rect.left - size / 2;
+    const y = clientY - rect.top - size / 2;
 
-    const ripple = createRippleEffect(x, y, size)
+    const ripple = createRippleEffect(x, y, size);
 
-    removeRippleEffect(listItemButton)
+    removeRippleEffect(listItemButton);
 
-    listItemButton.appendChild(ripple)
+    listItemButton.appendChild(ripple);
 
     ripple.addEventListener('animationend', () => {
-      ripple.remove()
-    })
-  }
+      ripple.remove();
+    });
+  };
 
   const handleOnClick = (
     event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>
   ) => {
-    createRipple(event)
-    onClick?.()
-  }
+    createRipple(event);
+    onClick?.();
+  };
 
   return (
     <li
@@ -96,40 +96,40 @@ export const ListItemButton = ({
         {children}
       </button>
     </li>
-  )
-}
+  );
+};
 
 const getImgComponent = (icon?: string | React.ReactNode) => {
-  if (!icon) return null
+  if (!icon) return null;
 
   if (typeof icon === 'string') {
-    return <img className={styles['sekai-list-icon']} src={icon} alt="" />
+    return <img className={styles['sekai-list-icon']} src={icon} alt="" />;
   } else {
-    return icon
+    return icon;
   }
-}
+};
 
 const getClientCoordinates = (
   event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>
 ) => {
   if ('clientX' in event) {
-    return { clientX: event.clientX, clientY: event.clientY }
+    return { clientX: event.clientX, clientY: event.clientY };
   }
-  const touch = event.touches[0]
-  return { clientX: touch.clientX, clientY: touch.clientY }
-}
+  const touch = event.touches[0];
+  return { clientX: touch.clientX, clientY: touch.clientY };
+};
 
 const createRippleEffect = (x: number, y: number, size: number) => {
-  const ripple = document.createElement('span')
-  ripple.style.width = ripple.style.height = `${size}px`
-  ripple.style.left = `${x}px`
-  ripple.style.top = `${y}px`
-  ripple.className = styles[`${rippleEffectClassName}`]
+  const ripple = document.createElement('span');
+  ripple.style.width = ripple.style.height = `${size}px`;
+  ripple.style.left = `${x}px`;
+  ripple.style.top = `${y}px`;
+  ripple.className = styles[`${rippleEffectClassName}`];
 
-  return ripple
-}
+  return ripple;
+};
 
 const removeRippleEffect = (element: HTMLElement) => {
-  const ripple = element.getElementsByClassName(rippleEffectClassName)[0]
-  if (ripple) ripple.remove()
-}
+  const ripple = element.getElementsByClassName(rippleEffectClassName)[0];
+  if (ripple) ripple.remove();
+};

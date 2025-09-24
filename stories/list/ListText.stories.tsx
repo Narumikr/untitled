@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import { List } from '@/components/list/List'
-import { ListItemText } from '@/components/list/ListItemText'
+import { List } from '@/components/list/List';
+import { ListItemText } from '@/components/list/ListItemText';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { ListItemTextProps } from '@/components/list/ListItemText'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { ListItemTextProps } from '@/components/list/ListItemText';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/ListItemText',
@@ -76,10 +76,10 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof ListItemText>
+} satisfies Meta<typeof ListItemText>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const TemplateStory = {
   render: (args: ListItemTextProps) => {
@@ -88,9 +88,9 @@ const TemplateStory = {
         <ListItemText {...args}>Sample 1</ListItemText>
         <ListItemText {...args}>Sample 2</ListItemText>
       </List>
-    )
+    );
   }
-}
+};
 
 export const DefaultLight: Story = {
   ...TemplateStory,
@@ -106,7 +106,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   ...TemplateStory,
@@ -122,7 +122,7 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const IconLight: Story = {
   ...TemplateStory,
@@ -138,7 +138,7 @@ export const IconLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const IconDark: Story = {
   ...TemplateStory,
@@ -154,4 +154,4 @@ export const IconDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

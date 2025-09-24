@@ -1,4 +1,4 @@
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 // prettier-ignore
 const SEKAI_CHARACTER_NAMES: Record<ColorsSekaiKey, { [key: string]: string }> = {
@@ -43,12 +43,12 @@ const UNTITLED_VALID_LOCAL = {
   'en-us': 'en',
   'zh-hant': 'zh-hant',
   'zh-tw': 'zh-hant'
-} as const
+} as const;
 
 const convertLocaleToLocaleKey = (locale: string) => {
-  const lowerLocale = locale.toLowerCase() as keyof typeof UNTITLED_VALID_LOCAL
-  return UNTITLED_VALID_LOCAL[lowerLocale] ?? 'ja'
-}
+  const lowerLocale = locale.toLowerCase() as keyof typeof UNTITLED_VALID_LOCAL;
+  return UNTITLED_VALID_LOCAL[lowerLocale] ?? 'ja';
+};
 
 /**
  * @description Get localized character name by ColorsSekaiKey
@@ -57,6 +57,6 @@ const convertLocaleToLocaleKey = (locale: string) => {
  * @returns {string} - Localized character name
  */
 export const getSekaiCharacterName = (name: ColorsSekaiKey, locale: string = 'ja') => {
-  const localeKey = convertLocaleToLocaleKey(locale)
-  return SEKAI_CHARACTER_NAMES[name][localeKey] || SEKAI_CHARACTER_NAMES[name]['ja']
-}
+  const localeKey = convertLocaleToLocaleKey(locale);
+  return SEKAI_CHARACTER_NAMES[name][localeKey] || SEKAI_CHARACTER_NAMES[name]['ja'];
+};

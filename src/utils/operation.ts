@@ -1,4 +1,4 @@
-import type React from 'react'
+import type React from 'react';
 
 /**
  * @description Returns a keyboard event handler that triggers the provided event handler only when the Enter key is pressed.
@@ -10,11 +10,11 @@ export const fireOnEnterKey = <T extends HTMLElement>(
 ) => {
   return (e: React.KeyboardEvent<T>) => {
     if (e.key === 'Enter') {
-      eventHandler(e)
-      e.preventDefault()
+      eventHandler(e);
+      e.preventDefault();
     }
-  }
-}
+  };
+};
 
 /**
  * @description Returns a keyboard event handler that triggers the provided event handler only when the Escape key is pressed.
@@ -23,12 +23,12 @@ export const fireOnEnterKey = <T extends HTMLElement>(
  */
 export const fireOnEscapeKey = (eventHandler: (e: KeyboardEvent) => void) => {
   return (e: KeyboardEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (e.key === 'Escape') {
-      eventHandler(e)
+      eventHandler(e);
     }
-  }
-}
+  };
+};
 
 /**
  * @description Returns a keyboard event handler that triggers the provided event handler only when the Space key is pressed.
@@ -39,12 +39,12 @@ export const fireOnSpaceKey = <T extends HTMLElement>(
   eventHandler: (e: React.KeyboardEvent<T>) => void
 ) => {
   return (e: React.KeyboardEvent<T>) => {
-    e.preventDefault()
+    e.preventDefault();
     if (e.key === 'Space') {
-      eventHandler(e)
+      eventHandler(e);
     }
-  }
-}
+  };
+};
 
 /**
  * @description Returns a new array with the elements of the input array shuffled in random order.
@@ -55,10 +55,10 @@ export const fireOnSpaceKey = <T extends HTMLElement>(
  * @returns A new array containing the shuffled elements.
  */
 export const shuffleArray = <T>(array: T[]): T[] => {
-  const shuffledArray = [...array]
+  const shuffledArray = [...array];
   for (let i = shuffledArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
   }
-  return shuffledArray
-}
+  return shuffledArray;
+};

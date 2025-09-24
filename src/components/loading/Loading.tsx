@@ -1,27 +1,27 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import styles from './Loading.module.scss'
+import styles from './Loading.module.scss';
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export interface LoadingProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
 }
 
 export const Loading = ({ id, className, style, sekai }: LoadingProps) => {
-  const { sekaiColor } = useOptionalSekai({ sekai })
-  const CIRCLE_COUNT = 8
+  const { sekaiColor } = useOptionalSekai({ sekai });
+  const CIRCLE_COUNT = 8;
 
   const optionStyle = {
     '--sekai-color': sekaiColor
-  }
+  };
 
   return (
     <div
@@ -40,5 +40,5 @@ export const Loading = ({ id, className, style, sekai }: LoadingProps) => {
         />
       ))}
     </div>
-  )
-}
+  );
+};

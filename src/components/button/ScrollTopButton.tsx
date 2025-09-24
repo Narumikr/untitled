@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import clsx from 'clsx'
-import { createPortal } from 'react-dom'
+import clsx from 'clsx';
+import { createPortal } from 'react-dom';
 
-import { ChevronSvg } from '@/img/chevron'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
+import { ChevronSvg } from '@/img/chevron';
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter';
 
-import styles from './ScrollTopButton.module.scss'
+import styles from './ScrollTopButton.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
-export type ScrollTopPos = 'bottom-right' | 'bottom-left'
+export type ScrollTopPos = 'bottom-right' | 'bottom-left';
 
 export interface ScrollTopButtonProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  pos?: ScrollTopPos
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  pos?: ScrollTopPos;
 }
 
 export const ScrollTopButton = ({
@@ -29,36 +29,36 @@ export const ScrollTopButton = ({
   pos = 'bottom-right',
   ...rest
 }: ScrollTopButtonProps) => {
-  const { sekaiColor, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, isLight } = useOptionalSekai({ sekai, mode: themeMode });
 
-  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
+  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-bg': sekaiColorBg
-  }
+  };
 
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 300) {
-        setIsVisible(true)
+        setIsVisible(true);
       } else {
-        setIsVisible(false)
+        setIsVisible(false);
       }
-    }
+    };
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  })
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 
   const handleScroll = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  if (!isVisible) return null
+  if (!isVisible) return null;
 
   return createPortal(
     <button
@@ -73,5 +73,5 @@ export const ScrollTopButton = ({
       />
     </button>,
     document.body
-  )
-}
+  );
+};

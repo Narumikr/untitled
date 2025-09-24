@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import { Card, CardContent, CardTitle } from '@/components/card/Card'
+import { Card, CardContent, CardTitle } from '@/components/card/Card';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { CardProps } from '@/components/card/Card'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { CardProps } from '@/components/card/Card';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/Card',
@@ -66,14 +66,14 @@ const meta = {
     }
   },
   args: {}
-} satisfies Meta<typeof Card>
+} satisfies Meta<typeof Card>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const TemplateStory = {
   render: (args: CardProps) => {
-    const commonArgs = { sekai: args.sekai, themeMode: args.themeMode }
+    const commonArgs = { sekai: args.sekai, themeMode: args.themeMode };
     return (
       <Card {...commonArgs}>
         <CardContent themeMode={args.themeMode}>
@@ -81,9 +81,9 @@ const TemplateStory = {
           {args.children}
         </CardContent>
       </Card>
-    )
+    );
   }
-}
+};
 
 export const DefaultLight: Story = {
   ...TemplateStory,
@@ -101,7 +101,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   ...TemplateStory,
@@ -119,4 +119,4 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

@@ -1,10 +1,10 @@
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { TextField } from '@/components/textfield/TextField'
+import { TextField } from '@/components/textfield/TextField';
 
-import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
+import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/TextField',
@@ -53,10 +53,10 @@ const meta = {
     }
   },
   args: { onChangeInput: fn() }
-} satisfies Meta<typeof TextField>
+} satisfies Meta<typeof TextField>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DefaultLight: Story = {
   args: {
@@ -72,7 +72,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const DefaultDark: Story = {
   args: {
@@ -88,7 +88,7 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};
 
 export const ErrorLight: Story = {
   args: {
@@ -104,7 +104,7 @@ export const ErrorLight: Story = {
     sekai: 'Miku',
     background: 'light'
   }
-}
+};
 
 export const ErrorDark: Story = {
   args: {
@@ -120,4 +120,4 @@ export const ErrorDark: Story = {
     sekai: 'Miku',
     background: 'dark'
   }
-}
+};

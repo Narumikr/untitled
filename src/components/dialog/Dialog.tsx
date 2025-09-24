@@ -1,49 +1,49 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
-import clsx from 'clsx'
-import { createPortal } from 'react-dom'
+import clsx from 'clsx';
+import { createPortal } from 'react-dom';
 
-import { Backdrop } from '@/components/backdrop/Backdrop'
+import { Backdrop } from '@/components/backdrop/Backdrop';
 
-import { ClearSvg } from '@/img/clear'
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgba } from '@/utils/converter'
-import { fireOnEscapeKey } from '@/utils/operation'
+import { ClearSvg } from '@/img/clear';
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgba } from '@/utils/converter';
+import { fireOnEscapeKey } from '@/utils/operation';
 
-import globalStyles from '@/styles/global.module.scss'
+import globalStyles from '@/styles/global.module.scss';
 
-import styles from './Dialog.module.scss'
+import styles from './Dialog.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
-export type DialogSize = 'narrow' | 'medium' | 'wide'
+export type DialogSize = 'narrow' | 'medium' | 'wide';
 
-export type DialogButtonType = 'normal' | 'strong'
+export type DialogButtonType = 'normal' | 'strong';
 export interface DialogButton {
-  text: string
-  onClick: () => void
-  type?: DialogButtonType
-  disabled?: boolean
-  ariaLabel?: string
-  buttonStyle?: string
+  text: string;
+  onClick: () => void;
+  type?: DialogButtonType;
+  disabled?: boolean;
+  ariaLabel?: string;
+  buttonStyle?: string;
 }
 
 export interface DialogProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  open: boolean
-  themeMode?: PaletteMode
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  size?: DialogSize
-  onClose: () => void
-  title?: string
-  showCloseIcon?: boolean
-  buttons?: DialogButton[]
-  dialogButtons?: React.ReactNode
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  open: boolean;
+  themeMode?: PaletteMode;
+  children: React.ReactNode;
+  containerComponent?: HTMLElement;
+  size?: DialogSize;
+  onClose: () => void;
+  title?: string;
+  showCloseIcon?: boolean;
+  buttons?: DialogButton[];
+  dialogButtons?: React.ReactNode;
 }
 
 export const Dialog = ({
@@ -60,28 +60,28 @@ export const Dialog = ({
   dialogButtons,
   ...rest
 }: DialogProps) => {
-  const portalContainer = containerComponent || document.body
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const portalContainer = containerComponent || document.body;
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode });
 
-  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
+  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-hover': sekaiColorHover
-  }
+  };
 
   useEffect(() => {
-    if (!open) return
-    const handleKeyDownEsc = fireOnEscapeKey(onClose)
+    if (!open) return;
+    const handleKeyDownEsc = fireOnEscapeKey(onClose);
 
-    document.addEventListener('keydown', handleKeyDownEsc)
+    document.addEventListener('keydown', handleKeyDownEsc);
 
-    return () => document.removeEventListener('keydown', handleKeyDownEsc)
+    return () => document.removeEventListener('keydown', handleKeyDownEsc);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open])
+  }, [open]);
 
-  const overlayProps = { open, themeMode, containerComponent }
-  const headerProps = { sekai, themeMode, size, onClose, title, showCloseIcon }
-  const buttonsProps = { sekai, themeMode, buttons }
+  const overlayProps = { open, themeMode, containerComponent };
+  const headerProps = { sekai, themeMode, size, onClose, title, showCloseIcon };
+  const buttonsProps = { sekai, themeMode, buttons };
 
   return createPortal(
     <Backdrop {...overlayProps} centered>
@@ -103,13 +103,13 @@ export const Dialog = ({
       </div>
     </Backdrop>,
     portalContainer
-  )
-}
+  );
+};
 
 export type DialogTitleHeaderProps = Pick<
   DialogProps,
   'sekai' | 'themeMode' | 'size' | 'onClose' | 'title' | 'showCloseIcon'
-> & { id?: string; className?: string; style?: React.CSSProperties }
+> & { id?: string; className?: string; style?: React.CSSProperties };
 
 export const DialogTitleHeader = ({
   sekai,
@@ -120,7 +120,7 @@ export const DialogTitleHeader = ({
   showCloseIcon,
   ...rest
 }: DialogTitleHeaderProps) => {
-  if (!title && !showCloseIcon) return null
+  if (!title && !showCloseIcon) return null;
 
   return (
     <div {...rest} className={clsx(styles[`sekai-title-header-${size}`], rest.className)}>
@@ -131,30 +131,30 @@ export const DialogTitleHeader = ({
         </button>
       ) : null}
     </div>
-  )
-}
+  );
+};
 
 export type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'buttons'> & {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-}
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+};
 
 export const DialogButtons = ({ sekai, themeMode, buttons, ...rest }: DialogButtonsProps) => {
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode });
 
-  if (!buttons || !buttons.length) return null
+  if (!buttons || !buttons.length) return null;
 
-  const buttonLength = buttons.length
-  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
-  const sekaiColorStrongHover = convertHexToRgba(sekaiColor, 0.8)
-  const sekaiColorStrongDisabled = convertHexToRgba(sekaiColor, 0.5)
+  const buttonLength = buttons.length;
+  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
+  const sekaiColorStrongHover = convertHexToRgba(sekaiColor, 0.8);
+  const sekaiColorStrongDisabled = convertHexToRgba(sekaiColor, 0.5);
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-hover': sekaiColorHover,
     '--sekai-color-strong-hover': sekaiColorStrongHover,
     '--sekai-color-disabled': sekaiColorStrongDisabled
-  }
+  };
 
   return (
     <div {...rest} className={clsx(styles['sekai-buttons-area'], rest.className)}>
@@ -177,5 +177,5 @@ export const DialogButtons = ({ sekai, themeMode, buttons, ...rest }: DialogButt
         </button>
       ))}
     </div>
-  )
-}
+  );
+};

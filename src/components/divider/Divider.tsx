@@ -1,30 +1,30 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
 
-import { colorsSekai } from '@/styles/sekai-colors'
+import { colorsSekai } from '@/styles/sekai-colors';
 
-import styles from './Divider.module.scss'
+import styles from './Divider.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
-const DEFAULT_LINE_HEIGHT = '2px'
+const DEFAULT_LINE_HEIGHT = '2px';
 
 export interface DividerProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children?: React.ReactNode
-  pairColor?: ColorsSekaiKey
-  lineHeight?: number | string
-  variant?: 'fullWidth' | 'inset' | 'middle'
-  textAlign?: 'left' | 'center' | 'right'
-  shadow?: boolean
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  children?: React.ReactNode;
+  pairColor?: ColorsSekaiKey;
+  lineHeight?: number | string;
+  variant?: 'fullWidth' | 'inset' | 'middle';
+  textAlign?: 'left' | 'center' | 'right';
+  shadow?: boolean;
 }
 
 export const Divider = ({
@@ -38,15 +38,15 @@ export const Divider = ({
   shadow,
   ...rest
 }: DividerProps) => {
-  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
-  const gradientColor = pairColor ? colorsSekai[pairColor] : 'transparent'
-  const shadowStyle = Boolean(shadow) ? styles[`sekai-divider-shadow-${modeTheme}`] : ''
+  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode });
+  const gradientColor = pairColor ? colorsSekai[pairColor] : 'transparent';
+  const shadowStyle = Boolean(shadow) ? styles[`sekai-divider-shadow-${modeTheme}`] : '';
 
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-pair-color': gradientColor,
     '--divider-line-height': getLineHeightStyle(lineHeight)
-  }
+  };
 
   return (
     <div
@@ -68,11 +68,11 @@ export const Divider = ({
         />
       )}
     </div>
-  )
-}
+  );
+};
 
 const getLineHeightStyle = (lineHeight?: number | string): string => {
-  if (typeof lineHeight === 'number' && lineHeight >= 0) return `${lineHeight}px`
-  if (typeof lineHeight === 'string') return lineHeight
-  return DEFAULT_LINE_HEIGHT
-}
+  if (typeof lineHeight === 'number' && lineHeight >= 0) return `${lineHeight}px`;
+  if (typeof lineHeight === 'string') return lineHeight;
+  return DEFAULT_LINE_HEIGHT;
+};

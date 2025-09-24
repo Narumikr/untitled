@@ -1,31 +1,31 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
-import { createPortal } from 'react-dom'
+import clsx from 'clsx';
+import { createPortal } from 'react-dom';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter';
 
-import globalStyles from '@/styles/global.module.scss'
+import globalStyles from '@/styles/global.module.scss';
 
-import styles from './Drawer.module.scss'
+import styles from './Drawer.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
-export type DrawerPosition = 'top' | 'right' | 'bottom' | 'left'
+export type DrawerPosition = 'top' | 'right' | 'bottom' | 'left';
 
 export interface DrawerProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  open: boolean
-  onClose: () => void
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  pos?: DrawerPosition
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  open: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+  containerComponent?: HTMLElement;
+  pos?: DrawerPosition;
 }
 
 export const Drawer = ({
@@ -38,18 +38,18 @@ export const Drawer = ({
   pos = 'right',
   ...rest
 }: DrawerProps) => {
-  const displayDrawer = open ? 'sekai-drawer-visible' : 'sekai-drawer-hidden'
-  const portalContainer = containerComponent || document.body
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const displayDrawer = open ? 'sekai-drawer-visible' : 'sekai-drawer-hidden';
+  const portalContainer = containerComponent || document.body;
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode });
 
-  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
+  const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
 
   const optionStyle = {
     '--sekai-color-bg': sekaiColorBg
-  }
+  };
   const posAbsoluteStyle = {
     ...(containerComponent && { position: 'absolute' })
-  }
+  };
 
   return createPortal(
     <div
@@ -76,5 +76,5 @@ export const Drawer = ({
       </div>
     </div>,
     portalContainer
-  )
-}
+  );
+};

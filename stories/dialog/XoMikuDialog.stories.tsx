@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { fn } from '@storybook/test'
+import { fn } from '@storybook/test';
 
-import { XoMikuDialog } from '@/components/dialog/XoMikuDialog'
+import { XoMikuDialog } from '@/components/dialog/XoMikuDialog';
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Untitled/XoMikuDialog',
@@ -89,16 +89,16 @@ const meta = {
   args: {
     onClose: fn()
   }
-} satisfies Meta<typeof XoMikuDialog>
+} satisfies Meta<typeof XoMikuDialog>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const commonArgs = {
   open: true,
   children: <span>開かれた窓のセカイのミクをイメージしたコンセプトダイアログ</span>,
   title: 'Dialog Title'
-}
+};
 
 export const DefaultLight: Story = {
   args: {
@@ -130,7 +130,7 @@ export const DefaultLight: Story = {
     background: 'light',
     portal: true
   }
-}
+};
 
 export const DefalutDark: Story = {
   args: {
@@ -162,4 +162,4 @@ export const DefalutDark: Story = {
     background: 'dark',
     portal: true
   }
-}
+};

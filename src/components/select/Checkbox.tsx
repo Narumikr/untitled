@@ -1,26 +1,26 @@
-import React from 'react'
+import React from 'react';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import { useOptionalSekai } from '@/internal/useOptionalSekai'
-import { convertHexToRgba } from '@/utils/converter'
+import { useOptionalSekai } from '@/internal/useOptionalSekai';
+import { convertHexToRgba } from '@/utils/converter';
 
-import styles from './Checkbox.module.scss'
+import styles from './Checkbox.module.scss';
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { PaletteMode } from '@/hooks/useThemeMode';
+import type { ColorsSekaiKey } from '@/styles/sekai-colors';
 
 export type CheckboxProps = {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  checked?: boolean
-  disabled?: boolean
-  onChange?: (value: boolean) => void
-  filling?: boolean
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'checked' | 'disabled'>
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sekai?: ColorsSekaiKey;
+  themeMode?: PaletteMode;
+  checked?: boolean;
+  disabled?: boolean;
+  onChange?: (value: boolean) => void;
+  filling?: boolean;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'checked' | 'disabled'>;
 
 export const Checkbox = ({
   sekai,
@@ -31,17 +31,17 @@ export const Checkbox = ({
   filling,
   ...rest
 }: CheckboxProps) => {
-  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode });
 
-  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.3 : 0.4)
+  const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.3 : 0.4);
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-hover': sekaiColorHover
-  }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e.target.checked)
-  }
+    onChange?.(e.target.checked);
+  };
 
   return (
     <label
@@ -60,5 +60,5 @@ export const Checkbox = ({
         onChange={handleChange}
       />
     </label>
-  )
-}
+  );
+};
