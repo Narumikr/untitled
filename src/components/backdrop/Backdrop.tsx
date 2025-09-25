@@ -41,7 +41,7 @@ export const Backdrop = ({
 
   const optionStyle = {
     '--sekai-color-bg': sekaiColorBg,
-    ...(containerComponent && { position: 'absolute' })
+    ...(containerComponent && { position: 'absolute' }),
   }
 
   return createPortal(
@@ -52,14 +52,14 @@ export const Backdrop = ({
           globalStyles[`sekai-overlay-${modeTheme}`],
           {
             [styles['sekai-backdrop-bg']]: sekai,
-            [styles['sekai-backdrop-centered']]: centered
+            [styles['sekai-backdrop-centered']]: centered,
           },
-          rest.className
+          rest.className,
         )}
         style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
         {children}
       </div>
     </div>,
-    portalContainer
+    portalContainer,
   )
 }

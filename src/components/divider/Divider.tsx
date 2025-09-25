@@ -45,7 +45,7 @@ export const Divider = ({
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-pair-color': gradientColor,
-    '--divider-line-height': getLineHeightStyle(lineHeight)
+    '--divider-line-height': getLineHeightStyle(lineHeight),
   }
 
   return (

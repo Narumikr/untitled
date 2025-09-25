@@ -43,7 +43,7 @@ export const TextField = ({
   const [inputValue, setInputValue] = useState('')
 
   const optionStyle = {
-    '--sekai-color': sekaiColor
+    '--sekai-color': sekaiColor,
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +68,7 @@ export const TextField = ({
           type="text"
           {...inputProps}
           className={clsx(styles[`sekai-textfield-input-${modeTheme}`], {
-            [styles['sekai-textfield-clear']]: clearButton
+            [styles['sekai-textfield-clear']]: clearButton,
           })}
           value={inputValue}
           onChange={handleInputChange}

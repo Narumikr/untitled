@@ -20,7 +20,7 @@ export const ChevronSvg = ({
   className,
   sekai,
   themeMode,
-  vector = 'up'
+  vector = 'up',
 }: ChevronSvgIconProps) => {
   const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
   const color = isLight ? '#212121' : '#e0e0e0'

@@ -19,55 +19,55 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     children: {
       description: 'StickyNote contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } }
+      table: { type: { summary: 'React.ReactNode' } },
     },
     as: {
       description: 'StickyNote as button or text',
       table: {
         type: { summary: 'button | text' },
-        defaultValue: { summary: 'button' }
-      }
+        defaultValue: { summary: 'button' },
+      },
     },
     disabled: {
       description: 'Button disabled for setting as button',
-      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } },
     },
     onClick: {
       description: 'Click handler for setting as button',
-      table: { type: { summary: '() => void' } }
-    }
+      table: { type: { summary: '() => void' } },
+    },
   },
-  args: { onClick: fn() }
+  args: { onClick: fn() },
 } satisfies Meta<typeof StickyNote>
 
 export default meta
@@ -83,7 +83,7 @@ const TemplateStory = {
         <StickyNote {...args}>Sample 2</StickyNote>
       </List>
     )
-  }
+  },
 }
 
 export const StickyNoteButtonLight: Story = {
@@ -93,12 +93,12 @@ export const StickyNoteButtonLight: Story = {
     sekai: 'Miku',
     children: <></>,
     as: 'button',
-    disabled: false
+    disabled: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const StickyNoteButtonDark: Story = {
@@ -108,12 +108,12 @@ export const StickyNoteButtonDark: Story = {
     sekai: 'Miku',
     children: <></>,
     as: 'button',
-    disabled: false
+    disabled: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const StickyNoteTextLight: Story = {
@@ -122,12 +122,12 @@ export const StickyNoteTextLight: Story = {
     id: 'sticky-note-text-light',
     sekai: 'Miku',
     children: <></>,
-    as: 'text'
+    as: 'text',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const StickyNoteTextDark: Story = {
@@ -136,10 +136,10 @@ export const StickyNoteTextDark: Story = {
     id: 'sticky-note-text-dark',
     sekai: 'Miku',
     children: <></>,
-    as: 'text'
+    as: 'text',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

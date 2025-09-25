@@ -34,7 +34,7 @@ export const StrongButton = ({
 
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-bg': sekaiColorBg
+    '--sekai-color-bg': sekaiColorBg,
   }
 
   return (

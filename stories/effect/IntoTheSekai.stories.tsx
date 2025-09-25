@@ -13,42 +13,42 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     execEvent: {
       description: 'Event triggered when the animation ends',
       table: {
-        type: { summary: 'Function' }
+        type: { summary: 'Function' },
       },
-      control: false
+      control: false,
     },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
       table: {
         type: { summary: 'HTMLElement' },
-        defaultValue: { summary: 'document.body' }
+        defaultValue: { summary: 'document.body' },
       },
-      control: false
-    }
+      control: false,
+    },
   },
   args: {
-    execEvent: fn()
-  }
+    execEvent: fn(),
+  },
 } satisfies Meta<typeof IntoTheSekai>
 
 export default meta
@@ -56,22 +56,22 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultLight: Story = {
   args: {
-    id: 'into-the-sekai-default-light'
+    id: 'into-the-sekai-default-light',
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const DefaultDark: Story = {
   args: {
-    id: 'into-the-sekai-default-dark'
+    id: 'into-the-sekai-default-dark',
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true
-  }
+    portal: true,
+  },
 }

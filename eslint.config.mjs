@@ -9,7 +9,7 @@ import { fixupPluginRules } from '@eslint/compat'
 
 export default [
   {
-    ignores: ['dist', 'node_modules', 'src/**/index.ts', 'storybook-static']
+    ignores: ['dist', 'node_modules', 'src/**/index.ts', 'storybook-static'],
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
@@ -19,7 +19,7 @@ export default [
       'react-hooks': reactHooks,
       '@typescript-eslint': tsPlugin,
       'import': fixupPluginRules(_import),
-      'jsx-a11y': jsxA11Y
+      'jsx-a11y': jsxA11Y,
     },
     languageOptions: {
       parser: tsParser,
@@ -28,28 +28,28 @@ export default [
       parserOptions: {
         project: './tsconfig.json',
         ecmaFeatures: {
-          jsx: true
-        }
-      }
+          jsx: true,
+        },
+      },
     },
     settings: {
       'react': {
-        version: 'detect'
+        version: 'detect',
       },
       'import/resolver': {
         typescript: {
           alwaysTryTypes: true,
-          project: './tsconfig.json'
-        }
-      }
+          project: './tsconfig.json',
+        },
+      },
     },
     rules: {
       'no-unused-expressions': 'error',
       'no-empty': [
         'error',
         {
-          allowEmptyCatch: true
-        }
+          allowEmptyCatch: true,
+        },
       ],
       'no-console': 'error',
       'no-debugger': 'error',
@@ -59,14 +59,14 @@ export default [
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
-          args: 'none'
-        }
+          args: 'none',
+        },
       ],
       'no-multiple-empty-lines': [
         'error',
         {
-          max: 1
-        }
+          max: 1,
+        },
       ],
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'error',
@@ -74,28 +74,28 @@ export default [
       'react/jsx-no-leaked-render': [
         'error',
         {
-          validStrategies: ['ternary', 'coerce']
-        }
+          validStrategies: ['ternary', 'coerce'],
+        },
       ],
       'jsx-a11y/no-autofocus': [
         'error',
         {
-          ignoreNonDOM: true
-        }
+          ignoreNonDOM: true,
+        },
       ],
       'jsx-a11y/anchor-is-valid': [
         'error',
         {
           components: ['Link'],
           specialLink: ['hrefLeft', 'hrefRight'],
-          aspects: ['invalidHref', 'preferButton']
-        }
+          aspects: ['invalidHref', 'preferButton'],
+        },
       ],
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
-          prefer: 'type-imports'
-        }
+          prefer: 'type-imports',
+        },
       ],
       '@typescript-eslint/no-explicit-any': 'error',
       'unused-imports/no-unused-imports': 'error',
@@ -106,47 +106,47 @@ export default [
           'newlines-between': 'always',
           'alphabetize': {
             order: 'asc',
-            caseInsensitive: true
+            caseInsensitive: true,
           },
           'pathGroupsExcludedImportTypes': ['builtin', 'type'],
           'pathGroups': [
             {
               pattern: 'react',
               group: 'external',
-              position: 'before'
+              position: 'before',
             },
             {
               pattern: '@/components/**',
               group: 'internal',
-              position: 'before'
+              position: 'before',
             },
             {
               pattern: '@/styles/**',
               group: 'internal',
-              position: 'after'
+              position: 'after',
             },
             {
               pattern: './*.module.scss',
               group: 'sibling',
-              position: 'after'
-            }
-          ]
-        }
+              position: 'after',
+            },
+          ],
+        },
       ],
       'complexity': [
         'error',
         {
-          max: 8
-        }
+          max: 8,
+        },
       ],
       'max-lines-per-function': [
         'error',
         {
           max: 150,
           skipBlankLines: true,
-          skipComments: true
-        }
-      ]
-    }
-  }
+          skipComments: true,
+        },
+      ],
+    },
+  },
 ]
