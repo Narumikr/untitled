@@ -14,43 +14,43 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     }
   },
-  args: {}
+  args: {},
 } satisfies Meta<typeof {{pascalCase component}}>
 
 export default meta
@@ -64,7 +64,7 @@ export const DefaultLight: Story = {
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
+    background: 'light',
   }
 }
 
@@ -76,6 +76,6 @@ export const DefaultDark: Story = {
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
+    background: 'dark',
   }
 }

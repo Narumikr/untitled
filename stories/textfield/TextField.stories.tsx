@@ -15,44 +15,44 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
 
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
-    }
+      options: ['light', 'dark'],
+    },
   },
-  args: { onChangeInput: fn() }
+  args: { onChangeInput: fn() },
 } satisfies Meta<typeof TextField>
 
 export default meta
@@ -66,12 +66,12 @@ export const DefaultLight: Story = {
     clearButton: true,
     placeholder: 'Input text here',
     isError: false,
-    errorMessage: ''
+    errorMessage: '',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DefaultDark: Story = {
@@ -82,12 +82,12 @@ export const DefaultDark: Story = {
     clearButton: true,
     placeholder: 'Input text here',
     isError: false,
-    errorMessage: ''
+    errorMessage: '',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const ErrorLight: Story = {
@@ -98,12 +98,12 @@ export const ErrorLight: Story = {
     clearButton: true,
     placeholder: 'Input text here',
     isError: true,
-    errorMessage: 'The value you entered is not valid'
+    errorMessage: 'The value you entered is not valid',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const ErrorDark: Story = {
@@ -114,10 +114,10 @@ export const ErrorDark: Story = {
     clearButton: true,
     placeholder: 'Input text here',
     isError: true,
-    errorMessage: 'The value you entered is not valid'
+    errorMessage: 'The value you entered is not valid',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

@@ -19,11 +19,11 @@ const meta = {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          border: '1px solid #ccc'
+          border: '1px solid #ccc',
         }}>
         <Story />
       </div>
-    )
+    ),
   ],
   parameters: {},
   tags: ['autodocs'],
@@ -31,91 +31,91 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     children: {
       description: 'Dialog contents',
       table: {
-        type: { summary: 'React.ReactNode' }
-      }
+        type: { summary: 'React.ReactNode' },
+      },
     },
     pairColor: {
       description: 'What SEKAI color to use for the gradient end',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'undefined' }
+        defaultValue: { summary: 'undefined' },
       },
       control: { type: 'select' },
-      options: [undefined, ...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [undefined, ...Object.keys(COLORS_SEKAI_KEYS)],
     },
     lineHeight: {
       description: 'Divider line height in px',
       table: {
         type: { summary: 'number | string' },
-        defaultValue: { summary: '2px' }
-      }
+        defaultValue: { summary: '2px' },
+      },
     },
     variant: {
       description: 'Divider variant',
       table: {
         type: { summary: 'fullWidth | inset | middle' },
-        defaultValue: { summary: 'fullWidth' }
+        defaultValue: { summary: 'fullWidth' },
       },
       control: { type: 'select' },
-      options: ['fullWidth', 'inset', 'middle']
+      options: ['fullWidth', 'inset', 'middle'],
     },
     textAlign: {
       description: 'Text align when children is present',
       table: {
         type: { summary: 'left | center | right' },
-        defaultValue: { summary: 'center' }
+        defaultValue: { summary: 'center' },
       },
       control: { type: 'select' },
-      options: ['left', 'center', 'right']
+      options: ['left', 'center', 'right'],
     },
     shadow: {
       description: 'Apply shadow to the divider',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
+        defaultValue: { summary: 'false' },
       },
-      control: { type: 'boolean' }
-    }
+      control: { type: 'boolean' },
+    },
   },
-  args: {}
+  args: {},
 } satisfies Meta<typeof Divider>
 
 export default meta
@@ -133,12 +133,12 @@ export const DefaultLight: Story = {
     lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
-    shadow: false
+    shadow: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DefaultDark: Story = {
@@ -151,12 +151,12 @@ export const DefaultDark: Story = {
     lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
-    shadow: false
+    shadow: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const PairColorLight: Story = {
@@ -169,12 +169,12 @@ export const PairColorLight: Story = {
     lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
-    shadow: false
+    shadow: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const PairColorDark: Story = {
@@ -187,17 +187,17 @@ export const PairColorDark: Story = {
     lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
-    shadow: false
+    shadow: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const InsetLight: Story = {
   args: {
-    id: 'divider-pair-color-light',
+    id: 'divider-inset-light',
     sekai: 'Haruka',
     themeMode: 'light',
     children: undefined,
@@ -205,17 +205,17 @@ export const InsetLight: Story = {
     lineHeight: 2,
     variant: 'inset',
     textAlign: 'center',
-    shadow: false
+    shadow: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const MiddleLight: Story = {
   args: {
-    id: 'divider-pair-color-light',
+    id: 'divider-middle-light',
     sekai: 'An',
     themeMode: 'light',
     children: undefined,
@@ -223,12 +223,12 @@ export const MiddleLight: Story = {
     lineHeight: 2,
     variant: 'middle',
     textAlign: 'center',
-    shadow: false
+    shadow: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const TextCenterLight: Story = {
@@ -241,12 +241,12 @@ export const TextCenterLight: Story = {
     lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
-    shadow: false
+    shadow: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const TextCenterDark: Story = {
@@ -259,12 +259,12 @@ export const TextCenterDark: Story = {
     lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
-    shadow: false
+    shadow: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const TextLeftLight: Story = {
@@ -277,12 +277,12 @@ export const TextLeftLight: Story = {
     lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'left',
-    shadow: false
+    shadow: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const TextRightLight: Story = {
@@ -295,17 +295,17 @@ export const TextRightLight: Story = {
     lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'right',
-    shadow: false
+    shadow: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const ShadowLight: Story = {
   args: {
-    id: 'divider-text-center-light',
+    id: 'divider-shadow-light',
     sekai: 'Miku',
     themeMode: 'light',
     children: <ViewStoryText />,
@@ -313,17 +313,17 @@ export const ShadowLight: Story = {
     lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
-    shadow: true
+    shadow: true,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const ShadowDark: Story = {
   args: {
-    id: 'divider-text-center-dark',
+    id: 'divider-shadow-dark',
     sekai: 'Airi',
     themeMode: 'dark',
     children: <ViewStoryText />,
@@ -331,10 +331,10 @@ export const ShadowDark: Story = {
     lineHeight: 2,
     variant: 'fullWidth',
     textAlign: 'center',
-    shadow: true
+    shadow: true,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

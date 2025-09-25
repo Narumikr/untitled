@@ -28,11 +28,11 @@ export type SekaiTheme = {
 const defaultTheme: SekaiTheme = {
   palette: {
     sekai: COLORS_SEKAI_KEYS.Miku,
-    mode: LIGHT_MODE
+    mode: LIGHT_MODE,
   },
   typography: {
-    fontFamily: 'Montserrat, sans-serif'
-  }
+    fontFamily: 'Montserrat, sans-serif',
+  },
 } as const
 
 export const createSekai = (option: SekaiThemeProps) => {
@@ -41,11 +41,11 @@ export const createSekai = (option: SekaiThemeProps) => {
   const sekaiTheme: SekaiTheme = {
     palette: {
       sekai: palette.sekai,
-      mode: palette.mode || defaultTheme.palette.mode
+      mode: palette.mode || defaultTheme.palette.mode,
     },
     typography: {
-      fontFamily: typography.fontFamily ?? defaultTheme.typography.fontFamily
-    }
+      fontFamily: typography.fontFamily ?? defaultTheme.typography.fontFamily,
+    },
   }
 
   return sekaiTheme

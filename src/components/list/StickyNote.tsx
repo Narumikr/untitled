@@ -61,7 +61,7 @@ const StickyNoteContents = ({ sekai, children }: StickyNoteContentsProps) => {
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.6, isLight)
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-bg': sekaiColorBg
+    '--sekai-color-bg': sekaiColorBg,
   }
 
   return (

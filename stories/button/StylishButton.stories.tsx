@@ -15,67 +15,67 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     children: {
       description: 'Button contents',
-      table: { type: { summary: 'React.ReactNode' } }
+      table: { type: { summary: 'React.ReactNode' } },
     },
     disabled: {
       description: 'Button disabled',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     onClick: {
       description: 'Click handler',
       table: {
-        type: { summary: '() => void' }
-      }
+        type: { summary: '() => void' },
+      },
     },
     arrowIcon: {
       description: 'Show arrow icon',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' }
-      }
-    }
+        defaultValue: { summary: 'true' },
+      },
+    },
   },
-  args: { onClick: fn() }
+  args: { onClick: fn() },
 } satisfies Meta<typeof StylishButton>
 
 export default meta
@@ -88,12 +88,12 @@ export const DefaultLight: Story = {
     themeMode: 'light',
     children: 'Hatsune Miku',
     disabled: false,
-    arrowIcon: true
+    arrowIcon: true,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DefaultDark: Story = {
@@ -103,12 +103,12 @@ export const DefaultDark: Story = {
     themeMode: 'dark',
     children: 'Hatsune Miku',
     disabled: false,
-    arrowIcon: true
+    arrowIcon: true,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const DisabledLight: Story = {
@@ -118,12 +118,12 @@ export const DisabledLight: Story = {
     themeMode: 'light',
     children: 'Hatsune Miku',
     disabled: true,
-    arrowIcon: true
+    arrowIcon: true,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DisabledDark: Story = {
@@ -133,10 +133,10 @@ export const DisabledDark: Story = {
     themeMode: 'dark',
     children: 'Hatsune Miku',
     disabled: true,
-    arrowIcon: true
+    arrowIcon: true,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

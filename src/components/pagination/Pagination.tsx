@@ -30,7 +30,7 @@ const PaginationConstants = {
   PageTop: 0,
   Ellipsis: -1,
   BorderItemRange: 2,
-  DefaultSiblingCount: 1
+  DefaultSiblingCount: 1,
 } as const
 
 export const Pagination = ({
@@ -49,7 +49,7 @@ export const Pagination = ({
 
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-hover': sekaiColorHover
+    '--sekai-color-hover': sekaiColorHover,
   }
 
   const { currentPage, handleChangePage, handlePrevPage, handleNextPage, rangePagination } =
@@ -57,7 +57,7 @@ export const Pagination = ({
       count,
       page,
       onChangePage,
-      siblingCount
+      siblingCount,
     })
 
   const ctrlButtonProps = { sekai, themeMode, size }
@@ -83,8 +83,8 @@ export const Pagination = ({
               styles[`sekai-pagination-button-${size}`],
               styles[`sekai-color-${modeTheme}`],
               {
-                [styles[`sekai-pagination-selected`]]: item === currentPage
-              }
+                [styles[`sekai-pagination-selected`]]: item === currentPage,
+              },
             )}
             onClick={() => handleChangePage(item)}>
             {item + 1}
@@ -118,7 +118,7 @@ const usePaginagion = ({
   count,
   page,
   onChangePage,
-  siblingCount = PaginationConstants.DefaultSiblingCount
+  siblingCount = PaginationConstants.DefaultSiblingCount,
 }: PaginationCustomHookProps) => {
   const pageLastIndex = useMemo(() => count - 1, [count])
 
@@ -135,7 +135,7 @@ const usePaginagion = ({
       setCurrentPage(page)
       onChangePage?.(page)
     },
-    [pageLastIndex, onChangePage]
+    [pageLastIndex, onChangePage],
   )
   const handlePrevPage = () => handleChangePage(currentPage - 1)
   const handleNextPage = () => handleChangePage(currentPage + 1)
@@ -146,17 +146,17 @@ const usePaginagion = ({
     useMemo(() => {
       const left = Math.max(
         currentPage - siblingCount,
-        PaginationConstants.PageTop + PaginationConstants.BorderItemRange
+        PaginationConstants.PageTop + PaginationConstants.BorderItemRange,
       )
       const right = Math.min(
         currentPage + siblingCount,
-        pageLastIndex - PaginationConstants.BorderItemRange
+        pageLastIndex - PaginationConstants.BorderItemRange,
       )
       return [
         left,
         right,
         left > PaginationConstants.PageTop + PaginationConstants.BorderItemRange,
-        right < pageLastIndex - PaginationConstants.BorderItemRange
+        right < pageLastIndex - PaginationConstants.BorderItemRange,
       ]
     }, [currentPage, siblingCount, pageLastIndex])
 
@@ -171,7 +171,7 @@ const usePaginagion = ({
         pageLastIndex - PaginationConstants.BorderItemRange - siblingCount < idx
       )
     },
-    [pageLastIndex, siblingCount]
+    [pageLastIndex, siblingCount],
   )
 
   // Function to calculate the middle range of pagination
@@ -183,16 +183,16 @@ const usePaginagion = ({
           ? Math.max(2, halfDisplayRange - siblingCount)
           : Math.min(
               pageLastIndex - 2,
-              Math.max(pageLastIndex - halfDisplayRange - siblingCount, halfDisplayRange)
+              Math.max(pageLastIndex - halfDisplayRange - siblingCount, halfDisplayRange),
             )
       return Array.from(
         { length: Math.min(pageLastIndex - 1, leftEdge + 1 + siblingCount * 2) - leftEdge },
-        (_, i) => leftEdge + i
+        (_, i) => leftEdge + i,
       )
     } else {
       return Array.from(
         { length: rightSiblingIndex - leftSiblingIndex + 1 },
-        (_, i) => leftSiblingIndex + i
+        (_, i) => leftSiblingIndex + i,
       )
     }
   }, [
@@ -203,7 +203,7 @@ const usePaginagion = ({
     isEdgeIndex,
     leftSiblingIndex,
     rightSiblingIndex,
-    pageLastIndex
+    pageLastIndex,
   ])
 
   // Final range builder
@@ -220,7 +220,7 @@ const usePaginagion = ({
       ...(isBorderRightEllipsis && dispItemsCount < count
         ? [PaginationConstants.Ellipsis]
         : [pageLastIndex - 1]),
-      pageLastIndex
+      pageLastIndex,
     ]
   }, [
     count,
@@ -228,7 +228,7 @@ const usePaginagion = ({
     dispItemsCount,
     isBorderLeftEllipsis,
     isBorderRightEllipsis,
-    calculateMiddleRange
+    calculateMiddleRange,
   ])
 
   return {
@@ -236,6 +236,6 @@ const usePaginagion = ({
     handleChangePage,
     handlePrevPage,
     handleNextPage,
-    rangePagination
+    rangePagination,
   }
 }

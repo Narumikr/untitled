@@ -60,6 +60,6 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => 
   return {
     storedValue,
     setStoredValue,
-    deleteLocalStorage
+    deleteLocalStorage,
   }
 }

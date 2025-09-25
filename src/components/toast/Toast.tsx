@@ -51,7 +51,7 @@ export const Toast = ({
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
   const optionStyle = {
     '--sekai-color-bg': sekaiColorBg,
-    ...(containerComponent && { position: 'absolute' })
+    ...(containerComponent && { position: 'absolute' }),
   }
 
   const displayMsg = Array.isArray(message) ? message : [message]
@@ -76,9 +76,9 @@ export const Toast = ({
       className={clsx(
         styles[`sekai-toast-${pos}`],
         {
-          [styles['sekai-toast-open']]: open
+          [styles['sekai-toast-open']]: open,
         },
-        rest.className
+        rest.className,
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       <div className={clsx(styles['sekai-toast-message'])}>
@@ -86,7 +86,7 @@ export const Toast = ({
           <BodyText
             key={msg}
             className={clsx(globalStyles[`sekai-text-${modeTheme}`], {
-              [styles['sekai-toast-error']]: isError
+              [styles['sekai-toast-error']]: isError,
             })}>
             {msg}
           </BodyText>
@@ -96,6 +96,6 @@ export const Toast = ({
         <ClearSvg sekai={sekai} themeMode={themeMode} className={styles['sekai-toast-icon']} />
       </button>
     </div>,
-    portalContainer
+    portalContainer,
   )
 }

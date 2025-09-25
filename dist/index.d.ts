@@ -450,7 +450,7 @@ interface ListItemButtonProps {
     disabled?: boolean;
     onClick?: () => void;
 }
-declare const ListItemButton: ({ id, className, style, sekai, themeMode, children, icon, disabled, onClick }: ListItemButtonProps) => React__default.JSX.Element;
+declare const ListItemButton: ({ id, className, style, sekai, themeMode, children, icon, disabled, onClick, }: ListItemButtonProps) => React__default.JSX.Element;
 
 interface ListItemTextProps {
     id?: string;
@@ -511,7 +511,7 @@ interface SharedValueContextProps<T> {
 }
 declare const createSharedValueProvider: <T>() => {
     useSharedValueContext: () => SharedValueContextProps<T>;
-    SharedValueProvider: ({ children, sessionStorageKey, defaultValue }: SharedValueProviderProps<T>) => React__default.JSX.Element;
+    SharedValueProvider: ({ children, sessionStorageKey, defaultValue, }: SharedValueProviderProps<T>) => React__default.JSX.Element;
 };
 
 type SekaiThemeProps = {

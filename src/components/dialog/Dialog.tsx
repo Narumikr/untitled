@@ -66,7 +66,7 @@ export const Dialog = ({
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-hover': sekaiColorHover
+    '--sekai-color-hover': sekaiColorHover,
   }
 
   useEffect(() => {
@@ -91,7 +91,7 @@ export const Dialog = ({
         className={clsx(
           globalStyles[`sekai-color-${modeTheme}`],
           styles[`sekai-container-${size}`],
-          rest.className
+          rest.className,
         )}
         style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
         aria-label={title || 'Dialog'}>
@@ -102,7 +102,7 @@ export const Dialog = ({
         {dialogButtons || <DialogButtons {...buttonsProps} />}
       </div>
     </Backdrop>,
-    portalContainer
+    portalContainer,
   )
 }
 
@@ -153,7 +153,7 @@ export const DialogButtons = ({ sekai, themeMode, buttons, ...rest }: DialogButt
     '--sekai-color': sekaiColor,
     '--sekai-color-hover': sekaiColorHover,
     '--sekai-color-strong-hover': sekaiColorStrongHover,
-    '--sekai-color-disabled': sekaiColorStrongDisabled
+    '--sekai-color-disabled': sekaiColorStrongDisabled,
   }
 
   return (
@@ -170,7 +170,7 @@ export const DialogButtons = ({ sekai, themeMode, buttons, ...rest }: DialogButt
             globalStyles[`sekai-color-${modeTheme}`],
             styles[`sekai-dialog-${el.type || 'normal'}-button-${buttonLength}-${index}`],
             styles[`sekai-${modeTheme}`],
-            el.buttonStyle || ''
+            el.buttonStyle || '',
           )}
           style={optionStyle as React.CSSProperties}>
           {el.text}

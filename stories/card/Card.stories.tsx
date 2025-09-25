@@ -15,7 +15,7 @@ const meta = {
       <div style={{ width: 390, maxWidth: '80vw', display: 'flex', justifyContent: 'center' }}>
         <Story />
       </div>
-    )
+    ),
   ],
   parameters: {},
   tags: ['autodocs'],
@@ -23,49 +23,49 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     children: {
       description: 'Card contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } }
-    }
+      table: { type: { summary: 'React.ReactNode' } },
+    },
   },
-  args: {}
+  args: {},
 } satisfies Meta<typeof Card>
 
 export default meta
@@ -82,7 +82,7 @@ const TemplateStory = {
         </CardContent>
       </Card>
     )
-  }
+  },
 }
 
 export const DefaultLight: Story = {
@@ -95,12 +95,12 @@ export const DefaultLight: Story = {
       <p>
         Card内部でコンテンツをラップするCardContentやタイトル表示のためのCardTitleコンポーネントも提供しています
       </p>
-    )
+    ),
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DefaultDark: Story = {
@@ -113,10 +113,10 @@ export const DefaultDark: Story = {
       <p>
         Card内部でコンテンツをラップするCardContentやタイトル表示のためのCardTitleコンポーネントも提供しています
       </p>
-    )
+    ),
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

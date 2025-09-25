@@ -45,10 +45,10 @@ export const Drawer = ({
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
 
   const optionStyle = {
-    '--sekai-color-bg': sekaiColorBg
+    '--sekai-color-bg': sekaiColorBg,
   }
   const posAbsoluteStyle = {
-    ...(containerComponent && { position: 'absolute' })
+    ...(containerComponent && { position: 'absolute' }),
   }
 
   return createPortal(
@@ -56,7 +56,7 @@ export const Drawer = ({
       className={clsx(
         globalStyles[`sekai-overlay-${modeTheme}`],
         styles['sekai-drawer'],
-        styles[displayDrawer]
+        styles[displayDrawer],
       )}
       style={posAbsoluteStyle as React.CSSProperties}
       aria-hidden="true"
@@ -66,7 +66,7 @@ export const Drawer = ({
         className={clsx(
           styles[`sekai-drawer-contents-${pos}`],
           styles[displayDrawer],
-          rest.className
+          rest.className,
         )}
         style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
         role="presentation"
@@ -75,6 +75,6 @@ export const Drawer = ({
         {children}
       </div>
     </div>,
-    portalContainer
+    portalContainer,
   )
 }

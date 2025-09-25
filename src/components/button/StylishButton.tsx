@@ -37,7 +37,7 @@ export const StylishButton = ({
 
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-hover': sekaiColorHover
+    '--sekai-color-hover': sekaiColorHover,
   }
 
   return (

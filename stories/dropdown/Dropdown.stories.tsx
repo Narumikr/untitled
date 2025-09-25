@@ -19,11 +19,11 @@ const meta = {
           maxWidth: '80vw',
           height: 150,
           display: 'flex',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}>
         <Story />
       </div>
-    )
+    ),
   ],
   parameters: {},
   tags: ['autodocs'],
@@ -31,72 +31,72 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     options: {
       description: 'Options to display in the dropdown',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
       table: {
-        type: { summary: 'DropdownOption[]' }
-      }
+        type: { summary: 'DropdownOption[]' },
+      },
     },
     defaultValue: {
       description: 'Default selected value, if no setting placeholder',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     onSelect: {
       description: 'Function to call when an option is selected',
       table: {
-        type: { summary: '(value: string) => void' }
+        type: { summary: '(value: string) => void' },
       },
-      control: false
+      control: false,
     },
     placeholder: {
       description: 'Placeholder text when no option is selected',
       table: {
-        type: { summary: 'string' }
-      }
-    }
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
-    onSelect: fn()
-  }
+    onSelect: fn(),
+  },
 } satisfies Meta<typeof Dropdown>
 
 export default meta
@@ -110,15 +110,15 @@ export const DefaultLight: Story = {
     options: [
       { label: 'Option 1', value: 'option1' },
       { label: 'Option 2', value: 'option2' },
-      { label: 'Option 3', value: 'option3' }
+      { label: 'Option 3', value: 'option3' },
     ],
     defaultValue: '',
-    placeholder: 'Select an option'
+    placeholder: 'Select an option',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DefaultDark: Story = {
@@ -129,13 +129,13 @@ export const DefaultDark: Story = {
     options: [
       { label: 'Option 1', value: 'option1' },
       { label: 'Option 2', value: 'option2' },
-      { label: 'Option 3', value: 'option3' }
+      { label: 'Option 3', value: 'option3' },
     ],
     defaultValue: '',
-    placeholder: 'Select an option'
+    placeholder: 'Select an option',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

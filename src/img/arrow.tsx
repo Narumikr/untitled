@@ -20,7 +20,7 @@ export const ArrowSvg = ({
   className,
   sekai,
   themeMode,
-  vector = 'right'
+  vector = 'right',
 }: ArrowSvgIconProps) => {
   const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
   const color = isLight ? '#212121' : '#e0e0e0'

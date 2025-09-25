@@ -54,17 +54,17 @@ if __name__ == "__main__":
     # generate components indexfile
     checkDirectoryExist(components_dir)
     components_list = getFolderAndTsxFileNameList(components_dir)
-    exports_components = "\n".join([f"export * from './{folder}/{file_name}'\n" for folder, file_name in components_list])
+    exports_components = "".join([f"export * from './{folder}/{file_name}'\n" for folder, file_name in components_list])
     outputIndexFile(components_index_file, exports_components)
 
     # generate hooks indexfile
     checkDirectoryExist(hooks_dir)
     hooks_list = getTsFileNameList(hooks_dir)
-    exports_hooks = "\n".join([f"export * from './{file_name}'\n" for file_name in hooks_list])
+    exports_hooks = "".join([f"export * from './{file_name}'\n" for file_name in hooks_list])
     outputIndexFile(hooks_index_file, exports_hooks)
 
     # generate utils indexfile
     checkDirectoryExist(utils_dir)
     hooks_list = getTsFileNameList(utils_dir)
-    exports_utils = "\n".join([f"export * from './{file_name}'\n" for file_name in hooks_list])
+    exports_utils = "".join([f"export * from './{file_name}'\n" for file_name in hooks_list])
     outputIndexFile(utils_index_file, exports_utils)

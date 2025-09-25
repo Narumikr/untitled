@@ -13,75 +13,75 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     text: {
       description: 'Text to display',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     href: {
       description: 'URL that a link points to',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     isExternal: {
       description: 'External link or Inner link',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' }
-      }
+        defaultValue: { summary: 'true' },
+      },
     },
     disabled: {
       description: 'Whether the link is valid',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     ariaLabel: {
       description: 'Text for aria-label',
       table: {
-        type: { summary: 'string' }
-      }
-    }
+        type: { summary: 'string' },
+      },
+    },
   },
-  args: {}
+  args: {},
 } satisfies Meta<typeof TextLink>
 
 export default meta
@@ -96,12 +96,12 @@ export const DefaultLight: Story = {
     href: '',
     isExternal: true,
     disabled: false,
-    ariaLabel: ''
+    ariaLabel: '',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DefaultDark: Story = {
@@ -113,10 +113,10 @@ export const DefaultDark: Story = {
     href: '',
     isExternal: true,
     disabled: false,
-    ariaLabel: ''
+    ariaLabel: '',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

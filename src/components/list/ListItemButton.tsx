@@ -36,7 +36,7 @@ export const ListItemButton = ({
   children,
   icon,
   disabled = false,
-  onClick
+  onClick,
 }: ListItemButtonProps) => {
   const isListWrap = useContext(ListContext)
   if (!isListWrap) ConsoleWarning('⚠ Warning: <ListItemButton> should be used inside <List>')
@@ -46,13 +46,13 @@ export const ListItemButton = ({
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-hover': sekaiColorHover
+    '--sekai-color-hover': sekaiColorHover,
   }
 
   const listItemButtonRef = useRef<HTMLButtonElement | null>(null)
 
   const createRipple = (
-    event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>,
   ) => {
     const listItemButton = listItemButtonRef.current
     if (!listItemButton) return
@@ -75,7 +75,7 @@ export const ListItemButton = ({
   }
 
   const handleOnClick = (
-    event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>,
   ) => {
     createRipple(event)
     onClick?.()
@@ -110,7 +110,7 @@ const getImgComponent = (icon?: string | React.ReactNode) => {
 }
 
 const getClientCoordinates = (
-  event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>
+  event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>,
 ) => {
   if ('clientX' in event) {
     return { clientX: event.clientX, clientY: event.clientY }

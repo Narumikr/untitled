@@ -19,64 +19,64 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     children: {
       description: 'ListItemButton contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } }
+      table: { type: { summary: 'React.ReactNode' } },
     },
     icon: {
       description: 'Icon src or component',
       table: {
-        type: { summary: 'string | React.ReactNode' }
+        type: { summary: 'string | React.ReactNode' },
       },
-      control: false
+      control: false,
     },
     disabled: {
       description: 'Button disabled',
-      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } },
     },
     onClick: {
       description: 'Click handler',
-      table: { type: { summary: '() => void' } }
-    }
+      table: { type: { summary: '() => void' } },
+    },
   },
-  args: { onClick: fn() }
+  args: { onClick: fn() },
 } satisfies Meta<typeof ListItemButton>
 
 export default meta
@@ -90,7 +90,7 @@ const TemplateStory = {
         <ListItemButton {...args}>Sample 2</ListItemButton>
       </List>
     )
-  }
+  },
 }
 
 export const DefaultLight: Story = {
@@ -101,12 +101,12 @@ export const DefaultLight: Story = {
     themeMode: 'light',
     children: <></>,
     icon: undefined,
-    disabled: false
+    disabled: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DefaultDark: Story = {
@@ -117,12 +117,12 @@ export const DefaultDark: Story = {
     themeMode: 'dark',
     children: <></>,
     icon: undefined,
-    disabled: false
+    disabled: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const IconLight: Story = {
@@ -133,12 +133,12 @@ export const IconLight: Story = {
     themeMode: 'light',
     children: <></>,
     icon: '../../../stories/assets/youtube.svg',
-    disabled: false
+    disabled: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const IconDark: Story = {
@@ -149,12 +149,12 @@ export const IconDark: Story = {
     themeMode: 'dark',
     children: <></>,
     icon: '../../../stories/assets/youtube.svg',
-    disabled: false
+    disabled: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const DisabledLight: Story = {
@@ -165,12 +165,12 @@ export const DisabledLight: Story = {
     themeMode: 'light',
     children: <></>,
     icon: '../../../stories/assets/youtube.svg',
-    disabled: true
+    disabled: true,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DisabledDark: Story = {
@@ -181,10 +181,10 @@ export const DisabledDark: Story = {
     themeMode: 'dark',
     children: <></>,
     icon: '../../../stories/assets/youtube.svg',
-    disabled: true
+    disabled: true,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

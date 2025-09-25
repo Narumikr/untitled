@@ -13,49 +13,49 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     text: {
       description: 'Text to display',
       table: {
-        type: { summary: 'string' }
-      }
-    }
+        type: { summary: 'string' },
+      },
+    },
   },
-  args: {}
+  args: {},
 } satisfies Meta<typeof OutlineText>
 
 export default meta
@@ -66,12 +66,12 @@ export const DefaultLight: Story = {
     id: 'outline-text-default-light',
     sekai: 'Miku',
     themeMode: 'light',
-    text: 'Project SEKAI feat. Hatsune Miku'
+    text: 'Project SEKAI feat. Hatsune Miku',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DefaultDark: Story = {
@@ -79,10 +79,10 @@ export const DefaultDark: Story = {
     id: 'outline-text-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
-    text: 'Project SEKAI feat. Hatsune Miku'
+    text: 'Project SEKAI feat. Hatsune Miku',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

@@ -39,7 +39,7 @@ export const TextLink = ({
 
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-hover': sekaiColorHover
+    '--sekai-color-hover': sekaiColorHover,
   }
 
   return (
@@ -48,7 +48,7 @@ export const TextLink = ({
       className={clsx(
         styles[`sekai-text-link-${modeTheme}`],
         disabled && styles['sekai-disabled'],
-        rest.className
+        rest.className,
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
       href={href}

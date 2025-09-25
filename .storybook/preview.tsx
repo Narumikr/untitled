@@ -10,19 +10,19 @@ const preview: Preview = {
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/i
-      }
+        date: /Date$/i,
+      },
     },
     layout: 'centered',
     docs: {
-      container: CustomDocsContainer
-    }
+      container: CustomDocsContainer,
+    },
   },
   decorators: [
     (Story: StoryFn, context: StoryContext) => {
       return <CustomDocsDecorators story={Story} context={context} />
-    }
-  ]
+    },
+  ],
 }
 
 export default preview

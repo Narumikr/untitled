@@ -34,7 +34,7 @@ export const ScrollTopButton = ({
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-bg': sekaiColorBg
+    '--sekai-color-bg': sekaiColorBg,
   }
 
   const [isVisible, setIsVisible] = useState(false)
@@ -72,6 +72,6 @@ export const ScrollTopButton = ({
         themeMode={themeMode}
       />
     </button>,
-    document.body
+    document.body,
   )
 }

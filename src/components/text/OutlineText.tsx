@@ -22,7 +22,7 @@ export const OutlineText = ({ sekai, themeMode, text, ...rest }: OutlineTextProp
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
   const optionStyle = {
-    '--sekai-color': sekaiColor
+    '--sekai-color': sekaiColor,
   }
 
   return (

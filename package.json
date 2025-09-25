@@ -26,6 +26,7 @@
     "generate-index": "python scripts/generator.py",
     "build": "rm -rf dist && npm run generate-index && rollup -c && tsc --noEmit && sh scripts/build_local.sh",
     "lint": "npx eslint .  --no-cache --fix --max-warnings=0",
+    "prettier": "npx prettier --write . --ignore-path .prettierignore",
     "plop": "npx plop component",
     "dev": "storybook dev -p 6006",
     "build-storybook": "storybook build",

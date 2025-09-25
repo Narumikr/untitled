@@ -39,7 +39,7 @@ export const BasicButton = ({
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-hover': sekaiColorHover,
-    ...(withText && { color: sekaiColor })
+    ...(withText && { color: sekaiColor }),
   }
 
   return (
@@ -49,7 +49,7 @@ export const BasicButton = ({
       className={clsx(
         styles[`sekai-basic-button-${modeTheme}`],
         globalStyles[`sekai-color-${modeTheme}`],
-        rest.className
+        rest.className,
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
       disabled={disabled}>
