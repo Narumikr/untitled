@@ -7,16 +7,16 @@ import {
 
 // Ramdom select prsk character
 export const selectPrskCharacter = () => {
-  const langth = Object.keys(prskCharacter).length
-  const ramdomId = Math.floor(Math.random() * langth) + 1
-  return prskCharacter[ramdomId]
+  const length = Object.keys(prskCharacter).length
+  const randomId = Math.floor(Math.random() * length) + 1
+  return prskCharacter[randomId]
 }
 
 // Ramdom select vocaloid character
 export const selectVocaloidCharacter = () => {
   const length = Object.keys(vocaloidCharacter).length
-  const ramdomId = Math.floor(Math.random() * length) + 1
-  return vocaloidCharacter[ramdomId]
+  const randomId = Math.floor(Math.random() * length) + 1
+  return vocaloidCharacter[randomId]
 }
 
 // Judge encounter
@@ -108,9 +108,9 @@ export const handlePrLabeling = async (github, context) => {
   const prAuthor = context.payload.pull_request.user.login
 
   // Select random prsk character
-  const prskCharacter = selectPrskCharacter()
-  const prskLabelName = createLabelText(prskCharacter)
-  const prskLabelNameComment = replaceTemplate(prskCharacter.comment, {
+  const selectedPrskChar = selectPrskCharacter()
+  const prskLabelName = createLabelText(selectedPrskChar)
+  const prskLabelNameComment = replaceTemplate(selectedPrskChar.comment, {
     prAuthor: prAuthor,
   })
 
@@ -123,24 +123,36 @@ export const handlePrLabeling = async (github, context) => {
 
   if (hasEncounter) {
     // Select random vocaloid character
-    const vocaloid = selectVocaloidCharacter()
-    const vocaloidLabelName = createLabelText(vocaloid)
-    const vocaloidComment = replaceTemplate(vocaloid.comment, { prAuthor: prAuthor })
+    const selectedVocaloid = selectVocaloidCharacter()
+    const vocaloidLabelName = createLabelText(selectedVocaloid)
+    const vocaloidComment = replaceTemplate(selectedVocaloid.comment, { prAuthor: prAuthor })
 
     labelsToAdd.push(vocaloidLabelName)
 
     // Create collaboration comment
-    commentBody = createCollaborationComment(prskCharacter, vocaloid, prAuthor)
+    commentBody = createCollaborationComment(selectedPrskChar, selectedVocaloid, prAuthor)
 
     // Create vocaloid label
-    await ensureLabel(github, context, vocaloidLabelName, vocaloidComment, vocaloid.color)
+    await ensureLabel(
+      github,
+      context,
+      vocaloidLabelName,
+      vocaloidComment,
+      selectedVocaloid.color,
+    )
   } else {
     // Create single comment
-    commentBody = createSingleComment(prskCharacter, prAuthor)
+    commentBody = createSingleComment(selectedPrskChar, prAuthor)
   }
 
   // Create prsk label
-  await ensureLabel(github, context, prskLabelName, prskLabelNameComment, prskCharacter.color)
+  await ensureLabel(
+    github,
+    context,
+    prskLabelName,
+    prskLabelNameComment,
+    selectedPrskChar.color,
+  )
 
   // Add labels to PR
   await addLabels(github, context, labelsToAdd)
