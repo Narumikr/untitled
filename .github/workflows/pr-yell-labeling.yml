@@ -22,17 +22,9 @@ jobs:
 
             // 定数ファイルを読み込み
             const constantsCode = fs.readFileSync(
-              path.join(process.env.GITHUB_WORKSPACE, '.github/script/prsk-yell-label.constants.js'),
+              path.join(process.env.GITHUB_WORKSPACE, '.github/script/prsk-yell-label.constant.js'),
               'utf8'
             );
-
-            // export文を削除してオブジェクトとして評価
-            const cleanedConstants = constantsCode
-              .replace(/export const /g, 'const ')
-              .replace(/export function /g, 'function ');
-
-            // 定数を評価
-            eval(cleanedConstants);
 
             // ロジックファイルを読み込み
             const logicCode = fs.readFileSync(
@@ -40,15 +32,29 @@ jobs:
               'utf8'
             );
 
-            // import文を削除してexport文を削除
-            const cleanedLogic = logicCode
-              .replace(/import\s+{[^}]+}\s+from\s+['"][^'"]+['"];?/g, '')
-              .replace(/export const /g, 'const ')
-              .replace(/export function /g, 'function ')
-              .replace(/export async function /g, 'async function ');
+            // 両方のファイルを結合してexport/import文を削除
+            let combinedCode = constantsCode + '\n\n' + logicCode;
 
-            // ロジックを評価
-            eval(cleanedLogic);
+            // import文を削除
+            combinedCode = combinedCode.replace(/import\s+{[^}]+}\s+from\s+['"][^'"]+['"];?\n?/g, '');
+
+            // export文を削除してglobalThisに代入
+            combinedCode = combinedCode.replace(/export\s+const\s+(\w+)\s*=/g, 'globalThis.$1 =');
+            combinedCode = combinedCode.replace(/export\s+function\s+(\w+)/g, 'globalThis.$1 = function $1');
+            combinedCode = combinedCode.replace(/export\s+async\s+function\s+(\w+)/g, 'globalThis.$1 = async function $1');
+
+            console.log('=== Code sample after transformation ===');
+            console.log(combinedCode.substring(combinedCode.indexOf('handlePrLabeling') - 50, combinedCode.indexOf('handlePrLabeling') + 200));
+
+            // 結合したコードを評価
+            eval(combinedCode);
+
+            // デバッグ: 利用可能な関数を確認
+            console.log('Available functions:', Object.keys(globalThis).filter(k => typeof globalThis[k] === 'function' && k.includes('Pr')));
 
             // メイン処理を実行
-            await handlePrLabeling(github, context);
+            if (typeof globalThis.handlePrLabeling === 'function') {
+              await globalThis.handlePrLabeling(github, context);
+            } else {
+              throw new Error('handlePrLabeling is not defined. Available: ' + Object.keys(globalThis).filter(k => k.includes('handle')).join(', '));
+            }
