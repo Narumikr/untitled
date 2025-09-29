@@ -32,7 +32,7 @@ export const vocaloidCharacter = {
 
 export const collaborationScenarios = [
   {
-    title: '🎵 セカイでの出会い',
+    title: '🎵 セカイでの出会い!',
     story:
       '{main}がセカイで練習していると、突然{guest}が現れた！\n\n「一緒に歌いませんか？」\n\n二人の歌声が重なり合い、素敵なハーモニーが生まれる！',
   },
