@@ -17,101 +17,101 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     open: {
       description: 'Dialog open',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { 
-        type: { summary: 'boolean'}
-      }
+      table: {
+        type: { summary: 'boolean' },
+      },
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     children: {
       description: 'Dialog contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } }
+      table: { type: { summary: 'React.ReactNode' } },
     },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
       table: {
         type: { summary: 'HTMLElement' },
-        defaultValue: { summary: 'document.body' }
+        defaultValue: { summary: 'document.body' },
       },
-      control: false
+      control: false,
     },
     size: {
       description: 'Dialog size',
       table: {
         type: { summary: 'DialogSize' },
-        defaultValue: { summary: 'medium' }
+        defaultValue: { summary: 'medium' },
       },
       control: 'select',
-      options: ['narrow', 'medium', 'wide']
+      options: ['narrow', 'medium', 'wide'],
     },
     onClose: {
       description: 'Dialog close method',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: '() => void' } }
+      table: { type: { summary: '() => void' } },
     },
     title: {
       description: 'Dialog header title',
-      table: { type: { summary: 'string' } }
+      table: { type: { summary: 'string' } },
     },
     showCloseIcon: {
       description: 'Whether to display close icon',
       control: { type: 'boolean' },
-      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } },
     },
     buttons: {
       description: 'Use Dialog default buttons',
       table: { type: { summary: 'DialogButton[]' } },
-      control: { type: 'object' }
+      control: { type: 'object' },
     },
     dialogButtons: {
       description: 'Use custom buttons component',
       table: { type: { summary: 'React.ReactNode' } },
-      control: false
-    }
+      control: false,
+    },
   },
   args: {
-    onClose: fn()
-  }
+    onClose: fn(),
+  },
 } satisfies Meta<typeof Dialog>
 
 export default meta
@@ -121,7 +121,7 @@ const commonArgs = {
   sekai: COLORS_SEKAI_KEYS.Miku as ColorsSekaiKey,
   open: true,
   children: 'Dialog Contents',
-  title: 'Dialog Title'
+  title: 'Dialog Title',
 }
 
 export const LightMedium: Story = {
@@ -131,13 +131,13 @@ export const LightMedium: Story = {
     themeMode: 'light',
     size: 'medium',
     showCloseIcon: false,
-    buttons: []
+    buttons: [],
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const DarkMedium: Story = {
@@ -147,13 +147,13 @@ export const DarkMedium: Story = {
     themeMode: 'dark',
     size: 'medium',
     showCloseIcon: false,
-    buttons: []
+    buttons: [],
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const LightNarrow: Story = {
@@ -163,13 +163,13 @@ export const LightNarrow: Story = {
     themeMode: 'light',
     size: 'narrow',
     showCloseIcon: false,
-    buttons: []
+    buttons: [],
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const DarkNarrow: Story = {
@@ -179,13 +179,13 @@ export const DarkNarrow: Story = {
     themeMode: 'dark',
     size: 'narrow',
     showCloseIcon: false,
-    buttons: []
+    buttons: [],
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const LightWide: Story = {
@@ -195,13 +195,13 @@ export const LightWide: Story = {
     themeMode: 'light',
     size: 'wide',
     showCloseIcon: false,
-    buttons: []
+    buttons: [],
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const DarkWide: Story = {
@@ -211,13 +211,13 @@ export const DarkWide: Story = {
     themeMode: 'dark',
     size: 'wide',
     showCloseIcon: false,
-    buttons: []
+    buttons: [],
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const CloseIconLight: Story = {
@@ -227,13 +227,13 @@ export const CloseIconLight: Story = {
     themeMode: 'light',
     size: 'medium',
     showCloseIcon: true,
-    buttons: []
+    buttons: [],
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const CloseIconDark: Story = {
@@ -243,13 +243,13 @@ export const CloseIconDark: Story = {
     themeMode: 'dark',
     size: 'medium',
     showCloseIcon: true,
-    buttons: []
+    buttons: [],
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 const buttons: DialogButton[] = [
@@ -259,7 +259,7 @@ const buttons: DialogButton[] = [
     type: 'normal',
     disabled: false,
     ariaLabel: 'Cancel',
-    buttonStyle: ''
+    buttonStyle: '',
   },
   {
     text: 'OK',
@@ -267,7 +267,7 @@ const buttons: DialogButton[] = [
     type: 'normal',
     disabled: false,
     ariaLabel: 'OK',
-    buttonStyle: ''
+    buttonStyle: '',
   },
   {
     text: 'OK',
@@ -275,8 +275,8 @@ const buttons: DialogButton[] = [
     type: 'strong',
     disabled: false,
     ariaLabel: 'OK',
-    buttonStyle: ''
-  }
+    buttonStyle: '',
+  },
 ]
 export const OneButtonsLight: Story = {
   args: {
@@ -285,13 +285,13 @@ export const OneButtonsLight: Story = {
     themeMode: 'light',
     buttons: [buttons[1]] as DialogButton[],
     size: 'medium',
-    showCloseIcon: false
+    showCloseIcon: false,
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const OneButtonsDark: Story = {
@@ -301,13 +301,13 @@ export const OneButtonsDark: Story = {
     themeMode: 'dark',
     buttons: [buttons[1]] as DialogButton[],
     size: 'medium',
-    showCloseIcon: false
+    showCloseIcon: false,
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const DoubleButtonsLight: Story = {
@@ -317,13 +317,13 @@ export const DoubleButtonsLight: Story = {
     themeMode: 'light',
     buttons: [buttons[0], buttons[1]] as DialogButton[],
     size: 'medium',
-    showCloseIcon: false
+    showCloseIcon: false,
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const DoubleButtonsDark: Story = {
@@ -333,13 +333,13 @@ export const DoubleButtonsDark: Story = {
     themeMode: 'dark',
     buttons: [buttons[0], buttons[1]] as DialogButton[],
     size: 'medium',
-    showCloseIcon: false
+    showCloseIcon: false,
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const StrongButtonsLight: Story = {
@@ -349,13 +349,13 @@ export const StrongButtonsLight: Story = {
     themeMode: 'light',
     buttons: [buttons[0], buttons[2]] as DialogButton[],
     size: 'medium',
-    showCloseIcon: false
+    showCloseIcon: false,
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const StrongButtonsDark: Story = {
@@ -365,11 +365,11 @@ export const StrongButtonsDark: Story = {
     themeMode: 'dark',
     buttons: [buttons[0], buttons[2]] as DialogButton[],
     size: 'medium',
-    showCloseIcon: false
+    showCloseIcon: false,
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true
-  }
+    portal: true,
+  },
 }

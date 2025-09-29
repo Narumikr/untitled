@@ -38,7 +38,7 @@ export const DoReMeetEffect = ({
     if (currentSekaiIndex < 0) return {}
 
     return {
-      '--sekai-color': colorsSekai[sekaiKeys[currentSekaiIndex]]
+      '--sekai-color': colorsSekai[sekaiKeys[currentSekaiIndex]],
     }
   }, [currentSekaiIndex, sekaiKeys])
 

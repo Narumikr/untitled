@@ -140,13 +140,13 @@ createSekaiの引数に渡すオブジェクトの型は下記となっており
 ```ts
 export type SekaiThemeProps = {
   palette: {
-    sekai: ColorsSekaiKey;
-    mode?: PaletteMode;
-  };
+    sekai: ColorsSekaiKey
+    mode?: PaletteMode
+  }
   typography?: {
-    fontFamily?: string;
-  };
-};
+    fontFamily?: string
+  }
+}
 ```
 
 ### switchSekaiColor

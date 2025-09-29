@@ -32,7 +32,7 @@ export const BodyText = ({ themeMode, children, ...rest }: BodyTextProps) => {
       className={clsx(
         styles[`sekai-body-text-${modeTheme}`],
         isPortrait ? globalStyles['text-sm'] : globalStyles['text-base'],
-        rest.className
+        rest.className,
       )}>
       {children}
     </p>
@@ -47,7 +47,7 @@ export const SekaiBodyText = ({ sekai, children, ...rest }: SekaiBodyTextProps) 
   const { sekaiColor } = useOptionalSekai({ sekai })
 
   const colorStyle = {
-    color: sekaiColor
+    color: sekaiColor,
   }
 
   return (
@@ -74,7 +74,7 @@ export const DetailText = ({ themeMode, children, ...rest }: DetailTextProps) =>
       className={clsx(
         styles[`sekai-detail-text-${modeTheme}`],
         globalStyles['text-xs'],
-        rest.className
+        rest.className,
       )}>
       {children}
     </p>
@@ -89,7 +89,7 @@ export const SekaiDetailText = ({ sekai, children, ...rest }: SekaiDetailTextPro
   const { sekaiColor } = useOptionalSekai({ sekai })
 
   const colorStyle = {
-    color: sekaiColor
+    color: sekaiColor,
   }
 
   return (
@@ -128,7 +128,7 @@ export const SekaiAnnotationText = ({ sekai, children, ...rest }: SekaiAnnotatio
   const annotationColor = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.7, isLight)
 
   const colorStyle = {
-    color: annotationColor
+    color: annotationColor,
   }
 
   return (
