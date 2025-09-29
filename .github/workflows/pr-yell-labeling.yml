@@ -1,0 +1,63 @@
+# .github/workflows/pr-yell-labeling.yml
+name: PR prsk labeling
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  add-character-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create and add character label with random encounter
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // モジュールを読み込んでCommonJS形式に変換
+            function loadModule(filename) {
+              const moduleCode = fs.readFileSync(
+                path.join(process.env.GITHUB_WORKSPACE, '.github/workflows', filename),
+                'utf8'
+              );
+              
+              // ESモジュールのexportをCommonJS形式に変換
+              const convertedCode = moduleCode
+                .replace(/export const /g, 'module.exports.')
+                .replace(/export function /g, 'module.exports.')
+                .replace(/import .+ from ['"]\.\/(.+)['"];?/g, ''); // import文を削除
+              
+              const module = { exports: {} };
+              eval(convertedCode);
+              return module.exports;
+            }
+
+            // prsk-yell-label.constant.jsを先に読み込み
+            const charactersExports = loadModule('prsk-yell-label.constant.js');
+
+            // prsk-labeling-logic.jsを読み込み(charactersへの参照を解決)
+            const logicCode = fs.readFileSync(
+              path.join(process.env.GITHUB_WORKSPACE, '.github/workflows/prsk-labeling-logic.js'),
+              'utf8'
+            );
+
+            const convertedLogicCode = logicCode
+              .replace(/export async function /g, 'module.exports.')
+              .replace(/export function /g, 'module.exports.')
+              .replace(/import .+ from ['"]\.\/prsk-yell-label\.constant\.js['"];?/g, '')
+              .replace(/\bprskCharacter\b/g, 'charactersExports.prskCharacter')
+              .replace(/\bvocaloidCharacter\b/g, 'charactersExports.vocaloidCharacter')
+              .replace(/\bcollaborationScenarios\b/g, 'charactersExports.collaborationScenarios')
+              .replace(/\breplaceTemplate\b/g, 'charactersExports.replaceTemplate');
+
+            const logicModule = { exports: {} };
+            eval(convertedLogicCode);
+
+            // メイン処理を実行
+            await logicModule.exports.handlePrLabeling(github, context);
