@@ -20,49 +20,35 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
-            // モジュールを読み込んでCommonJS形式に変換
-            function loadModule(filename) {
-              const moduleCode = fs.readFileSync(
-                path.join(process.env.GITHUB_WORKSPACE, '.github/script', filename),
-                'utf8'
-              );
-              
-              // ESモジュールのexportをCommonJS形式に変換
-              const convertedCode = moduleCode
-                .replace(/export const /g, 'exports.')
-                .replace(/export function /g, 'exports.')
-                .replace(/export async function /g, 'exports.')
-                .replace(/import .+ from ['"]\.\/(.+)['"];?/g, ''); // import文を削除
-              
-              const module = { exports: {} };
-              const func = new Function('module', 'exports', convertedCode);
-              func(module, module.exports);
-              return module.exports;
-            }
+            // 定数ファイルを読み込み
+            const constantsCode = fs.readFileSync(
+              path.join(process.env.GITHUB_WORKSPACE, '.github/script/prsk-yell-label.constants.js'),
+              'utf8'
+            );
 
-            // prsk-yell-label.constants.jsを先に読み込み
-            const constants = loadModule('prsk-yell-label.constants.js');
+            // export文を削除してオブジェクトとして評価
+            const cleanedConstants = constantsCode
+              .replace(/export const /g, 'const ')
+              .replace(/export function /g, 'function ');
 
-            // prsk-labeling-logic.jsを読み込み
+            // 定数を評価
+            eval(cleanedConstants);
+
+            // ロジックファイルを読み込み
             const logicCode = fs.readFileSync(
               path.join(process.env.GITHUB_WORKSPACE, '.github/script/prsk-labeling-logic.js'),
               'utf8'
             );
 
-            // import文を削除し、定数への参照を置き換え
-            const convertedLogicCode = logicCode
-              .replace(/import .+ from ['"]\.\/prsk-yell-label\.constants['"];?/g, '')
-              .replace(/export const /g, 'exports.')
-              .replace(/export function /g, 'exports.')
-              .replace(/export async function /g, 'exports.')
-              .replace(/\bprskCharacter\b/g, 'constants.prskCharacter')
-              .replace(/\bvocaloidCharacter\b/g, 'constants.vocaloidCharacter')
-              .replace(/\bcollaborationScenarios\b/g, 'constants.collaborationScenarios')
-              .replace(/\breplaceTemplate\b/g, 'constants.replaceTemplate');
+            // import文を削除してexport文を削除
+            const cleanedLogic = logicCode
+              .replace(/import\s+{[^}]+}\s+from\s+['"][^'"]+['"];?/g, '')
+              .replace(/export const /g, 'const ')
+              .replace(/export function /g, 'function ')
+              .replace(/export async function /g, 'async function ');
 
-            const logicModule = { exports: {} };
-            const logicFunc = new Function('module', 'exports', 'constants', convertedLogicCode);
-            logicFunc(logicModule, logicModule.exports, constants);
+            // ロジックを評価
+            eval(cleanedLogic);
 
             // メイン処理を実行
-            await logicModule.exports.handlePrLabeling(github, context);
+            await handlePrLabeling(github, context);
