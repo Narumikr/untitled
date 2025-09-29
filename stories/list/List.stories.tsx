@@ -15,66 +15,66 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     children: {
       description: 'List contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } }
+      table: { type: { summary: 'React.ReactNode' } },
     },
     as: {
       description: 'List base component',
       table: {
         type: { summary: 'ul | ol' },
-        defaultValue: { summary: 'ul' }
+        defaultValue: { summary: 'ul' },
       },
       control: { type: 'select' },
-      options: ['ul', 'ol']
+      options: ['ul', 'ol'],
     },
     noBullet: {
       description: 'Remove bullet list style',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' }
+        defaultValue: { summary: 'true' },
       },
-      control: { type: 'boolean' }
-    }
+      control: { type: 'boolean' },
+    },
   },
-  args: {}
+  args: {},
 } satisfies Meta<typeof List>
 
 export default meta
@@ -89,12 +89,12 @@ export const BulletLight: Story = {
     themeMode: 'light',
     children: sample.map((el) => <li key={el}>{el}</li>),
     as: 'ul',
-    noBullet: false
+    noBullet: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const BulletDark: Story = {
@@ -104,12 +104,12 @@ export const BulletDark: Story = {
     themeMode: 'dark',
     children: sample.map((el) => <li key={el}>{el}</li>),
     as: 'ul',
-    noBullet: false
+    noBullet: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const OrderLight: Story = {
@@ -119,12 +119,12 @@ export const OrderLight: Story = {
     themeMode: 'light',
     children: sample.map((el) => <li key={el}>{el}</li>),
     as: 'ol',
-    noBullet: false
+    noBullet: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const OrderDark: Story = {
@@ -134,10 +134,10 @@ export const OrderDark: Story = {
     themeMode: 'dark',
     children: sample.map((el) => <li key={el}>{el}</li>),
     as: 'ol',
-    noBullet: false
+    noBullet: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

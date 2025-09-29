@@ -17,82 +17,82 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     open: {
       description: 'Drawer open',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
       table: {
-        type: { summary: 'boolean' }
-      }
+        type: { summary: 'boolean' },
+      },
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     children: {
       description: 'Drawer contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } }
+      table: { type: { summary: 'React.ReactNode' } },
     },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
       table: {
         type: { summary: 'HTMLElement' },
-        defaultValue: { summary: 'document.body' }
+        defaultValue: { summary: 'document.body' },
       },
-      control: false
+      control: false,
     },
     onClose: {
       description: 'Drawer close method',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: '() => void' } }
+      table: { type: { summary: '() => void' } },
     },
     pos: {
       description: 'Drawer position',
       table: {
         type: { summary: 'DrawerPosition' },
-        defaultValue: { summary: 'right' }
+        defaultValue: { summary: 'right' },
       },
       control: { type: 'select' },
-      options: ['right', 'left', 'top', 'bottom']
-    }
+      options: ['right', 'left', 'top', 'bottom'],
+    },
   },
   args: {
-    onClose: fn()
-  }
+    onClose: fn(),
+  },
 } satisfies Meta<typeof Drawer>
 
 export default meta
@@ -104,13 +104,13 @@ export const DefaultLight: Story = {
     themeMode: 'light',
     open: true,
     children: <></>,
-    pos: 'right'
+    pos: 'right',
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const DefaultDark: Story = {
@@ -119,13 +119,13 @@ export const DefaultDark: Story = {
     themeMode: 'dark',
     open: true,
     children: <></>,
-    pos: 'right'
+    pos: 'right',
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const PositionLeft: Story = {
@@ -134,13 +134,13 @@ export const PositionLeft: Story = {
     themeMode: 'light',
     open: true,
     children: <></>,
-    pos: 'left'
+    pos: 'left',
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const PositionTop: Story = {
@@ -149,13 +149,13 @@ export const PositionTop: Story = {
     themeMode: 'light',
     open: true,
     children: <></>,
-    pos: 'top'
+    pos: 'top',
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const PositionBottom: Story = {
@@ -164,11 +164,11 @@ export const PositionBottom: Story = {
     themeMode: 'light',
     open: true,
     children: <></>,
-    pos: 'bottom'
+    pos: 'bottom',
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }

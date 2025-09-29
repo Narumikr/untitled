@@ -36,6 +36,6 @@ export const useSessionStorage = <T>(sessionStorageKey: string, initialValue: T)
   return {
     storedValue,
     setStoredValue,
-    deleteSessionStorage
+    deleteSessionStorage,
   }
 }

@@ -41,7 +41,7 @@ export const CustomDocsContainer = ({ children, context }: CustomDocsContainerPr
       .css-11xgcgt {
         z-index: 10000;
       }
-    `
+    `,
   )
   const styles = darkStoryIds.reduce(
     (pre, el) =>
@@ -52,7 +52,7 @@ export const CustomDocsContainer = ({ children, context }: CustomDocsContainerPr
         background-color: ${BACKGROUND_DARK_MODE} !important;
       }
       `,
-    lightStyles
+    lightStyles,
   )
 
   useEffect(() => {

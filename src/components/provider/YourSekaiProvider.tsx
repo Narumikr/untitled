@@ -38,14 +38,14 @@ export const YourSekaiProvider = ({ children, sekaiTheme }: YourSekaiProviderPro
     (sekai: ColorsSekaiKey) => {
       setSekaiColor(sekai)
     },
-    [setSekaiColor]
+    [setSekaiColor],
   )
 
   const switchColorTheme = useCallback(
     (color: PaletteMode) => {
       setColorTheme(color)
     },
-    [setColorTheme]
+    [setColorTheme],
   )
 
   const currentSekaiTheme = useMemo(
@@ -54,19 +54,19 @@ export const YourSekaiProvider = ({ children, sekaiTheme }: YourSekaiProviderPro
       palette: {
         ...sekaiTheme.palette,
         sekai: sekaiColor,
-        mode: colorTheme
-      }
+        mode: colorTheme,
+      },
     }),
-    [colorTheme, sekaiColor, sekaiTheme]
+    [colorTheme, sekaiColor, sekaiTheme],
   )
 
   const contextValue = useMemo(
     () => ({
       sekaiTheme: currentSekaiTheme,
       switchSekaiColor,
-      switchColorTheme
+      switchColorTheme,
     }),
-    [currentSekaiTheme, switchColorTheme, switchSekaiColor]
+    [currentSekaiTheme, switchColorTheme, switchSekaiColor],
   )
 
   return (
@@ -94,7 +94,7 @@ const GlobalStyle = memo(({ theme }: { theme: SekaiTheme }) => {
       background: ${theme.palette.mode === DARK_MODE ? BACKGROUND_DARK_MODE : BACKGROUND_LIGHT_MODE};
     }
   `,
-    [theme.palette.mode, theme.typography.fontFamily]
+    [theme.palette.mode, theme.typography.fontFamily],
   )
 
   if (!isClient) return null

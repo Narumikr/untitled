@@ -26,18 +26,18 @@ export default [
         file: pkg.main,
         format: 'cjs',
         sourcemap: false,
-        preserveModules: false
+        preserveModules: false,
       },
       {
         file: pkg.module,
         format: 'esm',
         sourcemap: false,
-        preserveModules: false
-      }
+        preserveModules: false,
+      },
     ],
     external: [
       ...Object.keys(pkg.peerDependencies || {}),
-      ...Object.keys(pkg.devDependencies || {})
+      ...Object.keys(pkg.devDependencies || {}),
     ],
     plugins: [
       tsconfigPaths(),
@@ -47,28 +47,28 @@ export default [
       babel({
         babelHelpers: 'runtime',
         presets: ['@babel/preset-react'],
-        extensions: ['.ts', '.tsx']
+        extensions: ['.ts', '.tsx'],
       }),
       postcss({
         modules: true,
         use: {
           sass: {
             implementation: (await import('sass')).default,
-            silenceDeprecations: ['legacy-js-api']
-          }
+            silenceDeprecations: ['legacy-js-api'],
+          },
         },
-        plugins: [(await import('autoprefixer')).default]
+        plugins: [(await import('autoprefixer')).default],
       }),
       image(),
       svgr(),
       copy({
-        targets: [{ src: 'src/styles/sekai-colors.css', dest: 'dist/color' }]
-      })
-    ]
+        targets: [{ src: 'src/styles/sekai-colors.css', dest: 'dist/color' }],
+      }),
+    ],
   },
   {
     input: 'src/index.ts',
     output: [{ file: pkg.types, format: 'es' }],
-    plugins: [tsconfigPaths(), resolve(), dts()]
-  }
+    plugins: [tsconfigPaths(), resolve(), dts()],
+  },
 ]

@@ -15,58 +15,58 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     children: {
       description: 'Tooltip contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } }
+      table: { type: { summary: 'React.ReactNode' } },
     },
     pos: {
       description: 'Tooltip position',
       table: {
         type: { summary: 'TooltipPosition' },
-        defaultValue: { summary: 'top' }
+        defaultValue: { summary: 'top' },
       },
       control: { type: 'select' },
-      options: ['top', 'bottom']
-    }
+      options: ['top', 'bottom'],
+    },
   },
-  args: {}
+  args: {},
 } satisfies Meta<typeof Tooltip>
 
 export default meta
@@ -81,12 +81,12 @@ export const TopLight: Story = {
     themeMode: 'light',
     children: <SampleText />,
     text: 'This is a tooltip',
-    pos: 'top'
+    pos: 'top',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const TopDark: Story = {
@@ -96,12 +96,12 @@ export const TopDark: Story = {
     themeMode: 'dark',
     children: <SampleText />,
     text: 'This is a tooltip',
-    pos: 'top'
+    pos: 'top',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const BottomLight: Story = {
@@ -111,12 +111,12 @@ export const BottomLight: Story = {
     themeMode: 'light',
     children: <SampleText />,
     text: 'This is a tooltip',
-    pos: 'bottom'
+    pos: 'bottom',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const BottomDark: Story = {
@@ -126,10 +126,10 @@ export const BottomDark: Story = {
     themeMode: 'dark',
     children: <SampleText />,
     text: 'This is a tooltip',
-    pos: 'bottom'
+    pos: 'bottom',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
