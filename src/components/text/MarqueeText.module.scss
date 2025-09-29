@@ -1,15 +1,14 @@
-@use '../../styles/global.module.scss' as global;
-
 .sekai-marquee-text {
   background-color: inherit;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: flex;
 }
 
 .sekai-marquee-text-wrap-comp {
   position: relative;
+  display: flex;
+
   &::after {
     content: '';
     position: absolute;

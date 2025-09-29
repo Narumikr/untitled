@@ -17,6 +17,7 @@ export interface MarqueeTextProps {
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
   children: React.ReactNode
+  duration?: number
   parentBackgroundColor?: string
 }
 
@@ -24,6 +25,7 @@ export const MarqueeText = ({
   sekai,
   themeMode,
   children,
+  duration,
   parentBackgroundColor,
   ...rest
 }: MarqueeTextProps) => {
@@ -31,21 +33,23 @@ export const MarqueeText = ({
   const containerRef = useRef<HTMLDivElement | null>(null)
   const textWrapRef = useRef<HTMLElement | null>(null)
   const [excessiveLength, setExcessiveLength] = useState(false)
+  const [durationState, setDurationState] = useState(duration ?? 0)
 
   const containerBackground = useMemo(() => {
-  if (parentBackgroundColor) return parentBackgroundColor
-  return getBackgroundColor(containerRef, modeTheme)
-}, [modeTheme, parentBackgroundColor])
+    if (parentBackgroundColor) return parentBackgroundColor
+    return getBackgroundColor(containerRef, modeTheme)
+  }, [modeTheme, parentBackgroundColor])
 
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--background-color-container': containerBackground
+    '--background-color-container': containerBackground,
+    '--scroll-duration': `${durationState}s`,
   }
 
   const clonedChildren = Children.map(children, (child) => {
     if (React.isValidElement(child)) {
       return React.cloneElement(child, {
-        ref: textWrapRef
+        ref: textWrapRef,
       })
     } else {
       return child
@@ -69,11 +73,12 @@ export const MarqueeText = ({
   }, [])
 
   useEffect(() => {
+    if (duration) return
     if (textWrapRef.current && excessiveLength) {
-      const duration = textWrapRef.current.offsetWidth / 50
-      textWrapRef.current.style.setProperty('--scroll-duration', `${duration}s`)
+      const calcDuration = textWrapRef.current.offsetWidth / 50
+      setDurationState(calcDuration)
     }
-  }, [excessiveLength])
+  }, [duration, excessiveLength])
 
   return (
     <div
@@ -83,9 +88,9 @@ export const MarqueeText = ({
         styles['sekai-marquee-text'],
         {
           [styles['sekai-marquee-text-scroll']]: excessiveLength,
-          [styles['sekai-marquee-text-wrap-comp']]: isValidElement(children)
+          [styles['sekai-marquee-text-wrap-comp']]: isValidElement(children),
         },
-        rest.className
+        rest.className,
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {isValidElement(children) ? (
@@ -101,7 +106,7 @@ export const MarqueeText = ({
 
 const getBackgroundColor = (
   element: React.MutableRefObject<HTMLDivElement | null>,
-  mode: PaletteMode
+  mode: PaletteMode,
 ) => {
   if (element.current) {
     const computedStyle = getComputedStyle(element.current)

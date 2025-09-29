@@ -7,7 +7,7 @@ import {
   BACKGROUND_DARK_MODE,
   BACKGROUND_LIGHT_MODE,
   COLOR_DARK_MODE,
-  COLOR_LIGHT_MODE
+  COLOR_LIGHT_MODE,
 } from '@/internal/color.constant'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
