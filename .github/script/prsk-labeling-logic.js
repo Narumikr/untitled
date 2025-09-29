@@ -3,7 +3,7 @@ import {
   vocaloidCharacter,
   collaborationScenarios,
   replaceTemplate,
-} from './prsk-yell-label.constant'
+} from './prsk-yell-label.constants'
 
 // Ramdom select prsk character
 export const selectPrskCharacter = () => {
