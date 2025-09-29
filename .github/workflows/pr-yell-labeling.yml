@@ -22,7 +22,7 @@ jobs:
 
             // 定数ファイルを読み込み
             const constantsCode = fs.readFileSync(
-              path.join(process.env.GITHUB_WORKSPACE, '.github/script/prsk-yell-label.constant.js'),
+              path.join(process.env.GITHUB_WORKSPACE, '.github/script/prsk-yell-label.constants.js'),
               'utf8'
             );
 
