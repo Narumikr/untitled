@@ -70,7 +70,7 @@ export const MarqueeText = ({
     resizeObserver.observe(containerRef.current)
 
     return () => resizeObserver.disconnect()
-  }, [])
+  }, [children])
 
   useEffect(() => {
     if (duration) return
