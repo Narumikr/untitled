@@ -48,14 +48,8 @@ jobs:
             combinedCode = combinedCode.replace(/export\s+function\s+(\w+)/g, 'globalThis.$1 = function $1');
             combinedCode = combinedCode.replace(/export\s+async\s+function\s+(\w+)/g, 'globalThis.$1 = async function $1');
 
-            console.log('=== Code sample after transformation ===');
-            console.log(combinedCode.substring(combinedCode.indexOf('handlePrLabeling') - 50, combinedCode.indexOf('handlePrLabeling') + 200));
-
             // 結合したコードを評価
             eval(combinedCode);
-
-            // デバッグ: 利用可能な関数を確認
-            console.log('Available functions:', Object.keys(globalThis).filter(k => typeof globalThis[k] === 'function' && k.includes('Pr')));
 
             // メイン処理を実行
             if (typeof globalThis.handlePrLabeling === 'function') {
