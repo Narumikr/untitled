@@ -27,13 +27,13 @@ export default create({
   barBg: '#33aaee1a',
 
   inputBg: '#FFFFFF',
-  inputBorder: '#E6E6E6',
+  inputBorder: '#33aaee',
   inputTextColor: '#333333',
   inputBorderRadius: 4,
 
-  buttonBg: '#F6F9FC',
-  buttonBorder: '#E6E6E6',
+  buttonBg: '#33aaee1a',
+  buttonBorder: '#33aaee2a',
 
-  booleanBg: '#F6F9FC',
-  booleanSelectedBg: '#E6E6E6',
+  booleanBg: '#33aaee1a',
+  booleanSelectedBg: '#33aaee2a',
 })
