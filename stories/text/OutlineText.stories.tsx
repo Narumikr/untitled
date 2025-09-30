@@ -5,7 +5,7 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/OutlineText',
+  title: 'UI/OutlineText',
   component: OutlineText,
   parameters: {},
   tags: ['autodocs'],

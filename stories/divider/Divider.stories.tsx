@@ -7,7 +7,7 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/Divider',
+  title: 'UI/Divider',
   component: Divider,
   decorators: [
     (Story) => (

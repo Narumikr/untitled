@@ -11,7 +11,7 @@ import type { StickyNoteProps } from '@/components/list/StickyNote'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/StickyNote',
+  title: 'UI/StickyNote',
   component: StickyNote,
   parameters: {},
   tags: ['autodocs'],

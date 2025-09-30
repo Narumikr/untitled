@@ -17,6 +17,11 @@ const preview: Preview = {
     docs: {
       container: CustomDocsContainer,
     },
+    options: {
+      storySort: {
+        order: ['Untitled', 'Special', 'UI'],
+      },
+    },
   },
   decorators: [
     (Story: StoryFn, context: StoryContext) => {

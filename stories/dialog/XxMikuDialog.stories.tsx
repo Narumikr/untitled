@@ -7,7 +7,7 @@ import { XxMikuDialog } from '@/components/dialog/XxMikuDialog'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/XxMikuDialog',
+  title: 'Special/XxMikuDialog',
   component: XxMikuDialog,
   parameters: {},
   tags: ['autodocs'],

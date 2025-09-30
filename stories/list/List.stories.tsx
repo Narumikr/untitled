@@ -7,7 +7,7 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/List',
+  title: 'UI/List',
   component: List,
   parameters: {},
   tags: ['autodocs'],

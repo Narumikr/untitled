@@ -3,7 +3,7 @@ import { DoReMeetEffect } from '@/components/effect/DoReMeetEffect'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/DoReMeetEffect',
+  title: 'Special/DoReMeetEffect',
   component: DoReMeetEffect,
   parameters: {},
   tags: ['autodocs'],

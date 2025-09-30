@@ -3,7 +3,7 @@ import { BodyText } from '@/components/text/UtilText'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/BodyText',
+  title: 'UI/BodyText',
   component: BodyText,
   parameters: {},
   tags: ['autodocs'],

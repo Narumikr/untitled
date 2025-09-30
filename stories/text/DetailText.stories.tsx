@@ -3,7 +3,7 @@ import { DetailText } from '@/components/text/UtilText'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/DetailText',
+  title: 'UI/DetailText',
   component: DetailText,
   parameters: {},
   tags: ['autodocs'],
