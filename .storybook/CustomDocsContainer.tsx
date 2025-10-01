@@ -24,18 +24,6 @@ export const CustomDocsContainer = ({ children, context }: CustomDocsContainerPr
         background-color: #ffffff !important;
       }
       `,
-    `
-      .docs-story {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        max-width: 100%;
-        min-height: 250px;
-      }
-      .css-11xgcgt {
-        z-index: 10000;
-      }
-    `,
   )
   const styles = darkStoryIds.reduce(
     (pre, el) =>

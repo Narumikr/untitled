@@ -2,6 +2,7 @@ import React from 'react'
 
 import { CustomDocsContainer } from './CustomDocsContainer'
 import { CustomDocsDecorators } from './CustomDocsDecorators'
+import './storybook.css'
 
 import type { Preview, StoryContext, StoryFn } from '@storybook/react'
 
