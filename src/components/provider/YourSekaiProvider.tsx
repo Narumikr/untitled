@@ -2,6 +2,12 @@ import React, { createContext, memo, useCallback, useEffect, useMemo, useState }
 
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { DARK_MODE } from '@/hooks/useThemeMode'
+import {
+  BACKGROUND_DARK_MODE,
+  BACKGROUND_LIGHT_MODE,
+  COLOR_DARK_MODE,
+  COLOR_LIGHT_MODE,
+} from '@/internal/color.constant'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
@@ -84,8 +90,8 @@ const GlobalStyle = memo(({ theme }: { theme: SekaiTheme }) => {
       font-family: ${theme.typography.fontFamily};
     }
     body {
-      color: ${theme.palette.mode === DARK_MODE ? '#e0e0e0' : '#212121'};
-      background: ${theme.palette.mode === DARK_MODE ? '#121212' : '#ffffff'};
+      color: ${theme.palette.mode === DARK_MODE ? COLOR_DARK_MODE : COLOR_LIGHT_MODE};
+      background: ${theme.palette.mode === DARK_MODE ? BACKGROUND_DARK_MODE : BACKGROUND_LIGHT_MODE};
     }
   `,
     [theme.palette.mode, theme.typography.fontFamily],

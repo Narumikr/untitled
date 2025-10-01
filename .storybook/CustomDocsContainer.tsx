@@ -3,6 +3,12 @@ import React, { useEffect } from 'react'
 import { DocsContainer } from '@storybook/blocks'
 
 import { DARK_MODE, LIGHT_MODE } from '@/hooks/useThemeMode'
+import {
+  BACKGROUND_DARK_MODE,
+  BACKGROUND_LIGHT_MODE,
+  COLOR_DARK_MODE,
+  COLOR_LIGHT_MODE,
+} from '@/internal/color.constant'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { DocsContextProps } from '@storybook/blocks'
@@ -20,8 +26,8 @@ export const CustomDocsContainer = ({ children, context }: CustomDocsContainerPr
       pre +
       `
       #anchor--${el} .docs-story {
-        color: #212121 !important;
-        background-color: #ffffff !important;
+        color: ${COLOR_LIGHT_MODE} !important;
+        background-color: ${BACKGROUND_LIGHT_MODE} !important;
       }
       `,
   )
@@ -30,8 +36,8 @@ export const CustomDocsContainer = ({ children, context }: CustomDocsContainerPr
       pre +
       `
       #anchor--${el} .docs-story {
-        color: #e0e0e0 !important;
-        background-color: #121212 !important;
+        color: ${COLOR_DARK_MODE} !important;
+        background-color: ${BACKGROUND_DARK_MODE} !important;
       }
       `,
     lightStyles,
