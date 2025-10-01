@@ -1,0 +1,48 @@
+body,
+html,
+button,
+input,
+select,
+textarea,
+.sbdocs-preview,
+.sbdocs-p,
+.sbdocs-li,
+.sbdocs-a,
+.sbdocs-td,
+.sbdocs-th,
+.sbdocs-h1,
+.sbdocs-h2,
+.sbdocs-h3,
+.sbdocs-h4,
+.sbdocs-h5,
+.sbdocs-h6 {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.sbdocs-title {
+  font-family: Montserrat, sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.sidebar-header,
+.sidebar-item,
+.sidebar-subheading,
+.search-field input {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.sidebar-item:hover {
+  background-color: #ffc8005a !important;
+}
+
+.docs-story {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 100% !important;
+  min-height: 250px !important;
+}
+
+.css-11xgcgt {
+  z-index: 10000 !important;
+}

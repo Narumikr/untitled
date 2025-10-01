@@ -2,6 +2,7 @@ import React from 'react'
 
 import { CustomDocsContainer } from './CustomDocsContainer'
 import { CustomDocsDecorators } from './CustomDocsDecorators'
+import './storybook.css'
 
 import type { Preview, StoryContext, StoryFn } from '@storybook/react'
 
@@ -16,6 +17,11 @@ const preview: Preview = {
     layout: 'centered',
     docs: {
       container: CustomDocsContainer,
+    },
+    options: {
+      storySort: {
+        order: ['Untitled', 'Special', 'UI'],
+      },
     },
   },
   decorators: [

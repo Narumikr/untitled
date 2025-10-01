@@ -5,7 +5,7 @@ import { Character } from './Character'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/Character',
+  title: 'Special/SekaiCharacter',
   component: Character,
   parameters: {},
   tags: ['autodocs'],

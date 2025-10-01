@@ -3,7 +3,7 @@ import { AnnotationText } from '@/components/text/UtilText'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/AnnotationText',
+  title: 'UI/AnnotationText',
   component: AnnotationText,
   parameters: {},
   tags: ['autodocs'],

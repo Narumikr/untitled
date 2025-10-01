@@ -7,7 +7,7 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/StylishButton',
+  title: 'UI/StylishButton',
   component: StylishButton,
   parameters: {},
   tags: ['autodocs'],

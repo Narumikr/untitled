@@ -5,7 +5,7 @@ import { Color } from './Color'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/Color',
+  title: 'Special/SekaiColor',
   component: Color,
   parameters: {},
   tags: ['autodocs'],

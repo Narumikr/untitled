@@ -8,7 +8,7 @@ import type { CardProps } from '@/components/card/Card'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/Card',
+  title: 'UI/Card',
   component: Card,
   decorators: [
     (Story) => (

@@ -9,7 +9,7 @@ import type { ListItemTextProps } from '@/components/list/ListItemText'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/ListItemText',
+  title: 'UI/ListItemText',
   component: ListItemText,
   parameters: {},
   tags: ['autodocs'],

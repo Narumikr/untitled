@@ -11,7 +11,7 @@ import type { ListItemButtonProps } from '@/components/list/ListItemButton'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/ListItemButton',
+  title: 'UI/ListItemButton',
   component: ListItemButton,
   parameters: {},
   tags: ['autodocs'],

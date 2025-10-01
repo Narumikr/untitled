@@ -8,7 +8,7 @@ import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/WindowDialog',
+  title: 'UI/WindowDialog',
   component: WindowDialog,
   parameters: {},
   tags: ['autodocs'],

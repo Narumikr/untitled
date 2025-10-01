@@ -5,7 +5,7 @@ import { IntoTheSekai } from '@/components/effect/IntoTheSekai'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/IntoTheSekai',
+  title: 'Special/IntoTheSekai',
   component: IntoTheSekai,
   parameters: {},
   tags: ['autodocs'],
