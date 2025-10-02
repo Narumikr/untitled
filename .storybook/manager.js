@@ -18,5 +18,5 @@ document.querySelectorAll("link[rel*='icon']").forEach((el) => el.remove())
 const link = document.createElement('link')
 link.rel = 'icon'
 link.type = 'image/png'
-link.href = '/untitled.svg'
+link.href = '/untitled.png?v=1'
 document.head.appendChild(link)
