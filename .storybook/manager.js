@@ -11,6 +11,10 @@ addons.setConfig({
   // initialPath: 'docs',
 })
 
+// Delete existing favicon
+document.querySelectorAll("link[rel*='icon']").forEach((el) => el.remove())
+
+// Add new favicon
 const link = document.createElement('link')
 link.rel = 'icon'
 link.type = 'image/png'
