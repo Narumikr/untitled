@@ -14,5 +14,5 @@ addons.setConfig({
 const link = document.createElement('link')
 link.rel = 'icon'
 link.type = 'image/png'
-link.href = '/untitled.png'
+link.href = '/untitled.png?v=1'
 document.head.appendChild(link)
