@@ -1,11 +1,12 @@
 import { create } from '@storybook/theming/create'
+import untitledImage from './untitled.png'
 
 export default create({
   base: 'light',
 
   brandTitle: 'Untitled library',
   brandUrl: './',
-  // brandImage: '',
+  brandImage: untitledImage,
   brandTarget: '_self',
 
   colorPrimary: '#33ccba',
