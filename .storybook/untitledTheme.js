@@ -1,5 +1,5 @@
 import { create } from '@storybook/theming/create'
-import untitledImage from './untitled.png'
+import untitledImage from './public/untitled.png'
 
 export default create({
   base: 'light',
