@@ -21,27 +21,13 @@ interface CustomDocsContainerProps {
 export const CustomDocsContainer = ({ children, context }: CustomDocsContainerProps) => {
   const lightStoryIds = sortStories(context, LIGHT_MODE)
   const darkStoryIds = sortStories(context, DARK_MODE)
-  const lightStyles = lightStoryIds.reduce(
-    (pre, el) =>
-      pre +
-      `
-      #anchor--${el} .docs-story {
-        color: ${COLOR_LIGHT_MODE} !important;
-        background-color: ${BACKGROUND_LIGHT_MODE} !important;
-      }
-      `,
-  )
-  const styles = darkStoryIds.reduce(
-    (pre, el) =>
-      pre +
-      `
-      #anchor--${el} .docs-story {
-        color: ${COLOR_DARK_MODE} !important;
-        background-color: ${BACKGROUND_DARK_MODE} !important;
-      }
-      `,
-    lightStyles,
-  )
+  const lightStyles = lightStoryIds
+    .map((id) => createStyleForStory(id, COLOR_LIGHT_MODE, BACKGROUND_LIGHT_MODE))
+    .join('\n')
+  const darkStyles = darkStoryIds
+    .map((id) => createStyleForStory(id, COLOR_DARK_MODE, BACKGROUND_DARK_MODE))
+    .join('\n')
+  const styles = lightStyles + darkStyles
 
   useEffect(() => {
     if (!context.componentStories().length) return
@@ -63,6 +49,15 @@ export const CustomDocsContainer = ({ children, context }: CustomDocsContainerPr
       </div>
     </DocsContainer>
   )
+}
+
+const createStyleForStory = (storyId: string, textColor: string, backgroudColor: string) => {
+  return `
+    #anchor--${storyId} .docs-story {
+      color: ${textColor} !important;
+      background-color: ${backgroudColor} !important;
+    }
+    `
 }
 
 const sortStories = (context: DocsContextProps, mode: PaletteMode) => {
