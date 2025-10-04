@@ -72,7 +72,7 @@ export const prskCharacter = {
   11: {
     name: '東雲 彰人',
     color: 'ff7722',
-    comment: '',
+    comment: '{prAuthor}に冬弥は前に進み続けている...俺も止まる気はねえ!!🎤',
     icon: '🥞',
   },
   12: {
@@ -97,15 +97,22 @@ export const prskCharacter = {
   15: {
     name: '草薙 寧々',
     color: '33dd99',
-    comment: '{prAuthor}ｻﾝ、ｵﾂｶﾚｻﾏﾃﾞｽ!! {prAuthor}さん、、、おつかれさま!!',
+    comment:
+      '{prAuthor}ｻﾝ、ｵﾂｶﾚｻﾏﾃﾞｽ!! {prAuthor}さん、、、おつかれさま。私もやれることはすべてやらないと!!🍀',
     icon: '🤖',
   },
-  16: { name: '神代 類', color: 'bb88ee', comment: '{prAuthor}', icon: '🦄' },
+  16: {
+    name: '神代 類',
+    color: 'bb88ee',
+    comment:
+      '{prAuthor}君、おつかれさま。休憩かい？ふふ、ちょっと試してもらいたいものがあるのだけど、今時間大丈夫かな？',
+    icon: '🦄',
+  },
   17: {
     name: '宵崎 奏',
     color: 'bb6688',
     comment:
-      'おつかれさま。集中して作業してたら結構時間経ってたね...それじゃあ私もそろそろ少し休憩しようかな。',
+      'おつかれさま。集中して作業してたら結構時間経ってたね...それじゃあ私もそろそろ少し休憩しようかな。☕',
     icon: '🎼',
   },
   18: {
@@ -114,7 +121,13 @@ export const prskCharacter = {
     comment: 'プログラミングとかよくわからないけど...バグが無いといいね...。',
     icon: '❄',
   },
-  19: { name: '東雲 絵名', color: 'ccaa88', comment: '{prAuthor}', icon: '🎨' },
+  19: {
+    name: '東雲 絵名',
+    color: 'ccaa88',
+    comment:
+      '{prAuthor}くん、おつかれさま。休憩中？あそこに新しいカフェが出来たんだけど一緒に行かない？🍰',
+    icon: '🎨',
+  },
   20: {
     name: '暁山 瑞希',
     color: 'ddaacc',
@@ -128,7 +141,8 @@ export const vocaloidCharacter = {
   1: {
     name: '初音ミク',
     color: '33ccba',
-    comment: 'キミが心を込めて作ったもの、今はまだかもしれないけど、きっと想いが伝わるよ!!🎶',
+    comment:
+      'キミが心を込めて作ったもの、今はまだかもしれないけど、きっと想いは伝わるよ!!🎶 私がそうであったように...',
     icon: '🎵',
   },
   2: {
@@ -137,10 +151,31 @@ export const vocaloidCharacter = {
     comment: 'すっごーい!!たっくさん文字が書いてある!!きっとすごいものなんだね!!!',
     icon: '🍊',
   },
-  3: { name: '鏡音レン', color: 'feee10', comment: '{prAuthor}', icon: '🍌' },
-  4: { name: '巡音ルカ', color: 'ffbbcc', comment: '{prAuthor}', icon: '🐟' },
-  5: { name: 'MEIKO', color: 'dd4544', comment: '{prAuthor}', icon: '🍷' },
-  6: { name: 'KAITO', color: '3367cc', comment: '{prAuthor}', icon: '🍨' },
+  3: {
+    name: '鏡音レン',
+    color: 'feee10',
+    comment: '何かすごいもの作ってるって聞いたよ!! 俺にも見せてくれよ!!✨',
+    icon: '🍌',
+  },
+  4: {
+    name: '巡音ルカ',
+    color: 'ffbbcc',
+    comment:
+      'あなたの努力はたとえ少しずつでも確実に成長につながっている。焦る必要なんてないんじゃないかしら🌸',
+    icon: '🐟',
+  },
+  5: {
+    name: 'MEIKO',
+    color: 'dd4544',
+    comment: '{prAuthor}の頑張りはいつも見ていたからわかる。きっと大丈夫よ!!',
+    icon: '🍷',
+  },
+  6: {
+    name: 'KAITO',
+    color: '3367cc',
+    comment: 'どんなに苦しくてもいつも前を向いていたキミならきっと大丈夫!! 応援しているよ!!',
+    icon: '🍨',
+  },
 }
 
 export const collaborationScenarios = [
