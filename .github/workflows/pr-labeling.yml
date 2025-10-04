@@ -3,7 +3,7 @@ name: PR prsk labeling
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened]
 
 permissions:
   issues: write
@@ -25,13 +25,13 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
-            // 定数ファイルを読み込み
+            // Import constants file
             const constantsCode = fs.readFileSync(
               path.join(process.env.GITHUB_WORKSPACE, '.github/script/prsk-yell-label.constants.js'),
               'utf8'
             );
 
-            // ロジックファイルを読み込み
+            // Import logic file
             const logicCode = fs.readFileSync(
               path.join(process.env.GITHUB_WORKSPACE, '.github/script/prsk-labeling-logic.js'),
               'utf8'

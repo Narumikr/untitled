@@ -26,10 +26,7 @@ export const isEncounter = (probability = 0.25) => {
 
 // create label text
 export const createLabelText = (character) => {
-  const today = new Date()
-  const month = String(today.getMonth() + 1).padStart(2, '0')
-  const day = String(today.getDate()).padStart(2, '0')
-  return `${month}/${day} - ${character.name}`
+  return `${character.icon} | ${character.name}`
 }
 
 // Collaboration comment
@@ -40,18 +37,20 @@ export const createCollaborationComment = (mainChar, guestChar, prAuthor) => {
   const storyText = replaceTemplate(scenario.story, {
     main: mainChar.name,
     guest: guestChar.name,
+    prAuthor: prAuthor,
   })
 
   const mainComment = replaceTemplate(mainChar.comment, { prAuthor: prAuthor })
   const guestComment = replaceTemplate(guestChar.comment, { prAuthor: prAuthor })
 
-  return `## ${scenario.title}\n\n${storyText}\n\n---\n### 🎭 登場キャラクター\n- **${mainChar.name}**: ${mainComment}\n- **${guestChar.name}**: ${guestComment}\n\n> 素敵なコラボレーションです！✨`
+  return `## ${scenario.title}\n\n${storyText}\n\n---\n### 🎸 素敵な出会いに\n\n **${mainChar.name}**: ${mainComment}\n\n- **${guestChar.name}**: ${guestComment}\n\n> 2人にはたくさんの元気をもらったな✨ ー${getToday()}ー`
 }
 
 // Single comment
 export function createSingleComment(character, prAuthor) {
   const comment = replaceTemplate(character.comment, { prAuthor: prAuthor })
-  return `🎵 **${character.name}** が登場！\n\n> ${comment}\n\n今日も素敵なコードをありがとうございます！`
+
+  return `🎵 **${character.name}** が会いに来てくれた✨\n\n> ${comment}\n\n(￣△￣*) .｡oO( 今日も最高な一日だな ー${getToday()}ー`
 }
 
 // Create label or obtain existing label
@@ -99,6 +98,16 @@ export async function postComment(github, context, body) {
     body: body,
   })
   console.log(`Posted comment to PR #${context.issue.number}`)
+}
+
+const getToday = () => {
+  const today = new Date()
+  const month = (today.getMonth() + 1).toString()
+  const day = today.getDate().toString()
+  const mm = month.padStart(2, '0')
+  const dd = day.padStart(2, '0')
+
+  return `${mm}/${dd}`
 }
 
 /**
