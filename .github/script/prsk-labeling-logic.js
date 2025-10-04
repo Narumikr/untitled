@@ -102,8 +102,10 @@ export async function postComment(github, context, body) {
 
 const getToday = () => {
   const today = new Date()
-  const month = (today.getMonth() + 1).toString()
-  const day = today.getDate().toString()
+  const jstDate = new Date(today.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }))
+
+  const month = (jstDate.getMonth() + 1).toString()
+  const day = jstDate.getDate().toString()
   const mm = month.padStart(2, '0')
   const dd = day.padStart(2, '0')
 
