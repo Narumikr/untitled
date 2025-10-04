@@ -89,7 +89,48 @@ jobs:
           script: |
             const versionType = '${{ needs.check-version.outputs.version_type }}';
 
-            // Delete existing version labels (major, minor, patch)
+            const labelConfig = {
+              'major': {
+                name: 'Major VerUp',
+                color: '4455dd',
+                description: 'Major version update'
+              },
+              'minor': {
+                name: 'Minor VerUp',
+                color: '884499',
+                description: 'Minor version update'
+              },
+              'patch': {
+                name: 'Patch VerUp',
+                color: '88dd44',
+                description: 'Patch version update'
+              }
+            };
+
+            const labelInfo = labelConfig[versionType];
+            const allVersionLabels = Object.values(labelConfig).map(config => config.name);
+
+            try {
+              await github.rest.issues.updateLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: labelInfo.name,
+                color: labelInfo.color,
+                description: labelInfo.description
+              });
+            } catch (error) {
+              if (error.status === 404) {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: labelInfo.name,
+                  color: labelInfo.color,
+                  description: labelInfo.description
+                });
+              }
+            }
+
+            // Delete existing version labels (Major VerUp, Minor VerUp, patch)
             const existingLabels = await github.rest.issues.listLabelsOnIssue({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -97,7 +138,7 @@ jobs:
             });
 
             for (const label of existingLabels.data) {
-              if (['major', 'minor', 'patch'].includes(label.name)) {
+              if (allVersionLabels.includes(label.name)) {
                 await github.rest.issues.removeLabel({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
@@ -112,7 +153,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              labels: [versionType]
+              labels: [labelInfo.name]
             });
 
   release-draft:
@@ -131,5 +172,6 @@ jobs:
           config-name: release-drafter.yaml
           commitish: release
           version: ${{ needs.check-version.outputs.new_version }}
+          publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
