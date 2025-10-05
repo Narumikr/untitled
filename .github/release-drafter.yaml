@@ -1,20 +1,21 @@
-name-template: 'v$RESOLVED_VERSION 🌈'
+name-template: 'v$RESOLVED_VERSION 🎶'
 tag-template: 'v$RESOLVED_VERSION'
 categories:
-  - title: '🚀 Features'
+  - title: '🎸 Features'
     labels:
       - 'feature'
       - 'enhancement'
-    # コミットメッセージやPRタイトルから推測
     collapse-after: 15
-  - title: '🐛 Bug Fixes'
+  - title: '❄ Bug Fixes'
     labels:
       - 'fix'
       - 'bugfix'
       - 'bug'
-  - title: '🧰 Maintenance'
-    label: 'chore'
-  - title: '📝 Other Changes' # ← ラベルなしのPR用
+  - title: '🤖 Maintenance'
+    label: 
+      - 'chore'
+      - 'documentation'
+  - title: '🎼 Other Changes'
     labels:
       - '*'
 
@@ -34,17 +35,6 @@ autolabeler:
       - '/refactor/i'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
-version-resolver:
-  major:
-    labels:
-      - 'major'
-  minor:
-    labels:
-      - 'minor'
-  patch:
-    labels:
-      - 'patch'
-  default: patch
 template: |
   ## Changes
 
