@@ -4,6 +4,14 @@
 
 ![welcome comment](https://readme-typing-svg.herokuapp.com?color=%2333ccba&lines=Welcome+to+untitled+library!;きっと...;)
 
+<img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT" />
+
+#### **_Tech Stack_**
+
+<a href="https://react.dev/" target="_blank"><img src="https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white" alt="React" /></a>
+<a href="https://www.typescriptlang.org/" target="_blank"><img src="https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript" /></a>
+<a href="https://sass-lang.com/" target="_blank"><img src="https://img.shields.io/badge/-SCSS-CC6699?logo=sass&logoColor=white" alt="SCSS" /></a>
+
 ### 💫 **_What we provide_** 💫![Leo/need-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:3367cc,100:f5f5f7)
 
 - プロセカキャラやユニットのカラーコードTsファイル(_.js,_.tsファイル内用)
@@ -170,3 +178,10 @@ return (
 ```
 
 useCreateSekaiは他にも現在のSekaiThemeのオブジェクト`sekaiTheme`やライト/ダークモードのカラーテーマを変更する`switchColorTheme`も提供しています
+
+**※ファンメイド作品です**
+
+私の大好きなプロセカという作品、でもｲﾗｽﾄは描けない、書き物や工作なども難しい。
+でも何かしら創作をしたいという想いから作り始めました💫
+
+**※本リポジトリはプロセカ公式とは一切関係ありません**
