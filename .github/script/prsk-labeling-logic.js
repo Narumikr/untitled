@@ -43,14 +43,14 @@ export const createCollaborationComment = (mainChar, guestChar, prAuthor) => {
   const mainComment = replaceTemplate(mainChar.comment, { prAuthor: prAuthor })
   const guestComment = replaceTemplate(guestChar.comment, { prAuthor: prAuthor })
 
-  return `## ${scenario.title}\n\n${storyText}\n\n---\n### 🎸 素敵な出会いに\n\n **${mainChar.name}**: ${mainComment}\n\n- **${guestChar.name}**: ${guestComment}\n\n> 2人にはたくさんの元気をもらったな✨ ー${getToday()}ー`
+  return `## ${scenario.title}\n\n${storyText}\n\n---\n### 🎸 素敵な出会いに\n\n **${mainChar.name}**\n\n${mainComment}\n\n**${guestChar.name}**\n\n${guestComment}\n\n> 2人にはたくさんの元気をもらったな✨ ー${getToday()}ー`
 }
 
 // Single comment
 export function createSingleComment(character, prAuthor) {
   const comment = replaceTemplate(character.comment, { prAuthor: prAuthor })
 
-  return `🎵 **${character.name}** が会いに来てくれた✨\n\n> ${comment}\n\n(￣△￣*) .｡oO( 今日も最高な一日だな ー${getToday()}ー`
+  return `🎵 **${character.name}** が会いに来てくれた✨\n\n${comment}\n\n> (￣△￣*) .｡oO( 今日も最高な一日だな ー${getToday()}ー`
 }
 
 // Create label or obtain existing label
