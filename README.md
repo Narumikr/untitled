@@ -44,7 +44,7 @@ RGBAなどで使用したい場合は`convertHexToRgb`,`convertHexToRgba`のコ�
 #### \*.tsx
 
 ```ts
-import { colorsSekai } from '@naru/untitled-library'
+import { colorsSekai } from '@naru/untitled-ui-library'
 
 export const TopPage = () => {
   ...
@@ -66,7 +66,7 @@ export const TopPage = () => {
 ```ts
 import type { AppProps } from 'next/app'
 import '@/styles/globals.scss'
-import '@naru/untitled-library/color/sekai-colors.css'
+import '@naru/untitled-ui-library/color/sekai-colors.css'
 ...
 ```
 
@@ -89,7 +89,7 @@ SEKAIカラーでデザインされたButtonなどを始めWebコンポーネン
 #### \*.tsx
 
 ```ts
-import { BasicButton, COLORS_SEKAI_KEYS } from '@naru/untitled-library'
+import { BasicButton, COLORS_SEKAI_KEYS } from '@naru/untitled-ui-library'
 
 export const TopPage = () => {
   ...
@@ -120,7 +120,7 @@ import {
   LIGHT_MODE,
   YourSekaiProvider,
   createSekai
-} from '@naru/untitled-library'
+} from '@naru/untitled-ui-library'
 
 const App = ({ Component, pageProps }: AppProps) => {
 
