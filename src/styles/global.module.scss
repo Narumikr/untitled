@@ -93,6 +93,15 @@ $modal-z-index: 1300;
 }
 
 // Styles for text font
+.text-responsible {
+  font-size: 16px;
+}
+@media (min-width: 768px) {
+  .text-responsible {
+    font-size: 14px;
+  }
+}
+
 .text-xs {
   font-size: 12px;
 }
