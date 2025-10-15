@@ -4,7 +4,6 @@ import _extends from '@babel/runtime/helpers/extends';
 import _objectWithoutProperties from '@babel/runtime/helpers/objectWithoutProperties';
 import React from 'react';
 import clsx from 'clsx';
-import { useOrientation, ORIENTATION } from '../../hooks/useWindowSize.js';
 import { useOptionalSekai } from '../../internal/useOptionalSekai.js';
 import { convertHexToRgbaMixWithBlackOrWhite } from '../../utils/converter.js';
 import globalStyles from '../../styles/global.module.scss.js';
@@ -26,10 +25,8 @@ var BodyText = function BodyText(_ref) {
       mode: themeMode
     }),
     modeTheme = _useOptionalSekai.modeTheme;
-  var orientation = useOrientation();
-  var isPortrait = ORIENTATION.PORTRAIT === orientation;
   return /*#__PURE__*/React.createElement("p", _extends({}, rest, {
-    className: clsx(styles["sekai-body-text-".concat(modeTheme)], isPortrait ? globalStyles['text-sm'] : globalStyles['text-base'], rest.className)
+    className: clsx(styles["sekai-body-text-".concat(modeTheme)], globalStyles['text-responsible-body'], rest.className)
   }), children);
 };
 var SekaiBodyText = function SekaiBodyText(_ref2) {

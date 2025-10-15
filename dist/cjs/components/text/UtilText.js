@@ -6,7 +6,6 @@ var _extends = require('@babel/runtime/helpers/extends');
 var _objectWithoutProperties = require('@babel/runtime/helpers/objectWithoutProperties');
 var React = require('react');
 var clsx = require('clsx');
-var useWindowSize = require('../../hooks/useWindowSize.js');
 var useOptionalSekai = require('../../internal/useOptionalSekai.js');
 var converter = require('../../utils/converter.js');
 var global_module = require('../../styles/global.module.scss.js');
@@ -28,10 +27,8 @@ var BodyText = function BodyText(_ref) {
       mode: themeMode
     }),
     modeTheme = _useOptionalSekai.modeTheme;
-  var orientation = useWindowSize.useOrientation();
-  var isPortrait = useWindowSize.ORIENTATION.PORTRAIT === orientation;
   return /*#__PURE__*/React.createElement("p", _extends({}, rest, {
-    className: clsx(UtilText_module["sekai-body-text-".concat(modeTheme)], isPortrait ? global_module['text-sm'] : global_module['text-base'], rest.className)
+    className: clsx(UtilText_module["sekai-body-text-".concat(modeTheme)], global_module['text-responsible-body'], rest.className)
   }), children);
 };
 var SekaiBodyText = function SekaiBodyText(_ref2) {
