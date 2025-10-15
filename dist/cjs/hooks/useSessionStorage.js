@@ -7,24 +7,26 @@ var logging = require('../internal/logging.js');
 var serialization = require('../utils/serialization.js');
 
 var useSessionStorage = function useSessionStorage(sessionStorageKey, initialValue) {
-  var isClient = React.useRef(typeof window !== 'undefined');
-  var _useState = React.useState(function () {
-      if (!isClient.current) return initialValue;
-      try {
-        var items = sessionStorage.getItem(sessionStorageKey);
-        if (items) {
-          return serialization.deserializeDataWithTemplate(JSON.parse(items), initialValue);
-        }
-      } catch (err) {
-        logging.ConsoleError('Failed to get session storage value : ', err);
-      }
-      return initialValue;
-    }),
+  var _useState = React.useState(initialValue),
     _useState2 = _slicedToArray(_useState, 2),
     storedValue = _useState2[0],
     setStoredValue = _useState2[1];
+  var isInitialized = React.useRef(false);
   React.useEffect(function () {
-    if (!isClient.current) return;
+    if (isInitialized.current) return;
+    isInitialized.current = true;
+    try {
+      var items = sessionStorage.getItem(sessionStorageKey);
+      if (items) {
+        var parsed = serialization.deserializeDataWithTemplate(JSON.parse(items), initialValue);
+        setStoredValue(parsed);
+      }
+    } catch (err) {
+      logging.ConsoleError('Failed to get session storage value : ', err);
+    }
+  }, [initialValue, sessionStorageKey]);
+  React.useEffect(function () {
+    if (!isInitialized.current) return;
     try {
       var serialized = JSON.stringify(serialization.serializeData(storedValue));
       sessionStorage.setItem(sessionStorageKey, serialized);

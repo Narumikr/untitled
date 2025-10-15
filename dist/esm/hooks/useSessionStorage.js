@@ -1,28 +1,30 @@
 'use client';
 import _slicedToArray from '@babel/runtime/helpers/slicedToArray';
-import { useRef, useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ConsoleError } from '../internal/logging.js';
 import { deserializeDataWithTemplate, serializeData } from '../utils/serialization.js';
 
 var useSessionStorage = function useSessionStorage(sessionStorageKey, initialValue) {
-  var isClient = useRef(typeof window !== 'undefined');
-  var _useState = useState(function () {
-      if (!isClient.current) return initialValue;
-      try {
-        var items = sessionStorage.getItem(sessionStorageKey);
-        if (items) {
-          return deserializeDataWithTemplate(JSON.parse(items), initialValue);
-        }
-      } catch (err) {
-        ConsoleError('Failed to get session storage value : ', err);
-      }
-      return initialValue;
-    }),
+  var _useState = useState(initialValue),
     _useState2 = _slicedToArray(_useState, 2),
     storedValue = _useState2[0],
     setStoredValue = _useState2[1];
+  var isInitialized = useRef(false);
   useEffect(function () {
-    if (!isClient.current) return;
+    if (isInitialized.current) return;
+    isInitialized.current = true;
+    try {
+      var items = sessionStorage.getItem(sessionStorageKey);
+      if (items) {
+        var parsed = deserializeDataWithTemplate(JSON.parse(items), initialValue);
+        setStoredValue(parsed);
+      }
+    } catch (err) {
+      ConsoleError('Failed to get session storage value : ', err);
+    }
+  }, [initialValue, sessionStorageKey]);
+  useEffect(function () {
+    if (!isInitialized.current) return;
     try {
       var serialized = JSON.stringify(serializeData(storedValue));
       sessionStorage.setItem(sessionStorageKey, serialized);
