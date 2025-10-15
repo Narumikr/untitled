@@ -2,7 +2,7 @@
 
 # **_untitled_**
 
-![welcome comment](https://readme-typing-svg.herokuapp.com?color=%2333ccba&lines=Welcome+to+untitled+library!;きっと...;)
+![welcome comment](https://readme-typing-svg.herokuapp.com?color=%2333ccba&lines=Welcome+to+Untitled+UI+library!;きっと...;)
 
 <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT" />
 
@@ -29,6 +29,20 @@ yarnを使う場合：
 
 ```bash
 yarn add github:Narumikr/untitled
+```
+
+#### Notice
+
+React18で作成されているため、最新のReact環境にインストールすると失敗するかと思います。
+
+その場合、下記オプションをつけてのインストールをお試しください
+
+```bash
+npm install github:Narumikr/untitled --legacy-peer-deps
+
+or
+
+yarn add github:Narumikr/untitled --legacy-peer-deps
 ```
 
 ### 💻 **_How to use_** 💻![Nightcord-at25-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:884499,100:f5f5f7)
