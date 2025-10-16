@@ -7,24 +7,26 @@ var logging = require('../internal/logging.js');
 var serialization = require('../utils/serialization.js');
 
 var useLocalStorage = function useLocalStorage(localStorageKey, initialValue) {
-  var isClient = React.useRef(typeof window !== 'undefined');
-  var _useState = React.useState(function () {
-      if (!isClient.current) return initialValue;
-      try {
-        var items = localStorage.getItem(localStorageKey);
-        if (items) {
-          return serialization.deserializeDataWithTemplate(JSON.parse(items), initialValue);
-        }
-      } catch (err) {
-        logging.ConsoleError('Failed to get local storage value : ', err);
-      }
-      return initialValue;
-    }),
+  var _useState = React.useState(initialValue),
     _useState2 = _slicedToArray(_useState, 2),
     storedValue = _useState2[0],
     setStoredValue = _useState2[1];
+  var isInitialized = React.useRef(false);
   React.useEffect(function () {
-    if (!isClient.current) return;
+    if (isInitialized.current) return;
+    isInitialized.current = true;
+    try {
+      var items = localStorage.getItem(localStorageKey);
+      if (items) {
+        var parsed = serialization.deserializeDataWithTemplate(JSON.parse(items), initialValue);
+        setStoredValue(parsed);
+      }
+    } catch (err) {
+      logging.ConsoleError('Failed to get local storage value : ', err);
+    }
+  }, [initialValue, localStorageKey]);
+  React.useEffect(function () {
+    if (!isInitialized.current) return;
     try {
       var serialized = JSON.stringify(serialization.serializeData(storedValue));
       localStorage.setItem(localStorageKey, serialized);
@@ -33,7 +35,6 @@ var useLocalStorage = function useLocalStorage(localStorageKey, initialValue) {
     }
   }, [localStorageKey, storedValue]);
   React.useEffect(function () {
-    if (!isClient.current) return;
     var updateLocalStorage = function updateLocalStorage(e) {
       try {
         if (e.key !== localStorageKey) return;
