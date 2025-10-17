@@ -11,6 +11,8 @@
 <a href="https://react.dev/" target="_blank"><img src="https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white" alt="React" /></a>
 <a href="https://www.typescriptlang.org/" target="_blank"><img src="https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript" /></a>
 <a href="https://sass-lang.com/" target="_blank"><img src="https://img.shields.io/badge/-SCSS-CC6699?logo=sass&logoColor=white" alt="SCSS" /></a>
+<a href="https://github.com/lukeed/clsx" target="_blank"><img src="https://img.shields.io/badge/-clsx-000000?logo=npm&logoColor=white" alt="clsx" /></a>
+<a href="https://babeljs.io/" target="_blank"><img src="https://img.shields.io/badge/-Babel-F9DC3E?logo=babel&logoColor=black" alt="Babel" /></a>
 
 ### 💫 **_What we provide_** 💫![Leo/need-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:3367cc,100:f5f5f7)
 
@@ -22,27 +24,27 @@
 ### 🍀 **_Installation_** 🍀![MOREMORE-JUMP-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:88dd44,100:f5f5f7)
 
 ```bash
-npm install github:Narumikr/untitled
+npm install github:Narumikr/untitled#release/untitled
 ```
 
 yarnを使う場合：
 
 ```bash
-yarn add github:Narumikr/untitled
+yarn add github:Narumikr/untitled#release/untitled
 ```
 
-#### Notice
+#### **_Notice_**
 
 React18で作成されているため、最新のReact環境にインストールすると失敗するかと思います。
 
 その場合、下記オプションをつけてのインストールをお試しください
 
 ```bash
-npm install github:Narumikr/untitled --legacy-peer-deps
+npm install github:Narumikr/untitled#release/untitled --legacy-peer-deps
 
 or
 
-yarn add github:Narumikr/untitled --legacy-peer-deps
+yarn add github:Narumikr/untitled#release/untitled --legacy-peer-deps
 ```
 
 ### 💻 **_How to use_** 💻![Nightcord-at25-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:884499,100:f5f5f7)
