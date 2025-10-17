@@ -1,10 +1,10 @@
 name: Create Release Note
 on:
   pull_request:
-    branches: [release]
+    branches: [release/untitled]
     types: [opened, synchronize, reopened]
   push:
-    branches: [release]
+    branches: [release/untitled]
 
 jobs:
   check-version:
