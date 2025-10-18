@@ -12,7 +12,7 @@ categories:
       - 'bugfix'
       - 'bug'
   - title: '🤖 Maintenance'
-    label:
+    labels:
       - 'chore'
       - 'documentation'
   - title: '🎼 Other Changes'
