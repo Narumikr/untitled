@@ -7,7 +7,7 @@ import { XxMikuDialog } from '@/components/dialog/XxMikuDialog'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/XxMikuDialog',
+  title: 'Special/XxMikuDialog',
   component: XxMikuDialog,
   parameters: {},
   tags: ['autodocs'],
@@ -15,80 +15,80 @@ const meta = {
     open: {
       description: 'Dialog open',
       table: {
-        type: { summary: 'boolean' }
-      }
+        type: { summary: 'boolean' },
+      },
     },
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     children: {
       description: 'Dialog contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } }
+      table: { type: { summary: 'React.ReactNode' } },
     },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
       table: {
         type: { summary: 'HTMLElement' },
-        defaultValue: { summary: 'document.body' }
+        defaultValue: { summary: 'document.body' },
       },
-      control: false
+      control: false,
     },
     size: {
       description: 'Dialog size',
       table: {
         type: { summary: 'DialogSize' },
-        defaultValue: { summary: 'medium' }
+        defaultValue: { summary: 'medium' },
       },
       control: 'select',
-      options: ['narrow', 'medium', 'wide']
+      options: ['narrow', 'medium', 'wide'],
     },
     onClose: {
       description: 'Dialog close method',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: '() => void' } }
+      table: { type: { summary: '() => void' } },
     },
     title: {
       description: 'Dialog header title',
-      table: { type: { summary: 'string' } }
+      table: { type: { summary: 'string' } },
     },
     buttons: {
       description: 'Use Dialog default buttons',
       table: { type: { summary: 'DialogButton[]' } },
-      control: { type: 'object' }
-    }
+      control: { type: 'object' },
+    },
   },
   args: {
-    onClose: fn()
-  }
+    onClose: fn(),
+  },
 } satisfies Meta<typeof XxMikuDialog>
 
 export default meta
@@ -97,7 +97,7 @@ type Story = StoryObj<typeof meta>
 const commonArgs = {
   open: true,
   children: <span>閉ざされた窓のセカイのミクをイメージしたコンセプトダイアログ</span>,
-  title: 'Dialog Title'
+  title: 'Dialog Title',
 }
 
 export const DefaultLight: Story = {
@@ -113,7 +113,7 @@ export const DefaultLight: Story = {
         type: 'normal',
         disabled: false,
         ariaLabel: 'Cancel',
-        buttonStyle: ''
+        buttonStyle: '',
       },
       {
         text: 'OK',
@@ -121,15 +121,15 @@ export const DefaultLight: Story = {
         type: 'normal',
         disabled: false,
         ariaLabel: 'OK',
-        buttonStyle: ''
-      }
-    ]
+        buttonStyle: '',
+      },
+    ],
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true
-  }
+    portal: true,
+  },
 }
 
 export const DefalutDark: Story = {
@@ -145,7 +145,7 @@ export const DefalutDark: Story = {
         type: 'normal',
         disabled: false,
         ariaLabel: 'Cancel',
-        buttonStyle: ''
+        buttonStyle: '',
       },
       {
         text: 'OK',
@@ -153,13 +153,13 @@ export const DefalutDark: Story = {
         type: 'normal',
         disabled: false,
         ariaLabel: 'OK',
-        buttonStyle: ''
-      }
-    ]
+        buttonStyle: '',
+      },
+    ],
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true
-  }
+    portal: true,
+  },
 }

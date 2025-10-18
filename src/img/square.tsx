@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { COLOR_DARK_MODE, COLOR_LIGHT_MODE } from '@/internal/color.constant'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
@@ -13,7 +14,7 @@ export interface SquareSvgIconProps {
 
 export const SquareSvg = ({ className = '', sekai, themeMode }: SquareSvgIconProps) => {
   const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
-  const color = isLight ? '#212121' : '#e0e0e0'
+  const color = isLight ? COLOR_LIGHT_MODE : COLOR_DARK_MODE
 
   return (
     <svg

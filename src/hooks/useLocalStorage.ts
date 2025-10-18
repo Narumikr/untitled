@@ -4,22 +4,27 @@ import { ConsoleError } from '@/internal/logging'
 import { deserializeDataWithTemplate, serializeData } from '@/utils/serialization'
 
 export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => {
-  const isClient = useRef(typeof window !== 'undefined')
-  const [storedValue, setStoredValue] = useState<T>(() => {
-    if (!isClient.current) return initialValue
+  const [storedValue, setStoredValue] = useState<T>(initialValue)
+  const isInitialized = useRef(false)
+
+  useEffect(() => {
+    if (isInitialized.current) return
+    isInitialized.current = true
+
     try {
       const items = localStorage.getItem(localStorageKey)
       if (items) {
-        return deserializeDataWithTemplate(JSON.parse(items), initialValue)
+        const parsed = deserializeDataWithTemplate(JSON.parse(items), initialValue)
+        setStoredValue(parsed)
       }
     } catch (err) {
       ConsoleError('Failed to get local storage value : ', err)
     }
-    return initialValue
-  })
+  }, [initialValue, localStorageKey])
 
   useEffect(() => {
-    if (!isClient.current) return
+    if (!isInitialized.current) return
+
     try {
       const serialized = JSON.stringify(serializeData(storedValue))
       localStorage.setItem(localStorageKey, serialized)
@@ -29,8 +34,6 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => 
   }, [localStorageKey, storedValue])
 
   useEffect(() => {
-    if (!isClient.current) return
-
     const updateLocalStorage = (e: StorageEvent) => {
       try {
         if (e.key !== localStorageKey) return
@@ -60,6 +63,6 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => 
   return {
     storedValue,
     setStoredValue,
-    deleteLocalStorage
+    deleteLocalStorage,
   }
 }

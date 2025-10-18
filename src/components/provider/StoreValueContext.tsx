@@ -28,12 +28,12 @@ export const createSharedValueProvider = <T,>() => {
   const SharedValueProvider = ({
     children,
     sessionStorageKey,
-    defaultValue
+    defaultValue,
   }: SharedValueProviderProps<T>) => {
     const {
       storedValue: sharedValue,
       setStoredValue: setSharedValue,
-      deleteSessionStorage: deleteSharedValue
+      deleteSessionStorage: deleteSharedValue,
     } = useSessionStorage<T>(sessionStorageKey, defaultValue)
 
     return (
@@ -45,6 +45,6 @@ export const createSharedValueProvider = <T,>() => {
 
   return {
     useSharedValueContext,
-    SharedValueProvider
+    SharedValueProvider,
   }
 }

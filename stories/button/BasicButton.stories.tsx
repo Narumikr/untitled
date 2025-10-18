@@ -7,7 +7,7 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/BasicButton',
+  title: 'UI/BasicButton',
   component: BasicButton,
   parameters: {},
   tags: ['autodocs'],
@@ -15,62 +15,62 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
-      control: false
+      control: false,
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' }
+        type: { summary: 'React.CSSProperties' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     withText: {
       description: 'Apply SEKAI color to text',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     children: {
       description: 'Button contents',
-      table: { type: { summary: 'React.ReactNode' } }
+      table: { type: { summary: 'React.ReactNode' } },
     },
     disabled: {
       description: 'Button disabled',
-      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } }
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } },
     },
     onClick: {
       description: 'Click handler',
-      table: { type: { summary: '() => void' } }
-    }
+      table: { type: { summary: '() => void' } },
+    },
   },
-  args: { onClick: fn() }
+  args: { onClick: fn() },
 } satisfies Meta<typeof BasicButton>
 
 export default meta
@@ -83,12 +83,12 @@ export const DefaultLight: Story = {
     withText: false,
     themeMode: 'light',
     children: 'Hatsune Miku',
-    disabled: false
+    disabled: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DefaultDark: Story = {
@@ -98,12 +98,12 @@ export const DefaultDark: Story = {
     withText: false,
     themeMode: 'dark',
     children: 'Hatsune Miku',
-    disabled: false
+    disabled: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const WithTextLight: Story = {
@@ -113,12 +113,12 @@ export const WithTextLight: Story = {
     withText: true,
     themeMode: 'light',
     children: 'Hatsune Miku',
-    disabled: false
+    disabled: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const WithTextDark: Story = {
@@ -128,12 +128,12 @@ export const WithTextDark: Story = {
     withText: true,
     themeMode: 'dark',
     children: 'Hatsune Miku',
-    disabled: false
+    disabled: false,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
 
 export const DisabledLight: Story = {
@@ -143,12 +143,12 @@ export const DisabledLight: Story = {
     withText: false,
     themeMode: 'light',
     children: 'Hatsune Miku',
-    disabled: true
+    disabled: true,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DisabledtDark: Story = {
@@ -158,10 +158,10 @@ export const DisabledtDark: Story = {
     withText: false,
     themeMode: 'dark',
     children: 'Hatsune Miku',
-    disabled: true
+    disabled: true,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
