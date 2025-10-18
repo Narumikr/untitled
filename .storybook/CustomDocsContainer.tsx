@@ -3,12 +3,6 @@ import React, { useEffect } from 'react'
 import { DocsContainer } from '@storybook/blocks'
 
 import { DARK_MODE, LIGHT_MODE } from '@/hooks/useThemeMode'
-import {
-  BACKGROUND_DARK_MODE,
-  BACKGROUND_LIGHT_MODE,
-  COLOR_DARK_MODE,
-  COLOR_LIGHT_MODE,
-} from '@/internal/color.constant'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { DocsContextProps } from '@storybook/blocks'
@@ -21,13 +15,39 @@ interface CustomDocsContainerProps {
 export const CustomDocsContainer = ({ children, context }: CustomDocsContainerProps) => {
   const lightStoryIds = sortStories(context, LIGHT_MODE)
   const darkStoryIds = sortStories(context, DARK_MODE)
-  const lightStyles = lightStoryIds
-    .map((id) => createStyleForStory(id, COLOR_LIGHT_MODE, BACKGROUND_LIGHT_MODE))
-    .join('\n')
-  const darkStyles = darkStoryIds
-    .map((id) => createStyleForStory(id, COLOR_DARK_MODE, BACKGROUND_DARK_MODE))
-    .join('\n')
-  const styles = lightStyles + darkStyles
+  const lightStyles = lightStoryIds.reduce(
+    (pre, el) =>
+      pre +
+      `
+      #anchor--${el} .docs-story {
+        color: #212121 !important;
+        background-color: #ffffff !important;
+      }
+      `,
+    `
+      .docs-story {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        min-height: 250px;
+      }
+      .css-11xgcgt {
+        z-index: 10000;
+      }
+    `
+  )
+  const styles = darkStoryIds.reduce(
+    (pre, el) =>
+      pre +
+      `
+      #anchor--${el} .docs-story {
+        color: #e0e0e0 !important;
+        background-color: #121212 !important;
+      }
+      `,
+    lightStyles
+  )
 
   useEffect(() => {
     if (!context.componentStories().length) return
@@ -49,15 +69,6 @@ export const CustomDocsContainer = ({ children, context }: CustomDocsContainerPr
       </div>
     </DocsContainer>
   )
-}
-
-const createStyleForStory = (storyId: string, textColor: string, backgroudColor: string) => {
-  return `
-    #anchor--${storyId} .docs-story {
-      color: ${textColor} !important;
-      background-color: ${backgroudColor} !important;
-    }
-    `
 }
 
 const sortStories = (context: DocsContextProps, mode: PaletteMode) => {

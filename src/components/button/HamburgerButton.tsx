@@ -25,7 +25,7 @@ export const HamburgerButton = ({ sekai, themeMode, open, ...rest }: HamburgerBu
   const sekaiColorBg = convertHexToRgba(sekaiColor, 0.8)
 
   const optionStyle = {
-    '--sekai-color-bg': sekaiColorBg,
+    '--sekai-color-bg': sekaiColorBg
   }
 
   return (

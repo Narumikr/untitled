@@ -2,12 +2,6 @@ import React, { createContext, memo, useCallback, useEffect, useMemo, useState }
 
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { DARK_MODE } from '@/hooks/useThemeMode'
-import {
-  BACKGROUND_DARK_MODE,
-  BACKGROUND_LIGHT_MODE,
-  COLOR_DARK_MODE,
-  COLOR_LIGHT_MODE,
-} from '@/internal/color.constant'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
@@ -38,14 +32,14 @@ export const YourSekaiProvider = ({ children, sekaiTheme }: YourSekaiProviderPro
     (sekai: ColorsSekaiKey) => {
       setSekaiColor(sekai)
     },
-    [setSekaiColor],
+    [setSekaiColor]
   )
 
   const switchColorTheme = useCallback(
     (color: PaletteMode) => {
       setColorTheme(color)
     },
-    [setColorTheme],
+    [setColorTheme]
   )
 
   const currentSekaiTheme = useMemo(
@@ -54,19 +48,19 @@ export const YourSekaiProvider = ({ children, sekaiTheme }: YourSekaiProviderPro
       palette: {
         ...sekaiTheme.palette,
         sekai: sekaiColor,
-        mode: colorTheme,
-      },
+        mode: colorTheme
+      }
     }),
-    [colorTheme, sekaiColor, sekaiTheme],
+    [colorTheme, sekaiColor, sekaiTheme]
   )
 
   const contextValue = useMemo(
     () => ({
       sekaiTheme: currentSekaiTheme,
       switchSekaiColor,
-      switchColorTheme,
+      switchColorTheme
     }),
-    [currentSekaiTheme, switchColorTheme, switchSekaiColor],
+    [currentSekaiTheme, switchColorTheme, switchSekaiColor]
   )
 
   return (
@@ -90,11 +84,11 @@ const GlobalStyle = memo(({ theme }: { theme: SekaiTheme }) => {
       font-family: ${theme.typography.fontFamily};
     }
     body {
-      color: ${theme.palette.mode === DARK_MODE ? COLOR_DARK_MODE : COLOR_LIGHT_MODE};
-      background: ${theme.palette.mode === DARK_MODE ? BACKGROUND_DARK_MODE : BACKGROUND_LIGHT_MODE};
+      color: ${theme.palette.mode === DARK_MODE ? '#e0e0e0' : '#212121'};
+      background: ${theme.palette.mode === DARK_MODE ? '#121212' : '#ffffff'};
     }
   `,
-    [theme.palette.mode, theme.typography.fontFamily],
+    [theme.palette.mode, theme.typography.fontFamily]
   )
 
   if (!isClient) return null

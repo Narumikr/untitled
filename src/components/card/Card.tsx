@@ -28,7 +28,7 @@ export const Card = ({ sekai, themeMode, children, ...rest }: CardProps) => {
 
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-shadow': sekaiColoShadow,
+    '--sekai-color-shadow': sekaiColoShadow
   }
 
   return (
@@ -37,7 +37,7 @@ export const Card = ({ sekai, themeMode, children, ...rest }: CardProps) => {
       className={clsx(
         styles['sekai-card'],
         globalStyles[`sekai-color-${modeTheme}`],
-        rest.className,
+        rest.className
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {children}
@@ -62,7 +62,7 @@ export const CardContent = ({ themeMode, children, ...rest }: CardContentProps) 
       className={clsx(
         styles['sekai-card-content'],
         globalStyles[`sekai-color-${modeTheme}`],
-        rest.className,
+        rest.className
       )}>
       {children}
     </div>
@@ -83,7 +83,7 @@ export const CardTitle = ({ sekai, themeMode, title, underline, ...rest }: CardT
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
   const optionStyle = {
-    '--sekai-color': sekaiColor,
+    '--sekai-color': sekaiColor
   }
 
   return (
@@ -93,7 +93,7 @@ export const CardTitle = ({ sekai, themeMode, title, underline, ...rest }: CardT
         styles['sekai-card-title'],
         globalStyles[`sekai-color-${modeTheme}`],
         underline && styles['sekai-underline'],
-        rest.className,
+        rest.className
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {title}

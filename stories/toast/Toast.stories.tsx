@@ -7,7 +7,7 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'UI/Toast',
+  title: 'Untitled/Toast',
   component: Toast,
   parameters: {},
   tags: ['autodocs'],
@@ -15,69 +15,69 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' },
-      },
+        type: { summary: 'string' }
+      }
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' },
+        type: { summary: 'string' }
       },
-      control: false,
+      control: false
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' },
+        defaultValue: { summary: 'Miku' }
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)],
+      options: [...Object.keys(COLORS_SEKAI_KEYS)]
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' },
+        type: { summary: 'React.CSSProperties' }
       },
-      control: false,
+      control: false
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' },
+        defaultValue: { summary: 'light' }
       },
       control: { type: 'select' },
-      options: ['light', 'dark'],
+      options: ['light', 'dark']
     },
     pos: {
       description: 'Toast position',
       table: {
         type: { summary: 'ToastPosition' },
-        defaultValue: { summary: 'bottom' },
+        defaultValue: { summary: 'bottom' }
       },
       control: { type: 'select' },
-      options: ['top', 'bottom'],
+      options: ['top', 'bottom']
     },
     duration: {
       description: 'Duration in milliseconds before the toast closes',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: '3000' },
-      },
+        defaultValue: { summary: '3000' }
+      }
     },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
       table: {
         type: { summary: 'HTMLElement' },
-        defaultValue: { summary: 'document.body' },
+        defaultValue: { summary: 'document.body' }
       },
-      control: false,
-    },
+      control: false
+    }
   },
   args: {
-    onClose: fn(),
-  },
+    onClose: fn()
+  }
 } satisfies Meta<typeof Toast>
 
 export default meta
@@ -92,13 +92,13 @@ export const DefaultLight: Story = {
     message: 'This is a Toast',
     pos: 'bottom',
     isError: false,
-    duration: 3000,
+    duration: 3000
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true,
-  },
+    portal: true
+  }
 }
 
 export const DefaultDark: Story = {
@@ -110,13 +110,13 @@ export const DefaultDark: Story = {
     message: 'This is a Toast',
     pos: 'bottom',
     isError: false,
-    duration: 3000,
+    duration: 3000
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true,
-  },
+    portal: true
+  }
 }
 
 export const TopLight: Story = {
@@ -128,13 +128,13 @@ export const TopLight: Story = {
     message: 'This is a Toast',
     pos: 'top',
     isError: false,
-    duration: 3000,
+    duration: 3000
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true,
-  },
+    portal: true
+  }
 }
 
 export const TopDark: Story = {
@@ -146,13 +146,13 @@ export const TopDark: Story = {
     message: 'This is a Toast',
     pos: 'top',
     isError: false,
-    duration: 3000,
+    duration: 3000
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true,
-  },
+    portal: true
+  }
 }
 
 export const MultilineLight: Story = {
@@ -164,13 +164,13 @@ export const MultilineLight: Story = {
     message: ['This is a Toast', 'with multiple lines'],
     pos: 'bottom',
     isError: false,
-    duration: 3000,
+    duration: 3000
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true,
-  },
+    portal: true
+  }
 }
 
 export const MultilineDark: Story = {
@@ -182,13 +182,13 @@ export const MultilineDark: Story = {
     message: ['This is a Toast', 'with multiple lines'],
     pos: 'bottom',
     isError: false,
-    duration: 3000,
+    duration: 3000
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true,
-  },
+    portal: true
+  }
 }
 
 export const ErrorLight: Story = {
@@ -200,13 +200,13 @@ export const ErrorLight: Story = {
     message: 'An error has occurred',
     pos: 'bottom',
     isError: true,
-    duration: 3000,
+    duration: 3000
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true,
-  },
+    portal: true
+  }
 }
 
 export const ErrorDark: Story = {
@@ -218,11 +218,11 @@ export const ErrorDark: Story = {
     message: 'An error has occurred',
     pos: 'bottom',
     isError: true,
-    duration: 3000,
+    duration: 3000
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true,
-  },
+    portal: true
+  }
 }

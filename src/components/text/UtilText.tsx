@@ -2,6 +2,7 @@ import React from 'react'
 
 import clsx from 'clsx'
 
+import { ORIENTATION, useOrientation } from '@/hooks/useWindowSize'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
@@ -22,14 +23,16 @@ export interface BodyTextProps {
 
 export const BodyText = ({ themeMode, children, ...rest }: BodyTextProps) => {
   const { modeTheme } = useOptionalSekai({ mode: themeMode })
+  const orientation = useOrientation()
+  const isPortrait = ORIENTATION.PORTRAIT === orientation
 
   return (
     <p
       {...rest}
       className={clsx(
         styles[`sekai-body-text-${modeTheme}`],
-        globalStyles['text-responsible-body'],
-        rest.className,
+        isPortrait ? globalStyles['text-sm'] : globalStyles['text-base'],
+        rest.className
       )}>
       {children}
     </p>
@@ -44,7 +47,7 @@ export const SekaiBodyText = ({ sekai, children, ...rest }: SekaiBodyTextProps) 
   const { sekaiColor } = useOptionalSekai({ sekai })
 
   const colorStyle = {
-    color: sekaiColor,
+    color: sekaiColor
   }
 
   return (
@@ -71,7 +74,7 @@ export const DetailText = ({ themeMode, children, ...rest }: DetailTextProps) =>
       className={clsx(
         styles[`sekai-detail-text-${modeTheme}`],
         globalStyles['text-xs'],
-        rest.className,
+        rest.className
       )}>
       {children}
     </p>
@@ -86,7 +89,7 @@ export const SekaiDetailText = ({ sekai, children, ...rest }: SekaiDetailTextPro
   const { sekaiColor } = useOptionalSekai({ sekai })
 
   const colorStyle = {
-    color: sekaiColor,
+    color: sekaiColor
   }
 
   return (
@@ -125,7 +128,7 @@ export const SekaiAnnotationText = ({ sekai, children, ...rest }: SekaiAnnotatio
   const annotationColor = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.7, isLight)
 
   const colorStyle = {
-    color: annotationColor,
+    color: annotationColor
   }
 
   return (

@@ -5,7 +5,7 @@ const VIEW_BREAKPOINT_TABLET = 1280
 
 export const ORIENTATION = {
   PORTRAIT: 'PORTRAIT',
-  LANDSCAPE: 'LANDSCAPE',
+  LANDSCAPE: 'LANDSCAPE'
 } as const
 export type Orientation = (typeof ORIENTATION)[keyof typeof ORIENTATION]
 

@@ -5,7 +5,7 @@ import { Character } from './Character'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Special/SekaiCharacter',
+  title: 'Untitled/Character',
   component: Character,
   parameters: {},
   tags: ['autodocs'],
@@ -13,21 +13,21 @@ const meta = {
     sekai: {
       description: 'What SEKAI color to use',
       table: {
-        type: { summary: 'ColorsSekaiKey' },
+        type: { summary: 'ColorsSekaiKey' }
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)],
+      options: [...Object.keys(COLORS_SEKAI_KEYS)]
     },
     locale: {
       description: 'What language to use for character name',
       table: {
-        type: { summary: 'string' },
+        type: { summary: 'string' }
       },
       control: { type: 'select' },
-      options: ['ja', 'en', 'zh-hant'],
-    },
+      options: ['ja', 'en', 'zh-hant']
+    }
   },
-  args: {},
+  args: {}
 } satisfies Meta<typeof Character>
 
 export default meta
@@ -36,10 +36,10 @@ type Story = StoryObj<typeof meta>
 export const SEKAICharacter: Story = {
   args: {
     sekai: 'Miku',
-    locale: 'ja',
+    locale: 'ja'
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light',
-  },
+    background: 'light'
+  }
 }

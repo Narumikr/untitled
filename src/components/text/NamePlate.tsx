@@ -29,7 +29,7 @@ export const NamePlate = ({
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
   const optionStyle = {
-    '--sekai-color': sekaiColor,
+    '--sekai-color': sekaiColor
   }
 
   const colorText = text.slice(0, colorCount)

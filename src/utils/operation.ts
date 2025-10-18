@@ -6,7 +6,7 @@ import type React from 'react'
  * @returns A new event handler that calls the provided handler on Enter key press and prevents the default action.
  */
 export const fireOnEnterKey = <T extends HTMLElement>(
-  eventHandler: (e: React.KeyboardEvent<T>) => void,
+  eventHandler: (e: React.KeyboardEvent<T>) => void
 ) => {
   return (e: React.KeyboardEvent<T>) => {
     if (e.key === 'Enter') {
@@ -36,7 +36,7 @@ export const fireOnEscapeKey = (eventHandler: (e: KeyboardEvent) => void) => {
  * @returns A keyboard event handler function.
  */
 export const fireOnSpaceKey = <T extends HTMLElement>(
-  eventHandler: (e: React.KeyboardEvent<T>) => void,
+  eventHandler: (e: React.KeyboardEvent<T>) => void
 ) => {
   return (e: React.KeyboardEvent<T>) => {
     e.preventDefault()

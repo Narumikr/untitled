@@ -36,7 +36,7 @@ export const Checkbox = ({
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.3 : 0.4)
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-hover': sekaiColorHover,
+    '--sekai-color-hover': sekaiColorHover
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +52,7 @@ export const Checkbox = ({
         tabIndex={Boolean(disabled) ? -1 : 0}
         type="checkbox"
         className={clsx(styles[`sekai-checkbox-${modeTheme}`], {
-          [styles['sekai-checkbox-filling']]: filling,
+          [styles['sekai-checkbox-filling']]: filling
         })}
         checked={Boolean(checked)}
         aria-checked={Boolean(checked)}

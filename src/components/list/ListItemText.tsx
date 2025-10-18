@@ -42,7 +42,7 @@ export const ListItemText = ({
 
   const Component = as
   const optionStyle = {
-    '--sekai-color': sekaiColor,
+    '--sekai-color': sekaiColor
   }
 
   return (
@@ -51,7 +51,7 @@ export const ListItemText = ({
       className={clsx(
         styles['sekai-list-item-text'],
         globalStyles[`sekai-color-${modeTheme}`],
-        rest.className,
+        rest.className
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {getImgComponent(icon)}
