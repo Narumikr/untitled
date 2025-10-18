@@ -18,7 +18,7 @@ interface CharacterProps {
 export const Character = ({ sekai, locale = 'ja' }: CharacterProps) => {
   const colorCode = colorsSekai[sekai]
   const optionStyle = {
-    '--sekai-color': colorCode
+    '--sekai-color': colorCode,
   }
   const getLocaleLanguage = (locale: string) => {
     if (locale === 'ja') {

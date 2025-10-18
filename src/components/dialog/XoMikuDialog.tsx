@@ -58,10 +58,10 @@ export const XoMikuDialog = ({
         const type = button.type ? button.type : 'normal'
         return {
           ...button,
-          buttonStyle: clsx(styles[`sekai-xomiku-${type}-button`])
+          buttonStyle: clsx(styles[`sekai-xomiku-${type}-button`]),
         }
       }),
-    [buttons]
+    [buttons],
   )
 
   const overlayProps = {
@@ -69,7 +69,7 @@ export const XoMikuDialog = ({
     open,
     themeMode,
     containerComponent,
-    centered: true
+    centered: true,
   }
   const buttonsProps = { themeMode: LIGHT_MODE as PaletteMode, buttons: xoButtonProps }
 
@@ -96,6 +96,6 @@ export const XoMikuDialog = ({
         </div>
       </div>
     </Backdrop>,
-    portalContainer
+    portalContainer,
   )
 }

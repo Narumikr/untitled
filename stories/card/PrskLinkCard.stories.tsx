@@ -11,14 +11,14 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/PrskLinkCard',
+  title: 'Special/PrskLinkCard',
   component: PrskLinkCard,
   decorators: [
     (Story) => (
       <div style={{ width: 390, maxWidth: '80vw', display: 'flex', justifyContent: 'center' }}>
         <Story />
       </div>
-    )
+    ),
   ],
   parameters: {},
   tags: ['autodocs'],
@@ -27,72 +27,72 @@ const meta = {
       description: 'Custom styles',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '' }
+        defaultValue: { summary: '' },
       },
-      control: false
+      control: false,
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' }
+        defaultValue: { summary: 'Miku' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' }
+        defaultValue: { summary: 'light' },
       },
       control: { type: 'select' },
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     height: {
       description: 'PrskLinkCard height',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: '72' }
-      }
+        defaultValue: { summary: '72' },
+      },
     },
     width: {
       description: 'PrskLinkCard width',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: '160' }
-      }
+        defaultValue: { summary: '160' },
+      },
     },
     onClick: {
       description: 'Click handler',
-      table: { type: { summary: '() => void' } }
+      table: { type: { summary: '() => void' } },
     },
     title: {
       description: 'Title text',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
       // @ts-expect-error Storybook's typing issue
-      type: { required: true }
+      type: { required: true },
     },
     subText: {
       description: 'Subtext, displayed as outline text',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
       // @ts-expect-error Storybook's typing issue
-      type: { required: true }
+      type: { required: true },
     },
     icon: {
       description: 'Icon image src or component ',
       table: {
-        type: { summary: 'string | React.ReactNode' }
+        type: { summary: 'string | React.ReactNode' },
       },
       // @ts-expect-error Storybook's typing issue
-      type: { required: true }
-    }
+      type: { required: true },
+    },
   },
-  args: {}
+  args: {},
 } satisfies Meta<typeof PrskLinkCard>
 
 export default meta
@@ -107,12 +107,12 @@ export const DefaultLight: Story = {
     onClick: fn(),
     title: 'プロフィール',
     subText: 'Profile',
-    icon: <ProfileSvg />
+    icon: <ProfileSvg />,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const DefaultDark: Story = {
@@ -124,10 +124,10 @@ export const DefaultDark: Story = {
     onClick: fn(),
     title: 'プロフィール',
     subText: 'Profile',
-    icon: <ProfileSvg themeMode="dark" />
+    icon: <ProfileSvg themeMode="dark" />,
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }

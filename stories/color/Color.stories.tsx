@@ -5,7 +5,7 @@ import { Color } from './Color'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Untitled/Color',
+  title: 'Special/SekaiColor',
   component: Color,
   parameters: {},
   tags: ['autodocs'],
@@ -13,13 +13,13 @@ const meta = {
     sekai: {
       description: 'What SEKAI color to use',
       table: {
-        type: { summary: 'ColorsSekaiKey' }
+        type: { summary: 'ColorsSekaiKey' },
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)]
-    }
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
+    },
   },
-  args: {}
+  args: {},
 } satisfies Meta<typeof Color>
 
 export default meta
@@ -27,20 +27,20 @@ type Story = StoryObj<typeof meta>
 
 export const SEKAIColor: Story = {
   args: {
-    sekai: 'Miku'
+    sekai: 'Miku',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light'
-  }
+    background: 'light',
+  },
 }
 
 export const SEKAIColorDark: Story = {
   args: {
-    sekai: 'Miku'
+    sekai: 'Miku',
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark'
-  }
+    background: 'dark',
+  },
 }
