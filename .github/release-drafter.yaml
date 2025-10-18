@@ -12,7 +12,7 @@ categories:
       - 'bugfix'
       - 'bug'
   - title: '🤖 Maintenance'
-    label:
+    labels:
       - 'chore'
       - 'documentation'
   - title: '🎼 Other Changes'
@@ -20,16 +20,16 @@ categories:
       - '*'
 
 autolabeler:
-  - label: 'feature'
+  - labels: 'feature'
     title:
       - '/feature/i'
       - '/component/i'
       - '/create/i'
-  - label: 'fix'
+  - labels: 'fix'
     title:
       - '/fix/i'
       - '/bug/i'
-  - label: 'chore'
+  - labels: 'chore'
     title:
       - '/document/i'
       - '/refactor/i'
