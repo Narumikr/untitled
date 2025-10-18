@@ -60,13 +60,10 @@ export const XxMikuDialog = ({
         const type = button.type ? button.type : 'normal'
         return {
           ...button,
-          buttonStyle: clsx(
-            styles[`sekai-xxmiku-${type}-button`],
-            styles[`sekai-${modeTheme}`],
-          ),
+          buttonStyle: clsx(styles[`sekai-xxmiku-${type}-button`], styles[`sekai-${modeTheme}`])
         }
       }),
-    [buttons, modeTheme],
+    [buttons, modeTheme]
   )
 
   const overlayProps = {
@@ -74,7 +71,7 @@ export const XxMikuDialog = ({
     open,
     themeMode,
     containerComponent,
-    centered: true,
+    centered: true
   }
   const buttonsProps = { themeMode, buttons: xxButtonProps }
 
@@ -86,7 +83,7 @@ export const XxMikuDialog = ({
         className={clsx(
           styles[`sekai-container-${size}`],
           styles[`sekai-${modeTheme}`],
-          rest.className,
+          rest.className
         )}
         aria-label={title || 'Dialog'}>
         <XxMikuSvg className={styles[`sekai-xxmiku-svg-1-${size}`]} />
@@ -105,6 +102,6 @@ export const XxMikuDialog = ({
         </div>
       </div>
     </Backdrop>,
-    portalContainer,
+    portalContainer
   )
 }

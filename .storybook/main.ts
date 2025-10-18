@@ -9,23 +9,22 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
     '@storybook/addon-essentials',
     '@chromatic-com/storybook',
-    '@storybook/addon-interactions',
+    '@storybook/addon-interactions'
   ],
   framework: {
     name: '@storybook/react-vite',
-    options: {},
+    options: {}
   },
   viteFinal: async (config) => {
     const __dirname = path.dirname(fileURLToPath(import.meta.url))
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
-        '@': path.resolve(__dirname, '../src'),
+        '@': path.resolve(__dirname, '../src')
       }
     }
     return config
-  },
-  staticDirs: ['../.storybook/public'],
+  }
 }
 
 export default config

@@ -18,62 +18,26 @@ const __dirname = path.dirname(__filename)
 
 const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf-8'))
 
-/**
- * Automatically adds 'use client' directive to modules matching specific patterns
- */
-const includePatterns = [/[\/\\]components[\/\\]/, /[\/\\]hooks[\/\\]/]
-const excludePatterns = [/\.module\.scss$/, /\.scss$/]
-const setUseClientDirective = () => {
-  return {
-    name: 'set-use-client',
-    renderChunk(code, chunk) {
-      const shouldExclude = excludePatterns.some((pattern) =>
-        pattern.test(chunk.facadeModuleId || ''),
-      )
-
-      if (shouldExclude) {
-        return null
-      }
-
-      const needsUseClient = includePatterns.some((pattern) =>
-        pattern.test(chunk.facadeModuleId || ''),
-      )
-
-      if (needsUseClient) {
-        return {
-          code: `'use client';\n${code}`,
-          map: null,
-        }
-      }
-      return null
-    },
-  }
-}
-
 export default [
   {
     input: 'src/index.ts',
     output: [
       {
-        dir: 'dist/cjs',
+        file: pkg.main,
         format: 'cjs',
         sourcemap: false,
-        preserveModules: true,
-        preserveModulesRoot: 'src',
+        preserveModules: false
       },
       {
-        dir: 'dist/esm',
+        file: pkg.module,
         format: 'esm',
         sourcemap: false,
-        preserveModules: true,
-        preserveModulesRoot: 'src',
-      },
+        preserveModules: false
+      }
     ],
     external: [
-      ...Object.keys(pkg.devDependencies || {}),
       ...Object.keys(pkg.peerDependencies || {}),
-      ...Object.keys(pkg.dependencies || {}),
-      /@babel\/runtime\//,
+      ...Object.keys(pkg.devDependencies || {})
     ],
     plugins: [
       tsconfigPaths(),
@@ -83,30 +47,28 @@ export default [
       babel({
         babelHelpers: 'runtime',
         presets: ['@babel/preset-react'],
-        extensions: ['.ts', '.tsx'],
+        extensions: ['.ts', '.tsx']
       }),
       postcss({
-        inject: false,
         modules: true,
         use: {
           sass: {
             implementation: (await import('sass')).default,
-            silenceDeprecations: ['legacy-js-api'],
-          },
+            silenceDeprecations: ['legacy-js-api']
+          }
         },
-        plugins: [(await import('autoprefixer')).default],
+        plugins: [(await import('autoprefixer')).default]
       }),
       image(),
       svgr(),
-      setUseClientDirective(),
       copy({
-        targets: [{ src: 'src/styles/sekai-colors.css', dest: 'dist/color' }],
-      }),
-    ],
+        targets: [{ src: 'src/styles/sekai-colors.css', dest: 'dist/color' }]
+      })
+    ]
   },
   {
     input: 'src/index.ts',
     output: [{ file: pkg.types, format: 'es' }],
-    plugins: [tsconfigPaths(), resolve(), dts()],
-  },
+    plugins: [tsconfigPaths(), resolve(), dts()]
+  }
 ]

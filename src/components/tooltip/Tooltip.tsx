@@ -36,7 +36,7 @@ export const Tooltip = ({
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.2, isLight)
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-bg': sekaiColorBg,
+    '--sekai-color-bg': sekaiColorBg
   }
 
   const [visible, setVisible] = useState(false)
@@ -47,7 +47,7 @@ export const Tooltip = ({
       className={clsx(
         styles[`sekai-tooltip-${modeTheme}`],
         styles[`sekai-tooltip-${pos}`],
-        rest.className,
+        rest.className
       )}
       style={{ ...optionStyle, ...rest.style }}
       onMouseEnter={() => setVisible(true)}
@@ -86,14 +86,14 @@ const SpeechBubble = ({ text, pos, themeMode }: SpeechBubbleProps) => {
       ...(isRightOverflow && {
         right: 0,
         left: 'auto',
-        transform: 'none',
+        transform: 'none'
       }),
       ...(isLeftOverflow && {
         left: 0,
         right: 'auto',
-        transform: 'none',
+        transform: 'none'
       }),
-      maxWidth: `${Math.min(viewInnerWidth - PADDING * 2, MAX_WIDTH)}px`,
+      maxWidth: `${Math.min(viewInnerWidth - PADDING * 2, MAX_WIDTH)}px`
     })
 
     if (bubbleRect.top < 0) {

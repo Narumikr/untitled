@@ -55,7 +55,7 @@ export const deserializeData = (data: unknown, visited = new WeakSet()): unknown
 export const deserializeDataWithTemplate = <T>(
   obj: unknown,
   template: T,
-  visited = new WeakSet(),
+  visited = new WeakSet()
 ): T => {
   // If template is Date instance, and obj is string, convert to Date
   if (template instanceof Date && typeof obj === 'string') {
@@ -72,7 +72,7 @@ export const deserializeDataWithTemplate = <T>(
     return deserializeObjectWithTemplate(
       obj as object,
       template as Record<string, unknown>,
-      visited,
+      visited
     )
   }
 
@@ -113,7 +113,7 @@ const serializeObject = <T>(obj: T, visited: WeakSet<object>): unknown => {
 
   if (obj instanceof Map || obj instanceof Set) {
     ConsoleWarning(
-      'Map and Set are not supported for serialization. They will be converted to empty objects.',
+      'Map and Set are not supported for serialization. They will be converted to empty objects.'
     )
   }
 
@@ -230,7 +230,7 @@ const deserializeDateWithTemplate = <T>(obj: string) => {
 const deserializeArrayWithTemplate = <T>(
   obj: unknown,
   template: T,
-  visited: WeakSet<object>,
+  visited: WeakSet<object>
 ): T => {
   const templateArray = template as unknown as T[]
 
@@ -259,7 +259,7 @@ const deserializeArrayWithTemplate = <T>(
 const deserializeObjectWithTemplate = <T>(
   obj: unknown,
   template: Record<string, unknown>,
-  visited: WeakSet<object>,
+  visited: WeakSet<object>
 ): T => {
   if (!isObject(obj)) {
     return obj as unknown as T
@@ -277,7 +277,7 @@ const deserializeObjectWithTemplate = <T>(
       deserializedObj[key] = deserializeDataWithTemplate(
         (obj as Record<string, unknown>)[key],
         template[key],
-        visited,
+        visited
       )
     }
   }

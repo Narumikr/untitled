@@ -13,11 +13,11 @@ import type { SekaiTheme } from '@/utils/createSekai'
 const defaultTheme: SekaiTheme = {
   palette: {
     sekai: COLORS_SEKAI_KEYS.Miku,
-    mode: LIGHT_MODE,
+    mode: LIGHT_MODE
   },
   typography: {
-    fontFamily: 'Montserrat, sans-serif',
-  },
+    fontFamily: 'Montserrat, sans-serif'
+  }
 } as const
 
 type OptionalSekaiProps = {
@@ -41,6 +41,6 @@ export const useOptionalSekai = (option: OptionalSekaiProps) => {
   return {
     sekaiColor,
     modeTheme,
-    isLight,
+    isLight
   }
 }

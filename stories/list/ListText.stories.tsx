@@ -9,7 +9,7 @@ import type { ListItemTextProps } from '@/components/list/ListItemText'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'UI/ListItemText',
+  title: 'Untitled/ListItemText',
   component: ListItemText,
   parameters: {},
   tags: ['autodocs'],
@@ -17,65 +17,65 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' },
-      },
+        type: { summary: 'string' }
+      }
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' },
+        type: { summary: 'string' }
       },
-      control: false,
+      control: false
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' },
+        type: { summary: 'React.CSSProperties' }
       },
-      control: false,
+      control: false
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' },
+        defaultValue: { summary: 'Miku' }
       },
       control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)],
+      options: [...Object.keys(COLORS_SEKAI_KEYS)]
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' },
+        defaultValue: { summary: 'light' }
       },
       control: { type: 'select' },
-      options: ['light', 'dark'],
+      options: ['light', 'dark']
     },
     children: {
       description: 'ListItemText contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } },
+      table: { type: { summary: 'React.ReactNode' } }
     },
     as: {
       description: 'ListItemText child component type',
       table: {
         type: { summary: 'p | span' },
-        defaultValue: { summary: 'p' },
+        defaultValue: { summary: 'p' }
       },
       control: { type: 'select' },
-      options: ['p', 'span'],
+      options: ['p', 'span']
     },
     icon: {
       description: 'Icon src or component',
       table: {
-        type: { summary: 'string | React.ReactNode' },
+        type: { summary: 'string | React.ReactNode' }
       },
-      control: false,
-    },
+      control: false
+    }
   },
-  args: {},
+  args: {}
 } satisfies Meta<typeof ListItemText>
 
 export default meta
@@ -89,7 +89,7 @@ const TemplateStory = {
         <ListItemText {...args}>Sample 2</ListItemText>
       </List>
     )
-  },
+  }
 }
 
 export const DefaultLight: Story = {
@@ -100,12 +100,12 @@ export const DefaultLight: Story = {
     themeMode: 'light',
     children: <></>,
     as: 'p',
-    icon: undefined,
+    icon: undefined
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light',
-  },
+    background: 'light'
+  }
 }
 
 export const DefaultDark: Story = {
@@ -116,12 +116,12 @@ export const DefaultDark: Story = {
     themeMode: 'dark',
     children: <></>,
     as: 'p',
-    icon: undefined,
+    icon: undefined
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark',
-  },
+    background: 'dark'
+  }
 }
 
 export const IconLight: Story = {
@@ -132,12 +132,12 @@ export const IconLight: Story = {
     themeMode: 'light',
     children: <></>,
     as: 'p',
-    icon: '../../../stories/assets/youtube.svg',
+    icon: '../../../stories/assets/youtube.svg'
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light',
-  },
+    background: 'light'
+  }
 }
 
 export const IconDark: Story = {
@@ -148,10 +148,10 @@ export const IconDark: Story = {
     themeMode: 'dark',
     children: <></>,
     as: 'p',
-    icon: '../../../stories/assets/youtube.svg',
+    icon: '../../../stories/assets/youtube.svg'
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark',
-  },
+    background: 'dark'
+  }
 }

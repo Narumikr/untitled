@@ -49,7 +49,7 @@ export const WindowDialog = ({
     return { x: '50%', y: '50%' }
   }
   const [position, setPosition] = useState<{ x: string; y: string }>(() =>
-    windowInitCoordinate(),
+    windowInitCoordinate()
   )
 
   const modalRef = useRef<HTMLDivElement>(null)
@@ -64,7 +64,7 @@ export const WindowDialog = ({
     setDragging(true)
     setDragOffset({
       x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+      y: e.clientY - rect.top
     })
   }
   const closeWindow = () => {
@@ -83,7 +83,7 @@ export const WindowDialog = ({
 
       setPosition({ x: `${x}px`, y: `${y}px` })
     },
-    [dragOffset.x, dragOffset.y, dragging, isFullscreen, portalContainer],
+    [dragOffset.x, dragOffset.y, dragging, isFullscreen, portalContainer]
   )
 
   const onMouseUp = () => setDragging(false)
@@ -105,7 +105,7 @@ export const WindowDialog = ({
       ...(containerComponent && { position: 'absolute' }),
       'left': position.x,
       'top': position.y,
-      'transform': position.x === '50%' && !isFullscreen ? 'translate(-50%, -50%)' : 'none',
+      'transform': position.x === '50%' && !isFullscreen ? 'translate(-50%, -50%)' : 'none'
     }),
     [
       containerComponent,
@@ -114,8 +114,8 @@ export const WindowDialog = ({
       position.y,
       sekaiColor,
       sekaiColorBg,
-      sekaiColorHeader,
-    ],
+      sekaiColorHeader
+    ]
   )
 
   return createPortal(
@@ -127,10 +127,10 @@ export const WindowDialog = ({
         styles[`sekai-window-dialog-${modeTheme}`],
         {
           [styles[`sekai-window-dialog-size-${size}`]]: !isFullscreen,
-          [styles['sekai-window-dialog-fullscreen']]: isFullscreen,
+          [styles['sekai-window-dialog-fullscreen']]: isFullscreen
         },
         styles[displayDialog],
-        rest.className,
+        rest.className
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       <WindowHeader
@@ -143,7 +143,7 @@ export const WindowDialog = ({
       />
       <div className={clsx(styles['sekai-window-dialog-container'])}>{children}</div>
     </div>,
-    portalContainer,
+    portalContainer
   )
 }
 

@@ -42,7 +42,7 @@ const UNTITLED_VALID_LOCAL = {
   'en': 'en',
   'en-us': 'en',
   'zh-hant': 'zh-hant',
-  'zh-tw': 'zh-hant',
+  'zh-tw': 'zh-hant'
 } as const
 
 const convertLocaleToLocaleKey = (locale: string) => {

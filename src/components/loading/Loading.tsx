@@ -20,7 +20,7 @@ export const Loading = ({ id, className, style, sekai }: LoadingProps) => {
   const CIRCLE_COUNT = 8
 
   const optionStyle = {
-    '--sekai-color': sekaiColor,
+    '--sekai-color': sekaiColor
   }
 
   return (
@@ -35,7 +35,7 @@ export const Loading = ({ id, className, style, sekai }: LoadingProps) => {
           key={`circle-${index}`}
           className={clsx(
             styles['sekai-loading-circle'],
-            styles[`sekai-circle-animation-${index}`],
+            styles[`sekai-circle-animation-${index}`]
           )}
         />
       ))}

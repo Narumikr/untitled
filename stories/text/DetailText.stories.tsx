@@ -3,7 +3,7 @@ import { DetailText } from '@/components/text/UtilText'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'UI/DetailText',
+  title: 'Untitled/DetailText',
   component: DetailText,
   parameters: {},
   tags: ['autodocs'],
@@ -11,40 +11,40 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' },
-      },
+        type: { summary: 'string' }
+      }
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' },
+        type: { summary: 'string' }
       },
-      control: false,
+      control: false
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' },
+        type: { summary: 'React.CSSProperties' }
       },
-      control: false,
+      control: false
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' },
+        defaultValue: { summary: 'light' }
       },
       control: { type: 'select' },
-      options: ['light', 'dark'],
+      options: ['light', 'dark']
     },
     children: {
       description: 'Text to display',
       table: {
-        type: { summary: 'string' },
-      },
-    },
+        type: { summary: 'string' }
+      }
+    }
   },
-  args: {},
+  args: {}
 } satisfies Meta<typeof DetailText>
 
 export default meta
@@ -54,22 +54,22 @@ export const DefaultLight: Story = {
   args: {
     id: 'detail-text-default-light',
     themeMode: 'light',
-    children: 'Hello SEKAI',
+    children: 'Hello SEKAI'
   },
   parameters: {
     sekai: 'Miku',
-    background: 'light',
-  },
+    background: 'light'
+  }
 }
 
 export const DefaultDark: Story = {
   args: {
     id: 'detail-text-default-dark',
     themeMode: 'dark',
-    children: 'Hello SEKAI',
+    children: 'Hello SEKAI'
   },
   parameters: {
     sekai: 'Miku',
-    background: 'dark',
-  },
+    background: 'dark'
+  }
 }
