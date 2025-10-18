@@ -44,12 +44,12 @@ export const PrskLinkCard = ({
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
   const optionStyle = {
-    '--sekai-color': sekaiColor,
+    '--sekai-color': sekaiColor
   }
 
   const cardSizeStyle = {
     height: `${height}px`,
-    width: `${width}px`,
+    width: `${width}px`
   }
 
   return (
@@ -57,7 +57,7 @@ export const PrskLinkCard = ({
       <button
         className={clsx(
           styles['sekai-prsk-link-card-button'],
-          globalStyles[`sekai-color-${modeTheme}`],
+          globalStyles[`sekai-color-${modeTheme}`]
         )}
         style={(optionStyle as React.CSSProperties, cardSizeStyle)}
         onClick={onClick}>
@@ -65,7 +65,7 @@ export const PrskLinkCard = ({
           id={`${rest.id ? rest.id : 'prsk-link-card'}-title`}
           className={clsx(
             styles['sekai-prsk-link-card-title'],
-            styles[`sekai-title-effect-${modeTheme}`],
+            styles[`sekai-title-effect-${modeTheme}`]
           )}
           sekai={sekai}
           themeMode={themeMode}

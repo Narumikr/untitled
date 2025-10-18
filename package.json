@@ -1,6 +1,6 @@
 {
-  "name": "@naru/untitled-ui-library",
-  "version": "1.0.0",
+  "name": "@naru/untitled-library",
+  "version": "0.0.0",
   "description": "TypeScript components library for React and utility functions",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -9,8 +9,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
     },
     "./color/sekai-colors.css": {
       "import": "./dist/color/sekai-colors.css",
@@ -26,7 +26,6 @@
     "generate-index": "python scripts/generator.py",
     "build": "rm -rf dist && npm run generate-index && rollup -c && tsc --noEmit && sh scripts/build_local.sh",
     "lint": "npx eslint .  --no-cache --fix --max-warnings=0",
-    "prettier": "npx prettier --write . --ignore-path .prettierignore",
     "plop": "npx plop component",
     "dev": "storybook dev -p 6006",
     "build-storybook": "storybook build",

@@ -39,7 +39,7 @@ export const Accordion = ({
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
   const optionStyle = {
     '--sekai-color': sekaiColor,
-    '--sekai-color-hover': sekaiColorHover,
+    '--sekai-color-hover': sekaiColorHover
   }
 
   const [openAccordion, setOpenAccordion] = useState(defaultOpen)
@@ -54,7 +54,7 @@ export const Accordion = ({
         className={clsx(
           styles['sekai-accordion-summary'],
           globalStyles[`sekai-color-${modeTheme}`],
-          summaryStyles,
+          summaryStyles
         )}
         onClick={handleOpenClose}
         id="accordion-summary"
@@ -64,7 +64,7 @@ export const Accordion = ({
         <ChevronSvg
           className={clsx(
             styles[`sekai-accordion-summary-icon`],
-            openAccordion ? styles['sekai-icon-open'] : styles['sekai-icon-close'],
+            openAccordion ? styles['sekai-icon-open'] : styles['sekai-icon-close']
           )}
           sekai={sekai}
           themeMode={themeMode}
@@ -97,7 +97,7 @@ const AccordionDetailsContents = ({ open, details }: AccordionDetailsContentsPro
     maxHeight: open ? (heightDetails ? `${heightDetails}px` : 'none') : '0px',
     opacity: open ? 1 : 0,
     ...(open && { margin: '10px 0' }),
-    transition: 'max-height 0.3s ease-out, opacity 0.3s ease-out, margin 0.3s ease-out',
+    transition: 'max-height 0.3s ease-out, opacity 0.3s ease-out, margin 0.3s ease-out'
   }
 
   const renderDetails = (details: string | string[] | React.ReactNode) => {

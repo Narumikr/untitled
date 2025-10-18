@@ -17,7 +17,7 @@ export interface TypewriterTextOptions {
 const defaultOptions: TypewriterTextOptions = {
   speed: 100,
   loop: false,
-  cursor: true,
+  cursor: true
 }
 
 export interface TypewriterTextProps {
@@ -71,7 +71,7 @@ export const TypewriterText = ({
   }, [currentIndex])
 
   const optionStyle = {
-    '--sekai-color': sekaiColor,
+    '--sekai-color': sekaiColor
   }
 
   return (
@@ -80,9 +80,9 @@ export const TypewriterText = ({
       className={clsx(
         styles['sekai-typewrite-text'],
         {
-          [styles['sekai-cursor']]: viewCursor,
+          [styles['sekai-cursor']]: viewCursor
         },
-        rest.className,
+        rest.className
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {displayText}

@@ -8,7 +8,7 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'UI/Backdrop',
+  title: 'Untitled/Backdrop',
   component: Backdrop,
   decorators: [],
   parameters: {},
@@ -17,73 +17,73 @@ const meta = {
     id: {
       description: 'Unique Id',
       table: {
-        type: { summary: 'string' },
-      },
+        type: { summary: 'string' }
+      }
     },
     className: {
       description: 'Custom styles',
       table: {
-        type: { summary: 'string' },
+        type: { summary: 'string' }
       },
-      control: false,
+      control: false
     },
     style: {
       description: 'Style object',
       table: {
-        type: { summary: 'React.CSSProperties' },
+        type: { summary: 'React.CSSProperties' }
       },
-      control: false,
+      control: false
     },
     sekai: {
       description: 'What SEKAI color to use',
       table: {
         type: { summary: 'ColorsSekaiKey' },
-        defaultValue: { summary: 'Miku' },
+        defaultValue: { summary: 'Miku' }
       },
       control: { type: 'select' },
-      options: [undefined, ...Object.keys(COLORS_SEKAI_KEYS)],
+      options: [undefined, ...Object.keys(COLORS_SEKAI_KEYS)]
     },
     themeMode: {
       description: 'Light or Dark mode',
       table: {
         type: { summary: 'PaletteMode' },
-        defaultValue: { summary: 'light' },
+        defaultValue: { summary: 'light' }
       },
       control: { type: 'select' },
-      options: ['light', 'dark'],
+      options: ['light', 'dark']
     },
     open: {
       description: 'Dialog open',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: {
-        type: { summary: 'boolean' },
-      },
+      table: { 
+        type: { summary: 'boolean'}
+      }
     },
     children: {
       description: 'Dialog contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } },
+      table: { type: { summary: 'React.ReactNode' } }
     },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
       table: {
         type: { summary: 'HTMLElement' },
-        defaultValue: { summary: 'document.body' },
+        defaultValue: { summary: 'document.body' }
       },
-      control: false,
+      control: false
     },
     centered: {
       description: 'If true, children inside the backdrop are aligned at the center',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
+        defaultValue: { summary: 'true' }
       },
-      control: { type: 'boolean' },
-    },
+      control: { type: 'boolean' }
+    }
   },
-  args: {},
+  args: {}
 } satisfies Meta<typeof Backdrop>
 
 export default meta
@@ -96,13 +96,13 @@ export const DefaultLight: Story = {
     themeMode: 'light',
     open: true,
     children: <Loading />,
-    centered: true,
+    centered: true
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true,
-  },
+    portal: true
+  }
 }
 
 export const DefaultDark: Story = {
@@ -112,13 +112,13 @@ export const DefaultDark: Story = {
     themeMode: 'dark',
     open: true,
     children: <Loading />,
-    centered: true,
+    centered: true
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true,
-  },
+    portal: true
+  }
 }
 
 export const SekaiColorLight: Story = {
@@ -128,13 +128,13 @@ export const SekaiColorLight: Story = {
     themeMode: 'light',
     open: true,
     children: <Loading />,
-    centered: true,
+    centered: true
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-    portal: true,
-  },
+    portal: true
+  }
 }
 
 export const SekaiColorDark: Story = {
@@ -144,11 +144,11 @@ export const SekaiColorDark: Story = {
     themeMode: 'dark',
     open: true,
     children: <Loading />,
-    centered: true,
+    centered: true
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-    portal: true,
-  },
+    portal: true
+  }
 }

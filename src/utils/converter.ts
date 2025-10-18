@@ -45,7 +45,7 @@ export const convertHexToRgbaMixWithBlackOrWhite = (
   hex: string,
   mixRatio: number,
   mixWhite: boolean,
-  alpha: number = 1,
+  alpha: number = 1
 ) => {
   if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
     throw new Error('Invalid hex color format. Use #RRGGBB')

@@ -2,7 +2,6 @@ import React from 'react'
 
 import clsx from 'clsx'
 
-import { COLOR_DARK_MODE, COLOR_LIGHT_MODE } from '@/internal/color.constant'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
@@ -21,10 +20,10 @@ export const ChevronSvg = ({
   className,
   sekai,
   themeMode,
-  vector = 'up',
+  vector = 'up'
 }: ChevronSvgIconProps) => {
   const { sekaiColor, isLight } = useOptionalSekai({ sekai: sekai, mode: themeMode })
-  const color = isLight ? COLOR_LIGHT_MODE : COLOR_DARK_MODE
+  const color = isLight ? '#212121' : '#e0e0e0'
 
   const getCoordinate = (y: number) => {
     return 'up' === vector ? Math.abs(0 - y) : Math.abs(100 - y)

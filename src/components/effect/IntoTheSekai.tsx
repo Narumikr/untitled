@@ -34,7 +34,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
   const sekaiPieceRef = useRef<PieceOfSekai[]>([])
 
   const optionStyle = {
-    ...(containerComponent && { position: 'absolute' }),
+    ...(containerComponent && { position: 'absolute' })
   }
 
   useEffect(() => {
@@ -71,13 +71,13 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
         .map((tri) => {
           const newPoints = tri.points.map((p) => ({
             x: p.x + tri.velocity.x,
-            y: p.y + tri.velocity.y,
+            y: p.y + tri.velocity.y
           }))
 
           return {
             ...tri,
             points: newPoints,
-            opacity: tri.opacity - 0.0039,
+            opacity: tri.opacity - 0.0039
           }
         })
         .filter((t) => t.opacity > 0)
@@ -126,7 +126,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
       ref={canvasRef}
       onClick={handleClick}
     />,
-    portalContainer,
+    portalContainer
   )
 }
 
@@ -145,12 +145,12 @@ const createSekaiPiece = (x: number, y: number) => {
 
     const velocity = {
       x: Math.cos(angle) * speed,
-      y: Math.sin(angle) * speed,
+      y: Math.sin(angle) * speed
     }
 
     const points = Array.from({ length: 3 }).map(() => ({
       x: x + Math.random() * 80 - 40,
-      y: y + Math.random() * 80 - 40,
+      y: y + Math.random() * 80 - 40
     }))
 
     return { points, velocity, opacity: 1 }

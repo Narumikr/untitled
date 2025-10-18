@@ -36,7 +36,7 @@ export const List = ({
 
   const Component = as
   const optionStyle = {
-    '--sekai-color': sekaiColor,
+    '--sekai-color': sekaiColor
   }
   const listStyleType = noBullet ? 'none' : undefined
   const paddingLeft = noBullet ? '16px' : '36px'
@@ -48,13 +48,13 @@ export const List = ({
         className={clsx(
           globalStyles[`sekai-color-${modeTheme}`],
           styles['sekai-list'],
-          rest.className,
+          rest.className
         )}
         style={{
           listStyleType: listStyleType,
           paddingLeft: paddingLeft,
           ...(optionStyle as React.CSSProperties),
-          ...rest.style,
+          ...rest.style
         }}>
         {children}
       </Component>

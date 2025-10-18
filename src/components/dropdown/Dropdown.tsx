@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState,
+  useState
 } from 'react'
 
 import clsx from 'clsx'
@@ -103,7 +103,7 @@ export const DropdownContent = ({
       const offSetY = overflow > 0 ? overflow + 20 : -1 * BUTTON_BORDER_WIDTH
 
       setDropdownPosStyle({
-        top: `calc(${OPTION_ITEM_HEIGHT}px - ${offSetY}px)`,
+        top: `calc(${OPTION_ITEM_HEIGHT}px - ${offSetY}px)`
       })
     }
   }, [openOptions, options.length])
@@ -148,9 +148,9 @@ export const DropdownContent = ({
 
   const optionStyle = useMemo(
     () => ({
-      width: `${triggerWidth}px`,
+      width: `${triggerWidth}px`
     }),
-    [triggerWidth],
+    [triggerWidth]
   )
 
   return (
@@ -190,7 +190,7 @@ const DropdownTriggerButton = forwardRef<HTMLButtonElement, DropdownTriggerButto
     const { selectedValue, openOptions, setOpenOptions } = useContext(DropdownContext) || {}
 
     const optionStyle = {
-      '--sekai-color': sekaiColor,
+      '--sekai-color': sekaiColor
     }
 
     const displayText = useMemo(() => {
@@ -200,7 +200,7 @@ const DropdownTriggerButton = forwardRef<HTMLButtonElement, DropdownTriggerButto
 
     const isDispPlaceholder = useMemo(
       () => placeholder === displayText,
-      [placeholder, displayText],
+      [placeholder, displayText]
     )
 
     const handleClick = () => {
@@ -220,7 +220,7 @@ const DropdownTriggerButton = forwardRef<HTMLButtonElement, DropdownTriggerButto
         <ChevronSvg
           className={clsx(styles['sekai-dropdown-icon'], {
             [styles['sekai-dropdown-icon-open']]: openOptions,
-            [styles[`sekai-dropdown-icon-close`]]: !openOptions,
+            [styles[`sekai-dropdown-icon-close`]]: !openOptions
           })}
           sekai={sekai}
           themeMode={themeMode}
@@ -228,7 +228,7 @@ const DropdownTriggerButton = forwardRef<HTMLButtonElement, DropdownTriggerButto
         />
       </button>
     )
-  },
+  }
 )
 DropdownTriggerButton.displayName = 'DropdownTriggerButton'
 
@@ -242,7 +242,7 @@ const DropdownOptions = ({
   sekai,
   themeMode,
   options,
-  onSelect,
+  onSelect
 }: DropdownOptionsProps) => {
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
   const { setSelectedValue, openOptions, setOpenOptions } = useContext(DropdownContext) || {}
@@ -252,7 +252,7 @@ const DropdownOptions = ({
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-shadow': sekaiColorShadow,
-    '--sekai-color-hover': sekaiColorHover,
+    '--sekai-color-hover': sekaiColorHover
   }
 
   const [isVisible, setIsVisible] = useState(false)
@@ -285,9 +285,9 @@ const DropdownOptions = ({
         styles['sekai-dropdown-options-list'],
         {
           [styles['sekai-dropdown-options-open']]: isVisible,
-          [styles['sekai-dropdown-options-close']]: !isVisible,
+          [styles['sekai-dropdown-options-close']]: !isVisible
         },
-        globalStyles[`sekai-color-${modeTheme}`],
+        globalStyles[`sekai-color-${modeTheme}`]
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...style }}>
       {options.map((option) => (

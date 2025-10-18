@@ -28,8 +28,8 @@ export const CustomDocsDecorators = ({ story: Story, context }: CustomDocsDecora
   const theme = createSekai({
     palette: {
       sekai: sekai,
-      mode: isDark ? DARK_MODE : LIGHT_MODE,
-    },
+      mode: isDark ? DARK_MODE : LIGHT_MODE
+    }
   })
 
   return (
@@ -39,8 +39,8 @@ export const CustomDocsDecorators = ({ story: Story, context }: CustomDocsDecora
         args={{
           ...context.args,
           ...(isPortalDocsPreview && {
-            containerComponent: getContainerPortalRoot(context, isDocs) ?? undefined,
-          }),
+            containerComponent: getContainerPortalRoot(context, isDocs) ?? undefined
+          })
         }}
       />
     </YourSekaiProvider>
