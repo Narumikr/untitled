@@ -7,6 +7,7 @@ import { BodyText } from '@/components/text/UtilText'
 
 import { ClearSvg } from '@/img/clear'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { usePortalContainer } from '@/internal/usePortalContainer'
 import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import globalStyles from '@/styles/global.module.scss'
@@ -45,8 +46,8 @@ export const Toast = ({
   containerComponent,
   ...rest
 }: ToastProps) => {
-  const portalContainer = containerComponent || document.body
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const portalContainer = usePortalContainer(containerComponent)
 
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
   const optionStyle = {
@@ -69,6 +70,8 @@ export const Toast = ({
       }
     }
   })
+
+  if (!portalContainer) return null
 
   return createPortal(
     <div

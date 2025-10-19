@@ -9,6 +9,7 @@ import { createPortal } from 'react-dom';
 import { Backdrop } from '../backdrop/Backdrop.js';
 import { ClearSvg } from '../../img/clear.js';
 import { useOptionalSekai } from '../../internal/useOptionalSekai.js';
+import { usePortalContainer } from '../../internal/usePortalContainer.js';
 import { convertHexToRgba } from '../../utils/converter.js';
 import { fireOnEscapeKey } from '../../utils/operation.js';
 import globalStyles from '../../styles/global.module.scss.js';
@@ -34,7 +35,6 @@ var Dialog = function Dialog(_ref) {
     buttons = _ref.buttons,
     dialogButtons = _ref.dialogButtons,
     rest = _objectWithoutProperties(_ref, _excluded);
-  var portalContainer = containerComponent || document.body;
   var _useOptionalSekai = useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -42,6 +42,7 @@ var Dialog = function Dialog(_ref) {
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme,
     isLight = _useOptionalSekai.isLight;
+  var portalContainer = usePortalContainer(containerComponent);
   var sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3);
   var optionStyle = {
     '--sekai-color': sekaiColor,
@@ -74,6 +75,7 @@ var Dialog = function Dialog(_ref) {
     themeMode: themeMode,
     buttons: buttons
   };
+  if (!portalContainer) return null;
   return /*#__PURE__*/createPortal(/*#__PURE__*/React.createElement(Backdrop, _extends({}, overlayProps, {
     centered: true
   }), /*#__PURE__*/React.createElement("div", _extends({}, rest, {

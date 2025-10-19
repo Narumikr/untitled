@@ -10,6 +10,7 @@ var reactDom = require('react-dom');
 var UtilText = require('../text/UtilText.js');
 var clear = require('../../img/clear.js');
 var useOptionalSekai = require('../../internal/useOptionalSekai.js');
+var usePortalContainer = require('../../internal/usePortalContainer.js');
 var converter = require('../../utils/converter.js');
 var global_module = require('../../styles/global.module.scss.js');
 var Toast_module = require('./Toast.module.scss.js');
@@ -31,7 +32,6 @@ var Toast = function Toast(_ref) {
     duration = _ref$duration === void 0 ? 3000 : _ref$duration,
     containerComponent = _ref.containerComponent,
     rest = _objectWithoutProperties(_ref, _excluded);
-  var portalContainer = containerComponent || document.body;
   var _useOptionalSekai = useOptionalSekai.useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -39,6 +39,7 @@ var Toast = function Toast(_ref) {
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme,
     isLight = _useOptionalSekai.isLight;
+  var portalContainer = usePortalContainer.usePortalContainer(containerComponent);
   var sekaiColorBg = converter.convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   var optionStyle = _objectSpread({
     '--sekai-color-bg': sekaiColorBg
@@ -56,6 +57,7 @@ var Toast = function Toast(_ref) {
       }
     };
   });
+  if (!portalContainer) return null;
   return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React.createElement("div", _extends({}, rest, {
     className: clsx(Toast_module["sekai-toast-".concat(pos)], _defineProperty({}, Toast_module['sekai-toast-open'], open), rest.className),
     style: _objectSpread(_objectSpread({}, optionStyle), rest.style)

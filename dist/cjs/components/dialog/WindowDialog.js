@@ -12,6 +12,7 @@ var clear = require('../../img/clear.js');
 var restore = require('../../img/restore.js');
 var square = require('../../img/square.js');
 var useOptionalSekai = require('../../internal/useOptionalSekai.js');
+var usePortalContainer = require('../../internal/usePortalContainer.js');
 var converter = require('../../utils/converter.js');
 var WindowDialog_module = require('./WindowDialog.module.scss.js');
 
@@ -29,7 +30,6 @@ var WindowDialog = function WindowDialog(_ref) {
     size = _ref$size === void 0 ? 'medium' : _ref$size,
     onClose = _ref.onClose,
     rest = _objectWithoutProperties(_ref, _excluded);
-  var portalContainer = containerComponent || document.body;
   var _useOptionalSekai = useOptionalSekai.useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -38,6 +38,7 @@ var WindowDialog = function WindowDialog(_ref) {
     modeTheme = _useOptionalSekai.modeTheme,
     isLight = _useOptionalSekai.isLight;
   var displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden';
+  var portalContainer = usePortalContainer.usePortalContainer(containerComponent);
   var sekaiColorBg = converter.convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.3, isLight);
   var sekaiColorHeader = converter.convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   var windowInitCoordinate = function windowInitCoordinate() {
@@ -84,7 +85,7 @@ var WindowDialog = function WindowDialog(_ref) {
     setIsFullscreen(false);
   };
   var onMouseMove = React.useCallback(function (e) {
-    if (!dragging || isFullscreen) return;
+    if (!dragging || isFullscreen || !portalContainer) return;
     var portalRect = portalContainer.getBoundingClientRect();
     var x = e.clientX - portalRect.left - dragOffset.x;
     var y = e.clientY - portalRect.top - dragOffset.y;
@@ -117,6 +118,7 @@ var WindowDialog = function WindowDialog(_ref) {
       'transform': position.x === '50%' && !isFullscreen ? 'translate(-50%, -50%)' : 'none'
     });
   }, [containerComponent, isFullscreen, position.x, position.y, sekaiColor, sekaiColorBg, sekaiColorHeader]);
+  if (!portalContainer) return null;
   return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React.createElement("div", _extends({}, rest, {
     ref: modalRef,
     role: "dialog",

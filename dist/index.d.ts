@@ -155,7 +155,7 @@ interface BackdropProps {
     containerComponent?: HTMLElement;
     centered?: boolean;
 }
-declare const Backdrop: ({ sekai, themeMode, open, children, containerComponent, centered, ...rest }: BackdropProps) => React__default.ReactPortal;
+declare const Backdrop: ({ sekai, themeMode, open, children, containerComponent, centered, ...rest }: BackdropProps) => React__default.ReactPortal | null;
 
 type BasicButtonProps = {
     id?: string;
@@ -286,7 +286,7 @@ interface DialogProps {
     buttons?: DialogButton[];
     dialogButtons?: React__default.ReactNode;
 }
-declare const Dialog: ({ sekai, open, themeMode, children, containerComponent, size, onClose, title, showCloseIcon, buttons, dialogButtons, ...rest }: DialogProps) => React__default.ReactPortal;
+declare const Dialog: ({ sekai, open, themeMode, children, containerComponent, size, onClose, title, showCloseIcon, buttons, dialogButtons, ...rest }: DialogProps) => React__default.ReactPortal | null;
 type DialogTitleHeaderProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'size' | 'onClose' | 'title' | 'showCloseIcon'> & {
     id?: string;
     className?: string;
@@ -312,7 +312,7 @@ interface WindowDialogProps {
     size?: DialogSize;
     onClose: () => void;
 }
-declare const WindowDialog: ({ sekai, themeMode, open, children, containerComponent, size, onClose, ...rest }: WindowDialogProps) => React__default.ReactPortal;
+declare const WindowDialog: ({ sekai, themeMode, open, children, containerComponent, size, onClose, ...rest }: WindowDialogProps) => React__default.ReactPortal | null;
 
 interface XoMikuDialogProps {
     open: boolean;
@@ -327,7 +327,7 @@ interface XoMikuDialogProps {
     title?: string;
     buttons?: DialogButton[];
 }
-declare const XoMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons, ...rest }: XoMikuDialogProps) => React__default.ReactPortal;
+declare const XoMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons, ...rest }: XoMikuDialogProps) => React__default.ReactPortal | null;
 
 interface XxMikuDialogProps {
     open: boolean;
@@ -342,7 +342,7 @@ interface XxMikuDialogProps {
     title?: string;
     buttons?: DialogButton[];
 }
-declare const XxMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons, ...rest }: XxMikuDialogProps) => React__default.ReactPortal;
+declare const XxMikuDialog: ({ open, themeMode, children, size, containerComponent, onClose, title, buttons, ...rest }: XxMikuDialogProps) => React__default.ReactPortal | null;
 
 interface DividerProps {
     id?: string;
@@ -372,7 +372,7 @@ interface DrawerProps {
     containerComponent?: HTMLElement;
     pos?: DrawerPosition;
 }
-declare const Drawer: ({ sekai, themeMode, open, onClose, children, containerComponent, pos, ...rest }: DrawerProps) => React__default.ReactPortal;
+declare const Drawer: ({ sekai, themeMode, open, onClose, children, containerComponent, pos, ...rest }: DrawerProps) => React__default.ReactPortal | null;
 
 interface DropdownOption {
     label: string;
@@ -410,7 +410,7 @@ interface IntoTheSekaiProps {
     execEvent?: () => void;
     containerComponent?: HTMLElement;
 }
-declare const IntoTheSekai: ({ execEvent, containerComponent, ...rest }: IntoTheSekaiProps) => React__default.ReactPortal;
+declare const IntoTheSekai: ({ execEvent, containerComponent, ...rest }: IntoTheSekaiProps) => React__default.ReactPortal | null;
 
 interface TextLinkProps {
     id?: string;
@@ -677,7 +677,7 @@ interface ToastProps {
     duration?: number;
     containerComponent?: HTMLElement;
 }
-declare const Toast: ({ sekai, themeMode, open, onClose, pos, message, isError, duration, containerComponent, ...rest }: ToastProps) => React__default.ReactPortal;
+declare const Toast: ({ sekai, themeMode, open, onClose, pos, message, isError, duration, containerComponent, ...rest }: ToastProps) => React__default.ReactPortal | null;
 
 type TooltipPosition = 'top' | 'bottom';
 interface TooltipProps {

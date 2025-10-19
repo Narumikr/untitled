@@ -9,6 +9,7 @@ import { Backdrop } from '../backdrop/Backdrop.js';
 import { DialogTitleHeader, DialogButtons } from './Dialog.js';
 import { XxMikuSvg } from '../../img/xxmiku.js';
 import { useOptionalSekai } from '../../internal/useOptionalSekai.js';
+import { usePortalContainer } from '../../internal/usePortalContainer.js';
 import { fireOnEscapeKey } from '../../utils/operation.js';
 import styles from './XxMikuDialog.module.scss.js';
 
@@ -26,11 +27,11 @@ var XxMikuDialog = function XxMikuDialog(_ref) {
     title = _ref.title,
     buttons = _ref.buttons,
     rest = _objectWithoutProperties(_ref, _excluded);
-  var portalContainer = containerComponent || document.body;
   var _useOptionalSekai = useOptionalSekai({
       mode: themeMode
     }),
     modeTheme = _useOptionalSekai.modeTheme;
+  var portalContainer = usePortalContainer(containerComponent);
   useEffect(function () {
     if (!open) return;
     var handleKeyDownEsc = fireOnEscapeKey(onClose);
@@ -65,6 +66,7 @@ var XxMikuDialog = function XxMikuDialog(_ref) {
     themeMode: themeMode,
     buttons: xxButtonProps
   };
+  if (!portalContainer) return null;
   return /*#__PURE__*/createPortal(/*#__PURE__*/React.createElement(Backdrop, overlayProps, /*#__PURE__*/React.createElement("div", _extends({}, rest, {
     role: "dialog",
     className: clsx(styles["sekai-container-".concat(size)], styles["sekai-".concat(modeTheme)], rest.className),
