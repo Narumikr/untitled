@@ -9,6 +9,7 @@ import { Backdrop } from '../backdrop/Backdrop.js';
 import { DialogTitleHeader, DialogButtons } from './Dialog.js';
 import { LIGHT_MODE } from '../../hooks/useThemeMode.js';
 import { XoMikuSvg } from '../../img/xomiku.js';
+import { usePortalContainer } from '../../internal/usePortalContainer.js';
 import { fireOnEscapeKey } from '../../utils/operation.js';
 import styles from './XoMikuDialog.module.scss.js';
 
@@ -26,7 +27,7 @@ var XoMikuDialog = function XoMikuDialog(_ref) {
     title = _ref.title,
     buttons = _ref.buttons,
     rest = _objectWithoutProperties(_ref, _excluded);
-  var portalContainer = containerComponent || document.body;
+  var portalContainer = usePortalContainer(containerComponent);
   useEffect(function () {
     if (!open) return;
     var handleKeyDownEsc = fireOnEscapeKey(onClose);
@@ -60,6 +61,7 @@ var XoMikuDialog = function XoMikuDialog(_ref) {
     themeMode: LIGHT_MODE,
     buttons: xoButtonProps
   };
+  if (!portalContainer) return null;
   return /*#__PURE__*/createPortal(/*#__PURE__*/React.createElement(Backdrop, overlayProps, /*#__PURE__*/React.createElement("div", _extends({}, rest, {
     role: "dialog",
     className: clsx(styles["sekai-container-".concat(size)], rest.className),

@@ -7,6 +7,7 @@ import { Backdrop } from '@/components/backdrop/Backdrop'
 
 import { ClearSvg } from '@/img/clear'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { usePortalContainer } from '@/internal/usePortalContainer'
 import { convertHexToRgba } from '@/utils/converter'
 import { fireOnEscapeKey } from '@/utils/operation'
 
@@ -60,8 +61,8 @@ export const Dialog = ({
   dialogButtons,
   ...rest
 }: DialogProps) => {
-  const portalContainer = containerComponent || document.body
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const portalContainer = usePortalContainer(containerComponent)
 
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.1 : 0.3)
   const optionStyle = {
@@ -82,6 +83,8 @@ export const Dialog = ({
   const overlayProps = { open, themeMode, containerComponent }
   const headerProps = { sekai, themeMode, size, onClose, title, showCloseIcon }
   const buttonsProps = { sekai, themeMode, buttons }
+
+  if (!portalContainer) return null
 
   return createPortal(
     <Backdrop {...overlayProps} centered>
