@@ -8,6 +8,7 @@ import { createPortal } from 'react-dom';
 import { BodyText } from '../text/UtilText.js';
 import { ClearSvg } from '../../img/clear.js';
 import { useOptionalSekai } from '../../internal/useOptionalSekai.js';
+import { usePortalContainer } from '../../internal/usePortalContainer.js';
 import { convertHexToRgbaMixWithBlackOrWhite } from '../../utils/converter.js';
 import globalStyles from '../../styles/global.module.scss.js';
 import styles from './Toast.module.scss.js';
@@ -29,7 +30,6 @@ var Toast = function Toast(_ref) {
     duration = _ref$duration === void 0 ? 3000 : _ref$duration,
     containerComponent = _ref.containerComponent,
     rest = _objectWithoutProperties(_ref, _excluded);
-  var portalContainer = containerComponent || document.body;
   var _useOptionalSekai = useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -37,6 +37,7 @@ var Toast = function Toast(_ref) {
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme,
     isLight = _useOptionalSekai.isLight;
+  var portalContainer = usePortalContainer(containerComponent);
   var sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   var optionStyle = _objectSpread({
     '--sekai-color-bg': sekaiColorBg
@@ -54,6 +55,7 @@ var Toast = function Toast(_ref) {
       }
     };
   });
+  if (!portalContainer) return null;
   return /*#__PURE__*/createPortal(/*#__PURE__*/React.createElement("div", _extends({}, rest, {
     className: clsx(styles["sekai-toast-".concat(pos)], _defineProperty({}, styles['sekai-toast-open'], open), rest.className),
     style: _objectSpread(_objectSpread({}, optionStyle), rest.style)

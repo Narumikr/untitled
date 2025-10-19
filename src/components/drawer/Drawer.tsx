@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { usePortalContainer } from '@/internal/usePortalContainer'
 import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import globalStyles from '@/styles/global.module.scss'
@@ -39,8 +40,8 @@ export const Drawer = ({
   ...rest
 }: DrawerProps) => {
   const displayDrawer = open ? 'sekai-drawer-visible' : 'sekai-drawer-hidden'
-  const portalContainer = containerComponent || document.body
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
+  const portalContainer = usePortalContainer(containerComponent)
 
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
 
@@ -50,6 +51,8 @@ export const Drawer = ({
   const posAbsoluteStyle = {
     ...(containerComponent && { position: 'absolute' }),
   }
+
+  if (!portalContainer) return null
 
   return createPortal(
     <div

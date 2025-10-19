@@ -8,6 +8,7 @@ import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/
 
 import { XxMikuSvg } from '@/img/xxmiku'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { usePortalContainer } from '@/internal/usePortalContainer'
 import { fireOnEscapeKey } from '@/utils/operation'
 
 import styles from './XxMikuDialog.module.scss'
@@ -40,8 +41,8 @@ export const XxMikuDialog = ({
   buttons,
   ...rest
 }: XxMikuDialogProps) => {
-  const portalContainer = containerComponent || document.body
   const { modeTheme } = useOptionalSekai({ mode: themeMode })
+  const portalContainer = usePortalContainer(containerComponent)
 
   useEffect(() => {
     if (!open) return
@@ -77,6 +78,8 @@ export const XxMikuDialog = ({
     centered: true,
   }
   const buttonsProps = { themeMode, buttons: xxButtonProps }
+
+  if (!portalContainer) return null
 
   return createPortal(
     <Backdrop {...overlayProps}>

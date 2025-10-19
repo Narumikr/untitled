@@ -7,6 +7,7 @@ import { ClearSvg } from '@/img/clear'
 import { RestoreSvg } from '@/img/restore'
 import { SquareSvg } from '@/img/square'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
+import { usePortalContainer } from '@/internal/usePortalContainer'
 import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import styles from './WindowDialog.module.scss'
@@ -38,9 +39,9 @@ export const WindowDialog = ({
   onClose,
   ...rest
 }: WindowDialogProps) => {
-  const portalContainer = containerComponent || document.body
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
   const displayDialog = open ? 'sekai-dialog-visible' : 'sekai-dialog-hidden'
+  const portalContainer = usePortalContainer(containerComponent)
 
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.3, isLight)
   const sekaiColorHeader = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight)
@@ -75,7 +76,7 @@ export const WindowDialog = ({
 
   const onMouseMove = useCallback(
     (e: MouseEvent) => {
-      if (!dragging || isFullscreen) return
+      if (!dragging || isFullscreen || !portalContainer) return
       const portalRect = portalContainer.getBoundingClientRect()
 
       const x = e.clientX - portalRect.left - dragOffset.x
@@ -117,6 +118,8 @@ export const WindowDialog = ({
       sekaiColorHeader,
     ],
   )
+
+  if (!portalContainer) return null
 
   return createPortal(
     <div

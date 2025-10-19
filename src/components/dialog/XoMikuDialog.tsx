@@ -8,6 +8,7 @@ import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/
 
 import { LIGHT_MODE, type PaletteMode } from '@/hooks/useThemeMode'
 import { XoMikuSvg } from '@/img/xomiku'
+import { usePortalContainer } from '@/internal/usePortalContainer'
 import { fireOnEscapeKey } from '@/utils/operation'
 
 import styles from './XoMikuDialog.module.scss'
@@ -39,7 +40,7 @@ export const XoMikuDialog = ({
   buttons,
   ...rest
 }: XoMikuDialogProps) => {
-  const portalContainer = containerComponent || document.body
+  const portalContainer = usePortalContainer(containerComponent)
 
   useEffect(() => {
     if (!open) return
@@ -72,6 +73,8 @@ export const XoMikuDialog = ({
     centered: true,
   }
   const buttonsProps = { themeMode: LIGHT_MODE as PaletteMode, buttons: xoButtonProps }
+
+  if (!portalContainer) return null
 
   return createPortal(
     <Backdrop {...overlayProps}>

@@ -11,6 +11,7 @@ var Backdrop = require('../backdrop/Backdrop.js');
 var Dialog = require('./Dialog.js');
 var useThemeMode = require('../../hooks/useThemeMode.js');
 var xomiku = require('../../img/xomiku.js');
+var usePortalContainer = require('../../internal/usePortalContainer.js');
 var operation = require('../../utils/operation.js');
 var XoMikuDialog_module = require('./XoMikuDialog.module.scss.js');
 
@@ -28,7 +29,7 @@ var XoMikuDialog = function XoMikuDialog(_ref) {
     title = _ref.title,
     buttons = _ref.buttons,
     rest = _objectWithoutProperties(_ref, _excluded);
-  var portalContainer = containerComponent || document.body;
+  var portalContainer = usePortalContainer.usePortalContainer(containerComponent);
   React.useEffect(function () {
     if (!open) return;
     var handleKeyDownEsc = operation.fireOnEscapeKey(onClose);
@@ -62,6 +63,7 @@ var XoMikuDialog = function XoMikuDialog(_ref) {
     themeMode: useThemeMode.LIGHT_MODE,
     buttons: xoButtonProps
   };
+  if (!portalContainer) return null;
   return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React.createElement(Backdrop.Backdrop, overlayProps, /*#__PURE__*/React.createElement("div", _extends({}, rest, {
     role: "dialog",
     className: clsx(XoMikuDialog_module["sekai-container-".concat(size)], rest.className),

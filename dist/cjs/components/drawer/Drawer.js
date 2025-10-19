@@ -8,6 +8,7 @@ var React = require('react');
 var clsx = require('clsx');
 var reactDom = require('react-dom');
 var useOptionalSekai = require('../../internal/useOptionalSekai.js');
+var usePortalContainer = require('../../internal/usePortalContainer.js');
 var converter = require('../../utils/converter.js');
 var global_module = require('../../styles/global.module.scss.js');
 var Drawer_module = require('./Drawer.module.scss.js');
@@ -26,7 +27,6 @@ var Drawer = function Drawer(_ref) {
     pos = _ref$pos === void 0 ? 'right' : _ref$pos,
     rest = _objectWithoutProperties(_ref, _excluded);
   var displayDrawer = open ? 'sekai-drawer-visible' : 'sekai-drawer-hidden';
-  var portalContainer = containerComponent || document.body;
   var _useOptionalSekai = useOptionalSekai.useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -34,6 +34,7 @@ var Drawer = function Drawer(_ref) {
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme,
     isLight = _useOptionalSekai.isLight;
+  var portalContainer = usePortalContainer.usePortalContainer(containerComponent);
   var sekaiColorBg = converter.convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, isLight);
   var optionStyle = {
     '--sekai-color-bg': sekaiColorBg
@@ -41,6 +42,7 @@ var Drawer = function Drawer(_ref) {
   var posAbsoluteStyle = _objectSpread({}, containerComponent && {
     position: 'absolute'
   });
+  if (!portalContainer) return null;
   return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React.createElement("div", {
     className: clsx(global_module["sekai-overlay-".concat(modeTheme)], Drawer_module['sekai-drawer'], Drawer_module[displayDrawer]),
     style: posAbsoluteStyle,

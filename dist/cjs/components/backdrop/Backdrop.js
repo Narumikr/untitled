@@ -8,6 +8,7 @@ var React = require('react');
 var clsx = require('clsx');
 var reactDom = require('react-dom');
 var useOptionalSekai = require('../../internal/useOptionalSekai.js');
+var usePortalContainer = require('../../internal/usePortalContainer.js');
 var converter = require('../../utils/converter.js');
 var global_module = require('../../styles/global.module.scss.js');
 var Backdrop_module = require('./Backdrop.module.scss.js');
@@ -25,7 +26,6 @@ var Backdrop = function Backdrop(_ref) {
     centered = _ref$centered === void 0 ? true : _ref$centered,
     rest = _objectWithoutProperties(_ref, _excluded);
   var displayBackdrop = open ? 'sekai-backdrop-visible' : 'sekai-backdrop-hidden';
-  var portalContainer = containerComponent || document.body;
   var _useOptionalSekai = useOptionalSekai.useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -33,11 +33,13 @@ var Backdrop = function Backdrop(_ref) {
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme;
   var sekaiColorBg = converter.convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, false, 0.8);
+  var portalContainer = usePortalContainer.usePortalContainer(containerComponent);
   var optionStyle = _objectSpread({
     '--sekai-color-bg': sekaiColorBg
   }, containerComponent && {
     position: 'absolute'
   });
+  if (!portalContainer) return null;
   return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React.createElement("div", {
     className: clsx(Backdrop_module[displayBackdrop])
   }, /*#__PURE__*/React.createElement("div", _extends({}, rest, {
