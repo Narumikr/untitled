@@ -24,13 +24,13 @@
 ### 🍀 **_Installation_** 🍀![MOREMORE-JUMP-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:88dd44,100:f5f5f7)
 
 ```bash
-npm install github:Narumikr/untitled#release/untitled
+npm install github:Narumikr/Untitled#release/untitled
 ```
 
 yarnを使う場合：
 
 ```bash
-yarn add github:Narumikr/untitled#release/untitled
+yarn add github:Narumikr/Untitled#release/untitled
 ```
 
 #### **_Notice_**
@@ -40,11 +40,11 @@ React18で作成されているため、最新のReact環境にインストー�
 その場合、下記オプションをつけてのインストールをお試しください
 
 ```bash
-npm install github:Narumikr/untitled#release/untitled --legacy-peer-deps
+npm install github:Narumikr/Untitled#release/untitled --legacy-peer-deps
 
 or
 
-yarn add github:Narumikr/untitled#release/untitled --legacy-peer-deps
+yarn add github:Narumikr/Untitled#release/untitled --legacy-peer-deps
 ```
 
 ### 💻 **_How to use_** 💻![Nightcord-at25-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:884499,100:f5f5f7)
