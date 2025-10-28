@@ -1,6 +1,6 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:33aaee,100:ffc800&text=Hello%20SEKAI&section=header&fontAlign=39&fontAlignY=45&fontSize=50&textBg=false&reversal=false&animation=fadeIn&desc=React%20prsk%20theme%20UI%20Library&descAlign=50&descSize=-1&descAlignY=55&fontColor=f5f5f7" />
 
-# **_untitled_**
+# **_Untitled_**
 
 ![welcome comment](https://readme-typing-svg.herokuapp.com?color=%2333ccba&lines=Welcome+to+Untitled+UI+library!;きっと...;)
 
