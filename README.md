@@ -100,7 +100,7 @@ SEKAIカラーでデザインされたButtonなどを始めWebコンポーネン
 
 提供コンポーネントは下記のStorybookを参照してください
 
-[Storybook](https://untitled-theta-sage.vercel.app/)
+[Jump to Storybook ➣](https://untitled-release.vercel.app/)
 
 #### \*.tsx
 
@@ -148,7 +148,12 @@ const App = ({ Component, pageProps }: AppProps) => {
   })
 
   return (
-    <YourSekaiProvider sekaiTheme={theme}>
+    <YourSekaiProvider
+      sekaiTheme={theme}
+      options={{
+        disableStoreSekai: false /** default false */,
+        disableStoreTheme: false /** default false */
+      }}>
       <Component {...pageProps} />
     </YourSekaiProvider>
   )
@@ -160,6 +165,15 @@ Providerに渡すthemeは`createSekai`関数を用いて生成したオブジェ
 createSekaiの引数に渡すオブジェクトの型は下記となっており、paletteのsekaiは必須ですが、それ以外は任意で大丈夫です
 
 デフォルト値はmodeが`light(ライトモード)`で、fontFamilyは`Montserrat, sans-serif`です
+
+また、この設定値はデフォルトでローカルストレージに保存しており、リロードをしたり、再度ページ訪問した際に復元して反映されます
+
+設定値の保存が不要な場合はProviderにオプションとして`disableStoreSekai`と`disableStoreTheme`を渡すことができます
+
+- disableStoreSekai : `true`でセカイの値を保存しなくなります
+- disableStoreTheme : `true`でテーマモードの値を保存しなくなります
+
+デフォルトではどちらも`false`になっているので、保存しても問題ない場合は特にOptionの設定は不要です
 
 ```ts
 export type SekaiThemeProps = {
