@@ -20,23 +20,22 @@ export const EqualizerIcon = ({ className = '', sekai, themeMode }: EqualizerIco
     { delay: '0.2s', from: { height: '30px', y: '55px' }, to: { height: '70px', y: '15px' } },
     { delay: '0.4s', from: { height: '25px', y: '60px' }, to: { height: '65px', y: '20px' } },
     { delay: '0.1s', from: { height: '35px', y: '50px' }, to: { height: '60px', y: '25px' } },
-    { delay: '0.3s', from: { height: '20px', y: '65px' }, to: { height: '45px', y: '40px' } }
+    { delay: '0.3s', from: { height: '20px', y: '65px' }, to: { height: '45px', y: '40px' } },
   ]
 
   return (
-    <div>
+    <>
       <EqualizerStyled />
-
       <svg
         className={className}
         viewBox="0 0 100 100"
-        width="100%"
-        height="100%"
+        width="24"
+        height="24"
         xmlns="http://www.w3.org/2000/svg"
         style={
           {
             '--sekai-color': sekaiColor,
-            '--theme-color': color
+            '--theme-color': color,
           } as React.CSSProperties
         }>
         {barConfigs.map((config, index) => (
@@ -53,13 +52,13 @@ export const EqualizerIcon = ({ className = '', sekai, themeMode }: EqualizerIco
                 '--from-height': config.from.height,
                 '--from-y': config.from.y,
                 '--to-height': config.to.height,
-                '--to-y': config.to.y
+                '--to-y': config.to.y,
               } as React.CSSProperties
             }
           />
         ))}
       </svg>
-    </div>
+    </>
   )
 }
 

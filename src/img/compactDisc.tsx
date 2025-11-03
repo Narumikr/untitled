@@ -20,8 +20,8 @@ export const CompactDiscIcon = ({ className = '', sekai, themeMode }: CompactDis
     <svg
       className={className}
       viewBox="0 0 100 100"
-      width="100%"
-      height="100%"
+      width="24"
+      height="24"
       xmlns="http://www.w3.org/2000/svg">
       <circle cx="50" cy="50" r="48.3" fill="none" stroke={color} strokeWidth="3" />
       <circle cx="50" cy="50" r="46.7" fill={reverseColor} strokeWidth="3" />
