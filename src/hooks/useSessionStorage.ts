@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { ConsoleError } from '@/internal/logging'
 import { deserializeDataWithTemplate, serializeData } from '@/utils/serialization'
@@ -33,10 +33,10 @@ export const useSessionStorage = <T>(sessionStorageKey: string, initialValue: T)
     }
   }, [sessionStorageKey, storedValue])
 
-  const deleteSessionStorage = () => {
+  const deleteSessionStorage = useCallback(() => {
     setStoredValue(initialValue)
     sessionStorage.removeItem(sessionStorageKey)
-  }
+  }, [initialValue, sessionStorageKey])
 
   return {
     storedValue,

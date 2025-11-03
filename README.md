@@ -1,6 +1,6 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:33aaee,100:ffc800&text=Hello%20SEKAI&section=header&fontAlign=39&fontAlignY=45&fontSize=50&textBg=false&reversal=false&animation=fadeIn&desc=React%20prsk%20theme%20UI%20Library&descAlign=50&descSize=-1&descAlignY=55&fontColor=f5f5f7" />
 
-# **_untitled_**
+# **_Untitled_**
 
 ![welcome comment](https://readme-typing-svg.herokuapp.com?color=%2333ccba&lines=Welcome+to+Untitled+UI+library!;きっと...;)
 
@@ -24,13 +24,13 @@
 ### 🍀 **_Installation_** 🍀![MOREMORE-JUMP-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:88dd44,100:f5f5f7)
 
 ```bash
-npm install github:Narumikr/untitled#release/untitled
+npm install github:Narumikr/Untitled#release/untitled
 ```
 
 yarnを使う場合：
 
 ```bash
-yarn add github:Narumikr/untitled#release/untitled
+yarn add github:Narumikr/Untitled#release/untitled
 ```
 
 #### **_Notice_**
@@ -40,11 +40,11 @@ React18で作成されているため、最新のReact環境にインストー�
 その場合、下記オプションをつけてのインストールをお試しください
 
 ```bash
-npm install github:Narumikr/untitled#release/untitled --legacy-peer-deps
+npm install github:Narumikr/Untitled#release/untitled --legacy-peer-deps
 
 or
 
-yarn add github:Narumikr/untitled#release/untitled --legacy-peer-deps
+yarn add github:Narumikr/Untitled#release/untitled --legacy-peer-deps
 ```
 
 ### 💻 **_How to use_** 💻![Nightcord-at25-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:884499,100:f5f5f7)
@@ -100,7 +100,7 @@ SEKAIカラーでデザインされたButtonなどを始めWebコンポーネン
 
 提供コンポーネントは下記のStorybookを参照してください
 
-[Storybook](https://untitled-theta-sage.vercel.app/)
+[Jump to Storybook ➣](https://untitled-release.vercel.app/)
 
 #### \*.tsx
 
@@ -148,7 +148,12 @@ const App = ({ Component, pageProps }: AppProps) => {
   })
 
   return (
-    <YourSekaiProvider sekaiTheme={theme}>
+    <YourSekaiProvider
+      sekaiTheme={theme}
+      options={{
+        disableStoreSekai: false /** default false */,
+        disableStoreTheme: false /** default false */
+      }}>
       <Component {...pageProps} />
     </YourSekaiProvider>
   )
@@ -160,6 +165,15 @@ Providerに渡すthemeは`createSekai`関数を用いて生成したオブジェ
 createSekaiの引数に渡すオブジェクトの型は下記となっており、paletteのsekaiは必須ですが、それ以外は任意で大丈夫です
 
 デフォルト値はmodeが`light(ライトモード)`で、fontFamilyは`Montserrat, sans-serif`です
+
+また、この設定値はデフォルトでローカルストレージに保存しており、リロードをしたり、再度ページ訪問した際に復元して反映されます
+
+設定値の保存が不要な場合はProviderにオプションとして`disableStoreSekai`と`disableStoreTheme`を渡すことができます
+
+- disableStoreSekai : `true`でセカイの値を保存しなくなります
+- disableStoreTheme : `true`でテーマモードの値を保存しなくなります
+
+デフォルトではどちらも`false`になっているので、保存しても問題ない場合は特にOptionの設定は不要です
 
 ```ts
 export type SekaiThemeProps = {

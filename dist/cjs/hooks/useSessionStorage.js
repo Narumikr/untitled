@@ -34,10 +34,10 @@ var useSessionStorage = function useSessionStorage(sessionStorageKey, initialVal
       logging.ConsoleError('Failed to set session storage : ', err);
     }
   }, [sessionStorageKey, storedValue]);
-  var deleteSessionStorage = function deleteSessionStorage() {
+  var deleteSessionStorage = React.useCallback(function () {
     setStoredValue(initialValue);
     sessionStorage.removeItem(sessionStorageKey);
-  };
+  }, [initialValue, sessionStorageKey]);
   return {
     storedValue: storedValue,
     setStoredValue: setStoredValue,

@@ -24,15 +24,33 @@ export interface YourSekaiContextProps {
 
 export const YourSekaiContext = createContext<YourSekaiContextProps | null>(null)
 
+interface YourSekaiOptions {
+  disableStoreSekai?: boolean
+  disableStoreTheme?: boolean
+}
+
 export interface YourSekaiProviderProps {
   children: React.ReactNode
   sekaiTheme: SekaiTheme
+  options?: YourSekaiOptions
 }
-export const YourSekaiProvider = ({ children, sekaiTheme }: YourSekaiProviderProps) => {
-  const { storedValue: sekaiColor, setStoredValue: setSekaiColor } =
-    useLocalStorage<ColorsSekaiKey>(YOUR_SEKAI_COLOR, sekaiTheme.palette.sekai)
-  const { storedValue: colorTheme, setStoredValue: setColorTheme } =
-    useLocalStorage<PaletteMode>(YOUR_COLOR_THEME, sekaiTheme.palette.mode)
+
+export const YourSekaiProvider = ({
+  children,
+  sekaiTheme,
+  options,
+}: YourSekaiProviderProps) => {
+  const { value: sekaiColor, setValue: setSekaiColor } = useStorageOrState(
+    YOUR_SEKAI_COLOR,
+    sekaiTheme.palette.sekai,
+    options?.disableStoreSekai,
+  )
+
+  const { value: colorTheme, setValue: setColorTheme } = useStorageOrState(
+    YOUR_COLOR_THEME,
+    sekaiTheme.palette.mode,
+    options?.disableStoreTheme,
+  )
 
   const switchSekaiColor = useCallback(
     (sekai: ColorsSekaiKey) => {
@@ -103,3 +121,27 @@ const GlobalStyle = memo(({ theme }: { theme: SekaiTheme }) => {
 })
 
 GlobalStyle.displayName = 'GlobalStyle'
+
+/**
+ * Helper hook to use either session storage or state based on a disabled flag.
+ */
+const useStorageOrState = <T,>(
+  storageKey: string,
+  initialValue: T,
+  disabled: boolean = false,
+) => {
+  const localStorage = useLocalStorage<T>(storageKey, initialValue)
+  const [state, setState] = useState<T>(initialValue)
+
+  useEffect(() => {
+    if (disabled) {
+      localStorage.deleteLocalStorage()
+    }
+  }, [disabled, localStorage])
+
+  if (disabled) {
+    return { value: state, setValue: setState }
+  }
+
+  return { value: localStorage.storedValue, setValue: localStorage.setStoredValue }
+}
