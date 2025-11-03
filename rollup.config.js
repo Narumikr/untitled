@@ -50,6 +50,13 @@ const setUseClientDirective = () => {
   }
 }
 
+/**
+ * Injects the provided CSS string into the document's head using a <style> tag.
+ */
+const injectStyles = (css) => {
+  return `if(typeof document!=='undefined'){const s=document.createElement('style');s.innerHTML=${css};document.head.appendChild(s);}`
+}
+
 export default [
   {
     input: 'src/index.ts',
@@ -74,6 +81,7 @@ export default [
       ...Object.keys(pkg.peerDependencies || {}),
       ...Object.keys(pkg.dependencies || {}),
       /@babel\/runtime\//,
+      // /style-inject/,
     ],
     plugins: [
       tsconfigPaths(),
@@ -86,7 +94,7 @@ export default [
         extensions: ['.ts', '.tsx'],
       }),
       postcss({
-        inject: false,
+        inject: injectStyles,
         modules: true,
         use: {
           sass: {

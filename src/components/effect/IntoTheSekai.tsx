@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
+import { usePortalContainer } from '@/internal/usePortalContainer'
+
 import styles from './IntoTheSekai.module.scss'
 
 export interface IntoTheSekaiProps {
@@ -28,7 +30,7 @@ const YELLOW = 'rgb(255, 247, 148, {0})'
 const AQUA = 'rgb(149, 253, 255, {0})'
 
 export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoTheSekaiProps) => {
-  const portalContainer = containerComponent || document.body
+  const portalContainer = usePortalContainer(containerComponent)
   const [startAnimation, setStartAnimation] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const sekaiPieceRef = useRef<PieceOfSekai[]>([])
@@ -42,6 +44,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
     if (!canvas) return
 
     const setCanvasSize = () => {
+      if (!portalContainer) return
       canvas.width = portalContainer.offsetWidth
       canvas.height = portalContainer.offsetHeight
     }
@@ -53,8 +56,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
     return () => {
       window.removeEventListener('resize', setCanvasSize)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [portalContainer])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -107,6 +109,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
   }, [execEvent, startAnimation])
 
   const handleClick = (e: AnimationTrigger) => {
+    if (!portalContainer) return
     setStartAnimation(true)
     const rect = portalContainer.getBoundingClientRect()
     if (!rect) return
@@ -117,6 +120,8 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
     const newPieceOfSekai = createSekaiPiece(effectX, effectY)
     sekaiPieceRef.current = [...sekaiPieceRef.current, ...newPieceOfSekai]
   }
+
+  if (!portalContainer) return null
 
   return createPortal(
     <canvas
