@@ -97,6 +97,20 @@ const meta = {
       },
       control: false,
     },
+    onBlur: {
+      description: 'Callback when the card loses focus',
+      table: {
+        type: { summary: '() => void' },
+      },
+      control: false,
+    },
+    onMouseLeave: {
+      description: 'Callback when the mouse pointer leaves the card',
+      table: {
+        type: { summary: '() => void' },
+      },
+      control: false,
+    },
     variants: {
       description: 'Variants of the MusicBannerCard',
       table: {
@@ -110,6 +124,8 @@ const meta = {
   args: {
     onSelect: fn(),
     onClick: fn(),
+    onBlur: fn(),
+    onMouseLeave: fn(),
   },
 } satisfies Meta<typeof MusicBannerCard>
 

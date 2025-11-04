@@ -1,6 +1,6 @@
 'use client';
 import _slicedToArray from '@babel/runtime/helpers/slicedToArray';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { ConsoleError } from '../internal/logging.js';
 import { deserializeDataWithTemplate, serializeData } from '../utils/serialization.js';
 
@@ -32,10 +32,10 @@ var useSessionStorage = function useSessionStorage(sessionStorageKey, initialVal
       ConsoleError('Failed to set session storage : ', err);
     }
   }, [sessionStorageKey, storedValue]);
-  var deleteSessionStorage = function deleteSessionStorage() {
+  var deleteSessionStorage = useCallback(function () {
     setStoredValue(initialValue);
     sessionStorage.removeItem(sessionStorageKey);
-  };
+  }, [initialValue, sessionStorageKey]);
   return {
     storedValue: storedValue,
     setStoredValue: setStoredValue,

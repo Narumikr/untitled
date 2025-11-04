@@ -26,6 +26,8 @@ export interface MusicBannerCardProps {
   selected?: boolean
   onSelect?: (select: boolean) => void
   onClick?: () => void
+  onBlur?: () => void
+  onMouseLeave?: () => void
   variants?: MusicBannerCardVariants
 }
 
@@ -37,6 +39,8 @@ export const MusicBannerCard = ({
   selected = false,
   onSelect,
   onClick,
+  onBlur,
+  onMouseLeave,
   variants = 'default',
   ...rest
 }: MusicBannerCardProps) => {
@@ -67,10 +71,11 @@ export const MusicBannerCard = ({
         rest.className,
       )}
       onClick={onClick}
-      onKeyDown={onClick ?? fireOnEnterKey(() => onClick)}
+      onKeyDown={onClick ? fireOnEnterKey<HTMLDivElement>(onClick) : undefined}
       onFocus={() => handleChangeSelect(true)}
-      onBlur={() => handleChangeSelect(false)}
-      onMouseEnter={() => handleChangeSelect(true)}>
+      onBlur={onBlur}
+      onMouseEnter={() => handleChangeSelect(true)}
+      onMouseLeave={onMouseLeave}>
       <CardContent
         id={rest.id ?? `${rest.id}-content`}
         className={clsx(styles['sekai-music-banner-card-content'], {

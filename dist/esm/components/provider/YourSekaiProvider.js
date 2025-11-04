@@ -13,13 +13,14 @@ var YOUR_COLOR_THEME = 'your_color_theme';
 var YourSekaiContext = /*#__PURE__*/createContext(null);
 var YourSekaiProvider = function YourSekaiProvider(_ref) {
   var children = _ref.children,
-    sekaiTheme = _ref.sekaiTheme;
-  var _useLocalStorage = useLocalStorage(YOUR_SEKAI_COLOR, sekaiTheme.palette.sekai),
-    sekaiColor = _useLocalStorage.storedValue,
-    setSekaiColor = _useLocalStorage.setStoredValue;
-  var _useLocalStorage2 = useLocalStorage(YOUR_COLOR_THEME, sekaiTheme.palette.mode),
-    colorTheme = _useLocalStorage2.storedValue,
-    setColorTheme = _useLocalStorage2.setStoredValue;
+    sekaiTheme = _ref.sekaiTheme,
+    options = _ref.options;
+  var _useStorageOrState = useStorageOrState(YOUR_SEKAI_COLOR, sekaiTheme.palette.sekai, options === null || options === void 0 ? void 0 : options.disableStoreSekai),
+    sekaiColor = _useStorageOrState.value,
+    setSekaiColor = _useStorageOrState.setValue;
+  var _useStorageOrState2 = useStorageOrState(YOUR_COLOR_THEME, sekaiTheme.palette.mode, options === null || options === void 0 ? void 0 : options.disableStoreTheme),
+    colorTheme = _useStorageOrState2.value,
+    setColorTheme = _useStorageOrState2.setValue;
   var switchSekaiColor = useCallback(function (sekai) {
     setSekaiColor(sekai);
   }, [setSekaiColor]);
@@ -63,5 +64,31 @@ var GlobalStyle = /*#__PURE__*/memo(function (_ref2) {
   return /*#__PURE__*/React.createElement("style", null, style);
 });
 GlobalStyle.displayName = 'GlobalStyle';
+/**
+ * Helper hook to use either session storage or state based on a disabled flag.
+ */
+var useStorageOrState = function useStorageOrState(storageKey, initialValue) {
+  var disabled = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  var localStorage = useLocalStorage(storageKey, initialValue);
+  var _useState3 = useState(initialValue),
+    _useState4 = _slicedToArray(_useState3, 2),
+    state = _useState4[0],
+    setState = _useState4[1];
+  useEffect(function () {
+    if (disabled) {
+      localStorage.deleteLocalStorage();
+    }
+  }, [disabled, localStorage]);
+  if (disabled) {
+    return {
+      value: state,
+      setValue: setState
+    };
+  }
+  return {
+    value: localStorage.storedValue,
+    setValue: localStorage.setStoredValue
+  };
+};
 
 export { YOUR_COLOR_THEME, YOUR_SEKAI_COLOR, YourSekaiContext, YourSekaiProvider };
