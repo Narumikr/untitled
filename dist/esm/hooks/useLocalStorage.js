@@ -1,6 +1,6 @@
 'use client';
 import _slicedToArray from '@babel/runtime/helpers/slicedToArray';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { ConsoleError } from '../internal/logging.js';
 import { deserializeDataWithTemplate, serializeData } from '../utils/serialization.js';
 
@@ -52,10 +52,10 @@ var useLocalStorage = function useLocalStorage(localStorageKey, initialValue) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  var deleteLocalStorage = function deleteLocalStorage() {
+  var deleteLocalStorage = useCallback(function () {
     setStoredValue(initialValue);
     localStorage.removeItem(localStorageKey);
-  };
+  }, [initialValue, localStorageKey]);
   return {
     storedValue: storedValue,
     setStoredValue: setStoredValue,

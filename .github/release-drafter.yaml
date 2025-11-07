@@ -1,38 +1,24 @@
 name-template: 'v$RESOLVED_VERSION 🎶'
 tag-template: 'v$RESOLVED_VERSION'
+exclude-labels:
+  - 'skip-changelog'
+  - 'no-changelog'
 categories:
-  - title: '🎸 Features'
+  - title: '🎸 Features 🎹'
     labels:
       - 'feature'
       - 'enhancement'
     collapse-after: 15
-  - title: '❄ Bug Fixes'
+  - title: '❄ Bug Fixes 🎼'
     labels:
       - 'fix'
       - 'bugfix'
       - 'bug'
-  - title: '🤖 Maintenance'
+  - title: '🤖 Maintenance 🦄'
     labels:
       - 'chore'
       - 'documentation'
-  - title: '🎼 Other Changes'
-    labels:
-      - '*'
 
-autolabeler:
-  - label: 'feature'
-    title:
-      - '/feature/i'
-      - '/component/i'
-      - '/create/i'
-  - label: 'fix'
-    title:
-      - '/fix/i'
-      - '/bug/i'
-  - label: 'chore'
-    title:
-      - '/document/i'
-      - '/refactor/i'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 template: |

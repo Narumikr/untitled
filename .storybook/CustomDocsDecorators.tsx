@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useMemo } from 'react'
 
 import { YourSekaiProvider } from '@/components/provider/YourSekaiProvider'
 
-import { useCreateSekai } from '@/hooks/useCreateSekai'
 import { DARK_MODE, LIGHT_MODE } from '@/hooks/useThemeMode'
 import { createSekai } from '@/utils/createSekai'
 
@@ -25,16 +24,24 @@ export const CustomDocsDecorators = ({ story: Story, context }: CustomDocsDecora
   const isPortal: boolean = context.parameters.portal
   const isPortalDocsPreview = isPortal && isDocs
 
-  const theme = createSekai({
-    palette: {
-      sekai: sekai,
-      mode: isDark ? DARK_MODE : LIGHT_MODE,
-    },
-  })
+  const storySekai = useMemo<ColorsSekaiKey>(() => sekai, [sekai])
+  const storyMode = useMemo<PaletteMode>(() => modeTheme, [modeTheme])
+
+  const sekaiTheme = useMemo(
+    () =>
+      createSekai({
+        palette: {
+          sekai: storySekai,
+          mode: storyMode,
+        },
+      }),
+    [storySekai, storyMode],
+  )
 
   return (
-    <YourSekaiProvider sekaiTheme={theme}>
-      <SekaiThemeSetting sekai={sekai} mode={modeTheme} />
+    <YourSekaiProvider
+      sekaiTheme={sekaiTheme}
+      options={{ disableStoreSekai: true, disableStoreTheme: true }}>
       <Story
         args={{
           ...context.args,
@@ -55,25 +62,4 @@ const getContainerPortalRoot = (context: StoryContext, isDocs: boolean) => {
       ? nodeList[isPrimary ? 0 : 1]?.querySelector('.docs-story')
       : document.getElementById(`anchor--${context.id}`)?.querySelector('.docs-story')
     : document.body
-}
-
-interface SekaiThemeSettingProps {
-  sekai: ColorsSekaiKey
-  mode: PaletteMode
-}
-
-const SekaiThemeSetting = ({ sekai, mode }: SekaiThemeSettingProps) => {
-  const { switchSekaiColor, switchColorTheme } = useCreateSekai()
-
-  useEffect(() => {
-    switchSekaiColor(sekai)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sekai])
-
-  useEffect(() => {
-    switchColorTheme(mode)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode])
-
-  return <></>
 }

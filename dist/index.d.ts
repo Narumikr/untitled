@@ -567,11 +567,16 @@ interface YourSekaiContextProps {
     switchColorTheme: (color: PaletteMode) => void;
 }
 declare const YourSekaiContext: React__default.Context<YourSekaiContextProps | null>;
+interface YourSekaiOptions {
+    disableStoreSekai?: boolean;
+    disableStoreTheme?: boolean;
+}
 interface YourSekaiProviderProps {
     children: React__default.ReactNode;
     sekaiTheme: SekaiTheme;
+    options?: YourSekaiOptions;
 }
-declare const YourSekaiProvider: ({ children, sekaiTheme }: YourSekaiProviderProps) => React__default.JSX.Element;
+declare const YourSekaiProvider: ({ children, sekaiTheme, options, }: YourSekaiProviderProps) => React__default.JSX.Element;
 
 type CheckboxProps = {
     id?: string;

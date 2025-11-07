@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { ConsoleError } from '@/internal/logging'
 import { deserializeDataWithTemplate, serializeData } from '@/utils/serialization'
@@ -55,10 +55,10 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const deleteLocalStorage = () => {
+  const deleteLocalStorage = useCallback(() => {
     setStoredValue(initialValue)
     localStorage.removeItem(localStorageKey)
-  }
+  }, [initialValue, localStorageKey])
 
   return {
     storedValue,
