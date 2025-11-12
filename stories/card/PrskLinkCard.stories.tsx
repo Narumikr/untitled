@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fn } from '@storybook/test'
+import { fn } from 'storybook/test'
 
 import { PrskLinkCard } from '@/components/card/PrskLinkCard'
 
@@ -8,7 +8,7 @@ import { ProfileSvg } from '@/img/profile'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Special/PrskLinkCard',
