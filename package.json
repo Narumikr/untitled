@@ -88,8 +88,8 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.28.3",
-    "clsx": "2.1.1"
+    "@babel/runtime": "^7.28.3",
+    "clsx": "^2.1.1"
   },
   "sideEffects": [
     "dist/*.css"
