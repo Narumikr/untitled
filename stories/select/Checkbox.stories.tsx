@@ -69,6 +69,14 @@ const meta = {
         type: { summary: '(value: boolean) => void' },
       },
     },
+    filling: {
+      description: 'Whether to use filling style',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+      control: { type: 'boolean' },
+    },
   },
   args: {
     onChange: fn(),

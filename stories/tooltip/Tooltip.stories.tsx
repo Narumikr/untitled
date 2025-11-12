@@ -56,6 +56,14 @@ const meta = {
       type: { required: true },
       table: { type: { summary: 'React.ReactNode' } },
     },
+    text: {
+      description: 'Tooltip text',
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
+      table: {
+        type: { summary: 'string' },
+      },
+    },
     pos: {
       description: 'Tooltip position',
       table: {

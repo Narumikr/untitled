@@ -50,6 +50,24 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark'],
     },
+    open: {
+      description: 'Whether the toast is open',
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    onClose: {
+      description: 'Callback when the toast is closed',
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
+      table: {
+        type: { summary: '() => void' },
+      },
+      control: false,
+    },
     pos: {
       description: 'Toast position',
       table: {
@@ -58,6 +76,21 @@ const meta = {
       },
       control: { type: 'select' },
       options: ['top', 'bottom'],
+    },
+    message: {
+      description: 'Toast message content',
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
+      table: {
+        type: { summary: 'string | string[]' },
+      },
+    },
+    isError: {
+      description: 'Whether the toast indicates an error',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     duration: {
       description: 'Duration in milliseconds before the toast closes',
