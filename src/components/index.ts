@@ -1,3 +1,8 @@
+/**
+ * This file is auto-generated. Do not edit manually.
+ * Generated at: 2025-11-15 04:18:14
+ */
+
 export * from './accordion/Accordion'
 export * from './backdrop/Backdrop'
 export * from './button/BasicButton'
